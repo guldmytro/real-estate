@@ -1,0 +1,162 @@
+{% load solo_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% get_solo 'props.SiteConfiguration' as site_config %}
+    <title>{% block title %}Головна{% endblock %} - {{ site_config.site_name }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="content">
+        <header class="header">
+            <div class="header-toper">
+                <div class="container">
+                    <a href="index.html" class="logo accent" aria-label="перейти на головну">
+                        <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
+                    </a>
+                    <div class="header-toper__controls">
+                        <a href="tel:+380322949679" class="link">
+                            <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
+                            <span class="link__text">+38 (032) 294 96 79</span>
+                        </a>
+                        <a href="course.html" class="link">
+                            <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
+                            <span class="link__text">Наш онлайн курс</span>
+                        </a>
+                        <a href="discount.html" class="link">
+                            <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
+                            <span class="link__text accent">Акції</span>
+                        </a>
+                    </div>
+                    <form class="header-lang">
+                        <select name="lang" id="lang">
+                            <option value="uk">ua</option>
+                            <option value="en">en</option>
+                        </select>
+                    </form>
+                    <a href="wishlist.html" class="wishlist-link">
+                        <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
+                    </a>
+                    <div class="header-menu">
+                        <button type="button" class="menu-btn" aria-label="відкрити закрити меню">
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="mobile-menu">
+                        <div class="mobile-menu__inner">
+                            <button class="btn_close mobile-menu__close" type="button" aria-label="Закрити вікно">
+                                <span></span>
+                                <span></span>
+                            </button>
+                            <a href="index.html" class="logo accent" aria-label="перейти на головну">
+                                <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
+                            </a>
+                            <nav class="mobile-nav">
+                                <a class="mobile-nav__link" href="archive-objects.html">Новобудови</a>
+                                <a class="mobile-nav__link" href="archive-objects.html">Квартири</a>
+                                <a class="mobile-nav__link" href="archive-objects.html">Комерція</a>
+                                <a class="mobile-nav__link" href="archive-objects.html">Будинки</a>
+                                <a class="mobile-nav__link" href="archive-objects.html">Земельні ділянки</a>
+                                <a class="mobile-nav__link" href="abroad.html">Нерухомість за кордоном</a>
+                                <a class="mobile-nav__link" href="employees.html">Спеціалісти</a>
+                                <a class="mobile-nav__link" href="archive-analytic.html">Аналітика</a>
+                                <a class="mobile-nav__link" href="contacts.html">Контакти</a>
+                            </nav>
+                            <div class="header-toper__controls">
+                                <a href="tel:+380322949679" class="link">
+                                    <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
+                                    <span class="link__text">+38 (032) 294 96 79</span>
+                                </a>
+                                <a href="course.html" class="link">
+                                    <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
+                                    <span class="link__text">Наш онлайн курс</span>
+                                </a>
+                                <a href="discount.html" class="link">
+                                    <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
+                                    <span class="link__text accent">Акції</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="container">
+                    <nav class="header-nav">
+                        <a class="header-nav__link" href="archive-objects.html">Новобудови</a>
+                        <a class="header-nav__link" href="archive-objects.html">Квартири</a>
+                        <a class="header-nav__link" href="archive-objects.html">Комерція</a>
+                        <a class="header-nav__link" href="archive-objects.html">Будинки</a>
+                        <a class="header-nav__link" href="archive-objects.html">Земельні ділянки</a>
+                        <a class="header-nav__link" href="abroad.html">Нерухомість за кордоном</a>
+                        <a class="header-nav__link" href="employees.html">Спеціалісти</a>
+                        <a class="header-nav__link" href="archive-analytic.html">Аналітика</a>
+                        <a class="header-nav__link" href="contacts.html">Контакти</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        {% block content %}{% endblock %}
+    </div>
+    <!-- /.content -->
+    <footer class="footer">
+        <div class="container">
+            <a href="index.html" class="logo invert" aria-label="перейти на головну">
+                <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
+            </a>
+            <nav class="footer-menu">
+                <a href="archive-objects.html" class="footer-menu__link">Новобудови</a>
+                <a href="archive-objects.html" class="footer-menu__link">Квартири</a>
+                <a href="archive-objects.html" class="footer-menu__link">Комерція</a>
+                <a href="archive-objects.html" class="footer-menu__link">Будинки</a>
+                <a href="archive-objects.html" class="footer-menu__link">Земельні ділянки</a>
+                <a href="abroad.html" class="footer-menu__link">Нерухомість за кордоном</a>
+                <a href="employees.html" class="footer-menu__link">Спеціалісти</a>
+                <a href="archive-analytic.html" class="footer-menu__link">Аналітика</a>
+                <a href="contacts.html" class="footer-menu__link">Контакти</a>
+            </nav>
+            <a href="course.html" class="link">
+                <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
+                <span class="link__text">Наш онлайн курс</span>
+            </a>
+            <div class="footer-contacts">
+                <a href="tel:+380322949679" class="link">
+                    <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
+                    <span class="link__text">+38 (032) 294 96 79</span>
+                </a>
+                <ul class="footer-socials">
+                    <li class="socials-item">
+                        <a href="https://web.telegram.org/a/" class="socials-item__link" aria-label="перейти у телеграм">
+                            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://www.viber.com/ru/" class="socials-item__link" aria-label="перейти у вайбер">
+                            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://www.instagram.com/" class="socials-item__link" aria-label="перейти у інстаграм">
+                            <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://uk-ua.facebook.com/" class="socials-item__link" aria-label="перейти у фейсбук">
+                            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/common.js' %}"></script>
+</body>
+</html>

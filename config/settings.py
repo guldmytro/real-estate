@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party,
+    'solo',
     # Local
     'profiles.apps.ProfilesConfig',
+    'props.apps.PropsConfig',
+    'pages.apps.PagesConfig',
+    'listings.apps.ListingsConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'
@@ -123,6 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = Path('media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
