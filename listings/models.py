@@ -38,15 +38,18 @@ class Listing(models.Model):
     # Price
     price = models.PositiveIntegerField(verbose_name='Price', blank=True, null=True)
 
+    # Location
     coordinates = models.PointField(default=Point(float(0), float(0)))
+    street = models.ForeignKey('Street', verbose_name='Street', blank=True, null=True, on_delete=models.CASCADE,
+                               related_name='listings')
 
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
                                  blank=True, null=True, verbose_name='Category', related_name='listings')
     realty_type = models.ForeignKey('RealtyType', on_delete=models.CASCADE, verbose_name='Realty type',
                                     related_name='listings', blank=True, null=True)
 
-    active = ActiveManager()
     objects = models.Manager()
+    active = ActiveManager()
 
     class Meta:
         ordering = ('-created',)
@@ -55,6 +58,22 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+
+    def price_per_square(self):
+        if self.price and self.area_total:
+            return round(self.price / self.area_total)
+        return False
+
+    def formated_price(self):
+        if self.price:
+            price_str = str(self.price)
+            result = ""
+            for i, digit in enumerate(price_str[::-1]):
+                if i > 0 and i % 3 == 0:
+                    result = " " + result
+                result = digit + result
+            return result
+        return False
 
     def delete(self, *args, **kwargs):
         for image in self.images:
@@ -102,10 +121,6 @@ class Image(models.Model):
         )
 
 
-
-
-
-
 class Attribute(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='Slug')
@@ -125,8 +140,50 @@ class Kit(models.Model):
     value = models.CharField(max_length=255, verbose_name='Value')
 
     class Meta:
+        unique_together = (
+            ('listing', 'attribute')
+        )
         verbose_name = 'Kit'
         verbose_name_plural = 'Kits'
 
     def __str__(self):
         return f'{self.attribute.title} - {self.value}'
+
+
+class Country(models.Model):
+    title = models.CharField(max_length=100, verbose_name='Country', unique=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'
+
+
+class City(models.Model):
+    title = models.CharField(max_length=255, verbose_name='City')
+    coordinates = models.PointField(verbose_name='Coordinates', unique=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name='Country')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'City'
+        verbose_name_plural = 'Cities'
+
+
+class Street(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Street')
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='streets')
+
+    def __str__(self):
+        return f'{self.city.country.title}, {self.city.title}, {self.title}'
+
+    class Meta:
+        verbose_name = 'Street'
+        verbose_name_plural = 'Streets'
+        unique_together = (
+            ('title', 'city')
+        )

@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load leaflet_tags %}
 
 {% block title %}Оголошення{% endblock %}
 
@@ -94,138 +95,9 @@
                         <h1 class="section-header__title">Результати пошуку квартир</h1>
                     </div>
                     <ul class="objects-group">
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="object-item">
-                            <div class="object-item-inner">
-                                <a href="object.html" class="object-item__thumb">
-                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
-                                </a>
-                                <div class="object-item__content">
-                                    <p class="object-item__fix">Ремонт по дизайну</p>
-                                    <div class="object-item__header">
-                                        <div class="object-item__price">
-                                            <strong>75 000$</strong>
-                                            <span>540$/м²</span>
-                                        </div>
-                                        <h2 class="object-item__title">
-                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
-                                        </h2>
-                                    </div>
-                                    <hr>
-                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
-                                </div>
-                            </div>
-                        </li>
+                        {% for item in listings %}
+                            {% include 'listings/archive-item.html' %}
+                        {% endfor %}
                     </ul>
                     <nav class="pagination">
                         <a href="#" aria-label="попередня сторінка" class="pagination__link pagination__link_prev">
@@ -238,9 +110,24 @@
                     </nav>
                 </div>
                 <div class="col">
-                    <img src="{% static 'img/map.jpg' %}" width="702" height="1339" alt="карта" loading="lazy">
+                    <style>
+                        #mymap {
+                            aspect-ratio: 1 / 2;
+                        }
+                    </style>
+                    {% leaflet_map "mymap" callback="window.map_init_basic" %}
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    function map_init_basic (map, options) {
+        const marker = L.marker([50.5, 30.5]).addTo(map);
+        marker.bindPopup("Это всплывающая подсказка с описанием маркера.");
+        //marker.bindTooltip("Это описание маркера.").openTooltip();
+    }
+    </script>
 {% endblock %}

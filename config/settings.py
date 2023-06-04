@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'leaflet',
     'solo',
+    'easy_thumbnails',
     # Local
     'profiles.apps.ProfilesConfig',
     'props.apps.PropsConfig',
@@ -138,3 +139,20 @@ MEDIA_ROOT = Path('media/')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (50.5, 30.5),
+    'DEFAULT_ZOOM': 16,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+    'DEFAULT_PRECISION': 6,
+    'RESET_VIEW': False
+}
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {'size': (128, 96), 'crop': False},
+        'medium': {'size': (600, 400), 'crop': False},
+        'large': {'size': (1000, 1000), 'crop': False},
+    },
+}

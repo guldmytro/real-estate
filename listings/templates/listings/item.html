@@ -1,0 +1,754 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}{{ listing.title }}{% endblock %}
+
+{% block content %}
+<main class="object">
+    <div class="container">
+        <nav class="object-nav">
+            <a href="#gallery" class="object-nav__link">Галерея</a>
+            <a href="#about" class="object-nav__link">Опис</a>
+            <a href="#params" class="object-nav__link">Характеристики</a>
+            <a href="#check" class="object-nav__link">Перевірка нерухомості</a>
+            <a href="#reserve" class="object-nav__link">Забронювати</a>
+            <a href="#mortgage" class="object-nav__link">Іпотека</a>
+            <a href="#time" class="object-nav__link">Час на дорогу</a>
+        </nav>
+        <div class="object-row">
+            <div class="col object-data">
+                <div id="gallery" class="object-gallery-wrapper">
+                    <div class="object-gallery fotorama" data-width="100%" data-ratio="16/9" data-fit="contain" data-nav="thumbs" data-thumbwidth="128" data-thumbwidth="96" data-allowfullscreen="true">
+                        {% for image in listing.images.all %}
+                            <img src="{{ image.file|thumbnail_url:'large' }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
+                        {% endfor %}
+                    </div>
+                    <div class="object-gallery-interactive">
+                        <img src="{% static 'img/object-plan.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
+                        <p class="object-gallery-interactive__label">
+                            <img src="{% static 'img/icon-plan.png' %}" alt="план" width="62" height="62" loading="lazy">
+                            <span>План</span>
+                        </p>
+                    </div>
+                    <div class="object-gallery-interactive">
+                        <img src="{% static 'img/object-map.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
+                        <p class="object-gallery-interactive__label">
+                            <img src="{% static 'img/icon-marker-4.png' %}" width="24" height="32" alt="маркер" loading="lazy">
+                            <span>Мапа</span>
+                        </p>
+                    </div>
+                    <div class="object-gallery-interactive">
+                        <img src="{% static 'img/object-3d.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
+                        <p class="object-gallery-interactive__label">
+                            <img src="{% static 'img/icon-360.png' %}" width="32" height="32" alt="360 градусів" loading="lazy">
+                            <span>3d-тур</span>
+                        </p>
+                    </div>
+                    <div class="object-gallery-interactive">
+                        <img src="{% static 'img/object-planning.jpg' %}" alt="кімната" class="object-gallery-interactive__image" loading="lazy">
+                        <p class="object-gallery-interactive__label">
+                            <img src="{% static 'img/icon-space.png' %}" width="30" height="32" alt="360 градусів" loading="lazy">
+                            <span>3d-планування</span>
+                        </p>
+                    </div>
+                </div>
+                <div id="about" class="object-box">
+                    <div class="row">
+                        <div class="col">
+                            <div class="object-box-header">
+                                <h1 class="object-box-header__title">{{ listing.title }}</h1>
+                                <p class="object-box-header__subtitle">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                <button type="button" class="object-map-button">
+                                    <img src="{% static 'img/icon-marker.png' %}" alt="маркер" loading="lazy" width="48" height="64">
+                                    <span>На мапі</span>
+                                </button>
+                            </div>
+                            <div class="object-box__controls">
+                                <button type="button" class="wishlist-link" title="додати у вибране">
+                                    <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
+                                </button>
+                                <ul class="object-box-socials">
+                                    <li class="socials-item">
+                                        <a href="https://web.telegram.org/a/" class="socials-item__link" aria-label="перейти у телеграм">
+                                            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
+                                        </a>
+                                    </li>
+                                    <li class="socials-item">
+                                        <a href="https://www.viber.com/ru/" class="socials-item__link" aria-label="перейти у вайбер">
+                                            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
+                                        </a>
+                                    </li>
+                                    <li class="socials-item">
+                                        <a href="https://www.instagram.com/" class="socials-item__link" aria-label="перейти у інстаграм">
+                                            <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
+                                        </a>
+                                    </li>
+                                    <li class="socials-item">
+                                        <a href="https://uk-ua.facebook.com/" class="socials-item__link" aria-label="перейти у фейсбук">
+                                            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% if listing.formated_price %}
+                            <div class="col">
+                                <p class="object-box__price">{{ listing.formated_price }}$</p>
+                                {% if listing.price_per_square %}
+                                    <p class="object-box__price-per-square">{{ listing.price_per_square }}$/м²</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Опис</h1>
+                    </div>
+                    <div class="object-box__content">
+                        <p>Шановні покупці! До продажу пропонується простора квартира формату 2+ у новому сучасному ЖК &#39;Андерсен парк&#39;. Загальна площа 62,7 кв.м., 2 спальні та велика кухня-вітальня. Квартира не кутова, на оптимальному поверсі. У квартирі виконаний якісний сучасний ремонт, залишається тільки придбати стильні меблі. Встановлено лічильники води та тепла, є телеметрія (автоматична передача показань до компанії, що управляє). Низькі комунальні платежі за рахунок власної газової котельні. Взимку за опалення виходить близько 1300 грн. Тут кожен будинок унікальний, прикрашений дизайнерськими дворами, оснащений сучасними дитячими та спортивними майданчиками, памп-треками, відпочинковими зонами. На перших поверхах будинків у кварталі розташована торгова галерея. Великі паркування розташовані по периметру дворів за будинками. Телефонуйте! Покажу будь-коли!</p>
+                        <p>Шановні покупці! До продажу пропонується простора квартира формату 2+ у новому сучасному ЖК &#39;Андерсен парк&#39;. Загальна площа 62,7 кв.м., 2 спальні та велика кухня-вітальня. Квартира не кутова, на оптимальному поверсі. У квартирі виконаний якісний сучасний ремонт, залишається тільки придбати стильні меблі. Встановлено лічильники води та тепла, є телеметрія (автоматична передача показань до компанії, що управляє). Низькі комунальні платежі за рахунок власної газової котельні. Взимку за опалення виходить близько 1300 грн. Тут кожен будинок унікальний, прикрашений дизайнерськими дворами, оснащений сучасними дитячими та спортивними майданчиками, памп-треками, відпочинковими зонами. На перших поверхах будинків у кварталі розташована торгова галерея. Великі паркування розташовані по периметру дворів за будинками. Телефонуйте! Покажу будь-коли!</p>
+                    </div>
+                </div>
+                <div id="params" class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Характеристики</h1>
+                    </div>
+                    <table class="object-box__table">
+                        <tbody>
+                            <tr>
+                                <th>Код об&#39;єкту</th>
+                                <td>8902080</td>
+                            </tr>
+                            <tr>
+                                <th>Загальна площа</th>
+                                <td>43 м²</td>
+                            </tr>
+                            <tr>
+                                <th>Ремонт</th>
+                                <td>Покращене чорнове оздоблення</td>
+                            </tr>
+                            <tr>
+                                <th>Рік будівництва</th>
+                                <td>2020</td>
+                            </tr>
+                            <tr>
+                                <th>Поверх/К-сть поверхів</th>
+                                <td>12 из 16</td>
+                            </tr>
+                            <tr>
+                                <th>Стіни</th>
+                                <td>Панельні</td>
+                            </tr>
+                            <tr>
+                                <th>Площа кухні</th>
+                                <td>9.3 м²</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="check" class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Перевірте нерухомість перед покупкою</h1>
+                        <p class="object-box-header__subtitle"> Отримайте юридичну перевірку нерухомості для мінімізації ризиків </p>
+                    </div>
+                    <div class="object-box__content">
+                        <ul>
+                            <li>Кількість власників</li>
+                            <li>Наявність обтяжень</li>
+                            <li>Чи є іпотека</li>
+                            <li>Роки володіння нерухомістю</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn_invert btn_shadow">Перевірити нерухомість</button>
+                </div>
+                <div id="reserve" class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Записатись на перегляд</h1>
+                        <p class="object-box-header__subtitle"> З вами зв'яжеться спеціаліст з нерухомості, підтвердить обраний час перегляду, організує відвідування пропозиції та проведе вам екскурсію. </p>
+                    </div>
+                    <form class="object-box-form">
+                        <fieldset class="object-box-form__fieldset">
+                            <input type="date" class="input">
+                            <input type="time" class="input">
+                            <input type="phone" class="input" placeholder="Ваш телефон">
+                            <button type="submit" class="btn btn_primary">Записатись на перегляд</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="mortgage" class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Розрахуйте іпотеку</h1>
+                        <p class="object-box-header__subtitle"> Можемо розрахувати іпотеку без початкового внеску, просто вкажіть 0%. </p>
+                    </div>
+                    <form class="object-box-form">
+                        <fieldset class="object-box-form__fieldset">
+                            <input type="phone" class="input" placeholder="Ваш телефон">
+                            <button type="submit" class="btn btn_primary">Отримати консультацію</button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Гарантія безпеки угоди</h1>
+                        <p class="object-box-header__subtitle"> Ви під надійним захистом - у разі спірних ситуацій беремо всі витрати на себе. </p>
+                    </div>
+                    <a href="guarante.html" class="btn btn_primary">Детальніше</a>
+                </div>
+                <div id="time" class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Час на дорогу</h1>
+                        <p class="object-box-header__subtitle"> Дізнайтеся час до роботи, школи чи дитячого садка </p>
+                    </div>
+                    <a href="guarante.html" class="btn btn_invert btn_darken">Побудувати маршрут</a>
+                    <img class="object-box__bg" src="{% static 'img/bg-map-ways.jpg' %}" alt="карта">
+                </div>
+                <div class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Вартість аналогічних квартир по місту</h1>
+                        <p class="object-box-header__subtitle"> Аналогічні квартири підбираються за подібними параметрами: кімнатність, поверховість, матеріал стін, ремонт, рік, клас та серія будинку, ЖК, район </p>
+                    </div>
+                    <ul class="post-group object-slider">
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="object-item">
+                            <div class="object-item-inner">
+                                <a href="object.html" class="object-item__thumb">
+                                    <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                </a>
+                                <div class="object-item__content">
+                                    <p class="object-item__fix">Ремонт по дизайну</p>
+                                    <div class="object-item__header">
+                                        <div class="object-item__price">
+                                            <strong>75 000$</strong>
+                                            <span>540$/м²</span>
+                                        </div>
+                                        <h2 class="object-item__title">
+                                            <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                        </h2>
+                                    </div>
+                                    <hr>
+                                    <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                    <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Вам може бути цікаво</h1>
+                        <div class="object-box-header__conrtrols">
+                            <button type="button" class="tab active" data-id="#slider-1">В цьому будинку</button>
+                            <button type="button" class="tab" data-id="#slider-2">Схожі по місцезнаходженню</button>
+                        </div>
+                    </div>
+                    <div class="object-box__sliders">
+                        <ul id="slider-1" class="post-group object-slider active">
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="slider-2" class="post-group object-slider">
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-item">
+                                <div class="object-item-inner">
+                                    <a href="object.html" class="object-item__thumb">
+                                        <img src="{% static 'img/object-1.jpg' %}" width="1000" height="667" alt="кімната" class="object-item__img" loading="lazy">
+                                    </a>
+                                    <div class="object-item__content">
+                                        <p class="object-item__fix">Ремонт по дизайну</p>
+                                        <div class="object-item__header">
+                                            <div class="object-item__price">
+                                                <strong>75 000$</strong>
+                                                <span>540$/м²</span>
+                                            </div>
+                                            <h2 class="object-item__title">
+                                                <a href="object.html">3-кімн. квартира, 80м², 8/14 поверх</a>
+                                            </h2>
+                                        </div>
+                                        <hr>
+                                        <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+                                        <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="object-box">
+                    <div class="object-box-header">
+                        <h1 class="object-box-header__title">Новини</h1>
+                    </div>
+                    <ul class="post-group object-slider">
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="post-item">
+                            <div class="post-item__inner">
+                                <a href="news.html" class="post-item__thumb">
+                                    <img src="{% static 'img/thumbnail-post.png' %}" alt="Краєвид на місто" width="325" height="171" class="post-item__image" loading="lazy">
+                                </a>
+                                <div class="post-item__content">
+                                    <time class="post-item__date">20.03.2023</time>
+                                    <h3 class="post-item__title line line_2">Чи вигідно придбати квартиру в новобудові?</h3>
+                                    <a href="news.html" class="post-item__link">Переглянути</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <li class="employees-item">
+                    <a href="employee.html" class="employees-item__thumb">
+                        <img src="{% static 'img/manager.jpg' %}" alt="Вікторова Вікторія Олександрівна" loading="lazy" width="200" height="200">
+                    </a>
+                    <h2 class="employees-item__title">
+                        <a href="employee.html">Вікторова Вікторія Олександрівна</a>
+                    </h2>
+                    <p class="employees-item__profession">Фахівець з нерухомості</p>
+                    <a href="tel:+380934398765" class="employees-item__phone">
+                        <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" width="30" height="30">
+                        <span>+38 (093) 439-87-65</span>
+                    </a>
+                    <p class="employees-item__more">або залиште номер, і ми вам передзвонимо протягом 2 хвилин</p>
+                    <form class="employees-item__form">
+                        <input type="text" class="input" placeholder="Ваш телефон">
+                        <button type="submit" class="btn btn_primary">Передзвоніть мені</button>
+                        <button type="submit" class="btn btn_invert btn_bordered">Написати спеціалісту</button>
+                    </form>
+                </li>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

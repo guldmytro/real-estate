@@ -5,13 +5,14 @@ import xml.etree.ElementTree as ET
 import json
 import re
 from django.utils.html import strip_tags
-from listings.models import Listing, Category, RealtyType, Image, Kit, Attribute
+from listings.models import Listing, Category, RealtyType, Image, Kit, Attribute, Country, City, Street
 from django.contrib.gis.geos import Point
 from django.utils.text import slugify
 
 
 config = SiteConfiguration.objects.get()
 CRM_API = config.crm_api
+GOOGLE_API_KEY = config.google_api_key
 
 
 class Command(BaseCommand):
@@ -80,6 +81,63 @@ class Command(BaseCommand):
             return strip_tags(re.sub(r'^\s+|\s+$|\s+(?=\s)', '', str))
         return str
 
+    def fetch_geo_data(self, lng, lat):
+        response = requests.get(
+            f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language=en')
+        if response.status_code != 200:
+            return {
+                "status": "bad",
+                "message": "Bad request"
+            }
+        response_json = json.loads(response.text)
+
+        # Extract country
+        country = next(
+            (component for component in response_json['results'][0]['address_components'] if
+             'country' in component['types']),
+            None
+        )
+        country_title = country['long_name'] if country else None
+
+        # Extract city
+        city = next(
+            (component for component in response_json['results'][0]['address_components'] if
+             'locality' in component['types']),
+            None
+        )
+        city_title = city['long_name'] if city else None
+
+        # Extract city coordinates
+        city_coordinates = next(
+            (component for component in response_json['results'] if
+             'postal_code' in component['types']),
+            None
+        )
+        city_coordinates_lat = city_coordinates['geometry']['location']['lat']
+        city_coordinates_lng = city_coordinates['geometry']['location']['lng']
+
+        # Extract street
+        street = next(
+            (component for component in response_json['results'][0]['address_components'] if
+             'route' in component['types']),
+            None
+        )
+        street_title = street['long_name'] if street else None
+
+        return {
+            'country': {
+                'title': country_title
+            },
+            'city': {
+                'title': city_title,
+                'lng': city_coordinates_lng,
+                'lat': city_coordinates_lat,
+            },
+            'street': {
+                'title': street_title,
+            }
+        }
+
     def update_models(self, items):
         for data in items:
             # Create or update Category and RealtyType
@@ -102,7 +160,21 @@ class Command(BaseCommand):
             listing.price = int(data.get('price', '0'))
             listing.category = category
             listing.realty_type = realty_type
-            listing.coordinates = Point(float(data['location']['map_lng']), float(data['location']['map_lat']))
+
+            lng = float(data['location']['map_lng'])
+            lat = float(data['location']['map_lat'])
+            listing.coordinates = Point(lng, lat)
+
+            street = None
+            # Updating address
+            if listing.street is None:
+                address_dict = self.fetch_geo_data(float(data['location']['map_lng']),
+                                                   float(data['location']['map_lat']))
+
+                if address_dict:
+                    street = self.create_listing_address(address_dict)
+            if street:
+                listing.street = street
 
             listing.save()
 
@@ -115,9 +187,29 @@ class Command(BaseCommand):
                 except:
                     pass
 
+            # Update images
+            for image in listing.images.all():
+                if image.image_url not in data['images']:
+                    image.delete()
+
             # Create Kits (Attributes)
             for attribute_data in data['properties']:
                 attribute, _ = Attribute.objects.get_or_create(title=attribute_data['label'], slug=attribute_data['id'])
-                Kit.objects.create(listing=listing, attribute=attribute, value=attribute_data['value'])
+                Kit.objects.get_or_create(listing=listing, attribute=attribute, value=attribute_data['value'])
 
+            # Update listing status
+            listing_ids = Listing.objects.values_list('id', flat=True)
+            api_ids = {item['id'] for item in items}
+            missing_ids = listing_ids.exclude(id__in=api_ids)
+            Listing.objects.filter(id__in=missing_ids).update(status='archive')
+
+    def create_listing_address(self, address_dict):
+        country, _ = Country.objects.get_or_create(title=address_dict['country']['title'])
+        city, _ = City.objects.get_or_create(country=country, title=address_dict['city']['title'],
+                                             coordinates=Point(float(address_dict['city']['lng']),
+                                                               float(address_dict['city']['lat'])
+                                                               )
+                                             )
+        street, _ = Street.objects.get_or_create(city=city, title=address_dict['street']['title'])
+        return street
 
