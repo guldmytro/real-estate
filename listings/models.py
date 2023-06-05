@@ -2,6 +2,8 @@ from django.contrib.gis.db import models
 from urllib import request
 from django.core.files.base import ContentFile
 from django.contrib.gis.geos import Point
+from django.urls import reverse
+from managers.models import Manager
 
 
 class ActiveManager(models.Manager):
@@ -17,6 +19,8 @@ class Listing(models.Model):
     status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='active', verbose_name='Status')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Created')
     updated = models.DateTimeField(auto_now=True, verbose_name='Updated')
+
+    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, verbose_name='Manager', blank=True, null=True)
 
     title = models.CharField(max_length=255, verbose_name='Title', default='')
     description = models.TextField(verbose_name='Description', blank=True, null=True)
@@ -79,6 +83,15 @@ class Listing(models.Model):
         for image in self.images:
             image.delete()
         super().delete(*args, **kwargs)
+
+    def get_coordinates_lat(self):
+        return self.coordinates.coords[1] if self.coordinates else None
+
+    def get_coordinates_lng(self):
+        return self.coordinates.coords[0] if self.coordinates else None
+
+    def get_absolute_url(self):
+        return reverse('listings:detail', kwargs={'id': self.pk})
 
 
 class TermFields(models.Model):
@@ -187,3 +200,5 @@ class Street(models.Model):
         unique_together = (
             ('title', 'city')
         )
+
+

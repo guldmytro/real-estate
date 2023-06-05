@@ -20,7 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('wishlist/', include('wishlist.urls', namespace='wishlist')),
     path('listings/', include('listings.urls', namespace='listings')),
+    path('managers/', include('managers.urls', namespace='managers')),
     path('admin/', admin.site.urls),
 ]
 

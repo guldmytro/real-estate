@@ -11,8 +11,12 @@ def listings_list(request):
 
 
 def listings_detail(request, id):
-    listing = get_object_or_404(Listing.objects.prefetch_related('images'), id=id)
+    listing = get_object_or_404(Listing.objects.prefetch_related('images').select_related('manager'),
+                                id=id)
+    in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
+
     context = {
-        'listing': listing
+        'listing': listing,
+        'in_wishlist': in_wishlist
     }
     return render(request, 'listings/item.html', context)

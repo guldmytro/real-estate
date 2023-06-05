@@ -24,32 +24,11 @@
                             <img src="{{ image.file|thumbnail_url:'large' }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
                         {% endfor %}
                     </div>
-                    <div class="object-gallery-interactive">
-                        <img src="{% static 'img/object-plan.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
-                        <p class="object-gallery-interactive__label">
-                            <img src="{% static 'img/icon-plan.png' %}" alt="план" width="62" height="62" loading="lazy">
-                            <span>План</span>
-                        </p>
-                    </div>
-                    <div class="object-gallery-interactive">
+                    <div class="object-gallery-interactive open-popup" data-popup="popup-listing-map">
                         <img src="{% static 'img/object-map.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
                         <p class="object-gallery-interactive__label">
                             <img src="{% static 'img/icon-marker-4.png' %}" width="24" height="32" alt="маркер" loading="lazy">
                             <span>Мапа</span>
-                        </p>
-                    </div>
-                    <div class="object-gallery-interactive">
-                        <img src="{% static 'img/object-3d.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
-                        <p class="object-gallery-interactive__label">
-                            <img src="{% static 'img/icon-360.png' %}" width="32" height="32" alt="360 градусів" loading="lazy">
-                            <span>3d-тур</span>
-                        </p>
-                    </div>
-                    <div class="object-gallery-interactive">
-                        <img src="{% static 'img/object-planning.jpg' %}" alt="кімната" class="object-gallery-interactive__image" loading="lazy">
-                        <p class="object-gallery-interactive__label">
-                            <img src="{% static 'img/icon-space.png' %}" width="30" height="32" alt="360 градусів" loading="lazy">
-                            <span>3d-планування</span>
                         </p>
                     </div>
                 </div>
@@ -59,13 +38,13 @@
                             <div class="object-box-header">
                                 <h1 class="object-box-header__title">{{ listing.title }}</h1>
                                 <p class="object-box-header__subtitle">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
-                                <button type="button" class="object-map-button">
+                                <button type="button" data-popup="popup-listing-map" class="object-map-button open-popup">
                                     <img src="{% static 'img/icon-marker.png' %}" alt="маркер" loading="lazy" width="48" height="64">
                                     <span>На мапі</span>
                                 </button>
                             </div>
                             <div class="object-box__controls">
-                                <button type="button" class="wishlist-link" title="додати у вибране">
+                                <button type="button" data-id="{{ listing.id }}" class="wishlist-link add-to-wishlist{% if in_wishlist %} added{% endif %}">
                                     <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
                                 </button>
                                 <ul class="object-box-socials">
@@ -102,13 +81,13 @@
                         {% endif %}
                     </div>
                 </div>
+
                 <div class="object-box">
                     <div class="object-box-header">
                         <h1 class="object-box-header__title">Опис</h1>
                     </div>
                     <div class="object-box__content">
-                        <p>Шановні покупці! До продажу пропонується простора квартира формату 2+ у новому сучасному ЖК &#39;Андерсен парк&#39;. Загальна площа 62,7 кв.м., 2 спальні та велика кухня-вітальня. Квартира не кутова, на оптимальному поверсі. У квартирі виконаний якісний сучасний ремонт, залишається тільки придбати стильні меблі. Встановлено лічильники води та тепла, є телеметрія (автоматична передача показань до компанії, що управляє). Низькі комунальні платежі за рахунок власної газової котельні. Взимку за опалення виходить близько 1300 грн. Тут кожен будинок унікальний, прикрашений дизайнерськими дворами, оснащений сучасними дитячими та спортивними майданчиками, памп-треками, відпочинковими зонами. На перших поверхах будинків у кварталі розташована торгова галерея. Великі паркування розташовані по периметру дворів за будинками. Телефонуйте! Покажу будь-коли!</p>
-                        <p>Шановні покупці! До продажу пропонується простора квартира формату 2+ у новому сучасному ЖК &#39;Андерсен парк&#39;. Загальна площа 62,7 кв.м., 2 спальні та велика кухня-вітальня. Квартира не кутова, на оптимальному поверсі. У квартирі виконаний якісний сучасний ремонт, залишається тільки придбати стильні меблі. Встановлено лічильники води та тепла, є телеметрія (автоматична передача показань до компанії, що управляє). Низькі комунальні платежі за рахунок власної газової котельні. Взимку за опалення виходить близько 1300 грн. Тут кожен будинок унікальний, прикрашений дизайнерськими дворами, оснащений сучасними дитячими та спортивними майданчиками, памп-треками, відпочинковими зонами. На перших поверхах будинків у кварталі розташована торгова галерея. Великі паркування розташовані по периметру дворів за будинками. Телефонуйте! Покажу будь-коли!</p>
+                        {{ listing.description }}
                     </div>
                 </div>
                 <div id="params" class="object-box">
@@ -727,28 +706,81 @@
                     </ul>
                 </div>
             </div>
-            <div class="col">
-                <li class="employees-item">
-                    <a href="employee.html" class="employees-item__thumb">
-                        <img src="{% static 'img/manager.jpg' %}" alt="Вікторова Вікторія Олександрівна" loading="lazy" width="200" height="200">
-                    </a>
-                    <h2 class="employees-item__title">
-                        <a href="employee.html">Вікторова Вікторія Олександрівна</a>
-                    </h2>
-                    <p class="employees-item__profession">Фахівець з нерухомості</p>
-                    <a href="tel:+380934398765" class="employees-item__phone">
-                        <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" width="30" height="30">
-                        <span>+38 (093) 439-87-65</span>
-                    </a>
-                    <p class="employees-item__more">або залиште номер, і ми вам передзвонимо протягом 2 хвилин</p>
-                    <form class="employees-item__form">
-                        <input type="text" class="input" placeholder="Ваш телефон">
-                        <button type="submit" class="btn btn_primary">Передзвоніть мені</button>
-                        <button type="submit" class="btn btn_invert btn_bordered">Написати спеціалісту</button>
-                    </form>
-                </li>
-            </div>
+            {% if listing.manager %}
+                {% with manager=listing.manager  %}
+                    <div class="col">
+                        <div class="employees-item">
+                            <a href="{{ manager.get_absolute_url }}" class="employees-item__thumb">
+                                {% if manager.image %}
+                                    <img src="{{ manager.image|thumbnail_url:'small' }}" alt="Вікторова Вікторія Олександрівна" loading="lazy" width="200" height="200">
+                                {% endif %}
+                            </a>
+                            <h2 class="employees-item__title">
+                                <a href="{{ manager.get_absolute_url }}">{{ manager.full_name }}</a>
+                            </h2>
+                            <p class="employees-item__profession">Фахівець з нерухомості</p>
+                            {% for phone in manager.phones.all %}
+                                <a href="tel:{{ phone.clean_phone }}" class="employees-item__phone">
+                                    <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" width="30" height="30">
+                                    <span>{{ phone.phone }}</span>
+                                </a>
+                            {% endfor %}
+                            <p class="employees-item__more">або залиште номер, і ми вам передзвонимо протягом 2 хвилин</p>
+                            <form class="employees-item__form">
+                                <input type="text" class="input" placeholder="Ваш телефон">
+                                <button type="submit" class="btn btn_primary">Передзвоніть мені</button>
+                                <button type="submit" class="btn btn_invert btn_bordered">Написати спеціалісту</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endif %}
         </div>
     </div>
 </main>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    const listing = {
+        title: "{{ listing.title }}",
+        position: {
+            lat: {{ listing.get_coordinates_lat }},
+            lng: {{ listing.get_coordinates_lng }}
+        }
+    }
+    let map;
+    async function initMap() {
+        // The location of Uluru
+        const position = { lat: listing.position.lat, lng: listing.position.lng };
+        // Request needed libraries.
+        //@ts-ignore
+        const { Map } = await google.maps.importLibrary("maps");
+        const { Marker } = await google.maps.importLibrary("marker");
+        const { Size } = await google.maps.importLibrary("core");
+
+        // The map, centered at Uluru
+        map = new Map(document.getElementById("listing-map"), {
+            zoom: 16,
+            center: position,
+            mapId: "DEMO_MAP_ID",
+        });
+
+
+        // The marker, positioned at Uluru
+        const marker = new Marker({
+            map: map,
+            position: position,
+            title: listing.title,
+            icon: "http://127.0.0.1:8000{% static 'img/icon-brand-marker_2.png' %}"
+        });
+        
+        marker.addListener('click', function() {
+            map.setCenter(marker.getPosition());
+            map.setZoom(17);
+          });
+    }
+    initMap();
+</script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% load thumbnail %}
 <li class="object-item">
     <div class="object-item-inner">
-        <a href="object.html" class="object-item__thumb">
+        <a href="{{ item.get_absolute_url }}" class="object-item__thumb">
             {% if item.images.last %}
                 <img src="{{ item.images.first.file|thumbnail_url:'medium' }}" width="1000" height="667"
                      alt="{{ item.title }}" class="object-item__img" loading="lazy">
@@ -15,7 +15,7 @@
                     <span>{{ item.price_per_square }}$/м²</span>
                 </div>
                 <h2 class="object-item__title">
-                    <a href="object.html">{{ item.title }}</a>
+                    <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                 </h2>
             </div>
             <hr>

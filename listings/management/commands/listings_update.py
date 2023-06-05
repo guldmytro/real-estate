@@ -5,7 +5,9 @@ import xml.etree.ElementTree as ET
 import json
 import re
 from django.utils.html import strip_tags
-from listings.models import Listing, Category, RealtyType, Image, Kit, Attribute, Country, City, Street
+from listings.models import Listing, Category, RealtyType, \
+    Image, Kit, Attribute, Country, City, Street
+from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
 from django.utils.text import slugify
 
@@ -85,10 +87,7 @@ class Command(BaseCommand):
         response = requests.get(
             f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language=en')
         if response.status_code != 200:
-            return {
-                "status": "bad",
-                "message": "Bad request"
-            }
+            return False
         response_json = json.loads(response.text)
 
         # Extract country
@@ -138,6 +137,38 @@ class Command(BaseCommand):
             }
         }
 
+    def get_manager(self, user):
+        if not user:
+            return False
+
+        manager, _ = Manager.objects.get_or_create(
+            full_name=user.get('name', ''),
+            email=user.get('email', '')
+        )
+        phones = user.get('phones', [])
+        for phone in phones:
+            phone_item, _ = Phone.objects.get_or_create(
+                manager=manager,
+                phone=phone
+            )
+        # deleting phones that missed in CRM
+        for phone in manager.phones.all():
+            if phone.phone not in phones:
+                phone.delete()
+
+        # Updating Image (if it needs)
+        image_url = user.get('image_url', False)
+        if not image_url:
+            return manager
+
+        if manager.image is None or image_url != manager.image_url:
+            try:
+                manager.image_url = image_url
+                manager.save()
+            except:
+                pass
+        return manager
+
     def update_models(self, items):
         for data in items:
             # Create or update Category and RealtyType
@@ -175,6 +206,10 @@ class Command(BaseCommand):
                     street = self.create_listing_address(address_dict)
             if street:
                 listing.street = street
+
+            manager = self.get_manager(data.get('user', False))
+            if manager:
+                listing.manager = manager
 
             listing.save()
 

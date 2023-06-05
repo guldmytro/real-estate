@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'props.apps.PropsConfig',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
+    'managers.apps.ManagersConfig',
+    'wishlist.apps.WishlistConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'

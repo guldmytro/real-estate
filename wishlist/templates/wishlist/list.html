@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Список вибраних об'єктів нерухомості{% endblock %}
+
+{% block content %}
+    <main class="wishlist">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">Вибране</h1>
+            </div>
+            {% if listings.count %}
+                <ul class="analytics-group">
+                    {% for item in listings %}
+                        {% include 'listings/archive-item.html' %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="section-header__subtitle section-header__subtitle_strong">
+                    Ваш список вибраного пустий... Повернутись до <a href="{% url 'listings:list' %}">списку оголошень</a>
+                </p>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

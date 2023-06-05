@@ -1,0 +1,49 @@
+<div class="popup" data-popup="">
+    <div id="popup-review" class="popup-content">
+        <form class="form-add-review form">
+            <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+                <span></span>
+                <span></span>
+            </button>
+            <h2 class="form__title">Залиште відгук про спеціаліста</h2>
+            <fieldset class="form__fieldset">
+                <label class="filter-item">
+                    <span class="filter-item__label">
+                Виберіть фахівця
+            </span>
+                    <div class="select-wrapper">
+                        <select name="surname" class="select" required>
+                            <option value="">Прізвище Ім'я По-батькові</option>
+                            <option value="ivanenko">Іваненко Іван Іванович</option>
+                        </select>
+                    </div>
+                </label>
+                <div class="filter-item">
+                    <span class="filter-item__label">
+                Оцініть якість роботи
+            </span>
+                    <div class="rating__group">
+                        <input class="rating__star" type="radio" name="rating" value="1" aria-label="жахливо">
+                        <input class="rating__star" type="radio" name="rating" value="2" aria-label="може бути">
+                        <input class="rating__star" type="radio" name="rating" value="3" aria-label="нормально">
+                        <input class="rating__star" type="radio" name="rating" value="4" aria-label="добре">
+                        <input class="rating__star" type="radio" name="rating" value="5" aria-label="чудово" checked>
+                    </div>
+                </div>
+                <textarea name="message" class="textarea" cols="30" rows="6" placeholder="Напишіть ваш відгук"></textarea>
+                <input type="text" class="input" placeholder="Ваше ім'я">
+                <input type="text" class="input" placeholder="Ваш телефон">
+            </fieldset>
+            <p class="form__info"> Вкажіть номер телефону, щоб ми могли зв'язатися з вами для підтвердження зворотного зв'язку в разі негативного відгуку або залишити свій відгук, зателефонувавши за номером +38 (050) 100-86-96 </p>
+            <button type="submit" class="btn btn_primary">Залишити відгук</button>
+            <p class="form__agreement"> Залишаючи відгук, ви даєте згоду на обробку персональних даних </p>
+        </form>
+    </div>
+    <div id="popup-listing-map" class="popup-content">
+        <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+            <span></span>
+            <span></span>
+        </button>
+        <div id="listing-map"></div>
+    </div>
+</div>
