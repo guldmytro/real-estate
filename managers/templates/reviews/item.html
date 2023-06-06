@@ -1,0 +1,26 @@
+{% load thumbnail %}
+
+<li class="reviews-item"{% if next_page %} data-page="{{ next_page }}"{% endif %}>
+    <div class="reviews-item__inner">
+        <div class="reviews-item__header">
+            <time class="reviews-item__time line line_1">{{ review.created|date:"d.m.Y" }}</time>
+            <div class="rating">
+                <div class="rating__bar rating-bar">
+                    <div class="rating-bar__fill rating-bar__fill_{{ review.rating }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="review-item__content">
+            <p class="review-item__author line line_1">{{ review.author }}</p>
+            <p class="review-item__text line line_6">{{ review.body }}</p>
+        </div>
+        <div class="review-item__footer">
+            <img src="{{ review.manager.image|thumbnail_url:'small' }}" class="review-item__manager-img" width="48"
+                 height="48" alt="{{ review.manager.full_name }}" loading="lazy">
+            <a href="{{ review.manager.get_absolute_url }}" class="review-item__manager line line_1">
+                {{ review.manager.full_name }}
+            </a>
+            <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
+        </div>
+    </div>
+</li>

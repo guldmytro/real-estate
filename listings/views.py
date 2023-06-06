@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Listing
+from .models import Listing, Attribute
+from django.db.models import Prefetch
 
 
 def listings_list(request):
@@ -11,10 +12,14 @@ def listings_list(request):
 
 
 def listings_detail(request, id):
-    listing = get_object_or_404(Listing.objects.prefetch_related('images').select_related('manager'),
-                                id=id)
+    listing = get_object_or_404(
+        Listing.objects.prefetch_related(
+            Prefetch('images'),
+            Prefetch('kits__attribute', queryset=Attribute.objects.order_by('-title'))
+        ).select_related('manager'),
+        id=id
+    )
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
-
     context = {
         'listing': listing,
         'in_wishlist': in_wishlist

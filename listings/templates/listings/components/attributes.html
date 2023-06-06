@@ -1,0 +1,60 @@
+{% if kits %}
+    <div id="params" class="object-box">
+        <div class="object-box-header">
+            <h1 class="object-box-header__title">Характеристики</h1>
+        </div>
+        <table class="object-box__table">
+            <tbody>
+                <tr>
+                    <th>Новий будинок</th>
+                    <td>{% if listing.is_new_building %}Так{% else %}Ні{% endif %}</td>
+                </tr>
+                {% if listing.area_total %}
+                <tr>
+                    <th>Загальна площа</th>
+                    <td>{{ listing.area_total }}м²</td>
+                </tr>
+                {% endif %}
+                {% if listing.area_living %}
+                <tr>
+                    <th>Житлова площа</th>
+                    <td>{{ listing.area_living }}м²</td>
+                </tr>
+                {% endif %}
+                {% if listing.area_kitchen %}
+                <tr>
+                    <th>Площа кухні</th>
+                    <td>{{ listing.area_kitchen }}м²</td>
+                </tr>
+                {% endif %}
+                {% if listing.room_count %}
+                <tr>
+                    <th>Кількість кімнат</th>
+                    <td>{{ listing.room_count }}</td>
+                </tr>
+                {% endif %}
+                {% if listing.floor and listing.total_floors %}
+                <tr>
+                    <th>Поверх</th>
+                    <td>{{ listing.floor }} / {{ listing.total_floors }}</td>
+                </tr>
+                {% endif %}
+                {% for kit in kits.all %}
+                    <tr>
+                        <th>{{ kit.attribute.title }}</th>
+                        <td>{{ kit.value|capfirst }}</td>
+                    </tr>
+                    {% if kits.count > 15 and forloop.counter == 5 %}
+                        <tr class="show-more-attributes">
+                            <td>
+                                <button type="button" class="show-more-attributes__btn">
+                                    Показати більше
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

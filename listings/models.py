@@ -89,6 +89,19 @@ class Listing(models.Model):
 
     def get_coordinates_lng(self):
         return self.coordinates.coords[0] if self.coordinates else None
+    
+    def get_google_maps_link(self):
+        if self.coordinates is None:
+            return False
+        
+        base_url = "https://www.google.com/maps"
+        params = {
+            "saddr": "",
+            "daddr": f"{self.get_coordinates_lat()},{self.get_coordinates_lng()}",  
+            "directions": ""
+        }
+        query_string = "&".join([f"{key}={value}" for key, value in params.items()])
+        return f"{base_url}?{query_string}"
 
     def get_absolute_url(self):
         return reverse('listings:detail', kwargs={'id': self.pk})
@@ -135,11 +148,16 @@ class Image(models.Model):
 
 
 class Attribute(models.Model):
+    BLACKLIST_ATTRIBUTES = [
+        'property_56',
+        'property_80',
+        'property_82',
+        'property_83',
+    ]
     title = models.CharField(max_length=255, verbose_name='Title')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='Slug')
 
     class Meta:
-        ordering = ('title',)
         verbose_name = 'Attribute'
         verbose_name_plural = 'Attributes'
 
@@ -148,14 +166,17 @@ class Attribute(models.Model):
 
 
 class Kit(models.Model):
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, verbose_name='Listing')
-    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name='Attribute')
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, verbose_name='Listing',
+                                related_name='kits')
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name='Attribute',
+                                  related_name='kits')
     value = models.CharField(max_length=255, verbose_name='Value')
 
     class Meta:
         unique_together = (
             ('listing', 'attribute')
         )
+        ordering = ('attribute__title',)
         verbose_name = 'Kit'
         verbose_name_plural = 'Kits'
 

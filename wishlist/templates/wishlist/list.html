@@ -8,7 +8,7 @@
             <div class="section-header">
                 <h1 class="section-header__title">Вибране</h1>
             </div>
-            {% if listings.count %}
+            {% if listings %}
                 <ul class="analytics-group">
                     {% for item in listings %}
                         {% include 'listings/archive-item.html' %}

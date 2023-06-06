@@ -3,10 +3,11 @@ import re
 from urllib import request
 from django.core.files.base import ContentFile
 from django.urls import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Manager(models.Model):
-    full_name = models.CharField(max_length=255, verbose_name='Name')
+    full_name = models.CharField(max_length=255, verbose_name='Name', db_index=True)
     image = models.ImageField(upload_to='managers/%Y/%m/%d', blank=True, null=True)
     image_url = models.URLField(verbose_name='Image url', blank=True, null=True)
 
@@ -51,4 +52,21 @@ class Phone(models.Model):
         unique_together = (
             ('phone', 'manager')
         )
+
+
+class Review(models.Model):
+    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=5,
+                                              verbose_name='Rating')
+    author = models.CharField(verbose_name='Author')
+    body = models.TextField(verbose_name='Review', max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    manager = models.ForeignKey(Manager, verbose_name='Manager', on_delete=models.CASCADE, related_name='reviews')
+
+    def __str__(self):
+        return f'{self.manager.full_name} - {self.author}'
+
+    class Meta:
+        ordering = ('-created',)
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'
 

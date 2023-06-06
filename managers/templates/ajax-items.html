@@ -1,0 +1,9 @@
+<ul class="temp-list">
+    {% for item in items %}
+        {% if type == 'review' %}
+            {% include 'reviews/item.html' with review=item %}
+        {% elif type == 'listing' %}
+            {% include 'listings/archive-item.html' %}
+        {% endif %}
+    {% endfor %}
+</ul>

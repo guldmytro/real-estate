@@ -5,7 +5,7 @@
 {% block title %}{{ listing.title }}{% endblock %}
 
 {% block content %}
-<main class="object">
+<main class="object" data-id="{{ listing.id }}">
     <div class="container">
         <nav class="object-nav">
             <a href="#gallery" class="object-nav__link">Галерея</a>
@@ -81,7 +81,6 @@
                         {% endif %}
                     </div>
                 </div>
-
                 <div class="object-box">
                     <div class="object-box-header">
                         <h1 class="object-box-header__title">Опис</h1>
@@ -90,43 +89,7 @@
                         {{ listing.description }}
                     </div>
                 </div>
-                <div id="params" class="object-box">
-                    <div class="object-box-header">
-                        <h1 class="object-box-header__title">Характеристики</h1>
-                    </div>
-                    <table class="object-box__table">
-                        <tbody>
-                            <tr>
-                                <th>Код об&#39;єкту</th>
-                                <td>8902080</td>
-                            </tr>
-                            <tr>
-                                <th>Загальна площа</th>
-                                <td>43 м²</td>
-                            </tr>
-                            <tr>
-                                <th>Ремонт</th>
-                                <td>Покращене чорнове оздоблення</td>
-                            </tr>
-                            <tr>
-                                <th>Рік будівництва</th>
-                                <td>2020</td>
-                            </tr>
-                            <tr>
-                                <th>Поверх/К-сть поверхів</th>
-                                <td>12 из 16</td>
-                            </tr>
-                            <tr>
-                                <th>Стіни</th>
-                                <td>Панельні</td>
-                            </tr>
-                            <tr>
-                                <th>Площа кухні</th>
-                                <td>9.3 м²</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {% include 'listings/components/attributes.html' with kits=listing.kits %}
                 <div id="check" class="object-box">
                     <div class="object-box-header">
                         <h1 class="object-box-header__title">Перевірте нерухомість перед покупкою</h1>
@@ -175,14 +138,7 @@
                     </div>
                     <a href="guarante.html" class="btn btn_primary">Детальніше</a>
                 </div>
-                <div id="time" class="object-box">
-                    <div class="object-box-header">
-                        <h1 class="object-box-header__title">Час на дорогу</h1>
-                        <p class="object-box-header__subtitle"> Дізнайтеся час до роботи, школи чи дитячого садка </p>
-                    </div>
-                    <a href="guarante.html" class="btn btn_invert btn_darken">Побудувати маршрут</a>
-                    <img class="object-box__bg" src="{% static 'img/bg-map-ways.jpg' %}" alt="карта">
-                </div>
+                {% include 'listings/components/directions.html' %}
                 <div class="object-box">
                     <div class="object-box-header">
                         <h1 class="object-box-header__title">Вартість аналогічних квартир по місту</h1>
@@ -764,7 +720,7 @@
         map = new Map(document.getElementById("listing-map"), {
             zoom: 16,
             center: position,
-            mapId: "DEMO_MAP_ID",
+            mapId: "listing-map",
         });
 
 
@@ -782,5 +738,22 @@
           });
     }
     initMap();
+    
+</script>
+<script>
+
+    const listingId = "{{ listing.id }}";
+    let viewedListings = localStorage.getItem('viewedListings');
+
+    if (!viewedListings) {
+        viewedListings = [listingId];
+    } else {
+        viewedListings = JSON.parse(viewedListings);
+        if (viewedListings.indexOf(listingId) === -1) {
+            viewedListings.push(listingId);
+        }
+    }
+    localStorage.setItem('viewedListings', JSON.stringify(viewedListings));
+
 </script>
 {% endblock %}

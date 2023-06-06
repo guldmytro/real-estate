@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %}{{ manager.full_name }}{% endblock %}
 
@@ -10,7 +11,7 @@
             <div class="col">
                 <div class="employee-header">
                     {% if manager.image %}
-                        <img src="{{ manager.image.url }}" class="employee-header__img" alt="Вікторова Вікторія Олександрівна" width="266">
+                        <img src="{{ manager.image|thumbnail_url:'medium' }}" class="employee-header__img" alt="Вікторова Вікторія Олександрівна" width="266">
                     {% endif %}
                     <div class="section-header section-header_invert">
                         <h1 class="section-header__title">
@@ -66,284 +67,117 @@
         </div>
     </div>
 </main>
-{% with listings_count=listings.count %}
-    <div class="section">
-        <div class="container">
-            <div class="employee-tabs">
-                {% if manager.experience or manager.has_car or manager.about %}
-                    <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">Про мене</button>
-                {% endif %}
-                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки</button>
-                {% if listings_count %}
-                    <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-3">
-                        Мої пропозиції ({{ listings_count }})
-                    </button>
-                {% endif %}
-            </div>
-            <div class="employee-tabs-content">
-                {% if manager.experience or manager.has_car or manager.about %}
-                    <div id="tab-1" class="prop-tab">
-                        {% if manager.experience or manager.has_car %}
-                            <ul class="employee-props">
-                                {% if manager.experience %}
-                                    <li class="employee-props__item">
-                                        <div class="thumb">
-                                            <img src="{% static 'img/icon-case.png' %}" class="accent" alt="кейс" width="60"
-                                                 height="52" loading="lazy">
-                                        </div>
-                                        <div class="employee-props__content">
-                                            <p class="employee-props__label">Стаж</p>
-                                            <p class="employee-props__value">{{ manager.experience }}</p>
-                                        </div>
-                                    </li>
-                                {% endif %}
-                                {% if manager.has_car %}
-                                    <li class="employee-props__item">
-                                        <div class="thumb">
-                                            <img src="{% static 'img/icon-car.png' %}" class="accent" alt="авто" width="64"
-                                                 height="42" loading="lazy">
-                                        </div>
-                                        <div class="employee-props__content">
-                                            <p class="employee-props__label">Автомобіль</p>
-                                            <p class="employee-props__value">In stock</p>
-                                        </div>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div id="tab-2" class="prop-tab">
-                    <ul class="reviews-grid">
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
+<div class="section">
+    <div class="container">
+        <div class="employee-tabs">
+            {% if manager.experience or manager.has_car or manager.about %}
+                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">Про мене</button>
+            {% endif %}
+            <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки ({{ reviews_count }})</button>
+            {% if listings_count %}
+                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-3">
+                    Мої пропозиції ({{ listings_count }})
+                </button>
+            {% endif %}
+        </div>
+        <div class="employee-tabs-content">
+            {% if manager.experience or manager.has_car or manager.about %}
+                <div id="tab-1" class="prop-tab">
+                    {% if manager.experience or manager.has_car %}
+                        <ul class="employee-props">
+                            {% if manager.experience %}
+                                <li class="employee-props__item">
+                                    <div class="thumb">
+                                        <img src="{% static 'img/icon-case.png' %}" class="accent" alt="кейс" width="60"
+                                             height="52" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_3"></div>
-                                        </div>
+                                    <div class="employee-props__content">
+                                        <p class="employee-props__label">Стаж</p>
+                                        <p class="employee-props__value">{{ manager.experience }}</p>
                                     </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_5"></div>
-                                        </div>
+                                </li>
+                            {% endif %}
+                            {% if manager.has_car %}
+                                <li class="employee-props__item">
+                                    <div class="thumb">
+                                        <img src="{% static 'img/icon-car.png' %}" class="accent" alt="авто" width="64"
+                                             height="42" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
+                                    <div class="employee-props__content">
+                                        <p class="employee-props__label">Автомобіль</p>
+                                        <p class="employee-props__value">In stock</p>
                                     </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_5"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="reviews-item">
-                            <div class="reviews-item__inner">
-                                <div class="reviews-item__header">
-                                    <time class="reviews-item__time line line_1">20.03.2023</time>
-                                    <div class="rating">
-                                        <div class="rating__bar rating-bar">
-                                            <div class="rating-bar__fill rating-bar__fill_4"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item__content">
-                                    <p class="review-item__author line line_1">Віктор</p>
-                                    <p class="review-item__text line line_6">Хочу висловити подяку Олександру за його роботу-все виконано професійно та якісно! Олександр Васильєвих дуже відповідальний, чуйний та знаючий свою справу фахівець!</p>
-                                </div>
-                                <div class="review-item__footer">
-                                    <img src="img/icon-user.png" class="review-item__manager-img" width="47" height="48" alt="Гедзерук Наталія Вікторівна" loading="lazy">
-                                    <a href="manager.html" class="review-item__manager line line_1"> Гедзерук Наталія Вікторівна </a>
-                                    <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="pagination pagination_center">
-                        <button type="button" class="btn btn_invert btn_rounded">Показати більше</button>
-                    </div>
-                </div>
-                {% if listings_count %}
-                    <div id="tab-3" class="prop-tab">
-                        <ul class="emplyees-objects">
-                            {% for item in listings %}
-                                {% include 'listings/archive-item.html' %}
-                            {% endfor %}
+                                </li>
+                            {% endif %}
                         </ul>
-                        <div class="pagination pagination_center">
-                            <button type="button" class="btn btn_invert btn_rounded">Показати більше</button>
-                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div id="tab-2" class="prop-tab">
+                {% if reviews.count %}
+                    <ul class="reviews-grid">
+                        {% for review in reviews %}
+                            {% include 'reviews/item.html' %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if reviews_count > reviews.count %}
+                    <div class="pagination pagination_center">
+                        <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
+                                data-url="{{ request.path }}" data-page="2" data-type="review">Показати більше</button>
                     </div>
                 {% endif %}
             </div>
+            {% if listings_count %}
+                <div id="tab-3" class="prop-tab">
+                    <ul class="emplyees-objects">
+                        {% for item in listings %}
+                            {% include 'listings/archive-item.html' %}
+                        {% endfor %}
+                    </ul>
+                    {% if listings_count > listings.count %}
+                        <div class="pagination pagination_center">
+                            <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
+                                    data-url="{{ request.path }}" data-page="2" data-type="listing">Показати більше</button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
-{% endwith %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('.ajax-show-more').on('click', function() {
+        const $this = $(this);
+        const url = $this.attr('data-url');
+        const page = $this.attr('data-page');
+        const type = $this.attr('data-type');
+        const itemsDestination = $this.closest('.prop-tab').find('ul');
+        const buttonDestination = $this.closest('.prop-tab');
+        const paginationWrapper = $this.closest('.pagination');
+        $this.attr('disabled', true);
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: {
+                page: page,
+                type: type
+            },
+            success: (res) => {
+                const items = $(res).find('li');
+                const nextPage = items.attr('data-page');
+                itemsDestination.append(items);
+                if (!nextPage) {
+                    paginationWrapper.remove();
+                    return false;
+                }
+                $this.attr('data-page', nextPage);
+                $this.attr('disabled', false);
+            }
+        });
+    });
+</script>
 {% endblock %}

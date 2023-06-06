@@ -20,7 +20,7 @@ GOOGLE_API_KEY = config.google_api_key
 class Command(BaseCommand):
     help = 'Update listings from Feed API'
 
-    def handle(self, *args, **options):
+    def handle_from_api(self, *args, **options):
         response = requests.get(CRM_API)
 
         # Bad request
@@ -36,6 +36,11 @@ class Command(BaseCommand):
             items.append(self.parse_item(item))
         with open('result.json', 'w', encoding='utf-8') as json_file:
             json.dump(items, json_file, indent=4, ensure_ascii=False)
+        self.update_models(items)
+
+    def handle(self, *args, **options):
+        with open('result.json', encoding='utf-8') as json_file:
+            items = json.load(json_file)
         self.update_models(items)
 
     def parse_item(self, item):
@@ -229,8 +234,9 @@ class Command(BaseCommand):
 
             # Create Kits (Attributes)
             for attribute_data in data['properties']:
-                attribute, _ = Attribute.objects.get_or_create(title=attribute_data['label'], slug=attribute_data['id'])
-                Kit.objects.get_or_create(listing=listing, attribute=attribute, value=attribute_data['value'])
+                if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
+                    attribute, _ = Attribute.objects.get_or_create(title=attribute_data['label'], slug=attribute_data['id'])
+                    Kit.objects.get_or_create(listing=listing, attribute=attribute, value=attribute_data['value'])
 
             # Update listing status
             listing_ids = Listing.objects.values_list('id', flat=True)

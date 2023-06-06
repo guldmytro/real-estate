@@ -124,10 +124,19 @@
 
 {% block scripts %}
     <script>
-    function map_init_basic (map, options) {
-        const marker = L.marker([50.5, 30.5]).addTo(map);
-        marker.bindPopup("Это всплывающая подсказка с описанием маркера.");
-        //marker.bindTooltip("Это описание маркера.").openTooltip();
-    }
+        let objectItems = document.querySelectorAll('.object-item');
+        let viewedListings = localStorage.getItem('viewedListings');
+        if (viewedListings) {
+            viewedListings = JSON.parse(viewedListings);
+        } else {
+            viewedListings = [];
+        }
+        objectItems.forEach(function(item) {
+            var itemId = item.getAttribute('data-id');
+
+            if (viewedListings.includes(itemId)) {
+                item.classList.add('viewed');
+            }
+        });
     </script>
 {% endblock %}

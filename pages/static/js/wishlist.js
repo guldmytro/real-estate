@@ -52,3 +52,11 @@ $('.add-to-wishlist').on('click', function() {
 	}
 	$this.attr('disabled', false);
 });
+
+
+$('.show-more-attributes__btn').on('click', function() {
+	$(this).closest('tr').remove();
+	$('.show-more-attributes ~ tr').animate({ height: 'toggle' }, 0, function() {
+        $(this).css('display', 'table-row');
+    });
+});
