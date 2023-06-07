@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'listings.apps.ListingsConfig',
     'managers.apps.ManagersConfig',
     'wishlist.apps.WishlistConfig',
+    'news.apps.NewsConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'

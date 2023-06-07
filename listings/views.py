@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Listing, Attribute
 from django.db.models import Prefetch
-from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import Distance
+from news.models import News
 
 
 def listings_list(request):
@@ -38,11 +38,14 @@ def listings_detail(request, id):
         street_number=listing.street_number, street=listing.street
     )[:10]
 
+    news = News.objects.all()[:8]
+
     context = {
         'listing': listing,
         'in_wishlist': in_wishlist,
         'listings_the_same_street_num': listings_the_same_street_num,
-        'listings_within_distance': listings_within_distance
+        'listings_within_distance': listings_within_distance,
+        'news': news
     }
 
     return render(request, 'listings/item.html', context)

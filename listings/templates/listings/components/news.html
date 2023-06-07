@@ -1,0 +1,12 @@
+{% if news %}
+    <div class="object-box">
+        <div class="object-box-header">
+            <h1 class="object-box-header__title">Новини</h1>
+        </div>
+        <ul class="post-group object-slider">
+            {% for item in news %}
+                {% include 'news/archive-item.html' %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
