@@ -41,6 +41,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         with open('result.json', encoding='utf-8') as json_file:
             items = json.load(json_file)
+            json_file.close()
         self.update_models(items)
 
     def parse_item(self, item):
@@ -128,6 +129,22 @@ class Command(BaseCommand):
         )
         street_title = street['long_name'] if street else None
 
+        # Extract street number
+        street_num = None
+        street_component = next(
+            (component for component in response_json['results'] if
+             'premise' in component['types']),
+            None
+        )
+        street__items = street_component.get('address_components', None) if street_component else None
+        if street__items:
+            street_num_dict = next(
+                (component for component in street__items if
+                 'street_number' in component['types']),
+                None
+            )
+            street_num = street_num_dict.get('short_name', None) if street_num_dict else None
+
         return {
             'country': {
                 'title': country_title
@@ -139,6 +156,7 @@ class Command(BaseCommand):
             },
             'street': {
                 'title': street_title,
+                'num': street_num
             }
         }
 
@@ -183,7 +201,7 @@ class Command(BaseCommand):
 
             # Create Listing object
             listing, _ = Listing.objects.get_or_create(id=int(data['id']))
-            listing.status = data['status']
+            listing.status = 'active'
             listing.title = data['title']
             listing.description = data.get('description', '')
             listing.is_new_building = bool(int(data.get('is_new_building', '0')))
@@ -199,16 +217,21 @@ class Command(BaseCommand):
 
             lng = float(data['location']['map_lng'])
             lat = float(data['location']['map_lat'])
+
+            need_update_address = str(lng) != str(listing.get_coordinates_lng()) or \
+                                  str(lat) != str(listing.get_coordinates_lat())
+
             listing.coordinates = Point(lng, lat)
 
             street = None
             # Updating address
-            if listing.street is None:
+            if listing.street is None or need_update_address:
                 address_dict = self.fetch_geo_data(float(data['location']['map_lng']),
                                                    float(data['location']['map_lat']))
 
                 if address_dict:
                     street = self.create_listing_address(address_dict)
+                    listing.street_number = address_dict['street']['num']
             if street:
                 listing.street = street
 

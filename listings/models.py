@@ -46,6 +46,7 @@ class Listing(models.Model):
     coordinates = models.PointField(default=Point(float(0), float(0)))
     street = models.ForeignKey('Street', verbose_name='Street', blank=True, null=True, on_delete=models.CASCADE,
                                related_name='listings')
+    street_number = models.CharField(verbose_name='House Number', blank=True, null=True, max_length=10)
 
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
                                  blank=True, null=True, verbose_name='Category', related_name='listings')
@@ -89,6 +90,11 @@ class Listing(models.Model):
 
     def get_coordinates_lng(self):
         return self.coordinates.coords[0] if self.coordinates else None
+
+    def get_address_string(self):
+        return ', '.join(filter(lambda string: string != '' or string != None,
+                                [self.street.title, self.street_number, self.street.city.title])
+                         )
     
     def get_google_maps_link(self):
         if self.coordinates is None:

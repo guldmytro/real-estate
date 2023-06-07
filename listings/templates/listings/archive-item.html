@@ -15,12 +15,12 @@
                     <strong>{{ item.formated_price }}$</strong>
                     <span>{{ item.price_per_square }}$/м²</span>
                 </div>
-                <h2 class="object-item__title">
+                <h2 class="object-item__title line line_2" title="{{ item.title }}">
                     <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
                 </h2>
             </div>
             <hr>
-            <p class="object-item__address line line_2">вул. Клочківська, буд 24, р-й Харківський, м. Харків</p>
+            <p class="object-item__address line line_2">{{ item.get_address_string }}</p>
             <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
         </div>
     </div>

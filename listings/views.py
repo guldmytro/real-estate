@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Listing, Attribute
 from django.db.models import Prefetch
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import Distance
 
 
 def listings_list(request):
@@ -19,9 +21,28 @@ def listings_detail(request, id):
         ).select_related('manager'),
         id=id
     )
+
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
+
+    listings_the_same_street_num = Listing.active.prefetch_related(
+        Prefetch('images')
+    ).select_related('manager').filter(
+        street_number=listing.street_number, street=listing.street
+    ).exclude(id=listing.id)[:10]
+
+    listings_within_distance = Listing.active.prefetch_related(
+        Prefetch('images')
+    ).select_related('manager').filter(
+        coordinates__distance_lte=(listing.coordinates, Distance(m=5000))
+    ).exclude(
+        street_number=listing.street_number, street=listing.street
+    )[:10]
+
     context = {
         'listing': listing,
-        'in_wishlist': in_wishlist
+        'in_wishlist': in_wishlist,
+        'listings_the_same_street_num': listings_the_same_street_num,
+        'listings_within_distance': listings_within_distance
     }
+
     return render(request, 'listings/item.html', context)

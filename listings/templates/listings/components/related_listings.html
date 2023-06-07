@@ -1,0 +1,33 @@
+{% if listings_the_same_street_num or listings_within_distance %}
+    <div class="object-box">
+        <div class="object-box-header">
+            <h1 class="object-box-header__title">Вам може бути цікаво</h1>
+            <div class="object-box-header__conrtrols">
+                {% if listings_the_same_street_num %}
+                    <button type="button" class="tab active" data-id="#slider-1">В цьому будинку</button>
+                {% endif %}
+                {% if listings_within_distance %}
+                    <button type="button"
+                            class="tab{% if not listings_the_same_street_num %} active{% endif %}"
+                            data-id="#slider-2">Схожі по місцезнаходженню</button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="object-box__sliders">
+            {% if listings_the_same_street_num %}
+                <ul id="slider-1" class="post-group object-slider active">
+                    {% for item in listings_the_same_street_num.all %}
+                        {% include 'listings/archive-item.html' %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if listings_within_distance %}
+                <ul id="slider-2" class="post-group object-slider{% if not listings_the_same_street_num %} active{% endif %}">
+                    {% for item in listings_within_distance.all %}
+                        {% include 'listings/archive-item.html' %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
