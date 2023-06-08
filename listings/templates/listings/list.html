@@ -98,15 +98,7 @@
                             {% include 'listings/archive-item.html' %}
                         {% endfor %}
                     </ul>
-                    <nav class="pagination">
-                        <a href="#" aria-label="попередня сторінка" class="pagination__link pagination__link_prev">
-                            <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
-                        </a>
-                        <span class="pagination__current">2</span>
-                        <a href="#" aria-label="наступна сторінка" class="pagination__link pagination__link_next">
-                            <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
-                        </a>
-                    </nav>
+                    {% include 'pagination.html' with page=listings %}
                 </div>
                 <div class="col">
                     <div id="clustered-map" style="width:100%;height:100vh;"></div>
@@ -140,11 +132,12 @@
         const { Marker } = await google.maps.importLibrary("marker");
         const map = new Map(document.getElementById("clustered-map"), {
             zoom: 15,
-            mapId: '315229cfc9e14eab'
+            mapId: '315229cfc9e14eab',
+            mapTypeControl: false
         });
         const infoWindow = new google.maps.InfoWindow({
             content: "",
-            disableAutoPan: false,
+            disableAutoPan: false
         });
         // Create an array of alphabetical characters used to label the markers.
         // Add some markers to the map.

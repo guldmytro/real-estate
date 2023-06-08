@@ -12,7 +12,6 @@ def wishlist_archive(request):
         listings = paginator.page(page_number)
     except EmptyPage:
         listings = paginator.page(paginator.num_pages)
-    print(listings)
     context = {
         'listings': listings
     }

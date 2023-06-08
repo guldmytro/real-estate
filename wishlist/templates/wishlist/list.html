@@ -14,6 +14,7 @@
                         {% include 'listings/archive-item.html' %}
                     {% endfor %}
                 </ul>
+                {% include 'pagination.html' with page=listings %}
             {% else %}
                 <p class="section-header__subtitle section-header__subtitle_strong">
                     Ваш список вибраного пустий... Повернутись до <a href="{% url 'listings:list' %}">списку оголошень</a>

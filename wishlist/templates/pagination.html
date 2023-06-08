@@ -1,0 +1,17 @@
+{% load static %}
+
+{% if page.paginator.num_pages > 1 %}
+    <nav class="pagination">
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}" aria-label="попередня сторінка" class="pagination__link pagination__link_prev">
+                <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
+            </a>
+        {% endif %}
+        <span class="pagination__current">{{ page.number }}</span>
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}" aria-label="наступна сторінка" class="pagination__link pagination__link_next">
+                <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
+            </a>
+        {% endif %}
+    </nav>
+{% endif %}

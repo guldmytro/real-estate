@@ -4,15 +4,26 @@ from django.db.models import Prefetch
 from django.contrib.gis.measure import Distance
 from news.models import News
 from django.template.loader import render_to_string
-
+from django.core.paginator import Paginator, EmptyPage
 
 def listings_list(request):
-    listings = Listing.active.prefetch_related('images').all()
+    listings_list = Listing.active.prefetch_related('images').all()
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
-        'content': render_to_string('listings/components/listing-map-info.html', {'listing': listing, 'year': listing.kits.filter(attribute__slug='property_23')})
-        } for listing in listings]
+        'content': render_to_string(
+        'listings/components/listing-map-info.html', {
+            'listing': listing, 
+            'year': listing.kits.filter(attribute__slug='property_23')
+            })
+        } for listing in listings_list]
+    
+    paginator = Paginator(listings_list, 6)
+    page_number = request.GET.get('page', 1)
+    try:
+        listings = paginator.page(page_number)
+    except EmptyPage:
+        listings = paginator.page(paginator.num_pages)
     context = {
         'listings': listings,
         'coordinates': coordinates
