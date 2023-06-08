@@ -3,12 +3,19 @@ from .models import Listing, Attribute
 from django.db.models import Prefetch
 from django.contrib.gis.measure import Distance
 from news.models import News
+from django.template.loader import render_to_string
 
 
 def listings_list(request):
     listings = Listing.active.prefetch_related('images').all()
+    coordinates = [{
+        'lat': listing.coordinates.y, 
+        'lng': listing.coordinates.x,
+        'content': render_to_string('listings/components/listing-map-info.html', {'listing': listing, 'year': listing.kits.filter(attribute__slug='property_23')})
+        } for listing in listings]
     context = {
-        'listings': listings
+        'listings': listings,
+        'coordinates': coordinates
     }
     return render(request, 'listings/list.html', context)
 
