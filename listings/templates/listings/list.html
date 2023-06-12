@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Оголошення{% endblock %}
 
@@ -22,7 +23,9 @@
             <div class="archive-objects__row">
                 <div class="col">
                     <div class="section-header">
-                        <h1 class="section-header__title">Результати пошуку квартир</h1>
+                        <h1 class="section-header__title animate animate_text">
+                            {{ 'Результати пошуку квартир'|wrap_words_in_span|safe }}
+                        </h1>
                     </div>
                     <ul class="objects-group">
                         {% for item in listings %}
