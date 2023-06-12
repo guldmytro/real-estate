@@ -203,7 +203,6 @@ class Country(models.Model):
 
 class City(models.Model):
     title = models.CharField(max_length=255, verbose_name='City')
-    coordinates = models.PointField(verbose_name='Coordinates', unique=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name='Country')
 
     def __str__(self):
@@ -212,7 +211,9 @@ class City(models.Model):
     class Meta:
         verbose_name = 'City'
         verbose_name_plural = 'Cities'
-
+        unique_together = (
+            ('title', 'country'),
+        )
 
 class Street(models.Model):
     title = models.CharField(max_length=255, verbose_name='Street')
@@ -225,7 +226,5 @@ class Street(models.Model):
         verbose_name = 'Street'
         verbose_name_plural = 'Streets'
         unique_together = (
-            ('title', 'city')
+            ('title', 'city'),
         )
-
-

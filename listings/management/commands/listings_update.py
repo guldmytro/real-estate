@@ -91,7 +91,7 @@ class Command(BaseCommand):
 
     def fetch_geo_data(self, lng, lat):
         response = requests.get(
-            f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language=en')
+            f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language=uk')
         if response.status_code != 200:
             return False
         response_json = json.loads(response.text)
@@ -111,15 +111,6 @@ class Command(BaseCommand):
             None
         )
         city_title = city['long_name'] if city else None
-
-        # Extract city coordinates
-        city_coordinates = next(
-            (component for component in response_json['results'] if
-             'postal_code' in component['types']),
-            None
-        )
-        city_coordinates_lat = city_coordinates['geometry']['location']['lat']
-        city_coordinates_lng = city_coordinates['geometry']['location']['lng']
 
         # Extract street
         street = next(
@@ -147,12 +138,10 @@ class Command(BaseCommand):
 
         return {
             'country': {
-                'title': country_title
+                'title': country_title,
             },
             'city': {
                 'title': city_title,
-                'lng': city_coordinates_lng,
-                'lat': city_coordinates_lat,
             },
             'street': {
                 'title': street_title,
@@ -268,12 +257,19 @@ class Command(BaseCommand):
             Listing.objects.filter(id__in=missing_ids).update(status='archive')
 
     def create_listing_address(self, address_dict):
-        country, _ = Country.objects.get_or_create(title=address_dict['country']['title'])
-        city, _ = City.objects.get_or_create(country=country, title=address_dict['city']['title'],
-                                             coordinates=Point(float(address_dict['city']['lng']),
-                                                               float(address_dict['city']['lat'])
-                                                               )
-                                             )
-        street, _ = Street.objects.get_or_create(city=city, title=address_dict['street']['title'])
+        country, _ = Country.objects.get_or_create(
+            title=address_dict['country']['title']
+        )
+
+        city, _ = City.objects.get_or_create(
+            country=country,
+            title=address_dict['city']['title']
+        )
+
+        street, _ = Street.objects.update_or_create(
+            city=city,
+            title=address_dict['street']['title']
+        )
+
         return street
 

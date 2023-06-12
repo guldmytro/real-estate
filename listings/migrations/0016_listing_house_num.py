@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='listing',
-            name='house_num',
+            name='street_number',
             field=models.CharField(blank=True, max_length=10, null=True, verbose_name='House Number'),
         ),
     ]

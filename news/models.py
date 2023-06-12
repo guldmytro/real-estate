@@ -27,4 +27,3 @@ class News(PostModel):
     class Meta:
         verbose_name = 'News'
         verbose_name_plural = 'News'
-

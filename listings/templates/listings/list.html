@@ -6,76 +6,7 @@
 {% block content %}
     <div class="archive-search-form">
         <div class="container">
-            <form action="./archive-objects.html" class="form__main-search form-search">
-                <div class="search-header">
-                    <button type="button" class="search-header__btn active">Купити</button>
-                    <button type="button" class="search-header__btn">Орендувати</button>
-                    <button type="button" class="search-header__btn">Продати</button>
-                    <button type="button" class="search-header__btn">Здати в оренду</button>
-                    <button type="button" class="search-header__btn">Кредит та іпотека</button>
-                    <button type="button" class="search-header__btn">Оцінка</button>
-                </div>
-                <div class="search-filters">
-                    <label class="search-filters__item filter-item">
-                        <span class="filter-item__label">
-                            Тип об'єкту
-                        </span>
-                        <div class="select-wrapper">
-                            <select name="house-type" id="house-type" class="select">
-                                <option value="new">Новобудова</option>
-                                <option value="new">Окремий будинок</option>
-                            </select>
-                        </div>
-                    </label>
-                    <div class="search-filters__item filter-item">
-                        <span class="filter-item__label">
-                            Кімнатність
-                        </span>
-                        <div class="filter-item__group">
-                            <label class="radio-group">
-                                <input type="radio" class="radio" name="rooms" value="1">
-                                <span>1</span>
-                            </label>
-                            <label class="radio-group">
-                                <input type="radio" class="radio" name="rooms" value="2" checked>
-                                <span>2</span>
-                            </label>
-                            <label class="radio-group">
-                                <input type="radio" class="radio" name="rooms" value="3">
-                                <span>3</span>
-                            </label>
-                            <label class="radio-group">
-                                <input type="radio" class="radio" name="rooms" value="4">
-                                <span>4+</span>
-                            </label>
-                        </div>
-                    </div>
-                    <label class="search-filters__item filter-item filter-item_grow">
-                        <span class="filter-item__label">
-                            Адреса
-                        </span>
-                        <div class="input-wrapper input-wrapper__search">
-                            <input type="text" name="address" class="input" placeholder="Місто">
-                        </div>
-                    </label>
-                    <label class="search-filters__item filter-item">
-                        <span class="filter-item__label">
-                            Вартість ($)
-                        </span>
-                        <div class="input-wrapper">
-                            <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
-                            <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
-                        </div>
-                    </label>
-                </div>
-                <div class="submit-row">
-                    <button type="submit" class="form-search__submit btn btn_primary">Пошук об'єкту</button>
-                    <button type="button" class="form-search__advanced-btn btn btn_invert">
-                        <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
-                        <span>Розширений пошук</span>
-                    </button>
-                </div>
-            </form>
+            {% include 'forms/search.html' %}
         </div>
     </div>
     <div class="breadcrumbs">
@@ -109,6 +40,7 @@
 {% endblock %}
 
 {% block scripts %}
+    
     <script>
         let objectItems = document.querySelectorAll('.object-item');
         let viewedListings = localStorage.getItem('viewedListings');
@@ -170,4 +102,5 @@
 
     initMap();
     </script>
+    <script src="{% static 'js/search.js' %}"></script>
 {% endblock %}

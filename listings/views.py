@@ -5,8 +5,11 @@ from django.contrib.gis.measure import Distance
 from news.models import News
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
+from .forms import SearchForm
+
 
 def listings_list(request):
+    search_form = SearchForm()
     listings_list = Listing.active.prefetch_related('images').all()
     coordinates = [{
         'lat': listing.coordinates.y, 
@@ -24,9 +27,11 @@ def listings_list(request):
         listings = paginator.page(page_number)
     except EmptyPage:
         listings = paginator.page(paginator.num_pages)
+        
     context = {
         'listings': listings,
-        'coordinates': coordinates
+        'coordinates': coordinates,
+        'search_form': search_form
     }
     return render(request, 'listings/list.html', context)
 

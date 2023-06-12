@@ -1,0 +1,199 @@
+{% load static %}
+
+<form id="search-form" action="." method="get" class="form__main-search form-search">
+    <div class="search-header">
+        <button type="button" class="search-header__btn active">Купити</button>
+        <button type="button" class="search-header__btn">Орендувати</button>
+        <button type="button" class="search-header__btn">Продати</button>
+        <button type="button" class="search-header__btn">Здати в оренду</button>
+        <button type="button" class="search-header__btn">Кредит та іпотека</button>
+        <button type="button" class="search-header__btn">Оцінка</button>
+    </div>
+    <div class="search-filters">
+        <label class="search-filters__item filter-item">
+            <span class="filter-item__label">
+                Тип об'єкту
+            </span>
+            <div class="select-wrapper">
+                <select name="house-type" id="house-type" class="select">
+                    <option value="new">Новобудова</option>
+                    <option value="new">Окремий будинок</option>
+                </select>
+            </div>
+        </label>
+        <div class="search-filters__item filter-item">
+            <span class="filter-item__label">
+                Кімнатність
+            </span>
+            <div class="filter-item__group">
+                <label class="radio-group">
+                    <input type="radio" class="radio" name="rooms" value="1">
+                    <span>1</span>
+                </label>
+                <label class="radio-group">
+                    <input type="radio" class="radio" name="rooms" value="2" checked>
+                    <span>2</span>
+                </label>
+                <label class="radio-group">
+                    <input type="radio" class="radio" name="rooms" value="3">
+                    <span>3</span>
+                </label>
+                <label class="radio-group">
+                    <input type="radio" class="radio" name="rooms" value="4">
+                    <span>4+</span>
+                </label>
+            </div>
+        </div>
+        <label class="search-filters__item filter-item filter-item_grow">
+            <span class="filter-item__label">
+                {{ search_form.address_input.label }}
+            </span>
+            <div class="suggestions">
+                <div class="input-wrapper input-wrapper__search">
+                    {{ search_form.address_input }}
+                </div>
+                <div class="google-suggestions"></div>
+                <div class="suggestions-wrapper">
+                    <div class="suggestion-category">
+                        <p class="suggestion-category__title">
+                            <img src="{% static 'img/icon-city.svg' %}" alt="icon of city">
+                            <span>Address</span>
+                        </p>
+                        <ul class="suggestion-category__group">
+                            <li class="suggestion-category__item">вул. Масарика <em>(Львів)</em></li>
+                            <li class="suggestion-category__item">вул. Полуботка <em>(Львів)</em></li>
+                            <li class="suggestion-category__item">вул. Левітана <em>(Одеса)</em></li>
+                            <li class="suggestion-category__item">вул. Кутова <em>(Харків)</em></li>
+                            <li class="suggestion-category__item">вул. Масарика <em>(Львів)</em></li>
+                            <li class="suggestion-category__item">вул. Полуботка <em>(Львів)</em></li>
+                            <li class="suggestion-category__item">вул. Левітана <em>(Одеса)</em></li>
+                            <li class="suggestion-category__item">вул. Кутова <em>(Харків)</em></li>
+                        </ul>
+                    </div>
+                    <div class="suggestion-category">
+                        <p class="suggestion-category__title">
+                            <img src="{% static 'img/icon-city.svg' %}" alt="icon of city">
+                            <span>City</span>
+                        </p>
+                        <ul class="suggestion-category__group">
+                            <li class="suggestion-category__item">Львів</li>
+                            <li class="suggestion-category__item">Київ</li>
+                            <li class="suggestion-category__item">Харків</li>
+                            <li class="suggestion-category__item">Одеса</li>
+                            <li class="suggestion-category__item">Львів</li>
+                            <li class="suggestion-category__item">Київ</li>
+                            <li class="suggestion-category__item">Харків</li>
+                            <li class="suggestion-category__item">Одеса</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </label>
+        <label class="search-filters__item filter-item">
+            <span class="filter-item__label">
+                Вартість ($)
+            </span>
+            <div class="input-wrapper">
+                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
+                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+            </div>
+        </label>
+    </div>
+    <div class="submit-row">
+        <button type="submit" class="form-search__submit btn btn_primary">Пошук об'єкту</button>
+        <button type="button" class="form-search__advanced-btn btn btn_invert">
+            <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
+            <span>Розширений пошук</span>
+        </button>
+    </div>
+</form>
+
+<!-- temp styles -->
+<style>
+
+    .search-filters__item {
+        width: unset;
+        max-width: unset;
+    }
+
+    .filter-item_grow {
+        flex-grow: 1;
+        flex-basis: 45rem;
+    }
+
+    .suggestions {
+        position: relative;
+    }
+
+    .suggestions-wrapper {
+        padding: 1.5rem 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: var(--color-bg);
+        box-shadow: var(--box-shadow-2);
+        max-height: 250px;
+        overflow-y: auto;
+        z-index: 10;
+        scrollbar-width: thin;
+    }
+
+    .suggestions-wrapper::-webkit-scrollbar {
+        width: 7px;
+        background: #eee;
+    }
+    .suggestions-wrapper::-webkit-scrollbar-thumb {
+        border-radius: 10rem;
+        width: 7px;
+        background: #ccc;
+        transition: background-color var(--timing-transition-1) var(--easing-1);
+    }
+
+    .suggestions-wrapper::-webkit-scrollbar-thumb:hover {
+        background-color: #adaaaa;
+    }
+
+    .suggestions-wrapper > * + * {
+        margin-top: 1rem;
+    }
+
+    .suggestion-category {
+        font-size: 1.5rem;
+    }
+
+    .suggestion-category__title {
+        padding: 0 1.5rem;
+        display: flex;
+        flex-flow: row nowrap;
+        color: #000;
+        opacity: 0.6;
+        column-gap: 0.5rem;
+    }
+
+    .suggestion-category__title img {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+    }
+
+    .suggestion-category__group {
+        margin-top: 0.5rem;
+        list-style: none;
+    }
+
+    .suggestion-category__item {
+        padding: 0.5rem calc(1.5rem + 2rem + 0.5rem);
+        cursor: pointer;
+        transition: background-color var(--timing-transition) var(--easing-1);
+    }
+
+    .suggestion-category__item:hover {
+        background-color: #f8f9f9;
+    }
+
+    .suggestion-category__item em {
+        font-style: normal;
+        opacity: 0.6;
+    }
+</style>
