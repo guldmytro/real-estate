@@ -6,7 +6,8 @@ class SearchForm(forms.Form):
                                    widget=forms.widgets.TextInput(
                                        attrs={
                                            'class': 'input',
-                                           'placeholder': 'Enter the city, street...'
+                                           'placeholder': 'Enter the city, street...',
+                                           'autocomplete': 'off'
                                            }))
     city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     street = forms.CharField(required=False, widget=forms.widgets.HiddenInput)

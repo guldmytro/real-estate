@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Listing, Attribute
-from django.db.models import Prefetch
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Listing, Attribute, City, Street
+from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
+from django.contrib.postgres.search import TrigramSimilarity
+import json
+
 
 
 def listings_list(request):
@@ -72,3 +77,26 @@ def listings_detail(request, id):
     }
 
     return render(request, 'listings/item.html', context)
+
+
+@require_POST
+def get_address_predictions(request):
+    body_data = json.loads(request.body)
+    search_query = body_data.get('search_query', '')
+
+    cities = City.objects.annotate(
+        cnt=Count('streets'),
+        similarity=TrigramSimilarity('title', search_query)
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
+
+    streets = Street.objects.annotate(
+        cnt=Count('listings'),
+        similarity=TrigramSimilarity('title', search_query)
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
+
+    return JsonResponse({
+        'status': 'ok',
+        'cities': [{'title': city.title, 'id': city.pk} for city in cities],
+        'streets': [{'title': street.title, 'id': street.pk, 
+                     'related_city': {'title': street.city.title, 'id': street.city.pk}} for street in streets],
+        })

@@ -52,8 +52,10 @@
                 <div class="input-wrapper input-wrapper__search">
                     {{ search_form.address_input }}
                 </div>
+                {{ search_form.city }}
+                {{ search_form.street }}
                 <div class="google-suggestions"></div>
-                <div class="suggestions-wrapper">
+                <div id="address_suggestions-wrapper" class="suggestions-wrapper">
                     <div class="suggestion-category">
                         <p class="suggestion-category__title">
                             <img src="{% static 'img/icon-city.svg' %}" alt="icon of city">
@@ -126,7 +128,8 @@
     }
 
     .suggestions-wrapper {
-        padding: 1.5rem 0;
+        display: none;
+        padding: 2rem 0;
         position: absolute;
         left: 0;
         right: 0;
@@ -159,6 +162,10 @@
 
     .suggestion-category {
         font-size: 1.5rem;
+    }
+    
+    .no-results-message {
+        padding: 0 1.5rem;   
     }
 
     .suggestion-category__title {
@@ -196,4 +203,20 @@
         font-style: normal;
         opacity: 0.6;
     }
+
+    .input-wrapper__search::after {
+        z-index: 3;
+    }
+
+    .input-wrapper__search.valid::after {
+        background-image: url("/static/img/icon-checked-2.png");
+        filter: invert(64%) sepia(81%) saturate(1722%) hue-rotate(70deg) brightness(98%) contrast(84%);
+    }
+
+    .input-wrapper__search.invalid::after {
+        background-image: url("/static/img/icon-warning.svg");
+        filter: none;
+    }   
+
+
 </style>
