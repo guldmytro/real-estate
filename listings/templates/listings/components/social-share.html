@@ -1,0 +1,26 @@
+{% load static %}
+{% load social_share %}
+{% load social_tags %}
+
+<ul class="object-box-socials">
+    <li class="socials-item">
+        <button data-url="{% telegram listing.title %}" class="socials-item__link" aria-label="поділитись у телеграм">
+            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
+        </button>
+    </li>
+    <li class="socials-item">
+        <button data-url="{% viber %}" class="socials-item__link" aria-label="поділитись у вайбер">
+            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
+        </button>
+    </li>
+    <li class="socials-item">
+        <button data-url="{% twitter %}" class="socials-item__link" aria-label="поділитись у інстаграм">
+            <img src="{% static 'img/icon-twitter.svg' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
+        </button>
+    </li>
+    <li class="socials-item">
+        <button data-url="{% facebook %}" class="socials-item__link" aria-label="поділитись у фейсбук">
+            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
+        </button>
+    </li>
+</ul>

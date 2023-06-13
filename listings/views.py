@@ -10,12 +10,14 @@ from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 import json
+from .utils import filter_listings
 
 
 
 def listings_list(request):
     search_form = SearchForm()
     listings_list = Listing.active.prefetch_related('images').all()
+    listings_list = filter_listings(request, listings_list)
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,

@@ -47,28 +47,7 @@
                                 <button type="button" data-id="{{ listing.id }}" class="wishlist-link add-to-wishlist{% if in_wishlist %} added{% endif %}">
                                     <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
                                 </button>
-                                <ul class="object-box-socials">
-                                    <li class="socials-item">
-                                        <a href="https://web.telegram.org/a/" class="socials-item__link" aria-label="перейти у телеграм">
-                                            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
-                                        </a>
-                                    </li>
-                                    <li class="socials-item">
-                                        <a href="https://www.viber.com/ru/" class="socials-item__link" aria-label="перейти у вайбер">
-                                            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
-                                        </a>
-                                    </li>
-                                    <li class="socials-item">
-                                        <a href="https://www.instagram.com/" class="socials-item__link" aria-label="перейти у інстаграм">
-                                            <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
-                                        </a>
-                                    </li>
-                                    <li class="socials-item">
-                                        <a href="https://uk-ua.facebook.com/" class="socials-item__link" aria-label="перейти у фейсбук">
-                                            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
-                                        </a>
-                                    </li>
-                                </ul>
+                                {% include 'listings/components/social-share.html' %}
                             </div>
                         </div>
                         {% if listing.formated_price %}
