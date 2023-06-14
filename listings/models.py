@@ -115,13 +115,17 @@ class Listing(models.Model):
 
 class TermFields(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
-    slug = models.SlugField(max_length=255, verbose_name='Slug')
+    slug = models.SlugField(max_length=255, verbose_name='Slug', unique=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
         abstract = True
+        indexes = [
+            models.Index(fields=['slug'])
+        ]
+        ordering = ['slug']
 
 
 class Category(TermFields):
@@ -129,7 +133,9 @@ class Category(TermFields):
 
 
 class RealtyType(TermFields):
-    pass
+    class Meta:
+        verbose_name = 'Realty Type'
+        verbose_name_plural = 'Realty Types'
 
 
 class Image(models.Model):

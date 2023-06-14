@@ -15,10 +15,7 @@
                 Тип об'єкту
             </span>
             <div class="select-wrapper">
-                <select name="house-type" id="house-type" class="select">
-                    <option value="new">Новобудова</option>
-                    <option value="new">Окремий будинок</option>
-                </select>
+                {{ search_form.realty_type }}
             </div>
         </label>
         <div class="search-filters__item filter-item">
@@ -26,22 +23,12 @@
                 Кімнатність
             </span>
             <div class="filter-item__group">
-                <label class="radio-group">
-                    <input type="radio" class="radio" name="rooms" value="1">
-                    <span>1</span>
-                </label>
-                <label class="radio-group">
-                    <input type="radio" class="radio" name="rooms" value="2" checked>
-                    <span>2</span>
-                </label>
-                <label class="radio-group">
-                    <input type="radio" class="radio" name="rooms" value="3">
-                    <span>3</span>
-                </label>
-                <label class="radio-group">
-                    <input type="radio" class="radio" name="rooms" value="4">
-                    <span>4+</span>
-                </label>
+                {% for choice in search_form.number_of_rooms %}
+                    <label class="radio-group">
+                        {{ choice.tag }}
+                        <span>{{ choice.choice_label }}</span>
+                    </label>
+                {% endfor %}
             </div>
         </div>
         <label class="search-filters__item filter-item filter-item_grow">
@@ -54,41 +41,7 @@
                 </div>
                 {{ search_form.city }}
                 {{ search_form.street }}
-                <div class="google-suggestions"></div>
-                <div id="address_suggestions-wrapper" class="suggestions-wrapper">
-                    <div class="suggestion-category">
-                        <p class="suggestion-category__title">
-                            <img src="{% static 'img/icon-city.svg' %}" alt="icon of city">
-                            <span>Address</span>
-                        </p>
-                        <ul class="suggestion-category__group">
-                            <li class="suggestion-category__item">вул. Масарика <em>(Львів)</em></li>
-                            <li class="suggestion-category__item">вул. Полуботка <em>(Львів)</em></li>
-                            <li class="suggestion-category__item">вул. Левітана <em>(Одеса)</em></li>
-                            <li class="suggestion-category__item">вул. Кутова <em>(Харків)</em></li>
-                            <li class="suggestion-category__item">вул. Масарика <em>(Львів)</em></li>
-                            <li class="suggestion-category__item">вул. Полуботка <em>(Львів)</em></li>
-                            <li class="suggestion-category__item">вул. Левітана <em>(Одеса)</em></li>
-                            <li class="suggestion-category__item">вул. Кутова <em>(Харків)</em></li>
-                        </ul>
-                    </div>
-                    <div class="suggestion-category">
-                        <p class="suggestion-category__title">
-                            <img src="{% static 'img/icon-city.svg' %}" alt="icon of city">
-                            <span>City</span>
-                        </p>
-                        <ul class="suggestion-category__group">
-                            <li class="suggestion-category__item">Львів</li>
-                            <li class="suggestion-category__item">Київ</li>
-                            <li class="suggestion-category__item">Харків</li>
-                            <li class="suggestion-category__item">Одеса</li>
-                            <li class="suggestion-category__item">Львів</li>
-                            <li class="suggestion-category__item">Київ</li>
-                            <li class="suggestion-category__item">Харків</li>
-                            <li class="suggestion-category__item">Одеса</li>
-                        </ul>
-                    </div>
-                </div>
+                <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
             </div>
         </label>
         <label class="search-filters__item filter-item">
@@ -96,8 +49,8 @@
                 Вартість ($)
             </span>
             <div class="input-wrapper">
-                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
-                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+                {{ search_form.min_price }}
+                {{ search_form.max_price }}
             </div>
         </label>
     </div>

@@ -9,7 +9,7 @@ from listings.models import Listing, Category, RealtyType, \
     Image, Kit, Attribute, Country, City, Street
 from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
-from django.utils.text import slugify
+from slugify import slugify
 
 
 config = SiteConfiguration.objects.get()
@@ -184,9 +184,8 @@ class Command(BaseCommand):
     def update_models(self, items):
         for data in items:
             # Create or update Category and RealtyType
-            category, _ = Category.objects.get_or_create(title=data['category'], slug=slugify(data['category']))
-            realty_type, _ = RealtyType.objects.get_or_create(title=data['realty_type'],
-                                                              slug=slugify(data['realty_type']))
+            category, _ = Category.objects.get_or_create(title=data['category'], slug=slugify(data['category'], allow_unicode=True))
+            realty_type = self.get_realty_type(data.get('realty_type', False))
 
             # Create Listing object
             listing, _ = Listing.objects.get_or_create(id=int(data['id']))
@@ -273,3 +272,10 @@ class Command(BaseCommand):
 
         return street
 
+    def get_realty_type(self, realty):
+        print(realty)
+        if realty:
+            realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=True), 
+                                                              defaults={'title': realty})
+            return realty_type
+        return False

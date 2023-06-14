@@ -15,9 +15,11 @@ from .utils import filter_listings
 
 
 def listings_list(request):
-    search_form = SearchForm()
+    search_form = SearchForm(request.GET)
     listings_list = Listing.active.prefetch_related('images').all()
-    listings_list = filter_listings(request, listings_list)
+    if search_form.is_valid():
+        cleaned_data = search_form.cleaned_data
+        listings_list = filter_listings(cleaned_data, listings_list)
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
