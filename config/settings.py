@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'leaflet',
     'solo',
     'easy_thumbnails',
-    'django_social_share',
     # Local
     'profiles.apps.ProfilesConfig',
     'props.apps.PropsConfig',
