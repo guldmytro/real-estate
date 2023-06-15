@@ -23,6 +23,7 @@ def listings_list(request):
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
+        'price': listing.formated_price(),
         'content': render_to_string(
         'listings/components/listing-map-info.html', {
             'listing': listing, 

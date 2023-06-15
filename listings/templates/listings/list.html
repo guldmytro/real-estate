@@ -65,8 +65,10 @@
     async function initMap() {
         const { Map } = await google.maps.importLibrary("maps");
         const { Marker } = await google.maps.importLibrary("marker");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
         const map = new Map(document.getElementById("clustered-map"), {
             zoom: 15,
+            maxZoom: 19,
             mapId: '315229cfc9e14eab',
             mapTypeControl: false
         });
@@ -74,29 +76,30 @@
             content: "",
             disableAutoPan: false
         });
-        // Create an array of alphabetical characters used to label the markers.
-        // Add some markers to the map.
         const bounds = new google.maps.LatLngBounds();
 
         const markers = locations.map((position, i) => {
-            const marker = new Marker({
+            const priceTag = document.createElement("div");
+            priceTag.className = "price-tag";
+            priceTag.textContent = position?.price + ' $';
+
+            const advancedMarker = new AdvancedMarkerElement({
                 position,
-                icon: "{{ request.scheme }}://{{ request.get_host }}{% static 'img/custom-marker_small.png' %}"
+                content: priceTag
             });
 
             bounds.extend(position);
 
-            marker.addListener("click", () => {
+            advancedMarker.addListener("click", () => {
                 infoWindow.setContent(position?.content);
-                //infoWindow.open(map, marker);
                 infoWindow.open({
-                    anchor: marker,
+                    anchor: advancedMarker,
                     map,
                 });
             });
-            return marker;
+            return advancedMarker;
         });
-
+        
         map.fitBounds(bounds);
         new markerClusterer.MarkerClusterer({ markers, map });
     }
@@ -106,4 +109,28 @@
     initMap();
     </script>
     <script src="{% static 'js/search.js' %}"></script>
+
+<style>
+    .price-tag {
+        position: relative;
+        padding: 0.2em 0.4em;
+        color: var(--color-text-invert);
+        background-color: var(--color-accent);
+        border-radius: 0.5rem;
+        font-size: 1.6rem;
+    }
+
+    .price-tag::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: calc(100% - 1px);
+        border-top: 5px solid var(--color-accent);
+        width: 10px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+</style>
 {% endblock %}
