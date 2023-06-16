@@ -40,6 +40,7 @@ def listings_list(request):
         
     context = {
         'listings': listings,
+        'count': listings_list.count(),
         'coordinates': coordinates,
         'search_form': search_form
     }
@@ -82,6 +83,15 @@ def listings_detail(request, id):
     }
 
     return render(request, 'listings/item.html', context)
+
+
+def get_listings_count(request):
+    search_form = SearchForm(request.GET)
+    listings_list = Listing.active.prefetch_related('images').all()
+    if search_form.is_valid():
+        cleaned_data = search_form.cleaned_data
+        listings_list = filter_listings(cleaned_data, listings_list)
+    return JsonResponse({'success': True, 'count': listings_list.count()})
 
 
 @require_POST

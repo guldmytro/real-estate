@@ -1,182 +1,193 @@
-class Search {
-    constructor(inputSelector, suggestionSelector, cityInput, streetInput) {
-        this.input = document.querySelector(inputSelector);
-        this.inputWrapper = this.input.parentNode;
-        this.cityInput = document.querySelector(cityInput);
-        this.streetInput = document.querySelector(streetInput);
-        this.suggestionWrapper = document.querySelector(suggestionSelector);
-        this.searchPhrase = this?.input?.value;
-        if (this.input) this.initEventsAndLibs();
-        this.debounceTimer = null;
-        this.predictions = false;
-        this.showPredictions = false;
+import { Prediction } from "./predictions.js";
+
+class SearchForm {
+    
+    constructor(formId) {
+        this.form = document.querySelector(formId);
+        this.activeFiltersContainer = this.form.querySelector('.active-filters');
+        this.prediction = new Prediction(this);
+        this.selects = this.form.querySelectorAll('select');
+        this.radios = this.form.querySelectorAll('[type="radio"]');
+        this.numbers = this.form.querySelectorAll('input[type="number"]');
+        this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
+        this.activeFilters = new Proxy({}, this.activeFiltersHandler());
+        this.countUrl = this.form.getAttribute('data-count');
+        this.listingsCount = null;
+        this.submitButtons = this.form.querySelectorAll('[type="submit"]');
+        this.initEvents();
         this.update();
     }
     
-    async initEventsAndLibs() {
-        this.input.addEventListener('input', (e) => this.handleInput(e.target.value));
+    initEvents() {
+        this.form.addEventListener('change', () => {
+        });
+        this.selects.forEach(select => {
+            const name = select.getAttribute('name');
+            select.addEventListener('change', (e) => {    
+                const label = select.querySelector('option:checked').innerText;
+                if (e.target.value) {
+                    this.activeFilters[name] = {
+                        'name': name,
+                        'value': e.target.value,
+                        'label': label
+                    };
+                } else {
+                    delete this.activeFilters[name];
+                }
+            });
+        });
+        this.numbers.forEach(number => {
+            const name = number.getAttribute('name');
+            let timer = false;
+            number.addEventListener('input', (e) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    if (e.target.value) {
+                        this.activeFilters[name] = {
+                            'name': name,
+                            'value': e.target.value,
+                            'label': e.target.value
+                        };
+                    } else {
+                        delete this.activeFilters[name];
+                    }
+                    
+                }, 800);
+            });
+        });
+        this.radios.forEach(radio => {
+            const name = radio.getAttribute('name');
+            radio.addEventListener('change', (e) => {    
+                const label = `${e.target.value} ${radio.getAttribute('data-suffix') || ''}`;
+                if (e.target.value) {
+                    this.activeFilters[name] = {
+                        'name': name,
+                        'value': e.target.value,
+                        'label': label
+                    };
+                } else {
+                    delete this.activeFilters[name];
+                }
+            });
+        });
+        this.checkboxes.forEach(checkbox => {
+            const name = checkbox.getAttribute('name');
+            checkbox.addEventListener('change', (e) => {    
+                const label = `${e.target.value} ${checkbox.getAttribute('data-suffix') || ''}`;
+                if (e.target.value) {
+                    this.activeFilters[name] = {
+                        'name': name,
+                        'value': e.target.value,
+                        'label': label
+                    };
+                } else {
+                    delete this.activeFilters[name];
+                }
+            });
+        });
     }
 
-    handleInput(value) {
-        clearTimeout(this.debounceTimer);
-        this.inputWrapper.classList.remove('valid');
-        this.inputWrapper.classList.add('invalid');
-        this.resetFields();
+    activeFiltersHandler() {
+        return {
+            set: (target, prop, val) => {
+                target[prop] = val;
+                this.updateActiveFilters();
+                return true;
+            },
+            deleteProperty: (target, prop) => {
+                this.form.querySelector(`[name="${prop}"]`).value = '';
+                delete target[prop];
+                this.updateActiveFilters();
+                return true;
+            }
+        }
+    }
 
-        this.debounceTimer = setTimeout(() => {
-            this.searchPhrase = this.trimString(value);
-            if (String(this.searchPhrase).length > 0) {
-                this.getPredictions();
-            } else {
-                this.inputWrapper.classList.remove('invalid');
-                this.showPredictions = false;
+    updateActiveFilters() { 
+        this.activeFiltersContainer.innerHTML = '';
+        const filtersCount = Object.keys(this.activeFilters).length;
+        for (const [key, filter] of Object.entries(this.activeFilters)) {
+            const filterTag = `
+            <div class="active-filters__item">
+                <span class="active-filters__label">${filter.label}</span>
+                <button type="button" data-name="${filter.name}" data-value="${filter.value}" class="active-filters__btn" aria-label="очистити фільтр"></button>
+            </div>`;
+            this.activeFiltersContainer.insertAdjacentHTML('beforeend', filterTag);
+        }
+        const filterButtons = document.querySelectorAll('.active-filters__btn');
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                delete this.activeFilters[name];
+            });
+        });
+        this.activeFiltersContainer.style.display = filtersCount ? 'flex' : 'none';
+        filtersCount > 3 ? (this.addMoreBtn(filtersCount - 3), this.addClearBtn()) : null;
+        this.getCount();
+    }
+
+    addMoreBtn(cnt) {
+        const buttonTag = `
+        <button type="button" class="active-filters__btn active-filters__btn_invert show-more-filters" aria-label="показати ще 3">
+            <span class="show-text">Ще ${cnt}</span>
+            <span class="hide-text">Приховати ${cnt}</span>    
+        </button>`;
+        this.activeFiltersContainer.insertAdjacentHTML('beforeend', buttonTag);
+        const btn = this.activeFiltersContainer.querySelector('.show-more-filters');
+        btn.addEventListener('click', () => {
+            this.activeFiltersContainer.classList.toggle('all');
+        });
+    }
+
+    addClearBtn() {
+        const buttonTag = `
+        <button type="reset" class="active-filters__btn active-filters__btn_invert reset-filters" aria-label="очистити фільтри">
+            <span>Очистити все</span>
+        </button>`;
+        this.activeFiltersContainer.insertAdjacentHTML('beforeend', buttonTag);
+        const btn = this.activeFiltersContainer.querySelector('.reset-filters');
+        btn.addEventListener('click', () => {
+            this.activeFilters = new Proxy({}, this.activeFiltersHandler());
+            [...this.selects, ...this.numbers].forEach(input => input.value = '');
+            [...this.radios].forEach(element => element.checked = false);
+            this.updateActiveFilters();
+        });
+    }
+
+    async getCount() {
+        try {
+            const res = await fetch(`${this.countUrl}?${this.convertFormToQuerySring()}`, {method: 'GET'})
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error('Bad request');
+            });
+            if (res.success === true) {
+                this.listingsCount = res.count;
                 this.update();
             }
-        }, 500);
-    }
-
-    handleFocus() {
-        this.resetFields();
-    }
-
-    async getPredictions() {
-        try {
-            const options = this.getRequestOptions();
-            this.inputWrapper.setAttribute('data-loading', 'yes');
-            const res = await fetch('/listings/get_address_predictions/', options)
-                              .then(res => {
-                                if (res.ok) {
-                                    return res.json();
-                                }
-                                throw new Error('Bad request')
-                              });
-            this.predictions = res;
-            this.inputWrapper.setAttribute('data-loading', 'no');
-            this.updatePredictions();
-        } catch(error) {
-            console.warn(error);
+        } catch(e) {
+            console.warn(e);
         }
-    }
-
-    getRequestOptions() {
-        return {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify({'search_query': this.searchPhrase})
-        }
-    }
-
-    updatePredictions() {
-        this.suggestionWrapper.innerHTML = ''; // Clear previous suggestions
-
-        if (!this.predictions?.cities.length && !this.predictions?.streets.length) {
-            const noResultsMessage = document.createElement('p');
-            noResultsMessage.classList.add('no-results-message');
-            noResultsMessage.innerText = 'Не знайдено адрес...';
-            this.suggestionWrapper.appendChild(noResultsMessage);
-        }
-    
-        // Add Address suggestions
-        const addressSuggestions = this.predictions?.streets || [];
-        if (addressSuggestions.length > 0) {
-            const addressCategory = document.createElement('div');
-            addressCategory.classList.add('suggestion-category');
-    
-            const addressTitle = document.createElement('p');
-            addressTitle.classList.add('suggestion-category__title');
-            addressTitle.innerHTML = '<img src="/static/img/icon-marker.png" alt="маркер"><span>Адреса</span>';
-    
-            const addressGroup = document.createElement('ul');
-            addressGroup.classList.add('suggestion-category__group');
-    
-            addressSuggestions.forEach((suggestion) => {
-                const addressItem = document.createElement('li');
-                addressItem.classList.add('suggestion-category__item');
-                addressItem.setAttribute('data-id', suggestion.id);
-                addressItem.setAttribute('data-type', 'street');
-                addressItem.innerHTML = `${suggestion.title} <em data-type="street" data-id="${suggestion.id}">(${suggestion.related_city.title})</em>`;
-                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_city.title})`));
-                addressGroup.appendChild(addressItem);
-            });
-    
-            addressCategory.appendChild(addressTitle);
-            addressCategory.appendChild(addressGroup);
-            this.suggestionWrapper.appendChild(addressCategory);
-        }
-    
-        // Add City suggestions
-        const citySuggestions = this.predictions?.cities || [];
-        if (citySuggestions.length > 0) {
-            const cityCategory = document.createElement('div');
-            cityCategory.classList.add('suggestion-category');
-    
-            const cityTitle = document.createElement('p');
-            cityTitle.classList.add('suggestion-category__title');
-            cityTitle.innerHTML = '<img src="/static/img/icon-city.svg" alt="icon of city"><span>Місто</span>';
-    
-            const cityGroup = document.createElement('ul');
-            cityGroup.classList.add('suggestion-category__group');
-    
-            citySuggestions.forEach((suggestion) => {
-                const cityItem = document.createElement('li');
-                cityItem.classList.add('suggestion-category__item');
-                cityItem.setAttribute('data-id', suggestion.id);
-                cityItem.setAttribute('data-type', 'city');
-                cityItem.innerText = suggestion.title;
-                cityItem.addEventListener('click', (e) => this.fillSearchInput(e, suggestion.title));
-                cityGroup.appendChild(cityItem);
-            });
-    
-            cityCategory.appendChild(cityTitle);
-            cityCategory.appendChild(cityGroup);
-            this.suggestionWrapper.appendChild(cityCategory);
-        }
-    
-        this.showPredictions = true;
-        this.update();
-    }
-
-    fillSearchInput(e, value) {
-        if (this.input) {
-            this.input.value = this.trimString(value);
-        }
-        this.showPredictions = false;
         
-        let streetId = '';
-        let cityId = '';
-        if (e.target.getAttribute('data-type') === 'street') {
-            streetId = e.target.getAttribute('data-id');
-        } else {
-            cityId = e.target.getAttribute('data-id');
-        }
-        this.streetInput.value = streetId;
-        this.cityInput.value = cityId;
-        
-        this.inputWrapper.classList.remove('invalid');
-        this.inputWrapper.classList.add('valid');
-        setTimeout(() => {
-            this.input.blur();
-        }, 10);
-        this.update();
     }
-
-    trimString(value) {
-        return value.trim().replace(/\s{2,}/g, ' ');
-    }
-
-    resetFields() {
-        this.cityInput.value = '';
-        this.streetInput.value = '';
-        this.update();
+    
+    convertFormToQuerySring() {
+        const formData = new FormData(this.form);
+        const queryString = new URLSearchParams(formData).toString();
+        return queryString;
     }
 
     update() {
-        this.suggestionWrapper.style.display = this.showPredictions ? 'block' : 'none';
+        if (this.listingsCount !== null) {
+            this.submitButtons.forEach(button => {
+                const countTag = button.querySelector('.count');
+                countTag.innerText = `(${this.listingsCount})`;
+            });
+        }
     }
 
 }
 
-const search = new Search('#id_address_input', '#address_suggestions-wrapper', "#id_city", "#id_street");
+new SearchForm('#search-form');

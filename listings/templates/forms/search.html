@@ -1,6 +1,6 @@
 {% load static %}
 
-<form id="search-form" action="." method="get" class="form__main-search form-search">
+<form id="search-form" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
     <div class="search-header">
         <button type="button" class="search-header__btn active">Купити</button>
         <button type="button" class="search-header__btn">Орендувати</button>
@@ -55,121 +55,138 @@
         </label>
     </div>
     <div class="submit-row">
-        <button type="submit" class="form-search__submit btn btn_primary">Пошук об'єкту</button>
+        <button type="submit" class="form-search__submit btn btn_primary">
+            Показати <span class="count">({{ count }})</span>
+        </button>
         <button type="button" class="form-search__advanced-btn btn btn_invert">
             <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
             <span>Розширений пошук</span>
         </button>
     </div>
+    <div class="active-filters"></div>
+    <div class="additional-fields">
+        <div class="additional-fields-inner">
+            <button type="button" class="btn_search-close">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="additional-fields__section additional-section">
+                <div class="fieldset-group">
+                    <legend class="fieldset-group__legend">Популярне</legend>
+                    <div class="controls-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>Можна з тваринами</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>З меблями</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>Для студентів</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>Є кондиціонер</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>Новий дім</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox">
+                            <span>Без меблів</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="fieldset-group">
+                    <legend class="fieldset-group__legend">Медіа</legend>
+                    <div class="controls-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>З фото</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>З відео</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="fieldset-group">
+                    <legend class="fieldset-group__legend">Дім</legend>
+                    <div class="controls-group">
+                        <label class="filter-item">
+                            <span class="filter-item__label">
+                                Поверх
+                            </span>
+                            <div class="input-wrapper">
+                                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
+                                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+                            </div>
+                        </label>
+                        <label class="filter-item">
+                            <span class="filter-item__label">
+                                Поверхів у домі
+                            </span>
+                            <div class="input-wrapper">
+                                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
+                                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+                            </div>
+                        </label>
+                        <label class="filter-item">
+                            <span class="filter-item__label">Матеріал стін</span>
+                            <div class="select-wrapper">
+                                <select class="select">
+                                    <option value="new">Вибрати</option>
+                                    <option value="new">Окремий будинок</option>
+                                </select>
+                            </div>
+                        </label>
+                        <label class="filter-item">
+                            <span class="filter-item__label">Ліфт</span>
+                            <div class="select-wrapper">
+                                <select class="select">
+                                    <option value="new">Вибрати</option>
+                                    <option value="new">Є</option>
+                                    <option value="new">Немає</option>
+                                </select>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="fieldset-group">
+                    <legend class="fieldset-group__legend">Двір</legend>
+                    <div class="controls-group">
+                        <label class="filter-item">
+                            <span class="filter-item__label">Парковка</span>
+                            <div class="select-wrapper">
+                                <select class="select">
+                                    <option value="new">Вибрати</option>
+                                    <option value="new">Окремий будинок</option>
+                                </select>
+                            </div>
+                        </label>
+                        <label class="filter-item">
+                            <span class="filter-item__label">Благоустрій двору</span>
+                            <div class="select-wrapper">
+                                <select class="select">
+                                    <option value="new">Вибрати</option>
+                                    <option value="new">Є</option>
+                                    <option value="new">Немає</option>
+                                </select>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <footer class="additional-fields__footer">
+                <button type="reset" class="btn btn_darken">
+                    <span>Очистити</span>
+                    <img class="btn__img" src="./img/icon-trash.svg" alt="смітник" width="800" height="800" loading="lazy">
+                </button>
+                <button type="submit" class="btn btn_primary">Показати <span class="count">({{ count }})</span></button>
+            </footer>
+        </div>
+    </div>
 </form>
-
-<!-- temp styles -->
-<style>
-
-    .search-filters__item {
-        width: unset;
-        max-width: unset;
-    }
-
-    .filter-item_grow {
-        flex-grow: 1;
-        flex-basis: 45rem;
-    }
-
-    .suggestions {
-        position: relative;
-    }
-
-    .suggestions-wrapper {
-        display: none;
-        padding: 2rem 0;
-        position: absolute;
-        left: 0;
-        right: 0;
-        background-color: var(--color-bg);
-        box-shadow: var(--box-shadow-2);
-        max-height: 250px;
-        overflow-y: auto;
-        z-index: 10;
-        scrollbar-width: thin;
-    }
-
-    .suggestions-wrapper::-webkit-scrollbar {
-        width: 7px;
-        background: #eee;
-    }
-    .suggestions-wrapper::-webkit-scrollbar-thumb {
-        border-radius: 10rem;
-        width: 7px;
-        background: #ccc;
-        transition: background-color var(--timing-transition-1) var(--easing-1);
-    }
-
-    .suggestions-wrapper::-webkit-scrollbar-thumb:hover {
-        background-color: #adaaaa;
-    }
-
-    .suggestions-wrapper > * + * {
-        margin-top: 1rem;
-    }
-
-    .suggestion-category {
-        font-size: 1.5rem;
-    }
-    
-    .no-results-message {
-        padding: 0 1.5rem;   
-    }
-
-    .suggestion-category__title {
-        padding: 0 1.5rem;
-        display: flex;
-        flex-flow: row nowrap;
-        color: #000;
-        opacity: 0.6;
-        column-gap: 0.5rem;
-    }
-
-    .suggestion-category__title img {
-        flex-shrink: 0;
-        width: 2rem;
-        height: 2rem;
-        object-fit: contain;
-    }
-
-    .suggestion-category__group {
-        margin-top: 0.5rem;
-        list-style: none;
-    }
-
-    .suggestion-category__item {
-        padding: 0.5rem calc(1.5rem + 2rem + 0.5rem);
-        cursor: pointer;
-        transition: background-color var(--timing-transition) var(--easing-1);
-    }
-
-    .suggestion-category__item:hover {
-        background-color: #f8f9f9;
-    }
-
-    .suggestion-category__item em {
-        font-style: normal;
-        opacity: 0.6;
-    }
-
-    .input-wrapper__search::after {
-        z-index: 3;
-    }
-
-    .input-wrapper__search.valid::after {
-        background-image: url("/static/img/icon-checked-2.png");
-        filter: invert(64%) sepia(81%) saturate(1722%) hue-rotate(70deg) brightness(98%) contrast(84%);
-    }
-
-    .input-wrapper__search.invalid::after {
-        background-image: url("/static/img/icon-warning.svg");
-        filter: none;
-    }   
-
-
-</style>

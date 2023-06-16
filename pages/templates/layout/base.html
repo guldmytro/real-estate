@@ -163,6 +163,8 @@
     </footer>
     {% include 'sections/popup.html' %}
     <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/predictions.js' %}" type="module"></script>
+    <script src="{% static 'js/search.js' %}" type="module"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
     <script>
         const csrfToken = "{{ csrf_token }}";
@@ -177,10 +179,6 @@
         </script>
     {% endif %}
 
-    <style>
-
-
-    </style>
     {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -159,3 +159,5 @@ THUMBNAIL_ALIASES = {
         'large': {'size': (1000, 1000), 'crop': False},
     },
 }
+
+THUMBNAIL_BASEDIR = 'thumbnails'
