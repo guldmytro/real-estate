@@ -10,30 +10,9 @@
         <button type="button" class="search-header__btn">Оцінка</button>
     </div>
     <div class="search-filters">
-        <label class="search-filters__item filter-item">
-            <span class="filter-item__label">
-                Тип об'єкту
-            </span>
-            <div class="select-wrapper">
-                {{ search_form.realty_type }}
-            </div>
-        </label>
-        <div class="search-filters__item filter-item">
-            <span class="filter-item__label">
-                Кімнатність
-            </span>
-            <div class="filter-item__group">
-                {% for choice in search_form.number_of_rooms %}
-                    <label class="radio-group">
-                        {{ choice.tag }}
-                        <span>{{ choice.choice_label }}</span>
-                    </label>
-                {% endfor %}
-            </div>
-        </div>
         <label class="search-filters__item filter-item filter-item_grow">
             <span class="filter-item__label">
-                {{ search_form.address_input.label }}
+                {{ search_form.address_input.label }}*
             </span>
             <div class="suggestions">
                 <div class="input-wrapper input-wrapper__search">
@@ -44,6 +23,27 @@
                 <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
             </div>
         </label>
+        <label class="search-filters__item filter-item">
+            <span class="filter-item__label">
+                {{ search_form.realty_type.label }}
+            </span>
+            <div class="select-wrapper">
+                {{ search_form.realty_type }}
+            </div>
+        </label>
+        <div class="search-filters__item filter-item">
+            <span class="filter-item__label">
+                {{ search_form.number_of_rooms.label }}
+            </span>
+            <div class="filter-item__group">
+                {% for choice in search_form.number_of_rooms %}
+                    <label class="radio-group">
+                        {{ choice.tag }}
+                        <span>{{ choice.choice_label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
         <label class="search-filters__item filter-item">
             <span class="filter-item__label">
                 Вартість ($)
@@ -75,28 +75,28 @@
                     <legend class="fieldset-group__legend">Популярне</legend>
                     <div class="controls-group">
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>Можна з тваринами</span>
+                            {{ search_form.is_new_building }}
+                            <span>{{ search_form.is_new_building.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>З меблями</span>
+                            {{ search_form.animals }}
+                            <span>{{ search_form.animals.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>Для студентів</span>
+                            {{ search_form.furniture }}
+                            <span>{{ search_form.furniture.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>Є кондиціонер</span>
+                            {{ search_form.for_students }}
+                            <span>{{ search_form.for_students.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>Новий дім</span>
+                            {{ search_form.conditioner }}
+                            <span>{{ search_form.conditioner.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" class="checkbox">
-                            <span>Без меблів</span>
+                            {{ search_form.without_furniture }}
+                            <span>{{ search_form.without_furniture.label }}</span>
                         </label>
                     </div>
                 </div>
@@ -104,12 +104,12 @@
                     <legend class="fieldset-group__legend">Медіа</legend>
                     <div class="controls-group">
                         <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span>З фото</span>
+                            {{ search_form.with_photo }}
+                            <span>{{ search_form.with_photo.label }}</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
-                            <span>З відео</span>
+                            {{ search_form.with_video }}
+                            <span>{{ search_form.with_video.label }}</span>
                         </label>
                     </div>
                 </div>
@@ -121,8 +121,8 @@
                                 Поверх
                             </span>
                             <div class="input-wrapper">
-                                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
-                                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+                                {{ search_form.floor_from }}
+                                {{ search_form.floor_to }}
                             </div>
                         </label>
                         <label class="filter-item">
@@ -130,27 +130,24 @@
                                 Поверхів у домі
                             </span>
                             <div class="input-wrapper">
-                                <input type="number" name="price-from" placeholder="Від" class="input-price input-price__from">
-                                <input type="number" name="price-to" placeholder="До" class="input-price input-price__to">
+                                {{ search_form.floors_from }}
+                                {{ search_form.floors_to }}
                             </div>
                         </label>
                         <label class="filter-item">
-                            <span class="filter-item__label">Матеріал стін</span>
+                            <span class="filter-item__label">
+                                {{ search_form.repair.label }}
+                            </span>
                             <div class="select-wrapper">
-                                <select class="select">
-                                    <option value="new">Вибрати</option>
-                                    <option value="new">Окремий будинок</option>
-                                </select>
+                                {{ search_form.repair }}
                             </div>
                         </label>
                         <label class="filter-item">
-                            <span class="filter-item__label">Ліфт</span>
+                            <span class="filter-item__label">
+                                {{ search_form.lift.label }}
+                            </span>
                             <div class="select-wrapper">
-                                <select class="select">
-                                    <option value="new">Вибрати</option>
-                                    <option value="new">Є</option>
-                                    <option value="new">Немає</option>
-                                </select>
+                                {{ search_form.lift }}
                             </div>
                         </label>
                     </div>
@@ -159,22 +156,19 @@
                     <legend class="fieldset-group__legend">Двір</legend>
                     <div class="controls-group">
                         <label class="filter-item">
-                            <span class="filter-item__label">Парковка</span>
+                            <span class="filter-item__label">
+                                {{ search_form.parking.label }}
+                            </span>
                             <div class="select-wrapper">
-                                <select class="select">
-                                    <option value="new">Вибрати</option>
-                                    <option value="new">Окремий будинок</option>
-                                </select>
+                                {{ search_form.parking }}
                             </div>
                         </label>
                         <label class="filter-item">
-                            <span class="filter-item__label">Благоустрій двору</span>
+                            <span class="filter-item__label">
+                                {{ search_form.outside_decorating.label }}
+                            </span>
                             <div class="select-wrapper">
-                                <select class="select">
-                                    <option value="new">Вибрати</option>
-                                    <option value="new">Є</option>
-                                    <option value="new">Немає</option>
-                                </select>
+                                {{ search_form.outside_decorating }}
                             </div>
                         </label>
                     </div>

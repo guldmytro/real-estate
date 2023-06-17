@@ -20,6 +20,8 @@ def listings_list(request):
     if search_form.is_valid():
         cleaned_data = search_form.cleaned_data
         listings_list = filter_listings(cleaned_data, listings_list)
+    else:
+        print('invalid')
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,

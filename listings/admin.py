@@ -1,10 +1,6 @@
-from .models import Listing, Kit, Image, Country, City, Street
+from .models import Listing, Image, Country, City, Street, Kit
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
-
-
-class KitInline(admin.StackedInline):
-    model = Kit
 
 
 class ImageInline(admin.StackedInline):
@@ -14,6 +10,11 @@ class ImageInline(admin.StackedInline):
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('title',)
+
+
+@admin.register(Kit)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('attribute', 'value')
 
 
 @admin.register(City)
@@ -31,4 +32,4 @@ class ListingAdmin(LeafletGeoAdmin):
     list_display = ('title', 'status', 'is_new_building', 'created', 'updated')
     list_editable = ('status',)
     list_filter = ('status', 'manager', 'is_new_building', 'created', 'updated',)
-    inlines = [ImageInline, KitInline]
+    inlines = [ImageInline]

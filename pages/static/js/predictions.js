@@ -148,13 +148,21 @@ export class Prediction {
         
         let streetId = '';
         let cityId = '';
-        if (e.target.getAttribute('data-type') === 'street') {
+        const dataType = e.target.getAttribute('data-type');
+        if (dataType === 'street') {
             streetId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['city'];
         } else {
             cityId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['street'];
         }
         this.streetInput.value = streetId;
         this.cityInput.value = cityId;
+        this.searchForm.activeFilters[dataType] = {
+            name: dataType,
+            value: e.target.getAttribute('data-id'),
+            label: this.trimString(value)
+        };
         
         this.inputWrapper.classList.remove('invalid');
         this.inputWrapper.classList.add('valid');
@@ -171,6 +179,8 @@ export class Prediction {
     resetFields() {
         this.cityInput.value = '';
         this.streetInput.value = '';
+        delete this.searchForm.activeFilters['city'];
+        delete this.searchForm.activeFilters['street'];
         this.update();
     }
 

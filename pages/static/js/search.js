@@ -4,17 +4,19 @@ class SearchForm {
     
     constructor(formId) {
         this.form = document.querySelector(formId);
+        this.submitButtons = this.form.querySelectorAll('[type="submit"]');
+        this.resetButton = this.form.querySelector('[type="reset"]');
         this.activeFiltersContainer = this.form.querySelector('.active-filters');
         this.prediction = new Prediction(this);
         this.selects = this.form.querySelectorAll('select');
         this.radios = this.form.querySelectorAll('[type="radio"]');
         this.numbers = this.form.querySelectorAll('input[type="number"]');
         this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
-        this.activeFilters = new Proxy({}, this.activeFiltersHandler());
+        this.activeFilters = this.initFiltes();
         this.countUrl = this.form.getAttribute('data-count');
         this.listingsCount = null;
-        this.submitButtons = this.form.querySelectorAll('[type="submit"]');
         this.initEvents();
+        this.updateActiveFilters();
         this.update();
     }
     
@@ -73,8 +75,8 @@ class SearchForm {
         this.checkboxes.forEach(checkbox => {
             const name = checkbox.getAttribute('name');
             checkbox.addEventListener('change', (e) => {    
-                const label = `${e.target.value} ${checkbox.getAttribute('data-suffix') || ''}`;
-                if (e.target.value) {
+                const label = `${checkbox.getAttribute('data-label') || ''}`;
+                if (e.target.checked) {
                     this.activeFilters[name] = {
                         'name': name,
                         'value': e.target.value,
@@ -85,6 +87,67 @@ class SearchForm {
                 }
             });
         });
+        if (this.resetButton) {
+            this.resetButton.addEventListener('click', this.resetForm);
+        }
+    }
+
+    initFiltes() {
+        const filters = {};
+        this.selects.forEach(select => {
+            const checkedOption = select.querySelector(':checked');
+            const name = select.getAttribute('name');
+            if (checkedOption && checkedOption.value && name) {
+                filters[name] = {
+                    name: name,
+                    value: checkedOption.value,
+                    label: checkedOption.innerText
+                };
+            }
+        });
+        this.numbers.forEach(number => {
+            const name = number.getAttribute('name');
+            const val = number.value;
+            if (name && val) {
+                filters[name] = {
+                    name: name,
+                    value: val,
+                    label: val
+                }
+            }
+        });
+        this.radios.forEach(radio => {       
+            if (radio.checked) {
+                const name = radio.getAttribute('name');
+                const val = radio.value;
+                if (name && val) {
+                    filters[name] = {
+                        name: name,
+                        value: val,
+                        label: val
+                    }
+                }
+            }
+        });
+        this.checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const name = checkbox.getAttribute('name');
+                const value = checkbox.value;
+                const label = checkbox.getAttribute('data-label');
+                filters[name] = {name, value, label};
+            }
+        });
+        const predictionName = this.prediction.input.getAttribute('name');
+        const predictionValue = this.prediction.input.value;
+        if (predictionValue) {
+            filters[predictionName] = {
+                name: predictionName,
+                value: predictionValue,
+                label: predictionValue
+            };
+        }
+        this.prediction.input
+        return new Proxy(filters, this.activeFiltersHandler());
     }
 
     activeFiltersHandler() {
@@ -95,9 +158,24 @@ class SearchForm {
                 return true;
             },
             deleteProperty: (target, prop) => {
-                this.form.querySelector(`[name="${prop}"]`).value = '';
-                delete target[prop];
-                this.updateActiveFilters();
+                const input = this.form.querySelector(`[name="${prop}"]`);
+                if (input) {
+                    const inputType = input.type;
+                    if (inputType === 'radio' || inputType == 'checkbox') {
+                        const targetInput = this.form.querySelector(`[name="${prop}"][value="${target[prop].value}"]`);
+                        if (targetInput) targetInput.checked = false;
+                        if (input) input.checked = false;
+                    } else {
+                        input.value = '';
+                    }
+                }
+                if (prop === 'address_input') {
+                    this.prediction.resetFields();
+                } 
+                if (prop in target) {
+                    delete target[prop];
+                    this.updateActiveFilters();
+                }
                 return true;
             }
         }
@@ -119,6 +197,10 @@ class SearchForm {
             button.addEventListener('click', () => {
                 const name = button.dataset.name;
                 delete this.activeFilters[name];
+                if (name === 'city' || name === 'street') {
+                    this.form.querySelector('[name="address_input"]').value = '';
+                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('valid').remove('invalid');
+                }
             });
         });
         this.activeFiltersContainer.style.display = filtersCount ? 'flex' : 'none';
@@ -146,16 +228,12 @@ class SearchForm {
         </button>`;
         this.activeFiltersContainer.insertAdjacentHTML('beforeend', buttonTag);
         const btn = this.activeFiltersContainer.querySelector('.reset-filters');
-        btn.addEventListener('click', () => {
-            this.activeFilters = new Proxy({}, this.activeFiltersHandler());
-            [...this.selects, ...this.numbers].forEach(input => input.value = '');
-            [...this.radios].forEach(element => element.checked = false);
-            this.updateActiveFilters();
-        });
+        btn.addEventListener('click', this.resetForm);
     }
 
     async getCount() {
         try {
+            this.form.classList.add('disabled');
             const res = await fetch(`${this.countUrl}?${this.convertFormToQuerySring()}`, {method: 'GET'})
             .then(res => {
                 if (res.ok) {
@@ -170,6 +248,7 @@ class SearchForm {
         } catch(e) {
             console.warn(e);
         }
+        this.form.classList.remove('disabled');
         
     }
     
@@ -177,6 +256,14 @@ class SearchForm {
         const formData = new FormData(this.form);
         const queryString = new URLSearchParams(formData).toString();
         return queryString;
+    }
+
+    resetForm = (e) => {
+        e.preventDefault();
+        this.activeFilters = new Proxy({}, this.activeFiltersHandler());
+        [...this.selects, ...this.numbers].forEach(input => input.value = '');
+        [...this.radios, ...this.checkboxes].forEach(element => element.checked = false);
+        this.updateActiveFilters();
     }
 
     update() {

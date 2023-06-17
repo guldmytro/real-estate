@@ -1,7 +1,13 @@
 from django import forms
-from .models import RealtyType
+from .models import RealtyType, Kit
 from django.db.models import Count
 
+FILTER_PROPS = {
+    'repair': 'property_18',
+    'lift': 'property_100',
+    'parking': 'property_101',
+    'outside_decorating': 'property_102'
+}
 
 class SearchForm(forms.Form):
     address_input = forms.CharField(label='Адреса', required=False, 
@@ -35,16 +41,130 @@ class SearchForm(forms.Form):
         widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 'placeholder': 'До'})
     )
     realty_type = forms.ModelChoiceField(
-        label='Realty Type',
+        label="Тип об'єкту",
         queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0),
         empty_label='Виберіть тип',
         required=False,
         widget=forms.Select(attrs={'class': 'select'})
     )
 
+    # Popular fields
+    is_new_building = forms.BooleanField(
+        label='Новий дім',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'Новий дім'})
+    )
+    animals = forms.BooleanField(
+        label='Можна з тваринами',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'Можна з тваринами'})
+    )
+    furniture = forms.BooleanField(
+        label='З меблями',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'З меблями'})
+    )
+    for_students = forms.BooleanField(
+        label='Для студентів',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'Для студентів'})
+    )
+    conditioner = forms.BooleanField(
+        label='Є кондиціонер',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'Є кондиціонер'})
+    )
+    without_furniture = forms.BooleanField(
+        label='Без меблів',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
+                                          'data-label': 'Без меблів'})
+    )
+
+    # Media
+    with_photo = forms.BooleanField(
+        label='З фото',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'data-label': 'З фото'})
+    )
+    with_video = forms.BooleanField(
+        label='З відео',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'data-label': 'З відео'})
+    )
+
+    # House
+    floor_from = forms.IntegerField(
+        label='Від',
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
+                                                'placeholder': 'Від',
+                                                'data-prefix': 'Поверх від'})
+    )
+    floor_to = forms.IntegerField(
+        label='До',
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
+                                                'placeholder': 'До',
+                                                'data-prefix': 'Поверх до'})
+    )
+    floors_from = forms.IntegerField(
+        label='Від',
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
+                                                'placeholder': 'Від',
+                                                'data-prefix': 'Поверхів від'})
+    )
+    floors_to = forms.IntegerField(
+        label='До',
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
+                                                'placeholder': 'До',
+                                                'data-prefix': 'Поверхів до'})
+    )
+    repair = forms.ModelChoiceField(
+        label='Ремонт',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['repair'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select'})
+    )
+    lift = forms.ModelChoiceField(
+        label='Ліфт',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['lift'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select'})
+    )
+
+    # Outside
+    parking = forms.ModelChoiceField(
+        label='Парковка',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['parking'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select'})
+    )
+    outside_decorating = forms.ModelChoiceField(
+        label='Благоустрій двору',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['outside_decorating'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select'})
+    )
+
     class Meta:
-        fields = (
-            'address_input', 'city', 
-            'street', 'number_of_rooms',
-            'min_price', 'max_price',
-            'realty_type')
+        fields = '__all__'

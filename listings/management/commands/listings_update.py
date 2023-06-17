@@ -246,9 +246,11 @@ class Command(BaseCommand):
             # Create Kits (Attributes)
             for attribute_data in data['properties']:
                 if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
-                    attribute, _ = Attribute.objects.get_or_create(title=attribute_data['label'], slug=attribute_data['id'])
-                    Kit.objects.get_or_create(listing=listing, attribute=attribute, value=attribute_data['value'])
-
+                    attribute, _ = Attribute.objects.get_or_create(slug=attribute_data['id'], defaults={
+                        'title': attribute_data['label'], 
+                    })
+                    kit, _ = Kit.objects.get_or_create(attribute=attribute, value=attribute_data['value'])
+                    kit.listing.add(listing)
             # Update listing status
             listing_ids = Listing.objects.values_list('id', flat=True)
             api_ids = {item['id'] for item in items}
@@ -273,7 +275,6 @@ class Command(BaseCommand):
         return street
 
     def get_realty_type(self, realty):
-        print(realty)
         if realty:
             realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=True), 
                                                               defaults={'title': realty})

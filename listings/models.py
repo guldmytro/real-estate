@@ -178,7 +178,7 @@ class Attribute(models.Model):
 
 
 class Kit(models.Model):
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, verbose_name='Listing',
+    listing = models.ManyToManyField(Listing, verbose_name='Listing',
                                 related_name='kits')
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name='Attribute',
                                   related_name='kits')
@@ -186,14 +186,14 @@ class Kit(models.Model):
 
     class Meta:
         unique_together = (
-            ('listing', 'attribute')
+            ('attribute', 'value')
         )
         ordering = ('attribute__title',)
         verbose_name = 'Kit'
         verbose_name_plural = 'Kits'
 
     def __str__(self):
-        return f'{self.attribute.title} - {self.value}'
+        return f'{self.value}'
 
 
 class Country(models.Model):
