@@ -12,6 +12,10 @@ def filter_listings(cleaned_data, listings):
     lift = cleaned_data.get('lift')
     parking = cleaned_data.get('parking')
     outside_decorating = cleaned_data.get('outside_decorating')
+    floor_from = cleaned_data.get('floor_from')
+    floor_to = cleaned_data.get('floor_to')
+    floors_from = cleaned_data.get('floors_from')
+    floors_to = cleaned_data.get('floors_to')
 
     if street_id:
         listings = listings.filter(street_id=street_id)
@@ -45,5 +49,17 @@ def filter_listings(cleaned_data, listings):
 
     if outside_decorating:
         listings = listings.filter(kits=outside_decorating)
+
+    if floor_from:
+        listings = listings.filter(floor__gte=floor_from)
+        
+    if floor_to:
+        listings = listings.filter(floor__lte=floor_to)
+
+    if floors_from:
+        listings = listings.filter(total_floors__gte=floors_from)
+
+    if floors_to:
+        listings = listings.filter(total_floors__lte=floors_to)
         
     return listings

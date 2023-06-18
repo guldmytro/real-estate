@@ -19,6 +19,11 @@ class SearchForm {
         this.updateActiveFilters();
         this.update();
     }
+
+    isFormDisabled() {
+        return this.prediction.cityInput.value 
+               || this.prediction.streetInput.value ? false : true;
+    }
     
     initEvents() {
         this.form.addEventListener('change', () => {
@@ -26,12 +31,11 @@ class SearchForm {
         this.selects.forEach(select => {
             const name = select.getAttribute('name');
             select.addEventListener('change', (e) => {    
-                const label = select.querySelector('option:checked').innerText;
                 if (e.target.value) {
                     this.activeFilters[name] = {
                         'name': name,
                         'value': e.target.value,
-                        'label': label
+                        'label': this.formatSelect(select)
                     };
                 } else {
                     delete this.activeFilters[name];
@@ -48,7 +52,7 @@ class SearchForm {
                         this.activeFilters[name] = {
                             'name': name,
                             'value': e.target.value,
-                            'label': e.target.value
+                            'label': this.formatNumber(e.target)
                         };
                     } else {
                         delete this.activeFilters[name];
@@ -101,7 +105,7 @@ class SearchForm {
                 filters[name] = {
                     name: name,
                     value: checkedOption.value,
-                    label: checkedOption.innerText
+                    label: this.formatSelect(select)
                 };
             }
         });
@@ -112,7 +116,7 @@ class SearchForm {
                 filters[name] = {
                     name: name,
                     value: val,
-                    label: val
+                    label: this.formatNumber(number)
                 }
             }
         });
@@ -137,7 +141,9 @@ class SearchForm {
                 filters[name] = {name, value, label};
             }
         });
-        const predictionName = this.prediction.input.getAttribute('name');
+        const predictionName = this.prediction.cityInput.value 
+                               ? this.prediction.cityInput.getAttribute('name') 
+                               : this.prediction.streetInput.getAttribute('name');
         const predictionValue = this.prediction.input.value;
         if (predictionValue) {
             filters[predictionName] = {
@@ -153,6 +159,7 @@ class SearchForm {
     activeFiltersHandler() {
         return {
             set: (target, prop, val) => {
+                if (prop === 'address_input') return true;
                 target[prop] = val;
                 this.updateActiveFilters();
                 return true;
@@ -199,7 +206,8 @@ class SearchForm {
                 delete this.activeFilters[name];
                 if (name === 'city' || name === 'street') {
                     this.form.querySelector('[name="address_input"]').value = '';
-                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('valid').remove('invalid');
+                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('valid')
+                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('invalid');
                 }
             });
         });
@@ -267,12 +275,60 @@ class SearchForm {
     }
 
     update() {
-        if (this.listingsCount !== null) {
-            this.submitButtons.forEach(button => {
-                const countTag = button.querySelector('.count');
+        this.form.querySelectorAll('[type="submit"]').forEach(button => {
+            const countTag = button.querySelector('.count');
+            const textTag = button.querySelector('.text');
+            if (this.isFormDisabled()) {
+                button.setAttribute('disabled', true);
+                countTag.innerText = '';
+                textTag.innerText = 'Виберіть адресу';
+            } else if (!this.listingsCount) {
+                button.setAttribute('disabled', true);
+                countTag.innerText = '';
+                textTag.innerText = 'Не знайдено оголошень';
+            } else {
+                button.removeAttribute('disabled');
+                textTag.innerText = 'Показати';
                 countTag.innerText = `(${this.listingsCount})`;
-            });
+            }
+        });
+    }
+
+    shortenNumber(number) {
+        const units = ['', 'K', 'M', 'B', 'T'];
+        const scales = ['', 'тис.', 'млн.', 'млрд.', 'трлн.'];
+      
+        if (number < 1000) {
+            return number.toString();
         }
+      
+        let scale = Math.floor(Math.log10(number) / 3);
+        scale = scale > scales.length - 1 ? scales.length - 1 : scale; 
+        const shortened = number / Math.pow(1000, scale);
+        const shortenedText = shortened.toFixed(1).replace(/\.0$/, '');
+      
+        return shortenedText + ' ' + scales[scale];
+    }
+
+    formatNumber(target) {
+        const stringArray = [];
+        const prefix = target.getAttribute('data-prefix');
+        const suffix = target.getAttribute('data-suffix');
+        if (prefix) stringArray.push(`<small>${prefix}</small>`);
+        stringArray.push(this.shortenNumber(target.value));
+        if (suffix) stringArray.push(`<small>${suffix}</small>`);
+        return stringArray.join(' ');
+    }
+
+    formatSelect(target) {
+        const stringArray = [];
+        const prefix = target.getAttribute('data-prefix');
+        const suffix = target.getAttribute('data-suffix');
+        const label = target.querySelector('option:checked').innerText;
+        if (prefix) stringArray.push(`<small>${prefix}</small>`);
+        stringArray.push(label);
+        if (suffix) stringArray.push(`<small>${suffix}</small>`);
+        return stringArray.join(' ');
     }
 
 }

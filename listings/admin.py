@@ -1,4 +1,4 @@
-from .models import Listing, Image, Country, City, Street, Kit
+from .models import Listing, Image, Country, City, Street, Kit, Attribute
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 
@@ -12,10 +12,33 @@ class CountryAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 
-@admin.register(Kit)
-class CountryAdmin(admin.ModelAdmin):
-    list_display = ('attribute', 'value')
+@admin.register(Attribute)
+class AttributeAdmin(admin.ModelAdmin):
+    list_display = ('title',)
 
+
+class KitInline(admin.StackedInline):
+    model = Listing.kits.through
+
+    readonly_fields = ['get_attribute_title']  # Add the custom method as a readonly field
+
+    def get_attribute_title(self, obj):
+        return obj.kit.attribute.title
+
+    get_attribute_title.short_description = 'Attribute'
+
+    def get_fields(self, request, obj=None):
+        fields = list(super().get_fields(request, obj))
+        if 'get_attribute_title' in fields:
+            fields.remove('get_attribute_title')
+            fields.insert(0, 'get_attribute_title')
+        return fields
+
+
+@admin.register(Kit)
+class KitAdmin(admin.ModelAdmin):
+    inlines = [KitInline]
+    exclude = ['listing']
 
 @admin.register(City)
 class CityAdmin(LeafletGeoAdmin):
@@ -32,4 +55,4 @@ class ListingAdmin(LeafletGeoAdmin):
     list_display = ('title', 'status', 'is_new_building', 'created', 'updated')
     list_editable = ('status',)
     list_filter = ('status', 'manager', 'is_new_building', 'created', 'updated',)
-    inlines = [ImageInline]
+    inlines = [ImageInline, KitInline]

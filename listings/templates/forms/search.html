@@ -56,7 +56,8 @@
     </div>
     <div class="submit-row">
         <button type="submit" class="form-search__submit btn btn_primary">
-            Показати <span class="count">({{ count }})</span>
+            <span class="text">Показати</span>
+            <span class="count">({{ count }})</span>
         </button>
         <button type="button" class="form-search__advanced-btn btn btn_invert">
             <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
@@ -179,7 +180,9 @@
                     <span>Очистити</span>
                     <img class="btn__img" src="./img/icon-trash.svg" alt="смітник" width="800" height="800" loading="lazy">
                 </button>
-                <button type="submit" class="btn btn_primary">Показати <span class="count">({{ count }})</span></button>
+                <button type="submit" class="btn btn_primary">
+                    <span class="text">Показати</span>
+                    <span class="count">({{ count }})</span></button>
             </footer>
         </div>
     </div>

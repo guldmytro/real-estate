@@ -33,19 +33,25 @@ class SearchForm(forms.Form):
     min_price = forms.IntegerField(
         label='Мінімальна ціна',
         required=False,
-        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 'placeholder': 'Від'})
+        widget=forms.widgets.NumberInput(attrs={
+            'class': 'input-price', 'placeholder': 'Від',
+            'data-prefix': 'Ціна від', 'data-suffix': "$"})
     )
     max_price = forms.IntegerField(
         label='Максимальна ціна',
         required=False,
-        widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 'placeholder': 'До'})
+        widget=forms.widgets.NumberInput(attrs={
+            'class': 'input-price', 'placeholder': 'До',
+            'data-prefix': 'Ціна до', 'data-suffix': "$"})
     )
     realty_type = forms.ModelChoiceField(
         label="Тип об'єкту",
         queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0),
         empty_label='Виберіть тип',
         required=False,
-        widget=forms.Select(attrs={'class': 'select'})
+        widget=forms.Select(attrs={
+            'class': 'select', 'data-prefix': "Тип об'єкту:"
+            })
     )
 
     # Popular fields
@@ -118,14 +124,14 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
                                                 'placeholder': 'Від',
-                                                'data-prefix': 'Поверхів від'})
+                                                'data-prefix': 'Поверхів у домі від'})
     )
     floors_to = forms.IntegerField(
         label='До',
         required=False,
         widget=forms.widgets.NumberInput(attrs={'class': 'input-price', 
                                                 'placeholder': 'До',
-                                                'data-prefix': 'Поверхів до'})
+                                                'data-prefix': 'Поверхів у домі до'})
     )
     repair = forms.ModelChoiceField(
         label='Ремонт',
@@ -134,7 +140,7 @@ class SearchForm(forms.Form):
             .filter(listing_count__gt=0),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Ремонт:'})
     )
     lift = forms.ModelChoiceField(
         label='Ліфт',
@@ -143,7 +149,7 @@ class SearchForm(forms.Form):
             .filter(listing_count__gt=0),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Ліфт:'})
     )
 
     # Outside
@@ -154,7 +160,7 @@ class SearchForm(forms.Form):
             .filter(listing_count__gt=0),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Парковка:'})
     )
     outside_decorating = forms.ModelChoiceField(
         label='Благоустрій двору',
@@ -163,7 +169,7 @@ class SearchForm(forms.Form):
             .filter(listing_count__gt=0),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Благоустрій двору:'})
     )
 
     class Meta:

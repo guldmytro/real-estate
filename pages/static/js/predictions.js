@@ -23,6 +23,7 @@ export class Prediction {
         this.inputWrapper.classList.remove('valid');
         this.inputWrapper.classList.add('invalid');
         this.resetFields();
+        this.searchForm.update();
 
         this.debounceTimer = setTimeout(() => {
             this.searchPhrase = this.trimString(value);
@@ -33,6 +34,7 @@ export class Prediction {
                 this.showPredictions = false;
                 this.update();
             }
+            this.searchForm.update();
         }, 500);
     }
 
