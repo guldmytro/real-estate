@@ -69,7 +69,7 @@ class SearchForm {
                     this.activeFilters[name] = {
                         'name': name,
                         'value': e.target.value,
-                        'label': label
+                        'label': this.formatRadio(e.target)
                     };
                 } else {
                     delete this.activeFilters[name];
@@ -128,7 +128,7 @@ class SearchForm {
                     filters[name] = {
                         name: name,
                         value: val,
-                        label: val
+                        label: this.formatRadio(radio)
                     }
                 }
             }
@@ -309,27 +309,38 @@ class SearchForm {
       
         return shortenedText + ' ' + scales[scale];
     }
-
+    
+    formatElement(target, value) {
+        const stringArray = [];
+        const prefix = target.getAttribute('data-prefix');
+        const suffix = target.getAttribute('data-suffix');
+    
+        if (prefix) {
+            stringArray.push(`<small>${prefix}</small>`);
+        }
+        stringArray.push(value);
+        if (suffix) {
+            stringArray.push(`<small>${suffix}</small>`);
+        }
+    
+        return stringArray.join(' ');
+    }
+    
     formatNumber(target) {
-        const stringArray = [];
-        const prefix = target.getAttribute('data-prefix');
-        const suffix = target.getAttribute('data-suffix');
-        if (prefix) stringArray.push(`<small>${prefix}</small>`);
-        stringArray.push(this.shortenNumber(target.value));
-        if (suffix) stringArray.push(`<small>${suffix}</small>`);
-        return stringArray.join(' ');
+        const value = this.shortenNumber(target.value);
+        return this.formatElement(target, value);
     }
-
+    
     formatSelect(target) {
-        const stringArray = [];
-        const prefix = target.getAttribute('data-prefix');
-        const suffix = target.getAttribute('data-suffix');
         const label = target.querySelector('option:checked').innerText;
-        if (prefix) stringArray.push(`<small>${prefix}</small>`);
-        stringArray.push(label);
-        if (suffix) stringArray.push(`<small>${suffix}</small>`);
-        return stringArray.join(' ');
+        return this.formatElement(target, label);
     }
+    
+    formatRadio(target) {
+        const value = target.value;
+        return this.formatElement(target, value);
+    }
+    
 
 }
 

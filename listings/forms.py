@@ -28,7 +28,7 @@ class SearchForm(forms.Form):
             ('3', '3'),
             ('4+', '4+')
         ),
-        widget=forms.widgets.RadioSelect(attrs={'class': 'radio'})
+        widget=forms.widgets.RadioSelect(attrs={'class': 'radio', 'data-prefix': 'Кімнатність:'})
     )
     min_price = forms.IntegerField(
         label='Мінімальна ціна',
