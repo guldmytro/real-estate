@@ -1,0 +1,22 @@
+{% load static %}
+
+<section class="reviews">
+    <div class="container">
+        <div class="reviews-row">
+            <div class="section-header">
+                <h2 class="section-header__title">Що говорять про нас клієнти:</h2>
+                <p class="section-header__subtitle">В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють їхню роботу.</p>
+            </div>
+            <a href="employees.html" class="btn btn_shadow">
+                <span>Усі фахівці</span>
+                <img src="{% static 'img/icon-arrow.png' %}" 
+                     class="btn__img" alt="стрілка" width="18" height="32" loading="lazy">
+            </a>
+        </div>
+        <ul class="reviews-group">
+            {% for review in reviews %}
+                {% include 'reviews/item.html' %}
+            {% endfor %}
+        </ul>
+    </div>
+</section>

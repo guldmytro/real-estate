@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Про нас{% endblock %}
+
+{% block content %}
+    <main class="about">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">{{ page.title_1 }}</h1>
+                <p class="section-header__subtitle">{{ page.description_1|linebreaks }}</p>
+            </div>
+        </div>
+    </main>
+    <section class="about-secondary">
+        <div class="container">
+            <div class="about-secondary__row">
+                <div class="section-header">
+                    <h2 class="section-header__title">{{ page.title_2 }}</h2>
+                    <p class="section-header__subtitle">{{ page.description_2|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if page.items %}
+        <div class="section about-third">
+            <div class="container">
+                <ul class="about-group">
+                    {% for item in page.items.all %}
+                        <li class="about-item {{ item.size }}">
+                            <h2 class="about-item__title">{{ item.title }}</h2>
+                            <div class="about-item__content">{{ item.description }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% include 'sections/reviews.html' %}
+    {% include 'sections/feadback.html' %}
+{% endblock %}

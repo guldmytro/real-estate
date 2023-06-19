@@ -15,4 +15,4 @@ class ManagerAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('author', 'manager', 'created')
-    list_filter = ('manager__full_name', 'created')
+    list_filter = ('manager__full_name', 'rating', 'created')

@@ -6,7 +6,6 @@ POSTS_PER_PAGE = 8
 
 
 def managers_detail(request, id):
-    # request.is_ajax() is deprecated since django 3.1
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         return managers_detail_pagination(request, id)
@@ -45,3 +44,7 @@ def managers_detail_pagination(request, id):
         'next_page': next_page
     }
     return render(request, 'ajax-items.html', context)
+
+
+def managers_list(request):
+    return render(request, 'managers/detail.html', {})

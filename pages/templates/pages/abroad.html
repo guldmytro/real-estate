@@ -1,0 +1,45 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}Про нас{% endblock %}
+
+{% block content %}
+    <main class="abroad">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">{{ page.title }}</h1>
+                <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description }}</p>
+            </div>
+        </div>
+    </main>
+    {% for item in page.items.all %}
+        <section class="abroad-item">
+            <div class="abroad-item__bg">
+                <img src="{{ item.background_image|thumbnail_url:'extra-large' }}" alt="пляж" loading="lazy" width="1920" height="641">
+            </div>
+            <div class="container">
+                <div class="abroad-row">
+                    <div class="col">
+                        <p class="abroad-item__super-title">{{ item.title_bg }}</p>
+                        <div class="abroad-gallery">
+                            <img src="{{ item.photo_1|thumbnail_url:'extra-large' }}" class="abroad-gallery__img" alt="дім" loading="lazy" width="489" height="326">
+                            <img src="{{ item.photo_2|thumbnail_url:'extra-large' }}" class="abroad-gallery__img" alt="дім" loading="lazy" width="505" height="336">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="section-header">
+                            <h2 class="section-header__title">{{ item.title }}</h2>
+                            <p class="section-header__subtitle">{{ item.description }}</p>
+                        </div>
+                        <a href="{{ item.link }}" class="btn btn_primary btn_rounded">
+                            <span>Детальніше</span>
+                            <img src="{% static 'img/icon-arrow.png' %}" class="btn__img-arrow" alt="стрілка" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+    {% include 'sections/feadback.html' %}
+{% endblock %}

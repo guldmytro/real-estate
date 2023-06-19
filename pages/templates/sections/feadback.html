@@ -1,0 +1,29 @@
+{% load static %}
+{% if feadback_form %}
+<section class="feadback">
+    <div class="container">
+        <img class="feadback__manager" src="{% static 'img/girl.png' %}" alt="дівчина-консультант">
+        <form class="feadback-form send-form" method="post" action="{% url 'emails:feadback' %}">
+            <div class="feadback-form__header">
+                <h2 class="feadback-form__title"> Безкоштовна консультація </h2>
+                <p class="feadback-form__subtitle">Заповніть форму і з ваши зв’яжеться наш менеджер</p>
+            </div>
+            <fieldset class="feadback-form__fieldset">
+                {{ feadback_form.name }}
+                {{ feadback_form.phone }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn_primary">
+                    <span class="ready">Отримати консультацію</span>
+                    <span class="sending">Надсилання...</span>
+                    <span class="sent">Надіслано!</span>
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</section>
+{% endif %}
+
+
+<script>
+    
+</script>

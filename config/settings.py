@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'managers.apps.ManagersConfig',
     'wishlist.apps.WishlistConfig',
     'news.apps.NewsConfig',
+    'emails.apps.EmailsConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'
@@ -134,8 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = Path('media/')
 
 # Default primary key field type
@@ -157,7 +158,10 @@ THUMBNAIL_ALIASES = {
         'small': {'size': (128, 96), 'crop': False},
         'medium': {'size': (600, 400), 'crop': False},
         'large': {'size': (1000, 1000), 'crop': False},
+        'extra-large': {'size': (1920, 1080), 'crop': False},
     },
 }
 
 THUMBNAIL_BASEDIR = 'thumbnails'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

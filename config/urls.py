@@ -22,10 +22,12 @@ from django.contrib.staticfiles.views import serve
 from django.views.decorators.cache import never_cache
 
 urlpatterns = [
+    path('', include('pages.urls', namespace='pages')),
     path('news/', include('news.urls', namespace='news')),
     path('wishlist/', include('wishlist.urls', namespace='wishlist')),
     path('listings/', include('listings.urls', namespace='listings')),
     path('managers/', include('managers.urls', namespace='managers')),
+    path('emails/', include('emails.urls', namespace='emails')),
     path('admin/', admin.site.urls),
 ]
 

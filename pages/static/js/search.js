@@ -4,20 +4,22 @@ class SearchForm {
     
     constructor(formId) {
         this.form = document.querySelector(formId);
-        this.submitButtons = this.form.querySelectorAll('[type="submit"]');
-        this.resetButton = this.form.querySelector('[type="reset"]');
-        this.activeFiltersContainer = this.form.querySelector('.active-filters');
-        this.prediction = new Prediction(this);
-        this.selects = this.form.querySelectorAll('select');
-        this.radios = this.form.querySelectorAll('[type="radio"]');
-        this.numbers = this.form.querySelectorAll('input[type="number"]');
-        this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
-        this.activeFilters = this.initFiltes();
-        this.countUrl = this.form.getAttribute('data-count');
-        this.listingsCount = null;
-        this.initEvents();
-        this.updateActiveFilters();
-        this.update();
+        if (this.form) {
+            this.submitButtons = this.form.querySelectorAll('[type="submit"]');
+            this.resetButton = this.form.querySelector('[type="reset"]');
+            this.activeFiltersContainer = this.form.querySelector('.active-filters');
+            this.prediction = new Prediction(this);
+            this.selects = this.form.querySelectorAll('select');
+            this.radios = this.form.querySelectorAll('[type="radio"]');
+            this.numbers = this.form.querySelectorAll('input[type="number"]');
+            this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
+            this.activeFilters = this.initFiltes();
+            this.countUrl = this.form.getAttribute('data-count');
+            this.listingsCount = null;
+            this.initEvents();
+            this.updateActiveFilters();
+            this.update();
+        }
     }
 
     isFormDisabled() {

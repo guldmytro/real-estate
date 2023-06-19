@@ -73,7 +73,7 @@
             {% if manager.experience or manager.has_car or manager.about %}
                 <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">Про мене</button>
             {% endif %}
-            <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки ({{ reviews_count }})</button>
+            <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки {% if reviews_count %}({{ reviews_count }}) {% endif %}</button>
             {% if listings_count %}
                 <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-3">
                     Мої пропозиції ({{ listings_count }})
