@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from .models import News
+from .models import Analytic
 from django.core.paginator import Paginator, EmptyPage
 
 
-def news_list(request):
-    news_list = News.objects.all()
+def analytics_list(request):
+    news_list = Analytic.objects.all()
     paginator = Paginator(news_list, 8)
     page_number = request.GET.get('page', 1)
-    title = 'Новини'
+    title = 'Аналітичні огляди'
     try:
         news = paginator.page(page_number)
     except EmptyPage:
@@ -19,5 +19,5 @@ def news_list(request):
     return render(request, 'news/list.html', context)
 
 
-def news_detail(request, slug):
-    return render(request, 'news/item.html', {})
+def analytics_detail(request):
+    return render(request, 'news/detail.html', {})

@@ -17,13 +17,13 @@ class PostModel(models.Model):
         ]
 
     def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('news:detail', kwargs={'slug': self.slug})
+        return self.title    
 
 
 class News(PostModel):
     class Meta:
         verbose_name = 'News'
         verbose_name_plural = 'News'
+
+    def get_absolute_url(self):
+        return reverse('news:detail', kwargs={'slug': self.slug})

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'managers.apps.ManagersConfig',
     'wishlist.apps.WishlistConfig',
     'news.apps.NewsConfig',
+    'analytics.apps.AnalyticsConfig',
     'emails.apps.EmailsConfig',
 ]
 

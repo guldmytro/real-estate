@@ -23,6 +23,7 @@ from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('', include('pages.urls', namespace='pages')),
+    path('analytics/', include('analytics.urls', namespace='analytics')),
     path('news/', include('news.urls', namespace='news')),
     path('wishlist/', include('wishlist.urls', namespace='wishlist')),
     path('listings/', include('listings.urls', namespace='listings')),

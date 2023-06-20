@@ -1,0 +1,11 @@
+[
+  {"model": "analytics.analytic", "pk": 1, "fields": {"title": "First article", "slug": "first-article", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 2, "fields": {"title": "First article", "slug": "first-article-2", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 3, "fields": {"title": "First article", "slug": "first-article-3", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 4, "fields": {"title": "First article", "slug": "first-article-4", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 5, "fields": {"title": "First article", "slug": "first-article-5", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 6, "fields": {"title": "First article", "slug": "first-article-6", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 7, "fields": {"title": "First article", "slug": "first-article-7", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 8, "fields": {"title": "First article", "slug": "first-article-8", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}},
+  {"model": "analytics.analytic", "pk": 9, "fields": {"title": "First article", "slug": "first-article-9", "body": "Some content", "created": "2023-06-07T16:23:47.399Z", "thumbnail": "news/2023/06/07/thumbnail-post.png"}}
+]
