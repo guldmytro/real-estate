@@ -1,4 +1,5 @@
 from django import forms
+from vacantions.models import Vacantion
 
 
 class FeadbackForm(forms.Form):
@@ -15,3 +16,9 @@ class FeadbackForm(forms.Form):
     
     class Meta:
         fields = '__all__'
+
+
+class ApplyForm(FeadbackForm):
+    file = forms.FileField()
+    vacantion = forms.ModelChoiceField(queryset=Vacantion.objects.all(),
+                                       widget=forms.HiddenInput())

@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Список вакансій{% endblock %}
+
+
+{% block content %}
+    <main class="vacantions">
+        <div class="container">
+            {% if vacantions %}
+                <div class="section-header">
+                    <h1 class="section-header__title">
+                        <em>{{ count }} вакансій</em> підходять саме вам
+                    </h1>
+                </div>
+                <ul class="vacantions-group">
+                    {% for vacantion in vacantions %}
+                        <li class="vacantion-item">
+                            <p class="vacantion-item__profession">{{ vacantion.title }}</p>
+                            <strong class="vacantion-item__salary">{{ vacantion.salary }}</strong>
+                            <p class="vacantion-item__excerpt">{{ vacantion.description }}</p>
+                            <p class="vacantion-item__department">
+                                <img class="vacantion-item__icon accent" src="{% static 'img/icon-case.png' %}" alt="кейс" loading="lazy" width="60" height="52">
+                                <span class="accent">{{ vacantion.department.title }}</span>
+                            </p>
+                            <button class="vacantion-item__add-feadback open-popup" data-name="vacantion" data-value="{{ vacantion.pk }}" data-popup="popup-add-apply" type="button">Залишити резюме</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% include 'pagination.html' with page=vacantions %}
+            {% else %}
+                <div class="section-header">
+                    <h1 class="section-header__title">
+                        На даній сторінці будуть публікуватись свіжі вакансії.
+                    </h1>
+                    <p class="section-header__subtitle"><a href="/">Повернутись на головну</a></p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

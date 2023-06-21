@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'analytics.apps.AnalyticsConfig',
     'emails.apps.EmailsConfig',
+    'vacantions.apps.VacantionsConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'

@@ -46,4 +46,30 @@
         </button>
         <div id="listing-map"></div>
     </div>
+    {% if apply_form %}
+        <div id="popup-add-apply" class="popup-content">
+            <form class="form-add-review form send-form" enctype="multipart/form-data" action="{% url 'emails:apply' %}" method="post">
+                <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+                    <span></span>
+                    <span></span>
+                </button>
+                <h2 class="form__title">Залиште свої контактні дані та прикрепіть файл із Вашим резюме</h2>
+                <fieldset class="form__fieldset">
+                    {{ apply_form.name }}
+                    {{ apply_form.phone }}
+                    {{ apply_form.file }}
+                    {{ apply_form.vacantion }}
+                    {% csrf_token %}
+                </fieldset>
+                <p class="form__info">Вкажіть номер телефону, щоб ми могли зв'язатися з вами.</p>
+                <button type="submit" class="btn btn_primary">
+                    <span class="ready">Надіслати резюме</span>
+                    <span class="sending">Надсилання...</span>
+                    <span class="sent">Надіслано!</span>
+                    <span class="error">Помилка надсилання...</span>
+                </button>
+                <p class="form__agreement">Відправляючи резюме, ви даєте згоду на обробку персональних даних </p>
+            </form>
+        </div>
+    {% endif %}
 </div>
