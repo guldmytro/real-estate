@@ -1,0 +1,312 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load listing_extras %}
+
+{% block title %}Курс{% endblock %}
+
+{% block content %}
+    <main class="course">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-header__upheader">PRO_нерухомість</p>
+                <h1 class="section-header__title">БЕЗКОШТОВНИЙ<br> ОНЛАЙН-КУРС</h1>
+                <p class="section-header__subtitle section-header__subtitle_strong">Для тих, хто хоче дізнатись більше про ринок нерухомості</p>
+            </div>
+            <div class="course-links">
+                {% if page.register_link %}
+                    <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                {% endif %}
+                {% if page.auth_link %}
+                    <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <div class="section course-features">
+        <div class="container">
+            <ul class="course-features-group">
+                <li class="course-feature">
+                    <div class="course-feature__thumb">
+                        <img src="{% static 'img/icon-calendar.png' %}" class="accent course-feature__img" alt="календар" loading="lazy" width="128" height="124">
+                    </div>
+                    <div class="course-feature__desc">
+                        <p class="course-feature__title">дата</p>
+                        <p class="course-feature__content">Одразу після реєстрації</p>
+                    </div>
+                </li>
+                <li class="course-feature">
+                    <div class="course-feature__thumb">
+                        <img src="{% static 'img/icon-marker-2.png' %}" class="accent course-feature__img" alt="маркер" loading="lazy" width="116" height="128">
+                    </div>
+                    <div class="course-feature__desc">
+                        <p class="course-feature__title">місце</p>
+                        <p class="course-feature__content">Курс проходить онлайн</p>
+                    </div>
+                </li>
+                <li class="course-feature">
+                    <div class="course-feature__thumb">
+                        <img src="{% static 'img/icon-badge.png' %}" class="accent course-feature__img" alt="бейджик" loading="lazy" width="96" height="93">
+                    </div>
+                    <div class="course-feature__desc">
+                        <p class="course-feature__title">ціна</p>
+                        <p class="course-feature__content">Безкоштовно</p>
+                    </div>
+                </li>
+                <li class="course-feature">
+                    <div class="course-feature__thumb">
+                        <img src="{% static 'img/icon-messages.png' %}" class="accent course-feature__img" alt="повідомлення" loading="lazy" width="116" height="116">
+                    </div>
+                    <div class="course-feature__desc">
+                        <p class="course-feature__title">мова</p>
+                        <p class="course-feature__content">Українська</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <section class="course-about">
+        <div class="container">
+            <div class="course-about__row">
+                <div class="col">
+                    <div class="section-header">
+                        <h2 class="section-header__title">PRO_нерухомість</h2>
+                        <p class="section-header__text">Якщо ви хочете вчитися та розвиватися, то нам є про що поговорити. Ми сподіваємося, що знання, отриманы на курсі допоможуть Вам більше розібратись в ринку нерухомості, заключати безпечні угоди, вигідно інвестувати чи знайти цікаву роботу, яка приноситеме дохід та задоволення.</p>
+                        <h3 class="section-header__title section-header__title_smaller">Подальша співпраця та взаємодія</h3>
+                        <p class="section-header__text section-header__text_smaller">В процесі та після проходження курсу у Вас буде можливість продовжити взаємодію з компанією по різним напрямкам.</p>
+                        <h3 class="section-header__title section-header__title_smaller">Про курс</h3>
+                        <p class="section-header__text section-header__text_smaller">В курсі &#39;PRO_нерухомість&#39; ми розповідаємо про базові принципи та основні теми, на які треба звернути увагу, щоб не розгубитися на ринку нерухомості.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="{% static 'img/puzzle-city.png' %}" class="course-about__img" alt="місто" loading="lazy" width="665" height="534">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="course-suit">
+        <div class="container">
+            <div class="section-header section-header_center section-header_invert">
+                <h2 class="section-header__title">Кому підійде цей курс</h2>
+            </div>
+            <ul class="course-suit__group">
+                <li class="course-suit-item">
+                    <div class="course-suit-item__thumb">
+                        <img src="{% static 'img/icon-house-large.png' %}" class="course-suit__img accent" alt="дім" width="128" height="94" loading="lazy">
+                    </div>
+                    <div class="course-suit-item__desc">
+                        <h3 class="course-suit-item__title">Тим, хто планує купити чи продати нерухомість</h3>
+                        <p class="course-suit-item__content">Ознайомитесь з принципами функціонування ринку нерухомості та проведення безпечних угод.</p>
+                    </div>
+                </li>
+                <li class="course-suit-item">
+                    <div class="course-suit-item__thumb">
+                        <img src="{% static 'img/icon-grow.png' %}" class="course-suit__img accent" alt="ріст" width="120" height="120" loading="lazy">
+                    </div>
+                    <div class="course-suit-item__desc">
+                        <h3 class="course-suit-item__title">Тим, хто цікавиться інвестиціями в нерухомість</h3>
+                        <p class="course-suit-item__content">Ознайомитесь з кейсами по отриманню прибутку на ринку нерухомості.</p>
+                    </div>
+                </li>
+                <li class="course-suit-item">
+                    <div class="course-suit-item__thumb">
+                        <img src="{% static 'img/icon-cash.png' %}" class="course-suit__img accent" alt="гроші" width="128" height="128" loading="lazy">
+                    </div>
+                    <div class="course-suit-item__desc">
+                        <h3 class="course-suit-item__title">Тим, хто шукає цікаву та прибуткову роботу</h3>
+                        <p class="course-suit-item__content">Ознайомитеся з професією ріелтор, корпоративною культурою та перевагами роботи з &#39;Контракт-Нерухомість&#39;.</p>
+                    </div>
+                </li>
+                <li class="course-suit-item">
+                    <div class="course-suit-item__thumb">
+                        <img src="{% static 'img/icon-house-medium.png' %}" class="course-suit__img accent" alt="дім" width="128" height="116" loading="lazy">
+                    </div>
+                    <div class="course-suit-item__desc">
+                        <h3 class="course-suit-item__title">Тим, кого цікавить закордонна нерухомість</h3>
+                        <p class="course-suit-item__content">Ознайомитесь з цінами та особливостями здійснення угод на нерухомість в ОАЕ(Дубай), Туреччині, Грузії та Сєвєрному Кіпрі.</p>
+                    </div>
+                </li>
+                <li class="course-suit-item course-suit-item_full">
+                    <div class="course-suit-item__thumb">
+                        <img src="{% static 'img/icon-deal.png' %}" class="course-suit__img accent" alt="рукотискання" width="128" height="128" loading="lazy">
+                    </div>
+                    <div class="course-suit-item__desc">
+                        <h3 class="course-suit-item__title">Підприємцям, які шукають можливості для створення бізнесу</h3>
+                        <p class="course-suit-item__content">Ознайомитесь з можливостями побудови бізнесу на ринку нерухомості.</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="course-links-wrapper">
+                <div class="course-links">
+                    {% if page.register_link %}
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                    {% endif %}
+                    {% if page.auth_link %}
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="course-directions">
+        <div class="container">
+            <div class="section-header section-header_center section-header_invert">
+                <h2 class="section-header__title">Основні напрямки курсу</h2>
+            </div>
+            <ul class="section-directions-group">
+                <li class="section-directions-item">
+                    <div class="section-directions-item__thumb">
+                        <img src="{% static 'img/city-1.jpg' %}" class="section-directions-item__img" alt="місто" width="702" height="377" loading="lazy">
+                    </div>
+                    <div class="section-directions-item__desc">
+                        <h3 class="section-directions-item__title">Придбання нерухомості в Україні</h3>
+                        <p class="section-directions-item__content">Допомагаємо клієнтам продати чи придбати нерухомість в Харкові, Києві, Дніпрі, Одесі та Львові.</p>
+                    </div>
+                </li>
+                <li class="section-directions-item">
+                    <div class="section-directions-item__thumb">
+                        <img src="{% static 'img/city-2.jpg' %}" class="section-directions-item__img" alt="місто" width="724" height="482" loading="lazy">
+                    </div>
+                    <div class="section-directions-item__desc">
+                        <h3 class="section-directions-item__title">Придбання нерухомості за кордоном</h3>
+                        <p class="section-directions-item__content">Допомагаємо клієнтам з інвестуванням в нерухомість в ОАЕ(Дубай), Туреччині, Грузії та Сєвєрному Кіпрі.</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="course-links-wrapper">
+                <div class="course-links">
+                    {% if page.register_link %}
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                    {% endif %}
+                    {% if page.auth_link %}
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="course-includes">
+        <div class="container">
+            <div class="section-header section-header_center">
+                <h2 class="section-header__title">Що буде на курсі:</h2>
+            </div>
+            <ul class="course-includes-group">
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">10 розділів навчання</h3>
+                    <p class="course-includes-item__content">Курс складається з теоретичного матеріалу, відеороликів та тесту. Курс розрахований на 60+ хвилин часу. Он-лайн уроки чітко структуровані та розбиті по темам, які ви зможете пройти одразу після реєстрації та в будь-який зручний для Вас час.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ про професію ріелтор та про компанію</h3>
+                    <p class="course-includes-item__content">Ви дізнаєтесь про особливості роботи ріелтора і познайомитися з історією, традиціями та цінностями компанії &#39;Контракт-Нерухомість&#39;.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ про безпеку при здійсненні угод</h3>
+                    <p class="course-includes-item__content">Ви дізнаєтеся про основні види шахрайських схем на ринку та як уникнути ризикових ситуацій при здійсненні угод.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ про стандарти роботи компанії для претендентів на вакансію</h3>
+                    <p class="course-includes-item__content"> Познайомитесь з унікальними торговими пропозиціями компанії &#39;Контракт-Нерухомість&#39; для клієнтів, перевагами роботи в компанії, можливостями кар&#39;єрного росту та з регламентами та правилами корпоративної етики.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ про послуги компанії для клієнтів</h3>
+                    <p class="course-includes-item__content">Дізнаєтесь про основні помилки, які роблять власники.Ознайомитесь з переліком послуг , які надає компанія клієнтам. Дізнаєтесь, як правильно оцінити квартиру для продажу. Отримаєте інструкції, чек-листи та корисні посилання, які можуть допомогти при здійсненні угод на ринку нерухомості. Знайдете інформацію з оподаткування нерухомості при здійсненні угод.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ з інвестицій в закордонну нерухомість</h3>
+                    <p class="course-includes-item__content">Ознайомитесь з ринком, особливостями придбання та основними правилами здійснення угод в Дубай, Турції, Грузії та Сєвєрному Кіпрі.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ для підприємців</h3>
+                    <p class="course-includes-item__content">Тут ви знайдете інформацію про те, як побудувати партнерський чи власний бізнес в сфері нерухомості.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Розділ з інвестування в нерухомість</h3>
+                    <p class="course-includes-item__content">Ознайомитесь з основними кейсами інвестування у нерухомість.</p>
+                </li>
+                <li class="course-includes-item">
+                    <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
+                    <h3 class="course-includes-item__title">Про напрямки подальшого навчання та взаємодії з компанією</h3>
+                    <p class="course-includes-item__content">Познайомитесь з можливим планом дій після завершення курсу.</p>
+                </li>
+            </ul>
+            <div class="course-links-wrapper">
+                <div class="course-links">
+                    {% if page.register_link %}
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                    {% endif %}
+                    {% if page.auth_link %}
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="course-detail">
+        <div class="container">
+            <div class="col">
+                <div class="section-header">
+                    <h2 class="section-header__title">Детально про нас</h2>
+                </div>
+                <ul class="course-detail-group">
+                    <li class="course-detail-item">
+                        <img src="{% static 'img/icon-shield-2.png' %}" class="course-detail-item__img" alt="щит" loading="lazy" width="47" height="55">
+                        <h3 class="course-detail-item__title">Гарантія безпеки угоди</h3>
+                    </li>
+                    <li class="course-detail-item">
+                        <img src="{% static 'img/icon-marker-3.png' %}" class="course-detail-item__img" alt="маркер" loading="lazy" width="44" height="56">
+                        <h3 class="course-detail-item__title">Велика база нерухомості</h3>
+                    </li>
+                    <li class="course-detail-item">
+                        <img src="{% static 'img/icon-hummer.png' %}" class="course-detail-item__img" alt="молоток" loading="lazy" width="53" height="52">
+                        <h3 class="course-detail-item__title">Юридичний супровід</h3>
+                    </li>
+                    <li class="course-detail-item">
+                        <img src="{% static 'img/icon-percent-2.png' %}" class="course-detail-item__img" alt="відсотки" loading="lazy" width="50" height="48">
+                        <h3 class="course-detail-item__title">Іпотечний сервіс</h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-header__title">Цифри говорять краще за слова</h2>
+            </div>
+            <ul class="stats-group">
+                <li class="stats-item">
+                    <p class="stats-item__val">
+                        <span class="stats-item__count" data-max="840" data-time="1000">0</span>+
+                    </p>
+                    <p class="stats-item__subtitle">Продаємо об’ктів за рік</p>
+                </li>
+                <li class="stats-item">
+                    <p class="stats-item__val">
+                        <span class="stats-item__count" data-max="286" data-time="1000">0</span>
+                    </p>
+                    <p class="stats-item__subtitle">Оформили орендних угод</p>
+                </li>
+                <li class="stats-item">
+                    <p class="stats-item__val">
+                        <span class="stats-item__count" data-max="16" data-time="1000">0</span>
+                    </p>
+                    <p class="stats-item__subtitle">Років працюємо на ринку</p>
+                </li>
+                <li class="stats-item">
+                    <p class="stats-item__val">
+                        <span class="stats-item__count" data-max="1000" data-time="1000">0</span>+
+                    </p>
+                    <p class="stats-item__subtitle">Відгуків задоволенних клієнтів</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    {% include 'sections/feadback.html' %}
+{% endblock %}

@@ -20,3 +20,7 @@ def url_with_query_params(context, page_number):
     url = request.path + '?' + query_params.urlencode()
 
     return url
+
+@register.filter
+def clean_phone(value):
+    return re.sub(r'\D+', '', str(value))

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Abroad
+from .models import About, Abroad, Contact, Course
 from managers.models import Review
 from emails.forms import FeadbackForm
 
@@ -24,3 +24,23 @@ def abroad_properties(request):
         'feadback_form': feadback_form
     }
     return render(request, 'pages/abroad.html', context)
+
+
+def contacts(request):
+    feadback_form = FeadbackForm(request.POST)
+    page = Contact.objects.get()
+    context = {
+        'page': page,
+        'feadback_form': feadback_form
+    }
+    return render(request, 'pages/contacts.html', context)
+
+
+def course(request):
+    feadback_form = FeadbackForm(request.POST)
+    page = Course.objects.get()
+    context = {
+        'page': page,
+        'feadback_form': feadback_form
+    }
+    return render(request, 'pages/course.html', context)

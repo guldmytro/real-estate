@@ -75,3 +75,39 @@ class AbroadItem(models.Model):
         verbose_name = 'Нерухомість закордоном (елемент)'
         verbose_name_plural = 'Нерухомість закордоном (елемент)'
 
+
+class Contact(SingletonModel):
+    phone_1 = models.CharField(max_length=30, verbose_name='Телефон 1')
+    phone_2 = models.CharField(max_length=30, verbose_name='Телефон 2')
+    
+    email = models.EmailField(verbose_name='Пошта')
+    
+    schedule = models.CharField(max_length=255, verbose_name='Режим роботи')
+    
+    office_1 = models.CharField(max_length=255, verbose_name='Офіс 1')
+    office_2 = models.CharField(max_length=255, verbose_name='Офіс 2')
+    office_3 = models.CharField(max_length=255, verbose_name='Офіс 3')
+
+    telegram = models.URLField(verbose_name='Телеграм', blank=True, null=True)
+    viber = models.URLField(verbose_name='Вайбер', blank=True, null=True)
+    instagram = models.URLField(verbose_name='Інстаграм', blank=True, null=True)
+    facebook = models.URLField(verbose_name='Фейсбук', blank=True, null=True)
+
+    def __str__(self):
+        return 'Контакти'
+    
+    class Meta:
+        verbose_name = 'Контакти'
+        verbose_name_plural = 'Контакти'
+
+
+class Course(SingletonModel):
+    register_link = models.URLField(verbose_name='Зсилка на реєстрацію', blank=True, null=True)
+    auth_link = models.URLField(verbose_name='Зсилка на авторизацію', blank=True, null=True)
+
+    def __str__(self):
+        return 'Курс'
+    
+    class Meta:
+        verbose_name = 'Курс'
+        verbose_name_plural = 'Курс'

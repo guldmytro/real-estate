@@ -1,0 +1,127 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load listing_extras %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-group">
+                <a href="/" class="breadcrumbs-group__link">Головна</a>
+                <span class="breadcrumbs-group__text">Контакти</span>
+            </nav>
+        </div>
+    </div>
+    <main class="contacts">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">Контакти</h1>
+            </div>
+            <ul class="contacts-group">
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" loading="lazy" width="30" height="30">
+                        <span>Телефонуйте нам</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <a href="tel:+{{ page.phone_1|clean_phone }}">{{ page.phone_1 }}</a>
+                        </li>
+                        <li class="contact-value">
+                            <a href="tel:+{{ page.phone_2|clean_phone }}">{{ page.phone_2 }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
+                        <span>Офіс №1</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <span>{{ page.office_1 }}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-letter.png' %}" class="accent" alt="конверт" loading="lazy" width="22" height="22">
+                        <span>Пишіть нам</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <a href="mailto:{{ page.email }}">{{ page.email }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
+                        <span>Офіс №2</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <span>{{ page.office_2 }}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-clock.png' %}" class="accent" alt="годинник" loading="lazy" width="32" height="32">
+                        <span>Режим роботи</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <span>{{ page.schedule }}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <h2 class="contacts-item__title">
+                        <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
+                        <span>Офіс №3</span>
+                    </h2>
+                    <ul class="contact-item__list">
+                        <li class="contact-value">
+                            <span>{{ page.office_3 }}</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="contacts-item">
+                    <ul class="contacts-socials">
+                        {% if page.telegram %}
+                            <li class="socials-item">
+                                <a href="{{ page.telegram }}" class="socials-item__link" aria-label="перейти у телеграм">
+                                    <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if page.viber %}
+                            <li class="socials-item">
+                                <a href="{{ page.viber }}" class="socials-item__link" aria-label="перейти у вайбер">
+                                    <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if page.instagram %}
+                            <li class="socials-item">
+                                <a href="{{ page.instagram }}" class="socials-item__link" aria-label="перейти у інстаграм">
+                                    <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if page.facebook %}
+                            <li class="socials-item">
+                                <a href="{{ page.facebook }}" class="socials-item__link" aria-label="перейти у фейсбук">
+                                    <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </main>
+    {% include 'sections/feadback.html' %}
+{% endblock %}

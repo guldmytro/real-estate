@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import About, AboutItem, Abroad, AbroadItem
+from .models import About, AboutItem, Abroad, AbroadItem, Contact, Course
 from solo.admin import SingletonModelAdmin
 
 
@@ -23,3 +23,13 @@ class AbroadItemInlineAdmin(admin.StackedInline):
 class AbroadAdmin(SingletonModelAdmin):
     list_display = ['title']
     inlines = [AbroadItemInlineAdmin]
+
+
+@admin.register(Contact)
+class ContactAdmin(SingletonModelAdmin):
+    list_display = ['phone_1']
+
+
+@admin.register(Course)
+class CourseAdmin(SingletonModelAdmin):
+    list_display = ['register_link']
