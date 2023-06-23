@@ -5,7 +5,7 @@ from django.urls import reverse
 class PostModel(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
     slug = models.SlugField(max_length=255, verbose_name='Slug', unique=True)
-    body = models.TextField()
+    body = models.TextField(verbose_name='Текст')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Created')
     thumbnail = models.ImageField(upload_to='news/%Y/%m/%d', verbose_name='Image')
 

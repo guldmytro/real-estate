@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'analytics.apps.AnalyticsConfig',
     'emails.apps.EmailsConfig',
     'vacantions.apps.VacantionsConfig',
+    'discounts.apps.DiscountsConfig',
 ]
 
 AUTH_USER_MODEL = 'profiles.AdvUser'

@@ -1,0 +1,33 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Акції{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="container">
+        <nav class="breadcrumbs-group">
+            <a href="/" class="breadcrumbs-group__link">Головна</a>
+            <span class="breadcrumbs-group__text">Aкції</span>
+        </nav>
+    </div>
+</div>
+<main class="discount">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-header__title">Aкції</h1>
+        </div>
+        {% if discounts %}
+            <ul class="discount-group">
+                {% for discount in discounts %}
+                    {% include 'discounts/archive-item.html' %}
+                {% endfor %}
+            </ul>
+            {% include 'pagination.html' with page=discounts %}
+        {% else %}
+            <p class="section-header__subtitle section-header__subtitle_strong">
+                Поки що немає записів... Повернутись на <a href="/">головну</a>
+            </p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

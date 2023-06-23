@@ -9,3 +9,4 @@ class Analytic(PostModel):
 
     def get_absolute_url(self):
         return reverse('analytics:detail', kwargs={'slug': self.slug})
+    

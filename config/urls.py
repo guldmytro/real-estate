@@ -24,6 +24,7 @@ from django.views.decorators.cache import never_cache
 urlpatterns = [
     path('', include('pages.urls', namespace='pages')),
     path('analytics/', include('analytics.urls', namespace='analytics')),
+    path('discounts/', include('discounts.urls', namespace='discounts')),
     path('news/', include('news.urls', namespace='news')),
     path('vacantions/', include('vacantions.urls', namespace='vacantions')),
     path('wishlist/', include('wishlist.urls', namespace='wishlist')),

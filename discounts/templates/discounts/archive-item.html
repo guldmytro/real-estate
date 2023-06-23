@@ -1,0 +1,15 @@
+{% load thumbnail %}
+<li class="discount-item">
+    <a href="{{ discount.get_absolute_url }}" class="discount-item__thumb">
+        <img src="{{ discount.thumbnail|thumbnail_url:'medium' }}" alt="Будинок ззовні" class="discount-item__img" loading="lazy" width="280" height="281">
+    </a>
+    <div class="discount-item__content">
+        <time class="discount-item__date">{{ discount.created|date:"d.m.Y" }}</time>
+        <h2 class="discount-item__title">
+            <a href="{{ discount.get_absolute_url }}">{{ discount.title }}</a>
+        </h2>
+        <div class="discount-item__text">
+            {{ discount.excerpt|linebreaks }}
+        </div>
+    </div>
+</li>
