@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('pages.urls', namespace='pages')),
     path('analytics/', include('analytics.urls', namespace='analytics')),
     path('discounts/', include('discounts.urls', namespace='discounts')),
+    path('documents/', include('documents.urls', namespace='documents')),
     path('news/', include('news.urls', namespace='news')),
     path('vacantions/', include('vacantions.urls', namespace='vacantions')),
     path('wishlist/', include('wishlist.urls', namespace='wishlist')),

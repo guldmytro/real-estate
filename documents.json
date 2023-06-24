@@ -1,0 +1,13 @@
+[
+    {"model": "documents.document", "pk": 1, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 2, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 3, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 4, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 5, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 6, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 7, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 8, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 9, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 10, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}},
+    {"model": "documents.document", "pk": 11, "fields": {"title": "Файл 1", "file": "/documents/2023/06/23/Колодій.pdf", "created": "2023-06-23T09:45:49.647Z"}}
+]
