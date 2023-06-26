@@ -55,8 +55,15 @@ class Phone(models.Model):
 
 
 class Review(models.Model):
+    RATING_CHOICES = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+    )
     rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=5,
-                                              verbose_name='Rating')
+                                              verbose_name='Rating', choices=RATING_CHOICES)
     author = models.CharField(verbose_name='Author')
     body = models.TextField(verbose_name='Review', max_length=250)
     created = models.DateTimeField(auto_now_add=True)

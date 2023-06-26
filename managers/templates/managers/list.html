@@ -1,0 +1,69 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}Наші менеджери{% endblock %}
+
+{% block content %}
+    <div class="section employees-search">
+        <div class="container">
+            <form class="employees-search" action="." method="get">
+                <fieldset class="employees-search__fieldset">
+                    <label class="search-filters__item">
+                        <span class="filter-item__label">
+                            Фахівець
+                        </span>
+                        <div class="input-wrapper">
+                            {{ search_form.full_name }}
+                        </div>
+                    </label>
+                    <button type="submit" class="btn btn_primary">Пошук</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-group">
+                <a href="/" class="breadcrumbs-group__link">Головна</a>
+                <span class="breadcrumbs-group__text">Фахівці з нерухомості</span>
+            </nav>
+        </div>
+    </div>
+    <main class="employees">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">Фахівці з нерухомості</h1>
+            </div>
+            <ul class="employees-group">
+                {% for manager in managers %}
+                    <li class="employees-item">
+                        <a href="{{ manager.get_absolute_url }}" class="employees-item__thumb">
+                            {% if manager.image %}
+                                <img src="{{ manager.image|thumbnail_url:'small' }}" alt="{{ manager.full_name }}" loading="lazy" width="200" height="200">
+                            {% else %}
+                                <img src="{% static 'img/icon-user.svg' %}" alt="{{ manager.full_name }}" loading="lazy">
+                            {% endif %}
+                        </a>
+                        <h2 class="employees-item__title">
+                            <a href="{{ manager.get_absolute_url }}">{{ manager.full_name }}</a>
+                        </h2>
+                        <p class="employees-item__profession">Фахівець з нерухомості</p>
+                        <button type="button" class="btn btn_darken show-phones">
+                            <img src="{% static 'img/icon-phone.png' %}" alt="телефон" width="30" height="30" loading="lazy" class="btn__img accent">
+                            <span>Показати телефон</span>
+                        </button>
+                        <ul class="employees-item__phones">
+                            {% for phone in manager.phones.all %}
+                                <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{{ manager.get_absolute_url }}" class="employees-item__link">Більше про спеціаліста</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% include 'pagination.html' with page=managers %}
+        </div>
+    </main>
+{% endblock %}
+

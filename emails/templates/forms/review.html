@@ -1,0 +1,34 @@
+<form class="form-add-review form send-form" method="post" action="{% url 'emails:manager_add_review' id=manager.id %}">
+    <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+        <span></span>
+        <span></span>
+    </button>
+    <h2 class="form__title">Залиште відгук про спеціаліста</h2>
+    <fieldset class="form__fieldset">
+        <div class="filter-item">
+            <span class="filter-item__label">
+                Оцініть якість роботи
+            </span>
+            <div class="rating__group">
+                {% for choice_value, choice_label in review_form.rating.field.choices %}
+                    <input type="radio" name="{{ review_form.rating.html_name }}" value="{{ choice_value }}"
+                        class="rating__star" id="id_{{ review_form.rating.auto_id }}_{{ forloop.counter }}"
+                        {% if choice_value == review_form.rating.initial %}checked{% endif %} />
+                {% endfor %}
+            </div>
+        </div>
+        {{ review_form.body }}
+        {{ review_form.author }}
+        {{ review_form.phone }}
+        {{ review_form.manager }}
+        {% csrf_token %}
+    </fieldset>
+    <p class="form__info"> Вкажіть номер телефону, щоб ми могли зв'язатися з вами для підтвердження зворотного зв'язку в разі негативного відгуку або залишити свій відгук, зателефонувавши за номером +38 (050) 100-86-96 </p>
+    <button type="submit" class="btn btn_primary">
+        <span class="ready">Залишити відгук</span>
+        <span class="sending">Надсилання...</span>
+        <span class="sent">Надіслано!</span>
+        <span class="error">Помилка надсилання...</span>
+    </button>
+    <p class="form__agreement"> Залишаючи відгук, ви даєте згоду на обробку персональних даних </p>
+</form>

@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Manager, Review
 from listings.models import Listing
+from emails.forms import FeadbackForm, ReviewForm
+from django.core.paginator import Paginator, EmptyPage
+from .forms import SearchForm
+from django.contrib.postgres.search import TrigramSimilarity
 
 POSTS_PER_PAGE = 8
 
@@ -9,8 +13,10 @@ def managers_detail(request, id):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         return managers_detail_pagination(request, id)
-
+    
+    feadback_form = FeadbackForm(request.POST)
     manager = get_object_or_404(Manager.objects.prefetch_related('phones'), id=id)
+    review_form = ReviewForm(initial={'manager': manager})
     listings = Listing.objects.order_by('-created').filter(manager=manager)[:POSTS_PER_PAGE]
     reviews = Review.objects.order_by('-created').filter(manager=manager)[:POSTS_PER_PAGE]
     context = {
@@ -19,6 +25,8 @@ def managers_detail(request, id):
         'listings_count': Listing.objects.count(),
         'reviews': reviews,
         'reviews_count': Review.objects.count(),
+        'feadback_form': feadback_form,
+        'review_form': review_form,
     }
     return render(request, 'managers/detail.html', context)
 
@@ -47,4 +55,21 @@ def managers_detail_pagination(request, id):
 
 
 def managers_list(request):
-    return render(request, 'managers/detail.html', {})
+    search_form = SearchForm(request.GET)
+    managers_list = Manager.objects.prefetch_related('phones').all()
+    if search_form.is_valid():
+        cd = search_form.cleaned_data
+        managers_list = managers_list.annotate(
+        similarity=TrigramSimilarity('full_name', cd['full_name']))\
+            .filter(similarity__gt=0.15).order_by('-similarity')
+    paginator = Paginator(managers_list, 1)
+    page_number = request.GET.get('page', 1)
+    try:
+        managers = paginator.page(page_number)
+    except EmptyPage:
+        managers = paginator.page(paginator.num_pages)
+    context = {
+        'managers': managers,
+        'search_form': search_form
+    }
+    return render(request, 'managers/list.html', context)

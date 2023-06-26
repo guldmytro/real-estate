@@ -20,10 +20,6 @@
                         <p class="section-header__subtitle section-header__subtitle_strong">Фахівець з нерухомості</p>
                         <table class="section-header__table">
                             <tbody>
-                                <tr>
-                                    <th>Місто:</th>
-                                    <td>Харків</td>
-                                </tr>
                                 {% if manager.email %}
                                     <tr>
                                         <th>Пошта:</th>
@@ -50,18 +46,25 @@
                                 {% endif %}
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn_primary open-popup" data-popup="popup-review">Залишити відгук</button>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <form class="employee-form">
+                <form class="employee-form send-form" method="post" action="{% url 'emails:manager_quick_message' id=manager.id %}">
                     <h2 class="employee-form__title"> Залиште ваш номер телефону і ми передзвонимо через 5 хв </h2>
                     <fieldset class="employee-form__fieldset">
-                        <input type="text" class="input" placeholder="Ваше ім'я">
-                        <input type="text" class="input" placeholder="Ваш телефон">
-                        <button type="submit" class="btn btn_primary">Передзвоніть мені</button>
+                        {{ feadback_form.name }}
+                        {{ feadback_form.phone }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn_primary">
+                            <span class="ready">Передзвоніть мені</span>
+                            <span class="sending">Надсилання...</span>
+                            <span class="sent">Надіслано!</span>
+                            <span class="error">Помилка надсилання...</span>
+                        </button>
                     </fieldset>
-                    <p class="employee-form__footer"> Надсилаючи заявку, ви погоджуєтесь на обробку персональних даних </p>
+                    <p class="employee-form__footer">Надсилаючи заявку, ви погоджуєтесь на обробку персональних даних</p>
                 </form>
             </div>
         </div>
