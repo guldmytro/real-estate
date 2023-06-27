@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{% load static %}
 
 <li class="reviews-item"{% if next_page %} data-page="{{ next_page }}"{% endif %}>
     <div class="reviews-item__inner">
@@ -15,8 +16,12 @@
             <p class="review-item__text line line_6">{{ review.body }}</p>
         </div>
         <div class="review-item__footer">
-            <img src="{{ review.manager.image|thumbnail_url:'small' }}" class="review-item__manager-img" width="48"
-                 height="48" alt="{{ review.manager.full_name }}" loading="lazy">
+            {% if review.manager.image %}
+                <img src="{{ review.manager.image|thumbnail_url:'small' }}" class="review-item__manager-img" width="48"
+                    height="48" alt="{{ review.manager.full_name }}" loading="lazy">
+            {% else %}
+                <img src="{% static 'img/icon-user.svg' %}" style="filter:invert(1)" alt="іконка користувача" loading="lazy" width="48" height="48">
+            {% endif %}
             <a href="{{ review.manager.get_absolute_url }}" class="review-item__manager line line_1">
                 {{ review.manager.full_name }}
             </a>

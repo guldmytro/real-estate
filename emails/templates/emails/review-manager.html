@@ -1,0 +1,11 @@
+<p>
+    Відвідувач сайту залишив відгук {{ manager.full_name }} <br>
+    {% if manager.email %}({{ manager.email }}){% endif %}
+</p>
+<br>
+<p>Ім'я: {{ name }}</p>
+<p>Номер телефону: {{ phone }}</p>
+<p>Оцінка: {{ rating }}/5</p>
+<br>
+<strong>Відгук:</strong>
+<div>{{ body }}</div>

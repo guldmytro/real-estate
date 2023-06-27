@@ -1,0 +1,249 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Вартість послуг{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav class="breadcrumbs-group">
+                <a href="/" class="breadcrumbs-group__link">Головна</a>
+                <span class="breadcrumbs-group__text">Вартість послуг</span>
+            </nav>
+        </div>
+    </div>
+    <main class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">Вартість послуг</h1>
+            </div>
+            <div class="pricing-wrapper">
+                <ul class="pricing-box">
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">Придбати</h2>
+                                <p class="pricing-item__subtitle">5% від ринкової вартості об'єкту</p>
+                                <p class="pricing-item__description">Знижки від компанії в цьому блоці:</p>
+                            </div>
+                            <div class="pricing-item__content">
+                                <p> Здійснюючи продаж старої квартири та купівлю нової разом з компанією «Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При повторному зверненні до компанії. Продаж / Покупка протягом року на себе або родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для військових та ЗСУ знижка від 5%. </p>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg">
+                            <img src="{% static 'img/icon-pricing-1.png' %}" alt="корзина" loading="lazy">
+                        </div>
+                    </li>
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">Продати</h2>
+                                <p class="pricing-item__subtitle">0-5% Вартість послуг компанії залежить від типу нерухомості, вартості та готовності об'єкта до угоди</p>
+                                <p class="pricing-item__description">Знижки від компанії в цьому блоці:</p>
+                            </div>
+                            <div class="pricing-item__content">
+                                <p> Здійснюючи продаж старої квартири та купівлю нової разом з компанією «Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При повторному зверненні до компанії. Продаж / Покупка протягом року на себе або родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для військових та ЗСУ знижка від 5%. </p>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg">
+                            <img src="{% static 'img/icon-pricing-2.png' %}" alt="дім" loading="lazy">
+                        </div>
+                    </li>
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">Орендувати</h2>
+                                <p class="pricing-item__subtitle">50% вартості оренди</p>
+                                <p class="pricing-item__description">Тарифи:</p>
+                            </div>
+                            <div class="pricing-item__content pricing-content">
+                                <ul class="pricing-content__group">
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Базовий 0%</h3>
+                                        <ul>
+                                            <li>Додавання на сайт компанії</li>
+                                            <li>Професійне фотографування квартири</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Мінімум 20%</h3>
+                                        <ul>
+                                            <li>Прийом ключів у власника</li>
+                                            <li>Проведення показів без вашої участі</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Економ 30%</h3>
+                                        <ul>
+                                            <li>Реклама на 7 майданчиках</li>
+                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
+                                            <li>Фінансова гарантія на 3 місяці **</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Стандарт</h3>
+                                        <ul>
+                                            <li>Реклама на 7 майданчиках</li>
+                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
+                                            <li>Фінансова гарантія на 3 місяці**</li>
+                                            <li>Фінансова гарантія на 6 місяців**</li>
+                                            <li>Гарантія юридичного захисту (гарантійний сертифікат)*</li>
+                                            <li>Застосування додаткових (платних) статусів на рекламних майданчиках</li>
+                                            <li>Надання аналітики за зацікавленістю вашою квартирою</li>
+                                            <li>Перевірка наймача службою економічної безпеки***</li>
+                                            <li>Прийом квартири після звільнення наймачем та надання фото-, відеозвіту (2 рази за час дії договору)</li>
+                                            <li>Виготовлення відео-огляду квартири</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg">
+                            <img src="{% static 'img/icon-pricing-3.png' %}" alt="ключі" loading="lazy">
+                        </div>
+                    </li>
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">Здати</h2>
+                                <p class="pricing-item__description">Тарифи:</p>
+                            </div>
+                            <div class="pricing-item__content pricing-content">
+                                <ul class="pricing-content__group">
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Базовий 0%</h3>
+                                        <ul>
+                                            <li>Додавання на сайт компанії</li>
+                                            <li>Професійне фотографування квартири</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Мінімум 20%</h3>
+                                        <ul>
+                                            <li>Прийом ключів у власника</li>
+                                            <li>Проведення показів без вашої участі</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Економ 30%</h3>
+                                        <ul>
+                                            <li>Реклама на 7 майданчиках</li>
+                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
+                                            <li>Фінансова гарантія на 3 місяці **</li>
+                                        </ul>
+                                    </li>
+                                    <li class="pricing-content-item">
+                                        <h3 class="pricing-content-item__title">Стандарт</h3>
+                                        <ul>
+                                            <li>Реклама на 7 майданчиках</li>
+                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
+                                            <li>Фінансова гарантія на 3 місяці**</li>
+                                            <li>Фінансова гарантія на 6 місяців**</li>
+                                            <li>Гарантія юридичного захисту (гарантійний сертифікат)*</li>
+                                            <li>Застосування додаткових (платних) статусів на рекламних майданчиках</li>
+                                            <li>Надання аналітики за зацікавленістю вашою квартирою</li>
+                                            <li>Перевірка наймача службою економічної безпеки***</li>
+                                            <li>Прийом квартири після звільнення наймачем та надання фото-, відеозвіту (2 рази за час дії договору)</li>
+                                            <li>Виготовлення відео-огляду квартири</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg">
+                            <img src="{% static 'img/icon-pricing-3.png' %}" alt="ключі" loading="lazy">
+                        </div>
+                    </li>
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">Що входити у вартість послуг</h2>
+                            </div>
+                            <div class="pricing-item__content pricing-item__content_simple">
+                                <h3>при купівлі оренди:</h3>
+                                <ul>
+                                    <li>Консультація з ринку нерухомості в регіоні (динаміка цін та попиту)</li>
+                                    <li>Допомога у підготовці та оформленні документів для угоди</li>
+                                    <li>Гарантійний сертифікат безпеки</li>
+                                    <li>Переговори з власниками (у тому числі щодо торгу), експертна оцінка нерухомості</li>
+                                    <li>Підбір варіантів нерухомості з урахуванням усіх побажань та потреб</li>
+                                    <li>Організація та проведення переглядів квартир</li>
+                                    <li>Трансфер до об'єктів (за домовленістю)</li>
+                                    <li>Організація та проведення задатку</li>
+                                    <li>Супровід до нотаріуса, банк</li>
+                                    <li>Повний юридичний супровід</li>
+                                    <li>Послуги іпотечного брокера</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg"></div>
+                    </li>
+                    <li class="pricing-item">
+                        <div class="pricing-item__ctx">
+                            <div class="pricing-item__header">
+                                <h2 class="pricing-item__title">При продажу</h2>
+                            </div>
+                            <div class="pricing-item__content pricing-item__content_simple">
+                                <h3>При продажу:</h3>
+                                <ul>
+                                    <li>Допомога у підготовці та оформленні документів для угоди</li>
+                                    <li>Надання звітів продавцю про виконану спеціалістом роботу</li>
+                                    <li>Формування сторінки об'єкта на сайті компанії</li>
+                                    <li>Пошук покупців, організація показів</li>
+                                    <li>Допомога у знятті обтяжень</li>
+                                    <li>Супровід до нотаріуса, до банку</li>
+                                    <li>Статистика переглядів об'єкта та дзвінків</li>
+                                    <li>Рекламне просування об'єкту на різних майданчиках</li>
+                                    <li>Повний юридичний супровід (юрист, аудитор, служба економічної безпеки)</li>
+                                    <li>Аналітика ринку та встановлення об'єктивної ціни на об'єкт</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pricing-item__bg"></div>
+                    </li>
+                </ul>
+                <div class="pricing-footer">
+                    <ul class="pricing-footer__group">
+                        <li class="pricing-footer__item"> Умови гарантії юридичного захисту вказані в Гарантійному сертифікаті. </li>
+                        <li> Виконавець зобов'язаний виконати пошук іншого наймача у разі з'єднання наймача з Об'єкта протягом 3/6/ місяців (в залежності від вибраного пакета Услуг) з моменту заключення договору найма Об'єкта. </li>
+                        <li> Послуга надається шляхом перевірки наймача на наступних сервісах: Єдиний реєстр боржників, Судовий реєстр </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-header__title">Чому з нами краще?</h2>
+            </div>
+            <ul class="features-group">
+                <li class="features-group__item features-item">
+                    <div class="img-wrapper">
+                        <img src="{% static 'img/icon-feature-1.png' %}" class="feature-item__img accent" alt="дім" loading="lazy" width="125" height="105">
+                    </div>
+                    <span class="features-item__text">Ретельно відбираємо базу об&#39;єктів</span>
+                </li>
+                <li class="features-group__item features-item">
+                    <div class="img-wrapper">
+                        <img src="{% static 'img/icon-feature-2.png' %}" class="feature-item__img accent" alt="щит" loading="lazy" width="56" height="64">
+                    </div>
+                    <span class="features-item__text">Юридичний захист угоди</span>
+                </li>
+                <li class="features-group__item features-item">
+                    <div class="img-wrapper">
+                        <img src="{% static 'img/icon-feature-3.png' %}" class="feature-item__img accent" alt="чат" loading="lazy" width="128" height="128">
+                    </div>
+                    <span class="features-item__text">Усі консультації та сервіси компанії безкоштовні</span>
+                </li>
+                <li class="features-group__item features-item">
+                    <div class="img-wrapper">
+                        <img src="{% static 'img/icon-feature-4.png' %}" class="feature-item__img accent" alt="пісочний годинник" loading="lazy" width="84" height="128">
+                    </div>
+                    <span class="features-item__text">Заощаджуємо ваш час</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    {% include 'sections/feadback.html' %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Відгуки{% endblock %}
+
+{% block content %}
+    <main class="reviews-main">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-header__title">Відгуки про фахівців компанії</h1>
+            </div>
+            <div class="managers-filters choose-manager-form">
+                <label class="filter-item">
+                    <span class="filter-item__label">
+                        Виберіть фахівця
+                    </span>
+                    <div class="select-wrapper">
+                        {{ search_manager_form.manager }}
+                    </div>
+                </label>
+                <button type="button" disabled data-popup="popup-review" class="form-search__submit btn btn_primary open-popup">Залишити відгук</button>
+            </div>
+        </div>
+    </main>
+    {% if reviews %}
+        <div class="section archive-reviews">
+            <div class="container">
+                <ul class="reviews-grid">
+                    {% for review in reviews %}
+                        {% include 'reviews/item.html' %}
+                    {% endfor %}
+                </ul>
+                {% include 'pagination.html' with page=reviews %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

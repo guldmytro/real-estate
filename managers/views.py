@@ -17,14 +17,18 @@ def managers_detail(request, id):
     feadback_form = FeadbackForm(request.POST)
     manager = get_object_or_404(Manager.objects.prefetch_related('phones'), id=id)
     review_form = ReviewForm(initial={'manager': manager})
-    listings = Listing.objects.order_by('-created').filter(manager=manager)[:POSTS_PER_PAGE]
-    reviews = Review.objects.order_by('-created').filter(manager=manager)[:POSTS_PER_PAGE]
+    listings_list = Listing.objects.order_by('-created').filter(manager=manager)
+    listings_count = listings_list.count()
+    listings = listings_list[:POSTS_PER_PAGE]
+    reviews_list = Review.objects.order_by('-created').filter(manager=manager)
+    reviews_count = reviews_list.count()
+    reviews = reviews_list[:POSTS_PER_PAGE]
     context = {
         'manager': manager,
         'listings': listings,
-        'listings_count': Listing.objects.count(),
+        'listings_count': listings_count,
         'reviews': reviews,
-        'reviews_count': Review.objects.count(),
+        'reviews_count': reviews_count,
         'feadback_form': feadback_form,
         'review_form': review_form,
     }

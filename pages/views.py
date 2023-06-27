@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import About, Abroad, Contact, Course
 from managers.models import Review
 from emails.forms import FeadbackForm
+from django.core.paginator import Paginator, EmptyPage
+from .forms import SearchManager, SellerForm
+from emails.forms import ReviewForm
 
 
 def about(request):
@@ -44,3 +47,38 @@ def course(request):
         'feadback_form': feadback_form
     }
     return render(request, 'pages/course.html', context)
+
+
+def pricing(request):
+    feadback_form = FeadbackForm(request.POST)
+    context = {
+        'feadback_form': feadback_form
+    }
+    return render(request, 'pages/pricing.html', context)
+
+
+def reviews(request):
+    search_manager_form = SearchManager()
+    review_form = ReviewForm()
+    reviews_list = Review.objects.select_related('manager').all()
+    paginator = Paginator(reviews_list, 8)
+    page_number = request.GET.get('page', 1)
+    try:
+        reviews = paginator.page(page_number)
+    except EmptyPage:
+        reviews = paginator.page(paginator.num_pages)
+    context = {
+        'reviews': reviews,
+        'search_manager_form': search_manager_form,
+        'review_form': review_form,
+    }
+    return render(request, 'pages/reviews.html', context)
+
+
+def seller(request):
+    seller_form = SellerForm(initial={'phone': '+380'})
+
+    context = {
+        'seller_form': seller_form
+    }
+    return render(request, 'pages/seller.html', context)

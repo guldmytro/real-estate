@@ -7,6 +7,8 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from managers.models import Manager
 from django.core.validators import validate_email
 from django import forms
+from django.shortcuts import get_object_or_404
+from pages.forms import SellerForm
 
 
 @require_POST
@@ -66,6 +68,8 @@ def apply(request):
     else:
         return JsonResponse({'formErrors': form.errors})
 
+
+@require_POST
 def manager_quick_message(request, id):
     try:
         manager = Manager.objects.get(pk=id)
@@ -98,10 +102,53 @@ def manager_quick_message(request, id):
         return JsonResponse({'status': 'bad'})
     
 
+@require_POST
 def manager_add_review(request, id):
     review_form = ReviewForm(request.POST)
+    manager = get_object_or_404(Manager, id=id)
     if review_form.is_valid():
+        cd = review_form.cleaned_data
         review_form.save()
+        config = SiteConfiguration.objects.get()
+        context = {
+            'manager': manager,
+            'name': cd['author'],
+            'phone': cd['phone'],
+            'rating': cd['rating'],
+            'body': cd['body']
+        }
+        message = render_to_string('emails/review-manager.html', context)
+        
+        try:
+            validate_email(manager.email)
+            to = [config.email, manager.email]
+        except forms.ValidationError:
+            to = [config.email]
+        
+        subject = 'Відвідувач сайту залишив відгук'
+        send_mail(subject, '', '', to, html_message=message)
+        
         return JsonResponse({'status': 'ok'})
     else:
         return JsonResponse({'formErrors': review_form.errors})
+    
+
+@require_POST
+def seller_quick_message(request):
+    seller_form = SellerForm(request.POST)
+    if seller_form.is_valid():
+        cd = seller_form.cleaned_data
+        context = {
+            'phone': cd['phone'],
+            'type': cd['realty_type']
+        }
+        config = SiteConfiguration.objects.get()
+        message = render_to_string('emails/feadback-seller.html', context)
+        to = config.email
+        subject = 'Заявка на консультацію'
+        sent = send_mail(subject, '', '', [to], html_message=message)
+        if sent == 1:
+            return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'ok'})    
+    return JsonResponse({'status': 'bad'})
+

@@ -1,0 +1,135 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Продавцю{% endblock %}
+
+{% block content %}
+    <main class="seller">
+        <div class="container">
+            <div class="seller-row">
+                <div class="col">
+                    <div class="section-header">
+                        <h1 class="section-header__title">Допоможемо продати нерухомість швидко та вигідно</h1>
+                        <p class="section-header__subtitle section-header__subtitle_strong">Залиште заявку і ми передзвонимо</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <form class="seller-form send-form" action="{% url 'emails:seller_quick_message' %}" method="post">
+                        <label class="search-filters__item filter-item">
+                            <span class="filter-item__label">
+                                Тип об'єкту
+                            </span>
+                            <div class="select-wrapper">
+                                {{ seller_form.realty_type }}
+                            </div>
+                        </label>
+                        <label class="search-filters__item filter-item">
+                            <span class="filter-item__label">
+                                Телефон
+                            </span>
+                            <div class="input-wrapper">
+                                {{ seller_form.phone }}
+                            </div>
+                        </label>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn_primary">
+                            <span class="ready">Отримати безкоштовну консультацію</span>
+                            <span class="sending">Надсилання...</span>
+                            <span class="sent">Надіслано!</span>
+                            <span class="error">Помилка надсилання...</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="how-works">
+        <div class="container">
+            <div class="how-works__row">
+                <div class="col">
+                    <div class="section-header">
+                        <h2 class="section-header__title">Як це працює</h2>
+                    </div>
+                    <ul class="accordeon">
+                        <li class="accordeon-item active">
+                            <h3 class="accordeon-item__title">Розміщення оголошення</h3>
+                            <div class="accordeon-item__content">
+                                <div class="accordeon-item__text">Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його на сайті. Або просто залиште свій телефон, і ми все зробимо.</div>
+                            </div>
+                        </li>
+                        <li class="accordeon-item">
+                            <h3 class="accordeon-item__title">Підготовка до продажу</h3>
+                            <div class="accordeon-item__content">
+                                <div class="accordeon-item__text">Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його на сайті. Або просто залиште свій телефон, і ми все зробимо.</div>
+                            </div>
+                        </li>
+                        <li class="accordeon-item">
+                            <h3 class="accordeon-item__title">Пошук покупців</h3>
+                            <div class="accordeon-item__content">
+                                <div class="accordeon-item__text">Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його на сайті. Або просто залиште свій телефон, і ми все зробимо.</div>
+                            </div>
+                        </li>
+                        <li class="accordeon-item">
+                            <h3 class="accordeon-item__title">Укладення угоди</h3>
+                            <div class="accordeon-item__content">
+                                <div class="accordeon-item__text">Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його на сайті. Або просто залиште свій телефон, і ми все зробимо.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <img src="{% static 'img/how-it-works.png' %}" width="664" height="516" alt="кімната" loading="lazy">
+                </div>
+            </div>
+            <div class="how-works__grid">
+                <ul class="how-works__group">
+                    <li class="how-works-item how-works-item_third">
+                        <h3 class="how-works-item__title">Почніть продавати зараз</h3>
+                        <div class="how-works-item__content">Додайте оголошення про здачу нерухомості або просто залиште свій телефон і ми допоможемо.</div>
+                    </li>
+                    <li class="how-works-item how-works-item_third">
+                        <h3 class="how-works-item__title">Пошук орендарів</h3>
+                        <div class="how-works-item__content">Ваше оголошення побачать орендарі на нашому сайті та в боті, а при замовленні додаткових послуг розмістимо оголошення ще на 7 майданчиках. Знайдемо вам надійних орендарів і організуємо покази квартири.</div>
+                    </li>
+                    <li class="how-works-item how-works-item_third">
+                        <h3 class="how-works-item__title">Укладення угоди</h3>
+                        <div class="how-works-item__content">Оформіть угоду особисто чи дистанційно. Познайомимо з орендарем з відео зв'язку, допоможемо укласти угоду та здійснити оплату онлайн.</div>
+                    </li>
+                    <li class="how-works-item how-works-item_full" style="background-image: url({% static 'img/seller-item-image.jpg' %})">
+                        <h3 class="how-works-item__title">Підготовка до здачі</h3>
+                        <div class="how-works-item__content">Замовте клінінг або приберіться самі.<br> Фотозйомка нерухомості у подарунок!<br> Фахівець з нерухомості приїде, зробить фото та завантажить до оголошення.<br> Допоможемо у підготовці та оформленні документів для угоди. <br> Скористайтеся довірчим управлінням, і ми простежимо стан квартири, поки вас немає.<br> Підпишіть платний договір, і ми здамо вашу квартиру швидше.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="advantages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-header__title">4 причини оцінити нерухомість прямо зараз</h2>
+            </div>
+            <ul class="advantages-group">
+                <li class="advantages-item">
+                    <img src="{% static 'img/icon-cash.png' %}" alt="гроші" class="advantages-item__image accent" loading="lazy" width="128" height="128">
+                    <h3 class="advantages-item__title">Тільки реальні ціни</h3>
+                    <p class="advantages-item__description">Ми знаємо не тільки, за якою ціною розміщуються пропозиції, але і реальну ціну продажу. Тому наша оцінка ближче до реальності.</p>
+                </li>
+                <li class="advantages-item">
+                    <img src="{% static 'img/icon-house.png' %}" alt="дім" class="advantages-item__image accent" loading="lazy" width="64" height="58">
+                    <h3 class="advantages-item__title">Ми не просимо грошей і телефону</h3>
+                    <p class="advantages-item__description">Інформація про ринкову вартість доступна будь-кому просто так: за неї не потрібно платити або залишати телефон, якщо не хочеться.</p>
+                </li>
+                <li class="advantages-item">
+                    <img src="{% static 'img/icon-house-in-hahd.png' %}" alt="дім у руці" class="advantages-item__image accent" loading="lazy" width="64" height="60">
+                    <h3 class="advantages-item__title">Покажемо схожі пропозиції</h3>
+                    <p class="advantages-item__description">Не потрібно витрачати час на пошук схожих пропозицій на інших сайтах, ми покажемо пропозиції, які конкурують з вашим прямо зараз.</p>
+                </li>
+                <li class="advantages-item">
+                    <img src="{% static 'img/icon-time.png' %}" alt="годинник" class="advantages-item__image accent" loading="lazy" width="128" height="128">
+                    <h3 class="advantages-item__title">Це просто і зручно</h3>
+                    <p class="advantages-item__description">Вам не потрібно вказувати багато інформації, досить заповнити 5 полів.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
