@@ -16,4 +16,14 @@
             {% include 'forms/apply.html' %}
         </div>
     {% endif %}
+    {% if listing_message_form %}
+        <div id="popup-listing-message" class="popup-content">
+            {% include 'forms/listing-message.html' %}
+        </div>
+    {% endif %}
+    {% if listing_phone_form %}
+    <div id="popup-listing-check" class="popup-content">
+        {% include 'forms/listing-check.html' %}
+    </div>
+    {% endif %}
 </div>

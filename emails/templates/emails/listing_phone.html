@@ -1,0 +1,22 @@
+<p>Користувач сайту відвідав сторінку оголошення та очікує зворотній дзвінок.</p>
+<br>
+
+<p>Номер телефону: {{ phone }}</p>
+{% if subject %}
+    <p>Тема звернення: {{ subject }}</p>
+{% endif %}
+{% if date %}
+    <p>Бажана дата перегляду: {{ date|date:"d.m.Y" }}</p>
+{% endif %}
+{% if time %}
+    <p>Бажаний час перегляду: {{ time }}</p>
+{% endif %}
+<p>Оголошення: {{ listing.title }} - {{ listing.get_absolute_url }}</p>
+{% if listing.manager %}
+    <p>Відповідальний менеджер: {{ listing.manager.full_name }} - {{ listing.manager.email }}</p>
+{% endif %}
+{% if message %}
+    <br>
+    <p>Повідомлення: </p>
+    <div>{{ message }}</div>
+{% endif %}

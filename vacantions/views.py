@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Vacantion
 from django.core.paginator import Paginator, EmptyPage
-from emails.forms import ApplyForm
+from emails.forms import ApplyForm, FeadbackForm
+from pages.models import VacantionPage
 
 
 def vacantions_list(request):
@@ -20,3 +21,13 @@ def vacantions_list(request):
         'apply_form': apply_form
     }
     return render(request, 'vacantions/list.html', context)
+
+
+def vacantions_page(request):
+    feadback_form = FeadbackForm()
+    page = VacantionPage.objects.get()
+    context = {
+        'page': page,
+        'feadback_form': feadback_form
+    }
+    return render(request, 'vacantions/page.html', context)

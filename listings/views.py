@@ -11,6 +11,8 @@ from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 import json
 from .utils import filter_listings
+from emails.forms import ListingPhoneForm, ListingMessageForm, \
+    ListingVisitForm
 
 
 
@@ -76,12 +78,20 @@ def listings_detail(request, id):
 
     news = News.objects.all()[:8]
 
+    # forms
+    listing_phone_form = ListingPhoneForm()
+    listing_message_form = ListingMessageForm()
+    listing_visit_form = ListingVisitForm()
+
     context = {
         'listing': listing,
         'in_wishlist': in_wishlist,
         'listings_the_same_street_num': listings_the_same_street_num,
         'listings_within_distance': listings_within_distance,
-        'news': news
+        'news': news,
+        'listing_phone_form': listing_phone_form,
+        'listing_message_form': listing_message_form,
+        'listing_visit_form': listing_visit_form,
     }
 
     return render(request, 'listings/item.html', context)

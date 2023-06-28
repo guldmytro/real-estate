@@ -82,19 +82,26 @@
                             <li>Роки володіння нерухомістю</li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn_invert btn_shadow">Перевірити нерухомість</button>
+                    <button type="button" class="btn btn_invert btn_shadow open-popup" data-popup="popup-listing-check">Перевірити нерухомість</button>
                 </div>
                 <div id="reserve" class="object-box">
                     <div class="object-box-header">
                         <h1 class="object-box-header__title">Записатись на перегляд</h1>
                         <p class="object-box-header__subtitle"> З вами зв'яжеться спеціаліст з нерухомості, підтвердить обраний час перегляду, організує відвідування пропозиції та проведе вам екскурсію. </p>
                     </div>
-                    <form class="object-box-form">
+                    <form class="object-box-form send-form" method="post" 
+                          action="{% url 'emails:listing_visit' id=listing.id %}">
                         <fieldset class="object-box-form__fieldset">
-                            <input type="date" class="input">
-                            <input type="time" class="input">
-                            <input type="phone" class="input" placeholder="Ваш телефон">
-                            <button type="submit" class="btn btn_primary">Записатись на перегляд</button>
+                            {{ listing_visit_form.date }}
+                            {{ listing_visit_form.time }}
+                            {{ listing_visit_form.phone }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn_primary">
+                                <span class="ready">Записатись на перегляд</span>
+                                <span class="sending">Надсилання...</span>
+                                <span class="sent">Надіслано!</span>
+                                <span class="error">Помилка надсилання...</span>
+                            </button>
                         </fieldset>
                     </form>
                 </div>
@@ -103,10 +110,17 @@
                         <h1 class="object-box-header__title">Розрахуйте іпотеку</h1>
                         <p class="object-box-header__subtitle"> Можемо розрахувати іпотеку без початкового внеску, просто вкажіть 0%. </p>
                     </div>
-                    <form class="object-box-form">
+                    <form class="object-box-form send-form" method="post" 
+                          action="{% url 'emails:listing_credit' id=listing.id %}">
                         <fieldset class="object-box-form__fieldset">
-                            <input type="phone" class="input" placeholder="Ваш телефон">
-                            <button type="submit" class="btn btn_primary">Отримати консультацію</button>
+                            {{ listing_phone_form.phone }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn_primary">
+                                <span class="ready">Отримати консультацію</span>
+                                <span class="sending">Надсилання...</span>
+                                <span class="sent">Надіслано!</span>
+                                <span class="error">Помилка надсилання...</span>
+                            </button>
                         </fieldset>
                     </form>
                 </div>
@@ -281,10 +295,19 @@
                                 </a>
                             {% endfor %}
                             <p class="employees-item__more">або залиште номер, і ми вам передзвонимо протягом 2 хвилин</p>
-                            <form class="employees-item__form">
-                                <input type="text" class="input" placeholder="Ваш телефон">
-                                <button type="submit" class="btn btn_primary">Передзвоніть мені</button>
-                                <button type="submit" class="btn btn_invert btn_bordered">Написати спеціалісту</button>
+                            <form class="employees-item__form send-form" method="post" 
+                                  action="{% url 'emails:listing_quick_message' id=listing.id %}">
+                                {{ listing_phone_form.phone }}
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn_primary">
+                                    <span class="ready">Передзвоніть мені</span>
+                                    <span class="sending">Надсилання...</span>
+                                    <span class="sent">Надіслано!</span>
+                                    <span class="error">Помилка надсилання...</span>
+                                </button>
+                                <button type="button" 
+                                        class="btn btn_invert btn_bordered open-popup" 
+                                        data-popup="popup-listing-message">Написати спеціалісту</button>
                             </form>
                         </div>
                     </div>

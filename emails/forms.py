@@ -47,3 +47,32 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = '__all__'
+
+
+class ListingPhoneForm(forms.Form):
+    phone = forms.CharField(widget=forms.TextInput(
+                        attrs={
+                            'placeholder': "Телефон:*",
+                            'class': 'input'
+                        }))
+    
+    class Meta:
+        fields = '__all__'
+
+
+class ListingMessageForm(ListingPhoneForm):
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'class': 'textarea', 'placeholder': 'Повідомлення'}
+            )
+        )
+
+
+class ListingVisitForm(ListingPhoneForm):
+    date = forms.DateField(widget=forms.TextInput(
+        attrs={'type': 'date', 'class': 'input'}
+    ))
+    time = forms.TimeField(widget=forms.TextInput(
+        attrs={'type': 'time', 'class': 'input'}
+    ))
+

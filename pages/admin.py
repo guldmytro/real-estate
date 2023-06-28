@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import About, AboutItem, Abroad, AbroadItem, Contact, Course
+from .models import About, AboutItem, Abroad, AbroadItem,\
+      Contact, Course, VacantionPage
 from solo.admin import SingletonModelAdmin
 
 
@@ -33,3 +34,8 @@ class ContactAdmin(SingletonModelAdmin):
 @admin.register(Course)
 class CourseAdmin(SingletonModelAdmin):
     list_display = ['register_link']
+
+
+@admin.register(VacantionPage)
+class VacantionPageAdmin(SingletonModelAdmin):
+    list_display = ['video']

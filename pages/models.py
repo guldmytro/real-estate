@@ -111,3 +111,17 @@ class Course(SingletonModel):
     class Meta:
         verbose_name = 'Курс'
         verbose_name_plural = 'Курс'
+
+
+class VacantionPage(SingletonModel):
+    video = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name='Video',
+                             blank=True, null=True)
+    poster = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name='Poster',
+                              blank=True, null=True)
+
+    def __str__(self):
+        return 'Вакансії'
+    
+    class Meta:
+        verbose_name = 'Вакасії'
+        verbose_name_plural = 'Вакасії'

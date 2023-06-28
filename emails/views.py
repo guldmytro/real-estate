@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from props.models import SiteConfiguration
-from .forms import FeadbackForm, ApplyForm, ReviewForm
+from .forms import FeadbackForm, ApplyForm, ReviewForm,\
+     ListingMessageForm, ListingPhoneForm, ListingVisitForm
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 from django.core.mail import send_mail, EmailMultiAlternatives
@@ -9,6 +10,7 @@ from django.core.validators import validate_email
 from django import forms
 from django.shortcuts import get_object_or_404
 from pages.forms import SellerForm
+from listings.models import Listing
 
 
 @require_POST
@@ -151,4 +153,150 @@ def seller_quick_message(request):
             return JsonResponse({'status': 'ok'})
         return JsonResponse({'status': 'ok'})    
     return JsonResponse({'status': 'bad'})
+
+
+@require_POST
+def listing_quick_message(request, id):
+    try:
+        listing = Listing.objects.select_related('manager').get(id=id)
+        form = ListingPhoneForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            config = SiteConfiguration.objects.get()
+        
+            context = {
+                'listing': listing,
+                'phone': cd['phone'],
+            }
+            message = render_to_string('emails/listing_phone.html', context)
+            to = [config.email]
+            if listing.manager:
+                to.append(listing.manager.email)
+
+            subject = 'Нове повідомлення з сайту'
+            sent = send_mail(subject, '', '', [to], html_message=message)
+            if sent == 1:
+                return JsonResponse({'status': 'ok'})
+
+    except Listing.DoesNotExist:
+        return JsonResponse({'status': 'bad', 'message': 'listing is not found'})
+    return JsonResponse({'status': 'bad', 'message': 'bad response'})
+
+
+@require_POST
+def listing_message(request, id):
+    try:
+        listing = Listing.objects.select_related('manager').get(id=id)
+        form = ListingMessageForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            config = SiteConfiguration.objects.get()
+        
+            context = {
+                'listing': listing,
+                'phone': cd['phone'],
+                'message': cd['message']
+            }
+            message = render_to_string('emails/listing_phone.html', context)
+            to = [config.email]
+            if listing.manager:
+                to.append(listing.manager.email)
+                
+            subject = 'Нове повідомлення з сайту'
+            sent = send_mail(subject, '', '', [to], html_message=message)
+            if sent == 1:
+                return JsonResponse({'status': 'ok'})
+
+    except Listing.DoesNotExist:
+        return JsonResponse({'status': 'bad', 'message': 'listing is not found'})
+    return JsonResponse({'status': 'bad', 'message': 'bad response'})
+
+
+@require_POST
+def listing_visit(request, id):
+    try:
+        listing = Listing.objects.select_related('manager').get(id=id)
+        form = ListingVisitForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            config = SiteConfiguration.objects.get()
+        
+            context = {
+                'listing': listing,
+                'phone': cd['phone'],
+                'date': cd['date'],
+                'time': cd['time'],
+                'subject': 'Запис на перегляд'
+            }
+            message = render_to_string('emails/listing_phone.html', context)
+            to = [config.email]
+            if listing.manager:
+                to.append(listing.manager.email)
+                
+            subject = 'Нове повідомлення з сайту'
+            sent = send_mail(subject, '', '', [to], html_message=message)
+            if sent == 1:
+                return JsonResponse({'status': 'ok'})
+
+    except Listing.DoesNotExist:
+        return JsonResponse({'status': 'bad', 'message': 'listing is not found'})
+    return JsonResponse({'status': 'bad', 'message': 'bad response'})
+
+
+@require_POST
+def listing_credit(request, id):
+    try:
+        listing = Listing.objects.select_related('manager').get(id=id)
+        form = ListingPhoneForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            config = SiteConfiguration.objects.get()
+        
+            context = {
+                'listing': listing,
+                'phone': cd['phone'],
+                'subject': 'Розрахувати іпотеку'
+            }
+            message = render_to_string('emails/listing_phone.html', context)
+            to = [config.email]
+            if listing.manager:
+                to.append(listing.manager.email)
+                
+            subject = 'Нове повідомлення з сайту'
+            sent = send_mail(subject, '', '', [to], html_message=message)
+            if sent == 1:
+                return JsonResponse({'status': 'ok'})
+
+    except Listing.DoesNotExist:
+        return JsonResponse({'status': 'bad', 'message': 'listing is not found'})
+    return JsonResponse({'status': 'bad', 'message': 'bad response'})
+
+
+@require_POST
+def listing_check(request, id):
+    try:
+        listing = Listing.objects.select_related('manager').get(id=id)
+        form = ListingPhoneForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            config = SiteConfiguration.objects.get()
+        
+            context = {
+                'listing': listing,
+                'phone': cd['phone'],
+                'subject': 'Перевірити нерухомість перед покупкою'
+            }
+            message = render_to_string('emails/listing_phone.html', context)
+            to = [config.email]
+            if listing.manager:
+                to.append(listing.manager.email)
+                
+            subject = 'Нове повідомлення з сайту'
+            sent = send_mail(subject, '', '', [to], html_message=message)
+            if sent == 1:
+                return JsonResponse({'status': 'ok'})
+
+    except Listing.DoesNotExist:
+        return JsonResponse({'status': 'bad', 'message': 'listing is not found'})
+    return JsonResponse({'status': 'bad', 'message': 'bad response'})
 

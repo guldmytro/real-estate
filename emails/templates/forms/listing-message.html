@@ -1,0 +1,19 @@
+<form class="form-add-review form send-form" action="{% url 'emails:listing_message' id=listing.id %}" method="post">
+    <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+        <span></span>
+        <span></span>
+    </button>
+    <h2 class="form__title">Залиште свої контактні дані повідомлення нашому менеджеру.</h2>
+    <fieldset class="form__fieldset">
+        {{ listing_message_form.phone }}
+        {{ listing_message_form.message }}
+        {% csrf_token %}
+    </fieldset>
+    <p class="form__info">Вкажіть номер телефону, щоб ми могли зв'язатися з вами.</p>
+    <button type="submit" class="btn btn_primary">
+        <span class="ready">Надіслати резюме</span>
+        <span class="sending">Надсилання...</span>
+        <span class="sent">Надіслано!</span>
+        <span class="error">Помилка надсилання...</span>
+    </button>
+</form>
