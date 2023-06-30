@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Analytic
 from django.core.paginator import Paginator, EmptyPage
+from django.shortcuts import get_object_or_404
 
 
 def analytics_list(request):
@@ -19,5 +20,9 @@ def analytics_list(request):
     return render(request, 'news/list.html', context)
 
 
-def analytics_detail(request):
-    return render(request, 'news/detail.html', {})
+def analytics_detail(request, slug):
+    post = get_object_or_404(Analytic, slug=slug)
+    context = {
+        'post': post
+    }
+    return render(request, 'news/detail.html', context)

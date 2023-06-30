@@ -32,6 +32,7 @@ urlpatterns = [
     path('listings/', include('listings.urls', namespace='listings')),
     path('managers/', include('managers.urls', namespace='managers')),
     path('emails/', include('emails.urls', namespace='emails')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
 ]
 

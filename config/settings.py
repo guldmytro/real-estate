@@ -56,7 +56,11 @@ INSTALLED_APPS = [
     'vacantions.apps.VacantionsConfig',
     'discounts.apps.DiscountsConfig',
     'documents.apps.DocumentsConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 AUTH_USER_MODEL = 'profiles.AdvUser'
 
@@ -140,6 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = Path('static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path('media/')
 
@@ -167,5 +172,8 @@ THUMBNAIL_ALIASES = {
 }
 
 THUMBNAIL_BASEDIR = 'thumbnails'
+
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import News
 from django.core.paginator import Paginator, EmptyPage
+from django.shortcuts import get_object_or_404
 
 
 def news_list(request):
@@ -20,4 +21,8 @@ def news_list(request):
 
 
 def news_detail(request, slug):
-    return render(request, 'news/item.html', {})
+    post = get_object_or_404(News, slug=slug)
+    context = {
+        'post': post
+    }
+    return render(request, 'news/detail.html', context)
