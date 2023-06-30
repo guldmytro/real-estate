@@ -13,7 +13,7 @@
     <div class="breadcrumbs">
         <div class="container">
             <nav class="breadcrumbs-group">
-                <a href="index.html" class="breadcrumbs-group__link">Головна</a>
+                <a href="/" class="breadcrumbs-group__link">Головна</a>
                 <span class="breadcrumbs-group__text">Результати пошуку квартир</span>
             </nav>
         </div>
@@ -43,23 +43,6 @@
 {% endblock %}
 
 {% block scripts %}
-    
-    <script>
-        let objectItems = document.querySelectorAll('.object-item');
-        let viewedListings = localStorage.getItem('viewedListings');
-        if (viewedListings) {
-            viewedListings = JSON.parse(viewedListings);
-        } else {
-            viewedListings = [];
-        }
-        objectItems.forEach(function(item) {
-            var itemId = item.getAttribute('data-id');
-
-            if (viewedListings.includes(itemId)) {
-                item.classList.add('viewed');
-            }
-        });
-    </script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script>
     async function initMap() {
@@ -108,28 +91,4 @@
 
     initMap();
     </script>
-
-<style>
-    .price-tag {
-        position: relative;
-        padding: 0.2em 0.4em;
-        color: var(--color-text-invert);
-        background-color: var(--color-accent);
-        border-radius: 0.5rem;
-        font-size: 1.6rem;
-    }
-
-    .price-tag::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: calc(100% - 1px);
-        border-top: 5px solid var(--color-accent);
-        width: 10px;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-    }
-</style>
 {% endblock %}

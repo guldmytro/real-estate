@@ -21,7 +21,12 @@
             </div>
             <hr>
             <p class="object-item__address line line_2">{{ item.get_address_string }}</p>
-            <button type="button" class="btn btn_invert btn_bordered">Показати телефон</button>
+            <button type="button" class="btn btn_invert btn_bordered show-phones">Показати телефон</button>
+            <ul class="employees-item__phones">
+                {% for phone in item.manager.phones.all %}
+                    <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </li>

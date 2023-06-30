@@ -1,4 +1,5 @@
-from .forms import FILTER_PROPS
+from .models import Listing, Kit
+
 
 def filter_listings(cleaned_data, listings):
     city_id = cleaned_data.get('city')
@@ -63,3 +64,33 @@ def filter_listings(cleaned_data, listings):
         listings = listings.filter(total_floors__lte=floors_to)
         
     return listings
+
+
+def get_similar_listings(listing):
+    city = listing.street.city
+    room_count = listing.room_count
+
+    similar_listings = Listing.active.filter(
+        street__city=city,
+        room_count=room_count,
+    ).exclude(id=listing.id)
+
+
+    try: 
+        kit = Kit.objects.get(attribute__slug='property_23', listing=listing)
+        year_built = int(kit.value)
+
+        min_year_built = year_built - 3
+        max_year_built = year_built + 3
+
+        similar_listings = similar_listings.filter(
+            kits__attribute__slug='property_23',
+            kits__value__gte=str(min_year_built),
+            kits__value__lte=str(max_year_built),
+        )
+    except Kit.DoesNotExist:
+        pass
+
+    similar_listings = similar_listings[:10]
+
+    return similar_listings

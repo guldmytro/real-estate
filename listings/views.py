@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 import json
-from .utils import filter_listings
+from .utils import filter_listings, get_similar_listings
 from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 
@@ -76,6 +76,8 @@ def listings_detail(request, id):
         street_number=listing.street_number, street=listing.street
     )[:10]
 
+    similar_listings = get_similar_listings(listing)
+
     news = News.objects.all()[:8]
 
     # forms
@@ -92,6 +94,7 @@ def listings_detail(request, id):
         'listing_phone_form': listing_phone_form,
         'listing_message_form': listing_message_form,
         'listing_visit_form': listing_visit_form,
+        'similar_listings': similar_listings
     }
 
     return render(request, 'listings/item.html', context)
