@@ -1,4 +1,4 @@
-from .models import Listing, Kit
+from .models import Listing, Kit, City, Street
 
 
 def filter_listings(cleaned_data, listings):
@@ -94,3 +94,19 @@ def get_similar_listings(listing):
     similar_listings = similar_listings[:10]
 
     return similar_listings
+
+
+def modify_get(GET):
+    modified_get = GET.copy()
+    city = modified_get.get('city')
+    street = modified_get.get('street')
+    try:
+        if city:
+            city_obj = City.objects.get(id=city)
+            modified_get['address_input'] = city_obj.title
+        elif street:
+            street_obj = Street.objects.get(id=street)
+            modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title})'
+    except:
+        pass
+    return modified_get

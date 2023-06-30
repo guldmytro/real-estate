@@ -28,3 +28,9 @@ class News(PostModel):
 
     def get_absolute_url(self):
         return reverse('news:detail', kwargs={'slug': self.slug})
+    
+    def get_archive_url(self):
+        return reverse('news:list')
+    
+    def get_archive_label(self):
+        return 'Новини'

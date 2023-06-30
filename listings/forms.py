@@ -1,6 +1,7 @@
 from django import forms
 from .models import RealtyType, Kit
 from django.db.models import Count
+from .models import City, Street
 
 FILTER_PROPS = {
     'repair': 'property_18',

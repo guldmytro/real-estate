@@ -5,6 +5,8 @@ from emails.forms import FeadbackForm
 from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchManager, SellerForm
 from emails.forms import ReviewForm
+from django.http import HttpResponse
+from django.urls import reverse_lazy
 
 
 def about(request):
@@ -32,9 +34,13 @@ def abroad_properties(request):
 def contacts(request):
     feadback_form = FeadbackForm(request.POST)
     page = Contact.objects.get()
+    crumbs = [
+        ('Контакти', reverse_lazy('pages:contacts'))
+    ]
     context = {
         'page': page,
-        'feadback_form': feadback_form
+        'feadback_form': feadback_form,
+        'crumbs': crumbs
     }
     return render(request, 'pages/contacts.html', context)
 
@@ -51,8 +57,12 @@ def course(request):
 
 def pricing(request):
     feadback_form = FeadbackForm(request.POST)
+    crumbs = [
+        ('Вартість послуг', reverse_lazy('pages:pricing'))
+    ]
     context = {
-        'feadback_form': feadback_form
+        'feadback_form': feadback_form,
+        'crumbs': crumbs
     }
     return render(request, 'pages/pricing.html', context)
 
@@ -82,3 +92,7 @@ def seller(request):
         'seller_form': seller_form
     }
     return render(request, 'pages/seller.html', context)
+
+
+def home(request):
+    return HttpResponse('<h1>Домашня сторінка</h1>')

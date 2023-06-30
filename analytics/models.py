@@ -8,5 +8,4 @@ class Analytic(PostModel):
         verbose_name_plural = 'Analytics'
 
     def get_absolute_url(self):
-        return reverse('analytics:detail', kwargs={'slug': self.slug})
-    
+        return reverse('analytics:detail', kwargs={'slug': self.slug})    

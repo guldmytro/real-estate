@@ -108,6 +108,8 @@
                 </div>
             </div>
         </header>
+        {% block extra_main %}{% endblock %}
+        {% include 'sections/breadcrumbs.html' %}
         {% block content %}{% endblock %}
     </div>
     <!-- /.content -->

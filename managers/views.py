@@ -5,6 +5,7 @@ from emails.forms import FeadbackForm, ReviewForm
 from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
+from django.urls import reverse_lazy
 
 POSTS_PER_PAGE = 8
 
@@ -66,14 +67,19 @@ def managers_list(request):
         managers_list = managers_list.annotate(
         similarity=TrigramSimilarity('full_name', cd['full_name']))\
             .filter(similarity__gt=0.15).order_by('-similarity')
-    paginator = Paginator(managers_list, 1)
+    paginator = Paginator(managers_list, 8)
     page_number = request.GET.get('page', 1)
     try:
         managers = paginator.page(page_number)
     except EmptyPage:
         managers = paginator.page(paginator.num_pages)
+
+    crumbs = [
+        ('Фахівці з нерухомості', reverse_lazy('managers:list'))
+    ]
     context = {
         'managers': managers,
-        'search_form': search_form
+        'search_form': search_form,
+        'crumbs': crumbs
     }
     return render(request, 'managers/list.html', context)

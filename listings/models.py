@@ -213,6 +213,9 @@ class City(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('listings:list') + f'?city={self.id}'
 
     class Meta:
         verbose_name = 'City'

@@ -4,20 +4,15 @@
 
 {% block title %}Оголошення{% endblock %}
 
-{% block content %}
+{% block extra_main %}
     <div class="archive-search-form">
         <div class="container">
             {% include 'forms/search.html' %}
         </div>
     </div>
-    <div class="breadcrumbs">
-        <div class="container">
-            <nav class="breadcrumbs-group">
-                <a href="/" class="breadcrumbs-group__link">Головна</a>
-                <span class="breadcrumbs-group__text">Результати пошуку квартир</span>
-            </nav>
-        </div>
-    </div>
+{% endblock %}
+
+{% block content %}
     <section class="archive-objects">
         <div class="container">
             <div class="archive-objects__row">

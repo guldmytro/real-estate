@@ -4,7 +4,7 @@
 
 {% block title %}Наші менеджери{% endblock %}
 
-{% block content %}
+{% block extra_main %}
     <div class="section employees-search">
         <div class="container">
             <form class="employees-search" action="." method="get">
@@ -22,14 +22,9 @@
             </form>
         </div>
     </div>
-    <div class="breadcrumbs">
-        <div class="container">
-            <nav class="breadcrumbs-group">
-                <a href="/" class="breadcrumbs-group__link">Головна</a>
-                <span class="breadcrumbs-group__text">Фахівці з нерухомості</span>
-            </nav>
-        </div>
-    </div>
+{% endblock %}
+
+{% block content %}
     <main class="employees">
         <div class="container">
             <div class="section-header">

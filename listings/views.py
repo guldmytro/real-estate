@@ -10,20 +10,61 @@ from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 import json
-from .utils import filter_listings, get_similar_listings
+from .utils import filter_listings, get_similar_listings, modify_get
 from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
+from django.urls import reverse_lazy
 
 
 
 def listings_list(request):
-    search_form = SearchForm(request.GET)
+    GET = modify_get(request.GET)
+    search_form = SearchForm(GET)
     listings_list = Listing.active.prefetch_related('images').all()
+    crumbs = []
+
+    # Filtering
     if search_form.is_valid():
         cleaned_data = search_form.cleaned_data
+        
+        city = cleaned_data.get('city')
+        street = cleaned_data.get('street')
+        address = cleaned_data.get('address')
+
+        if city:
+            try:
+                city = City.objects.get(id=city)
+                crumb_title = city.title
+            except: 
+                pass
+        if street:
+            try:
+                street = Street.objects.get(id=street)
+                city = street.city
+                crumb_title = f'{street.title} ({city.title})'
+            except: 
+                pass
+        
+        if not city and not street:
+            try:
+                cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
+                cities_with_count = cities_with_count.order_by('-listing_count')
+                city = cities_with_count.first()
+                address = City.title
+                crumb_title = city.title
+            except:
+                pass
+
+        crumbs.append(
+            (f'Оголошення {crumb_title}', reverse_lazy('listings:list'))
+        )
+            
+            
+        cleaned_data['city'] = city
+        cleaned_data['address'] = address
         listings_list = filter_listings(cleaned_data, listings_list)
-    else:
-        print('invalid')
+    
+    # Parsing listing coordinates for GoogleMaps
     coordinates = [{
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
@@ -35,18 +76,21 @@ def listings_list(request):
             })
         } for listing in listings_list]
     
+
+    # Pagination
     paginator = Paginator(listings_list, 6)
     page_number = request.GET.get('page', 1)
     try:
         listings = paginator.page(page_number)
     except EmptyPage:
         listings = paginator.page(paginator.num_pages)
-        
+    
     context = {
         'listings': listings,
         'count': listings_list.count(),
         'coordinates': coordinates,
-        'search_form': search_form
+        'search_form': search_form,
+        'crumbs': crumbs,
     }
     return render(request, 'listings/list.html', context)
 
@@ -56,9 +100,15 @@ def listings_detail(request, id):
         Listing.objects.prefetch_related(
             Prefetch('images'),
             Prefetch('kits__attribute', queryset=Attribute.objects.order_by('-title'))
-        ).select_related('manager'),
+        ).select_related('manager').select_related('street'),
         id=id
     )
+    crumbs = []
+
+    if listing.street:
+        crumbs.append(
+            (f'Оголошення {listing.street.city.title}', listing.street.city.get_absolute_url())
+        )
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
 
@@ -80,6 +130,10 @@ def listings_detail(request, id):
 
     news = News.objects.all()[:8]
 
+    crumbs.append(
+        (listing.title, listing.get_absolute_url())
+    )
+
     # forms
     listing_phone_form = ListingPhoneForm()
     listing_message_form = ListingMessageForm()
@@ -94,7 +148,8 @@ def listings_detail(request, id):
         'listing_phone_form': listing_phone_form,
         'listing_message_form': listing_message_form,
         'listing_visit_form': listing_visit_form,
-        'similar_listings': similar_listings
+        'similar_listings': similar_listings,
+        'crumbs': crumbs
     }
 
     return render(request, 'listings/item.html', context)
