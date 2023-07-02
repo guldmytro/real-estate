@@ -1,0 +1,23 @@
+{% if search_form_simplified %}
+    <section class="map">
+        <div class="container">
+            <form class="map-form" id="map-form" action="{% url 'listings:get_listings_coordinates' %}">
+                <div class="section-header">
+                    <h2 class="section-header__title">Пошук по мапі!</h2>
+                    <p class="section-header__subtitle section-header__subtitle_lighter">Напишіть адресу об'єкту</p>
+                </div>
+                <label class="search-filters__item filter-item">
+                    <div class="suggestions">
+                        <div class="input-wrapper input-wrapper__search">
+                            {{ search_form_simplified.address_input }}
+                        </div>
+                        {{ search_form_simplified.city }}
+                        {{ search_form_simplified.street }}
+                        <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
+                    </div>
+                </label>
+            </form>
+        </div>
+        <div id="clustered-map" style="width:100%;height:100%;"></div>
+    </section>
+{% endif %}

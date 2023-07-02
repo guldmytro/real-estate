@@ -175,3 +175,8 @@ class SearchForm(forms.Form):
 
     class Meta:
         fields = '__all__'
+
+
+class SearchFormSimplified(SearchForm):
+    class Meta:
+        fields = ['address_input', 'city', 'street']

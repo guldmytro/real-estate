@@ -1,4 +1,5 @@
 from .models import Listing, Kit, City, Street
+from django.template.loader import render_to_string
 
 
 def filter_listings(cleaned_data, listings):
@@ -110,3 +111,17 @@ def modify_get(GET):
     except:
         pass
     return modified_get
+
+
+def get_listings_map_data(listings):
+    coordinates = [{
+        'lat': listing.coordinates.y, 
+        'lng': listing.coordinates.x,
+        'price': listing.formated_price(),
+        'content': render_to_string(
+        'listings/components/listing-map-info.html', {
+            'listing': listing, 
+            'year': listing.kits.filter(attribute__slug='property_23')
+            })
+        } for listing in listings]
+    return coordinates

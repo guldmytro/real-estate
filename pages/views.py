@@ -5,8 +5,9 @@ from emails.forms import FeadbackForm
 from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchManager, SellerForm
 from emails.forms import ReviewForm
-from django.http import HttpResponse
 from django.urls import reverse_lazy
+from listings.forms import SearchForm, SearchFormSimplified
+from news.models import News
 
 
 def about(request):
@@ -94,5 +95,27 @@ def seller(request):
     return render(request, 'pages/seller.html', context)
 
 
+def guarantees(request):
+    feadback_form = FeadbackForm(request.POST)
+    reviews = Review.objects.select_related('manager').order_by('-rating')[:10]
+    context = {
+        'feadback_form': feadback_form,
+        'reviews': reviews
+    }
+    return render(request, 'pages/guarantees.html', context)
+
+
 def home(request):
-    return HttpResponse('<h1>Домашня сторінка</h1>')
+    search_form = SearchForm(request.GET)
+    search_form_simplified = SearchFormSimplified()
+    feadback_form = FeadbackForm(request.POST)
+    news = News.objects.order_by('-created')[:10]
+    reviews = Review.objects.select_related('manager').order_by('-rating')[:10]
+    context = {
+        'search_form': search_form,
+        'search_form_simplified': search_form_simplified,
+        'feadback_form': feadback_form,
+        'news': news,
+        'reviews': reviews
+    }
+    return render(request, 'pages/home.html', context)

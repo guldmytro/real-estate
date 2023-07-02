@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import about, abroad_properties, contacts, course, \
-    pricing, reviews, seller, home
+    pricing, reviews, seller, home, guarantees
 
 
 app_name = 'pages'
@@ -11,6 +11,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
     path('course/', course, name='course'),
+    path('guarantees/', guarantees, name='guarantees'),
     path('pricing/', pricing, name='pricing'),
     path('reviews/', reviews, name='reviews'),
     path('seller/', seller, name='seller'),

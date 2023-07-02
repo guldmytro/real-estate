@@ -5,12 +5,11 @@ from .models import Listing, Attribute, City, Street
 from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
-from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
-from .forms import SearchForm
+from .forms import SearchForm, SearchFormSimplified
 from django.contrib.postgres.search import TrigramSimilarity
 import json
-from .utils import filter_listings, get_similar_listings, modify_get
+from .utils import filter_listings, get_similar_listings, modify_get, get_listings_map_data
 from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
@@ -65,16 +64,7 @@ def listings_list(request):
         listings_list = filter_listings(cleaned_data, listings_list)
     
     # Parsing listing coordinates for GoogleMaps
-    coordinates = [{
-        'lat': listing.coordinates.y, 
-        'lng': listing.coordinates.x,
-        'price': listing.formated_price(),
-        'content': render_to_string(
-        'listings/components/listing-map-info.html', {
-            'listing': listing, 
-            'year': listing.kits.filter(attribute__slug='property_23')
-            })
-        } for listing in listings_list]
+    coordinates = get_listings_map_data(listings_list)
     
 
     # Pagination
@@ -185,3 +175,20 @@ def get_address_predictions(request):
         'streets': [{'title': street.title, 'id': street.pk, 
                      'related_city': {'title': street.city.title, 'id': street.city.pk}} for street in streets],
         })
+
+
+
+def get_listings_coordinates(request):
+    search_form_simplified = SearchFormSimplified(request.GET)
+    if search_form_simplified.is_valid():
+        cd = search_form_simplified.cleaned_data
+        city = cd['city']
+        street = cd['street']
+        if city or street:
+            listings_list = Listing.active.prefetch_related('images').all()
+            listings_list = filter_listings(cd, listings_list)
+            
+            # Parsing listing coordinates for GoogleMaps
+            coordinates = get_listings_map_data(listings_list)
+            return JsonResponse({'success': True, 'coordicates': coordinates})    
+    return JsonResponse({'success': False})

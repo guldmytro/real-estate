@@ -275,38 +275,6 @@
             </div>
         </div>
     </section>
-    <section class="stats">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-header__title">Цифри говорять краще за слова</h2>
-            </div>
-            <ul class="stats-group">
-                <li class="stats-item">
-                    <p class="stats-item__val">
-                        <span class="stats-item__count" data-max="840" data-time="1000">0</span>+
-                    </p>
-                    <p class="stats-item__subtitle">Продаємо об’ктів за рік</p>
-                </li>
-                <li class="stats-item">
-                    <p class="stats-item__val">
-                        <span class="stats-item__count" data-max="286" data-time="1000">0</span>
-                    </p>
-                    <p class="stats-item__subtitle">Оформили орендних угод</p>
-                </li>
-                <li class="stats-item">
-                    <p class="stats-item__val">
-                        <span class="stats-item__count" data-max="16" data-time="1000">0</span>
-                    </p>
-                    <p class="stats-item__subtitle">Років працюємо на ринку</p>
-                </li>
-                <li class="stats-item">
-                    <p class="stats-item__val">
-                        <span class="stats-item__count" data-max="1000" data-time="1000">0</span>+
-                    </p>
-                    <p class="stats-item__subtitle">Відгуків задоволенних клієнтів</p>
-                </li>
-            </ul>
-        </div>
-    </section>
+    {% include 'sections/stats.html' %}
     {% include 'sections/feadback.html' %}
 {% endblock %}

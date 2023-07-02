@@ -1,188 +1,190 @@
 {% load static %}
 
-<form id="search-form" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
-    <div class="search-header">
-        <button type="button" class="search-header__btn active">Купити</button>
-        <button type="button" class="search-header__btn">Орендувати</button>
-        <button type="button" class="search-header__btn">Продати</button>
-        <button type="button" class="search-header__btn">Здати в оренду</button>
-        <button type="button" class="search-header__btn">Кредит та іпотека</button>
-        <button type="button" class="search-header__btn">Оцінка</button>
-    </div>
-    <div class="search-filters">
-        <label class="search-filters__item filter-item filter-item_grow">
-            <span class="filter-item__label">
-                {{ search_form.address_input.label }}*
-            </span>
-            <div class="suggestions">
-                <div class="input-wrapper input-wrapper__search">
-                    {{ search_form.address_input }}
-                </div>
-                {{ search_form.city }}
-                {{ search_form.street }}
-                <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
-            </div>
-        </label>
-        <label class="search-filters__item filter-item">
-            <span class="filter-item__label">
-                {{ search_form.realty_type.label }}
-            </span>
-            <div class="select-wrapper">
-                {{ search_form.realty_type }}
-            </div>
-        </label>
-        <div class="search-filters__item filter-item">
-            <span class="filter-item__label">
-                {{ search_form.number_of_rooms.label }}
-            </span>
-            <div class="filter-item__group">
-                {% for choice in search_form.number_of_rooms %}
-                    <label class="radio-group">
-                        {{ choice.tag }}
-                        <span>{{ choice.choice_label }}</span>
-                    </label>
-                {% endfor %}
-            </div>
+{% if search_form %}
+    <form id="search-form" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
+        <div class="search-header">
+            <button type="button" class="search-header__btn active">Купити</button>
+            <button type="button" class="search-header__btn">Орендувати</button>
+            <button type="button" class="search-header__btn">Продати</button>
+            <button type="button" class="search-header__btn">Здати в оренду</button>
+            <button type="button" class="search-header__btn">Кредит та іпотека</button>
+            <button type="button" class="search-header__btn">Оцінка</button>
         </div>
-        <label class="search-filters__item filter-item">
-            <span class="filter-item__label">
-                Вартість ($)
-            </span>
-            <div class="input-wrapper">
-                {{ search_form.min_price }}
-                {{ search_form.max_price }}
+        <div class="search-filters">
+            <label class="search-filters__item filter-item filter-item_grow">
+                <span class="filter-item__label">
+                    {{ search_form.address_input.label }}*
+                </span>
+                <div class="suggestions">
+                    <div class="input-wrapper input-wrapper__search">
+                        {{ search_form.address_input }}
+                    </div>
+                    {{ search_form.city }}
+                    {{ search_form.street }}
+                    <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
+                </div>
+            </label>
+            <label class="search-filters__item filter-item">
+                <span class="filter-item__label">
+                    {{ search_form.realty_type.label }}
+                </span>
+                <div class="select-wrapper">
+                    {{ search_form.realty_type }}
+                </div>
+            </label>
+            <div class="search-filters__item filter-item">
+                <span class="filter-item__label">
+                    {{ search_form.number_of_rooms.label }}
+                </span>
+                <div class="filter-item__group">
+                    {% for choice in search_form.number_of_rooms %}
+                        <label class="radio-group">
+                            {{ choice.tag }}
+                            <span>{{ choice.choice_label }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
             </div>
-        </label>
-    </div>
-    <div class="submit-row">
-        <button type="submit" class="form-search__submit btn btn_primary">
-            <span class="text">Показати</span>
-            <span class="count">({{ count }})</span>
-        </button>
-        <button type="button" class="form-search__advanced-btn btn btn_invert">
-            <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
-            <span>Розширений пошук</span>
-        </button>
-    </div>
-    <div class="active-filters"></div>
-    <div class="additional-fields">
-        <div class="additional-fields-inner">
-            <button type="button" class="btn_search-close">
-                <span></span>
-                <span></span>
+            <label class="search-filters__item filter-item">
+                <span class="filter-item__label">
+                    Вартість ($)
+                </span>
+                <div class="input-wrapper">
+                    {{ search_form.min_price }}
+                    {{ search_form.max_price }}
+                </div>
+            </label>
+        </div>
+        <div class="submit-row">
+            <button type="submit" class="form-search__submit btn btn_primary">
+                <span class="text">Показати</span>
+                <span class="count">({{ count }})</span>
             </button>
-            <div class="additional-fields__section additional-section">
-                <div class="fieldset-group">
-                    <legend class="fieldset-group__legend">Популярне</legend>
-                    <div class="controls-group">
-                        <label class="checkbox-item">
-                            {{ search_form.is_new_building }}
-                            <span>{{ search_form.is_new_building.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.animals }}
-                            <span>{{ search_form.animals.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.furniture }}
-                            <span>{{ search_form.furniture.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.for_students }}
-                            <span>{{ search_form.for_students.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.conditioner }}
-                            <span>{{ search_form.conditioner.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.without_furniture }}
-                            <span>{{ search_form.without_furniture.label }}</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="fieldset-group">
-                    <legend class="fieldset-group__legend">Медіа</legend>
-                    <div class="controls-group">
-                        <label class="checkbox-item">
-                            {{ search_form.with_photo }}
-                            <span>{{ search_form.with_photo.label }}</span>
-                        </label>
-                        <label class="checkbox-item">
-                            {{ search_form.with_video }}
-                            <span>{{ search_form.with_video.label }}</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="fieldset-group">
-                    <legend class="fieldset-group__legend">Дім</legend>
-                    <div class="controls-group">
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                Поверх
-                            </span>
-                            <div class="input-wrapper">
-                                {{ search_form.floor_from }}
-                                {{ search_form.floor_to }}
-                            </div>
-                        </label>
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                Поверхів у домі
-                            </span>
-                            <div class="input-wrapper">
-                                {{ search_form.floors_from }}
-                                {{ search_form.floors_to }}
-                            </div>
-                        </label>
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                {{ search_form.repair.label }}
-                            </span>
-                            <div class="select-wrapper">
-                                {{ search_form.repair }}
-                            </div>
-                        </label>
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                {{ search_form.lift.label }}
-                            </span>
-                            <div class="select-wrapper">
-                                {{ search_form.lift }}
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <div class="fieldset-group">
-                    <legend class="fieldset-group__legend">Двір</legend>
-                    <div class="controls-group">
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                {{ search_form.parking.label }}
-                            </span>
-                            <div class="select-wrapper">
-                                {{ search_form.parking }}
-                            </div>
-                        </label>
-                        <label class="filter-item">
-                            <span class="filter-item__label">
-                                {{ search_form.outside_decorating.label }}
-                            </span>
-                            <div class="select-wrapper">
-                                {{ search_form.outside_decorating }}
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <footer class="additional-fields__footer">
-                <button type="reset" class="btn btn_darken">
-                    <span>Очистити</span>
-                </button>
-                <button type="submit" class="btn btn_primary">
-                    <span class="text">Показати</span>
-                    <span class="count">({{ count }})</span></button>
-            </footer>
+            <button type="button" class="form-search__advanced-btn btn btn_invert">
+                <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
+                <span>Розширений пошук</span>
+            </button>
         </div>
-    </div>
-</form>
+        <div class="active-filters"></div>
+        <div class="additional-fields">
+            <div class="additional-fields-inner">
+                <button type="button" class="btn_search-close">
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="additional-fields__section additional-section">
+                    <div class="fieldset-group">
+                        <legend class="fieldset-group__legend">Популярне</legend>
+                        <div class="controls-group">
+                            <label class="checkbox-item">
+                                {{ search_form.is_new_building }}
+                                <span>{{ search_form.is_new_building.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.animals }}
+                                <span>{{ search_form.animals.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.furniture }}
+                                <span>{{ search_form.furniture.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.for_students }}
+                                <span>{{ search_form.for_students.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.conditioner }}
+                                <span>{{ search_form.conditioner.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.without_furniture }}
+                                <span>{{ search_form.without_furniture.label }}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="fieldset-group">
+                        <legend class="fieldset-group__legend">Медіа</legend>
+                        <div class="controls-group">
+                            <label class="checkbox-item">
+                                {{ search_form.with_photo }}
+                                <span>{{ search_form.with_photo.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.with_video }}
+                                <span>{{ search_form.with_video.label }}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="fieldset-group">
+                        <legend class="fieldset-group__legend">Дім</legend>
+                        <div class="controls-group">
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    Поверх
+                                </span>
+                                <div class="input-wrapper">
+                                    {{ search_form.floor_from }}
+                                    {{ search_form.floor_to }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    Поверхів у домі
+                                </span>
+                                <div class="input-wrapper">
+                                    {{ search_form.floors_from }}
+                                    {{ search_form.floors_to }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.repair.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.repair }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.lift.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.lift }}
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="fieldset-group">
+                        <legend class="fieldset-group__legend">Двір</legend>
+                        <div class="controls-group">
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.parking.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.parking }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.outside_decorating.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.outside_decorating }}
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <footer class="additional-fields__footer">
+                    <button type="reset" class="btn btn_darken">
+                        <span>Очистити</span>
+                    </button>
+                    <button type="submit" class="btn btn_primary">
+                        <span class="text">Показати</span>
+                        <span class="count">({{ count }})</span></button>
+                </footer>
+            </div>
+        </div>
+    </form>
+{% endif %}

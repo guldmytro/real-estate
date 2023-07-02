@@ -347,3 +347,87 @@ class SearchForm {
 }
 
 new SearchForm('#search-form');
+
+
+class MapSearch {
+    constructor(formId) {
+        this.form = document.querySelector(formId);
+        if (this.form) {
+            this.action = this.form.getAttribute('action');
+            this.prediction = new Prediction(this);
+            this.loadGoogleMap();
+        }
+        this.activeFilters = {};
+        this.locations = [];
+    }
+    async mapUpdate() {
+        try {
+            const res = await fetch(`${this.action}?${this.convertFormToQuerySring()}`, {method: 'GET'})
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error('Bad request');
+            });
+            if (res.success === true) {
+                this.locations = res.coordicates;
+                this.initMap();
+            }
+        } catch(e) {
+            console.warn(e);
+        }
+
+    }
+    convertFormToQuerySring() {
+        const formData = new FormData(this.form);
+        const queryString = new URLSearchParams(formData).toString();
+        return queryString;
+    }
+    initMap = async () => {
+        this.form.classList.add('inited');
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        const map = new Map(document.getElementById("clustered-map"), {
+            zoom: 15,
+            maxZoom: 19,
+            mapId: '315229cfc9e14eab',
+            mapTypeControl: false
+        });
+        const infoWindow = new google.maps.InfoWindow({
+            content: "",
+            disableAutoPan: false
+        });
+        const bounds = new google.maps.LatLngBounds();
+        const markers = this.locations.map((position, i) => {
+            const priceTag = document.createElement("div");
+            priceTag.className = "price-tag";
+            priceTag.textContent = position?.price + ' $';
+
+            const advancedMarker = new AdvancedMarkerElement({
+                position,
+                content: priceTag
+            });
+
+            bounds.extend(position);
+
+            advancedMarker.addListener("click", () => {
+                infoWindow.setContent(position?.content);
+                infoWindow.open({
+                    anchor: advancedMarker,
+                    map,
+                });
+            });
+            return advancedMarker;
+        });
+        map.fitBounds(bounds);
+        new markerClusterer.MarkerClusterer({ markers, map });
+    }
+
+    async loadGoogleMap() {
+        this.Map = await google.maps.importLibrary("maps");
+        this.AdvancedMarkerElement = await google.maps.importLibrary("marker");
+    }
+
+}
+
+new MapSearch('#map-form');

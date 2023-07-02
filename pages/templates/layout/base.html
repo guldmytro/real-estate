@@ -20,94 +20,7 @@
 </head>
 <body>
     <div class="content">
-        <header class="header">
-            <div class="header-toper">
-                <div class="container">
-                    <a href="index.html" class="logo accent" aria-label="перейти на головну">
-                        <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
-                    </a>
-                    <div class="header-toper__controls">
-                        <a href="tel:+380322949679" class="link">
-                            <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
-                            <span class="link__text">+38 (032) 294 96 79</span>
-                        </a>
-                        <a href="course.html" class="link">
-                            <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                            <span class="link__text">Наш онлайн курс</span>
-                        </a>
-                        <a href="discount.html" class="link">
-                            <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
-                            <span class="link__text accent">Акції</span>
-                        </a>
-                    </div>
-                    <form class="header-lang">
-                        <select name="lang" id="lang">
-                            <option value="uk">ua</option>
-                            <option value="en">en</option>
-                        </select>
-                    </form>
-                    <a href="{% url 'wishlist:archive' %}" class="wishlist-link" title="Перейти у вибране" aria-label="Перейти у вибране">
-                        <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
-                    </a>
-                    <div class="header-menu">
-                        <button type="button" class="menu-btn" aria-label="відкрити закрити меню">
-                            <span></span>
-                        </button>
-                    </div>
-                    <div class="mobile-menu">
-                        <div class="mobile-menu__inner">
-                            <button class="btn_close mobile-menu__close" type="button" aria-label="Закрити вікно">
-                                <span></span>
-                                <span></span>
-                            </button>
-                            <a href="index.html" class="logo accent" aria-label="перейти на головну">
-                                <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
-                            </a>
-                            <nav class="mobile-nav">
-                                <a class="mobile-nav__link" href="archive-objects.html">Новобудови</a>
-                                <a class="mobile-nav__link" href="archive-objects.html">Квартири</a>
-                                <a class="mobile-nav__link" href="archive-objects.html">Комерція</a>
-                                <a class="mobile-nav__link" href="archive-objects.html">Будинки</a>
-                                <a class="mobile-nav__link" href="archive-objects.html">Земельні ділянки</a>
-                                <a class="mobile-nav__link" href="abroad.html">Нерухомість за кордоном</a>
-                                <a class="mobile-nav__link" href="employees.html">Спеціалісти</a>
-                                <a class="mobile-nav__link" href="archive-analytic.html">Аналітика</a>
-                                <a class="mobile-nav__link" href="contacts.html">Контакти</a>
-                            </nav>
-                            <div class="header-toper__controls">
-                                <a href="tel:+380322949679" class="link">
-                                    <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
-                                    <span class="link__text">+38 (032) 294 96 79</span>
-                                </a>
-                                <a href="course.html" class="link">
-                                    <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                                    <span class="link__text">Наш онлайн курс</span>
-                                </a>
-                                <a href="discount.html" class="link">
-                                    <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
-                                    <span class="link__text accent">Акції</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-bottom">
-                <div class="container">
-                    <nav class="header-nav">
-                        <a class="header-nav__link" href="archive-objects.html">Новобудови</a>
-                        <a class="header-nav__link" href="archive-objects.html">Квартири</a>
-                        <a class="header-nav__link" href="archive-objects.html">Комерція</a>
-                        <a class="header-nav__link" href="archive-objects.html">Будинки</a>
-                        <a class="header-nav__link" href="archive-objects.html">Земельні ділянки</a>
-                        <a class="header-nav__link" href="abroad.html">Нерухомість за кордоном</a>
-                        <a class="header-nav__link" href="employees.html">Спеціалісти</a>
-                        <a class="header-nav__link" href="archive-analytic.html">Аналітика</a>
-                        <a class="header-nav__link" href="contacts.html">Контакти</a>
-                    </nav>
-                </div>
-            </div>
-        </header>
+        {% include 'sections/header.html' %}
         {% block extra_main %}{% endblock %}
         {% include 'sections/breadcrumbs.html' %}
         {% block content %}{% endblock %}
@@ -165,12 +78,6 @@
     </footer>
     {% include 'sections/popup.html' %}
     <script src="{% static 'js/common.js' %}"></script>
-    <script src="{% static 'js/predictions.js' %}" type="module"></script>
-    <script src="{% static 'js/search.js' %}" type="module"></script>
-    <script src="{% static 'js/wishlist.js' %}"></script>
-    <script>
-        const csrfToken = "{{ csrf_token }}";
-    </script>
     {% if site_config.google_api_key %}
         <script>
           (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
@@ -180,7 +87,13 @@
           });
         </script>
     {% endif %}
-
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <script src="{% static 'js/predictions.js' %}" type="module"></script>
+    <script src="{% static 'js/search.js' %}" type="module"></script>
+    <script src="{% static 'js/wishlist.js' %}"></script>
+    <script>
+        const csrfToken = "{{ csrf_token }}";
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

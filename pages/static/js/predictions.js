@@ -23,7 +23,7 @@ export class Prediction {
         this.inputWrapper.classList.remove('valid');
         this.inputWrapper.classList.add('invalid');
         this.resetFields();
-        this.searchForm.update();
+        this.searchForm.update ? this.searchForm.update() : null;
 
         this.debounceTimer = setTimeout(() => {
             this.searchPhrase = this.trimString(value);
@@ -34,7 +34,7 @@ export class Prediction {
                 this.showPredictions = false;
                 this.update();
             }
-            this.searchForm.update();
+            this.searchForm.update ? this.searchForm.update() : null;
         }, 500);
     }
 
@@ -172,6 +172,7 @@ export class Prediction {
             this.input.blur();
         }, 10);
         this.update();
+        this.searchForm?.mapUpdate();
     }
 
     trimString(value) {
@@ -181,13 +182,16 @@ export class Prediction {
     resetFields() {
         this.cityInput.value = '';
         this.streetInput.value = '';
-        delete this.searchForm.activeFilters['city'];
-        delete this.searchForm.activeFilters['street'];
+        try {
+            delete this.searchForm.activeFilters['city'];
+            delete this.searchForm.activeFilters['street'];
+        } catch(e) {
+            console.warn(e);
+        }
         this.update();
     }
 
     update() {
         this.suggestionWrapper.style.display = this.showPredictions ? 'block' : 'none';
     }
-
 }

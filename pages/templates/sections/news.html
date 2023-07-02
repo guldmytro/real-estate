@@ -1,0 +1,14 @@
+{% if news %}
+    <section class="news">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-header__title">Новини</h2>
+            </div>
+            <ul class="post-group post-slider">
+                {% for item in news %}
+                    {% include 'news/archive-item.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endif %}
