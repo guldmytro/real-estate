@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Abroad, Contact, Course
+from .models import About, Abroad, Contact, Course, Home
 from managers.models import Review
 from emails.forms import FeadbackForm
 from django.core.paginator import Paginator, EmptyPage
@@ -106,6 +106,7 @@ def guarantees(request):
 
 
 def home(request):
+    page = Home.objects.get()
     search_form = SearchForm(request.GET)
     search_form_simplified = SearchFormSimplified()
     feadback_form = FeadbackForm(request.POST)
@@ -116,6 +117,7 @@ def home(request):
         'search_form_simplified': search_form_simplified,
         'feadback_form': feadback_form,
         'news': news,
-        'reviews': reviews
+        'reviews': reviews,
+        'page': page
     }
     return render(request, 'pages/home.html', context)

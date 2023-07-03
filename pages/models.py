@@ -1,5 +1,7 @@
 from django.db import models
 from solo.models import SingletonModel
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
 
 
 class About(SingletonModel):
@@ -11,6 +13,9 @@ class About(SingletonModel):
 
     def __str__(self):
         return self.title_1
+
+    def get_absolute_url(self):
+        return reverse('pages:about')
 
     class Meta:
         verbose_name = 'Про нас'
@@ -45,6 +50,9 @@ class Abroad(SingletonModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('pages:abroad_properties')
 
     class Meta:
         verbose_name = 'Нерухомість закордоном'
@@ -95,6 +103,9 @@ class Contact(SingletonModel):
 
     def __str__(self):
         return 'Контакти'
+
+    def get_absolute_url(self):
+        return reverse('pages:contacts')
     
     class Meta:
         verbose_name = 'Контакти'
@@ -107,6 +118,9 @@ class Course(SingletonModel):
 
     def __str__(self):
         return 'Курс'
+
+    def get_absolute_url(self):
+        return reverse('pages:course')
     
     class Meta:
         verbose_name = 'Курс'
@@ -121,7 +135,25 @@ class VacantionPage(SingletonModel):
 
     def __str__(self):
         return 'Вакансії'
+
+    def get_absolute_url(self):
+        return reverse('vacantions:page')
     
     class Meta:
-        verbose_name = 'Вакасії'
-        verbose_name_plural = 'Вакасії'
+        verbose_name = 'Вакансії'
+        verbose_name_plural = 'Вакансії'
+
+
+class Home(SingletonModel):
+    title = models.CharField(max_length=150, verbose_name='Заголовок', null=True, blank=True)
+    about = RichTextUploadingField(verbose_name='Про нас секція', null=True, blank=True)
+    
+    def __str__(self):
+        return 'Головна'
+
+    def get_absolute_url(self):
+        return reverse('pages:home')
+    
+    class Meta:
+        verbose_name = 'Головна'
+        verbose_name_plural = 'Головна'

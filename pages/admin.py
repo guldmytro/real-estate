@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import About, AboutItem, Abroad, AbroadItem,\
-      Contact, Course, VacantionPage
+      Contact, Course, VacantionPage, Home
 from solo.admin import SingletonModelAdmin
-
 
 
 class AboutItemInlineAdmin(admin.TabularInline):
@@ -39,3 +38,8 @@ class CourseAdmin(SingletonModelAdmin):
 @admin.register(VacantionPage)
 class VacantionPageAdmin(SingletonModelAdmin):
     list_display = ['video']
+
+
+@admin.register(Home)
+class HomeAdmin(SingletonModelAdmin):
+    list_display = ['id']
