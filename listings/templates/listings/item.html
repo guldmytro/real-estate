@@ -19,10 +19,14 @@
         <div class="object-row">
             <div class="col object-data">
                 <div id="gallery" class="object-gallery-wrapper">
-                    <div class="object-gallery fotorama" data-width="100%" data-ratio="16/9" data-fit="cover" data-nav="thumbs" data-thumbwidth="128" data-thumbwidth="96" data-allowfullscreen="true">
-                        {% for image in listing.images.all %}
-                            <img src="{{ image.file|thumbnail_url:'large' }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
-                        {% endfor %}
+                    <div class="object-gallery fotorama" data-width="100%" data-ratio="16/9" data-fit="{% if listing.images.count %}cover{% else %}contain{% endif %}" data-nav="thumbs" data-thumbwidth="128" data-thumbwidth="96" data-allowfullscreen="true">
+                        {% if listing.images.count %}
+                            {% for image in listing.images.all %}
+                                <img src="{{ image.file|thumbnail_url:'large' }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
+                            {% endfor %}
+                        {% else %}
+                            <img src="{% static 'img/icon-real-estate.svg' %}" alt="іконка зеленого будинка">
+                        {% endif %}
                     </div>
                     <div class="object-gallery-interactive open-popup" data-popup="popup-listing-map">
                         <img src="{% static 'img/object-map.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">

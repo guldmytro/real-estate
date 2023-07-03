@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{% load static %}
 <li class="object-item"{% if next_page %} data-page="{{ next_page }}"{% endif %} data-id="{{ item.id }}">
     <div class="object-item-inner">
         <a href="{{ item.get_absolute_url }}" class="object-item__thumb">
@@ -6,6 +7,8 @@
             {% if item.images.last %}
                 <img src="{{ item.images.first.file|thumbnail_url:'medium' }}" width="1000" height="667"
                      alt="{{ item.title }}" class="object-item__img" loading="lazy">
+            {% else %}
+                <img src="{% static 'img/icon-real-estate.svg' %}" class="object-item__img fit" alt="іконка зеленого будинка" loading="lazy">
             {% endif  %}
         </a>
         <div class="object-item__content">
