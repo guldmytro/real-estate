@@ -8,11 +8,15 @@
                 <img src="{{ item.images.first.file|thumbnail_url:'medium' }}" width="1000" height="667"
                      alt="{{ item.title }}" class="object-item__img" loading="lazy">
             {% else %}
-                <img src="{% static 'img/icon-real-estate.svg' %}" class="object-item__img fit" alt="іконка зеленого будинка" loading="lazy">
+                <img src="{% static 'img/estate_no_image.png' %}" class="object-item__img" alt="дім" loading="lazy">
             {% endif  %}
         </a>
         <div class="object-item__content">
-            <p class="object-item__fix">Ремонт по дизайну</p>
+            {% for kit in item.kits.all %}
+                {% if kit.attribute.slug == 'property_18' %}
+                    <p class="object-item__fix">{{ kit.value|capfirst }}</p>
+                {% endif %}
+            {% endfor %}
             <div class="object-item__header">
                 <div class="object-item__price">
                     <strong>{{ item.formated_price }}$</strong>
@@ -24,12 +28,14 @@
             </div>
             <hr>
             <p class="object-item__address line line_2">{{ item.get_address_string }}</p>
-            <button type="button" class="btn btn_invert btn_bordered show-phones">Показати телефон</button>
-            <ul class="employees-item__phones">
-                {% for phone in item.manager.phones.all %}
-                    <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
-                {% endfor %}
-            </ul>
+            {% if hide_phones == None %}
+                <button type="button" class="btn btn_invert btn_bordered show-phones">Показати телефон</button>
+                <ul class="employees-item__phones">
+                    {% for phone in item.manager.phones.all %}
+                        <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 </li>

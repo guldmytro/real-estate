@@ -76,7 +76,9 @@
             {% if manager.experience or manager.has_car or manager.about %}
                 <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">Про мене</button>
             {% endif %}
-            <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки {% if reviews_count %}({{ reviews_count }}) {% endif %}</button>
+            {% if reviews_count %}
+                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки {% if reviews_count %}({{ reviews_count }}) {% endif %}</button>
+            {% endif %}
             {% if listings_count %}
                 <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-3">
                     Мої пропозиції ({{ listings_count }})
@@ -116,21 +118,21 @@
                     {% endif %}
                 </div>
             {% endif %}
-            <div id="tab-2" class="prop-tab">
-                {% if reviews.count %}
+            {% if reviews.count %}
+                <div id="tab-2" class="prop-tab">
                     <ul class="reviews-grid">
                         {% for review in reviews %}
                             {% include 'reviews/item.html' %}
                         {% endfor %}
                     </ul>
-                {% endif %}
-                {% if reviews_count > reviews.count %}
-                    <div class="pagination pagination_center">
-                        <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
-                                data-url="{{ request.path }}" data-page="2" data-type="review">Показати більше</button>
-                    </div>
-                {% endif %}
-            </div>
+                    {% if reviews_count > reviews.count %}
+                        <div class="pagination pagination_center">
+                            <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
+                                    data-url="{{ request.path }}" data-page="2" data-type="review">Показати більше</button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
             {% if listings_count %}
                 <div id="tab-3" class="prop-tab">
                     <ul class="emplyees-objects">
@@ -170,7 +172,7 @@
                 type: type
             },
             success: (res) => {
-                const items = $(res).find('li');
+                const items = $(res).find('.object-item');
                 const nextPage = items.attr('data-page');
                 itemsDestination.append(items);
                 if (!nextPage) {

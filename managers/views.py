@@ -28,6 +28,7 @@ def managers_detail(request, id):
         'manager': manager,
         'listings': listings,
         'listings_count': listings_count,
+        'hide_phones': True,
         'reviews': reviews,
         'reviews_count': reviews_count,
         'feadback_form': feadback_form,
@@ -80,6 +81,7 @@ def managers_list(request):
     context = {
         'managers': managers,
         'search_form': search_form,
+        'hide_phones': True,
         'crumbs': crumbs
     }
     return render(request, 'managers/list.html', context)

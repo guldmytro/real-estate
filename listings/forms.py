@@ -1,16 +1,24 @@
 from django import forms
-from .models import RealtyType, Kit
+from .models import RealtyType, Kit, Deal
 from django.db.models import Count
-from .models import City, Street
 
 FILTER_PROPS = {
     'repair': 'property_18',
-    'lift': 'property_100',
-    'parking': 'property_101',
-    'outside_decorating': 'property_102'
+    'planning': 'property_20',
+    'listing_class': 'property_21',
+    'windows': 'property_25',
+    'floor': 'property_28',
+    'enter': 'property_29',
 }
 
+
 class SearchForm(forms.Form):
+    deal = forms.ModelChoiceField(
+        label="Тип угоди",
+        queryset=Deal.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0),
+        required=False,
+        widget=forms.widgets.RadioSelect(attrs={'class': 'radio', 'data-prefix': 'Тип угоди:'})
+    )
     address_input = forms.CharField(label='Адреса', required=False, 
                                    widget=forms.widgets.TextInput(
                                        attrs={
@@ -138,39 +146,61 @@ class SearchForm(forms.Form):
         label='Ремонт',
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['repair'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0),
+            .filter(listing_count__gt=0).order_by('value'),
         empty_label='Вибрати',
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Ремонт:'})
     )
-    lift = forms.ModelChoiceField(
-        label='Ліфт',
-        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['lift'])
-            .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0),
+
+    planning = forms.ModelChoiceField(
+        label='Планування',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['planning'])
+        .annotate(listing_count=Count('listing'))
+        .filter(listing_count__gt=0).order_by('value'),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Ліфт:'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Планування:'})
+    )
+
+    listing_class = forms.ModelChoiceField(
+        label='Клас оселі',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['listing_class'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0).order_by('value'),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Клас оселі:'})
+    )
+
+    floor = forms.ModelChoiceField(
+        label='Перекриття',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['floor'])
+        .annotate(listing_count=Count('listing'))
+        .filter(listing_count__gt=0).order_by('value'),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Перекриття:'})
+    )
+
+    windows = forms.ModelChoiceField(
+        label='Вікна виходять',
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['windows'])
+            .annotate(listing_count=Count('listing'))
+            .filter(listing_count__gt=0).order_by('value'),
+        empty_label='Вибрати',
+        required=False,
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Вікна виходять:'})
     )
 
     # Outside
-    parking = forms.ModelChoiceField(
-        label='Парковка',
-        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['parking'])
+    enter = forms.ModelChoiceField(
+        label="Під'їзд / вхід",
+        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['enter'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0),
+            .filter(listing_count__gt=0).order_by('value'),
         empty_label='Вибрати',
         required=False,
-        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Парковка:'})
-    )
-    outside_decorating = forms.ModelChoiceField(
-        label='Благоустрій двору',
-        queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['outside_decorating'])
-            .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0),
-        empty_label='Вибрати',
-        required=False,
-        widget=forms.Select(attrs={'class': 'select', 'data-prefix': 'Благоустрій двору:'})
+        widget=forms.Select(attrs={'class': 'select', 'data-prefix': "Під'їзд / вхід:"})
     )
 
     class Meta:

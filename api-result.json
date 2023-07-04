@@ -1,0 +1,970 @@
+[
+    {
+        "id": "1",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "1",
+        "title": "Продам 3-х комнатную метро Масельского",
+        "description": "Продам с 3- комнатную квартиру 11/12, чешка, не торцевая. Общая 63,8 ( перепланировка в студию), 2 балкона. Свежий ремонт январь-февраль 2022 года (свежие фото по запросу). Сделано внешнее утепление стен, пол ( линолеум Таркет - премиум сегмент), на стенах 3D панели + жидкие обои, обои, новые натяжные потолки, ванная в испанской плитке. Квартира продаётся со всем наполнением ( новая кухня (белый матовый фасад), плазма 50 LG, новый холодильник Gorenje, бойлер Gorenje 80., мебель ( 3 шкафа купе, новый диван 4,0.1,6.), тумбы. Кровать + матрас (Мемори) размер 2,0.2,1. - все новое, стиральная машина LG. Развитая инфраструктура ( супермаркет, аптека, 2 школы, детский сад. До метро Масельского 5 минут пешком.",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Олексіївка",
+            "street": "Сумская",
+            "house_num": "130",
+            "map_lat": "50.0187961",
+            "map_lng": "36.251269387017",
+            "landmark": "626",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Алексеевка",
+            "street_ru": "Сумская"
+        },
+        "total_floors": "12",
+        "floor": "11",
+        "area_total": "64",
+        "area_living": "30",
+        "area_kitchen": "6",
+        "room_count": "3",
+        "newbuilding_name": "Urban One Sumskaya",
+        "price": "51800",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/a12e058738101c7b38da780a11da0ff6.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/633398f75fd369484523e62c6bc81763.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/e19e615e426e450331604d17ae27eda5.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/881775755302ce31ba1e20c98c0282fc.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/b1766eed9a8e67a7a6adec186b529963.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/4cf37fac86e7dbe8481e7f1d6729f74c.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/099e7b3e95a0995936fde8ad70cba5bd.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Есть"
+            },
+            {
+                "id": "property_11",
+                "label": "Высота потолков",
+                "value": "3"
+            },
+            {
+                "id": "property_16",
+                "label": "Количество спален",
+                "value": "1"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "капитальный ремонт"
+            },
+            {
+                "id": "property_19",
+                "label": "Количество санузлов",
+                "value": "1"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "панельный дом"
+            },
+            {
+                "id": "property_21",
+                "label": "Класс жилья",
+                "value": "комфорт-класс"
+            },
+            {
+                "id": "property_22",
+                "label": "Схема комнат",
+                "value": "двухуровневая"
+            },
+            {
+                "id": "property_23",
+                "label": "Год постройки",
+                "value": "2022"
+            },
+            {
+                "id": "property_24",
+                "label": "Количество балконов",
+                "value": "1"
+            },
+            {
+                "id": "property_25",
+                "label": "Окна выходят",
+                "value": "на улицу"
+            },
+            {
+                "id": "property_27",
+                "label": "Собственность",
+                "value": "частная"
+            },
+            {
+                "id": "property_28",
+                "label": "Перекрытия",
+                "value": "железобетон"
+            },
+            {
+                "id": "property_29",
+                "label": "Подъезд вход",
+                "value": "вход со двора"
+            },
+            {
+                "id": "property_30",
+                "label": "Сантехника",
+                "value": "импортная"
+            },
+            {
+                "id": "property_32",
+                "label": "Целевое назначение",
+                "value": "под аренду"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Так"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "16 Mar 2023"
+            },
+            {
+                "id": "property_71",
+                "label": "Ссылка на видео",
+                "value": "https://www.youtube.com/watch?v=KJwYBJMSbPI"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            },
+            {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Так"
+            },
+            {
+                "id": "property_83",
+                "label": "Нужен опекунский",
+                "value": "Ні"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-01-13T16:18:46+02:00",
+        "updated_at": "2023-07-04T14:05:03+03:00"
+    },
+    {
+        "id": "4",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "4",
+        "title": "Продам однокомнатную квартиру в ЖК Птичка Документы.Не студия.L",
+        "description": "Продам реальную лучшую однокомнатную квартир с качественным ремонтом в жилом комплексе ЖК \"Птичка\".\nДокументы получены, готова к заселению и быстрой сделке.\nКвартира не торец ,новый ремонт никто не проживал.\nОбщая площадь 35.222, расположена на 2 этаже девятиэтажного дома, нет привязки к лифту.\nОснащена встроенной кухней , техникой.\nФормат квартиры кухня студия , отдельная спальня, санузел, коридор. На кухне выход на лоджию.\nДом отапливается, заселён, коммуникации действующие.\nЛучший вариант в новострое ЖК Птичка. Продается с документами сделка в любое время ,когда вам удобно.\nВсё необходимое в пешей доступноти, метро Академика Павлова, транспорт, рынок, аптеки.\nЗвоните, показ по договорённости.",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Московський",
+            "district": "Салтівка",
+            "street": "Академика Павлова",
+            "house_num": "36",
+            "map_lat": "49.9876957",
+            "map_lng": "36.283169262821",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Московский",
+            "district_ru": "Салтовка",
+            "street_ru": "Академика Павлова"
+        },
+        "total_floors": "9",
+        "floor": "2",
+        "area_total": "35",
+        "area_kitchen": "12",
+        "room_count": "1",
+        "price": "37000",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/b9a031211d09c826d7c0c1b1f56c196b.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/7b289b887e0c16e7f54aab807b5e461c.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/13518342a02d9d5b13a6913c5306d7f8.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/217e1aad5bdd7187f5f832e808bcc235.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/22bbd31bbe4c7b34223e816e49be7e0a.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/cc3bf0d8b309cd7e08f8bb54b446f988.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/63ede5392c0702da23da8d3b285f06b9.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "нестандартная планировка"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "tags": "",
+        "created_at": "2023-01-17T16:56:51+02:00",
+        "updated_at": "2023-03-17T00:12:33+02:00"
+    },
+    {
+        "id": "5",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "5",
+        "title": "Продажа 2к квартиры 111 кв. м на ул. Ярослава Мудрого 30а",
+        "description": "В Центре! Возле метро Пушкинская! Продам просторную 2-х комнатную квартиру в элитном доме. Светлая, чистая, теплая и ухоженая квартира обшей площадью 111м2. Есть парко место на два авто.\nВидовая панорамная квартира 10 этаж, южная сторона. Сверху еще есть тех. этаж.\nКаркас монолитный бетон, стены с утеплением по фасаду.\nБольшой холл, большая гостиная, комнаты все раздельные. Квартира оснащена кухонной и жилой мебелью, с удобными шкафами купе. Есть вся необходимая бытовая техника для жизни. Установлены все коммунальные счетчики.\nЗакрытая придомовая территория. Дом охраняется, есть видеонаблюдение, подземный паркинг. Интеллигентные соседи.\nНа первом этаже дома продуктовый маркет.\nРядом вход в метро Пушкинская, остановка городского транспорта, магазины, кафе, зеленая зона отдыха в близкой пешей доступности.\nЗвоните в любое время, Сергей",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Київський",
+            "district": "Нагірний",
+            "street": null,
+            "house_num": "30а",
+            "map_lat": "49.9923181",
+            "map_lng": "36.2310146",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Киевский",
+            "district_ru": "Нагорный"
+        },
+        "total_floors": "10",
+        "floor": "10",
+        "area_total": "111",
+        "area_living": "55",
+        "area_kitchen": "20",
+        "room_count": "2",
+        "price": "149900",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/c1a5c031c4af4a99a258328703badb4d.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/e2097ba530327ee46c6d534a311a7b77.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/8fd91497b08b716b18818b8a97e1addf.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/1805f9c7d94f18ff3bc85290791875db.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/907ef01b7de0b201c77cc4839a70bffc.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/b181a3522eccfbfc8b4b4743514117d4.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/01/a1a6b9d91d18a43d2ad7e3e426356869.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "22 Jan 2023"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-01-22T22:31:51+02:00",
+        "updated_at": "2023-01-22T23:40:13+02:00"
+    },
+    {
+        "id": "27",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "27",
+        "title": "Харьков, Салтовский р-н Гарибальди ул., 3",
+        "description": "Продаю 2к. квартиру улучшенной планировки на Салтовке!\nДвухкомнатная квартира улучшенной планировки с кухней посредине! Комнаты раздельные, большая кухня и просторная лоджия. В квартире капитальный ремонт, остаётся встроенная мебель и техника. Рядом рынок, остановка, супермаркет \"Класс\". До метро Студенческая 15 минут маршруткой!",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Московський",
+            "district": "Салтівка",
+            "street": "Гарибальди",
+            "house_num": "3",
+            "map_lat": "50.0041223",
+            "map_lng": "36.350490737427",
+            "landmark": "606",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Московский",
+            "district_ru": "Салтовка",
+            "street_ru": "Гарибальди"
+        },
+        "total_floors": "9",
+        "floor": "7",
+        "area_total": "55",
+        "area_living": "32",
+        "area_kitchen": "8",
+        "room_count": "2",
+        "price": "42600",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/6ef14745a0b3dc1adffc0b17a08c45fc.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/568b9e2a1aa4742392795e7d1c589003.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/9607b0863299b0e1db8efdb13c1b7303.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/920636ec6bf6ebdceb8f02ee8290c314.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "косметический ремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "чешка"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "8 May 2023"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "продает другое АН"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-05-02T16:40:02+03:00",
+        "updated_at": "2023-05-09T00:32:00+03:00"
+    },
+    {
+        "id": "28",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "28",
+        "title": "Продажа / Квартира / Шевченковский, Киевский, Харьков",
+        "description": "Продается квартира в ЖК Воробьевы Горы 7. Комплекс Располоэен в 7 минутах от метро. В окружности вся доступная инфраструктура и весь необходимый транспорт. Дом находиться на закрытой территории, в комплексе ведется видео наблюдение есть свое парко место, так же во дворе детская площадка. Квартира расположена на 5 этаже 7 этажного дома. оснащена квартира всей необходимой мебелью и техникой. При продаже останется всею.\nОтличное предложение как для молодой пары так и под арендный бизнес.\nЗа более детальной информацией напирайте по номеру указанному в объявлении",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Київський",
+            "district": "Журавлівка",
+            "street": "Шевченковский",
+            "house_num": "36",
+            "map_lat": "50.0117079",
+            "map_lng": "36.306087071683",
+            "apartment": "181",
+            "landmark": "м. Академика Павлова",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Киевский",
+            "district_ru": "Журавлевка",
+            "street_ru": "Шевченковский"
+        },
+        "total_floors": "7",
+        "floor": "5",
+        "area_total": "19",
+        "area_living": "9",
+        "area_kitchen": "5",
+        "room_count": "1",
+        "newbuilding_name": "ЖК Воробйові гори",
+        "price": "17000",
+        "images": [
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/36e996a5bdcefa7f505dde2bead01e27.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/b14a38a1791f95e1939fc7c617482d5f.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/2b61c6a3ab1469b3de2985bd64eec31a.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/62dee2e4a0a301f28719ceac5c918814.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/bce07f301da504664de3d55f6cc416bb.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/0db9121f5e3c6d4bc83724f437380787.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/3ca69a8c7b9613994174e86617174725.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/e046ce3e03ccb7469a6063b35f399f8d.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/65cd405d8ef82f4e0713765e27a217bc.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/5fc045d36862dfedf4e465ace7cbde05.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/2e81db6168ff701826de8d5bdcecbb80.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/97386fb23d94cad1d339651c699c517d.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/836e0f4f0baba17b3bb48538db8c3d2f.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Нет"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "евроремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "гостинка"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Ні"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "12 Jun 2023"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            },
+            {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Ні"
+            },
+            {
+                "id": "property_83",
+                "label": "Нужен опекунский",
+                "value": "Ні"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-12T11:43:23+03:00",
+        "updated_at": "2023-06-12T13:36:51+03:00"
+    },
+    {
+        "id": "29",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "29",
+        "title": "Продажа / Квартира / Сумская, Алексеевка, Харьков",
+        "description": "ровыалолорлрплолпоклдопл",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Олексіївка",
+            "street": "Сумская",
+            "house_num": "130",
+            "map_lat": "50.0187961",
+            "map_lng": "36.251269387017",
+            "landmark": "класс",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Алексеевка",
+            "street_ru": "Сумская"
+        },
+        "total_floors": "9",
+        "floor": "2",
+        "area_total": "55",
+        "area_living": "34",
+        "area_kitchen": "8",
+        "room_count": "2",
+        "newbuilding_name": "Urban One Sumskaya",
+        "price": "440000",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Есть"
+            },
+            {
+                "id": "property_16",
+                "label": "Количество спален",
+                "value": "2"
+            },
+            {
+                "id": "property_17",
+                "label": "Материал стен",
+                "value": "панель"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "без ремонта"
+            },
+            {
+                "id": "property_19",
+                "label": "Количество санузлов",
+                "value": "2"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "хрущевка"
+            },
+            {
+                "id": "property_22",
+                "label": "Схема комнат",
+                "value": "смежная"
+            },
+            {
+                "id": "property_23",
+                "label": "Год постройки",
+                "value": "20002"
+            },
+            {
+                "id": "property_25",
+                "label": "Окна выходят",
+                "value": "во двор"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Так"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "продает другое АН"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:02:21+03:00",
+        "updated_at": "2023-06-29T23:02:21+03:00"
+    },
+    {
+        "id": "30",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "30",
+        "title": "сдам 1ком",
+        "description": null,
+        "category": "Житлова нерухомість",
+        "realty_type": "Кімната",
+        "deal": "Оренда",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Київський",
+            "district": "Жуковського",
+            "street": "асирономическая",
+            "house_num": "8",
+            "map_lat": "49.9923181",
+            "map_lng": "36.2310146",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Киевский",
+            "district_ru": "Жуковского"
+        },
+        "total_floors": "9",
+        "floor": "2",
+        "area_total": "12",
+        "area_living": "12",
+        "area_kitchen": "6",
+        "room_count": "1",
+        "price": "5000",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Есть"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "капитальный ремонт"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:05:47+03:00",
+        "updated_at": "2023-06-29T23:05:47+03:00"
+    },
+    {
+        "id": "31",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "31",
+        "title": "сдам 1ком",
+        "description": "озщекщещпрешршекр",
+        "category": "Житлова нерухомість",
+        "realty_type": "Будинок",
+        "deal": "Оренда",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Павлівка",
+            "street": "Астрономическая ул.",
+            "house_num": "12",
+            "map_lat": "50.04998115",
+            "map_lng": "36.292908052651",
+            "landmark": "чудо",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Павловка"
+        },
+        "total_floors": "4",
+        "area_total": "58",
+        "area_living": "40",
+        "area_kitchen": "9",
+        "area_land": "12",
+        "room_count": "3",
+        "price": "34000",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Возможность газификации"
+            },
+            {
+                "id": "property_7",
+                "label": "Тип дома",
+                "value": "Коттедж"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "косметический ремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "хрущевка"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Ні"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:11:06+03:00",
+        "updated_at": "2023-06-29T23:11:06+03:00"
+    },
+    {
+        "id": "32",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "32",
+        "title": "Продажа / Комната / Квитки-Основьяненко, Госпром, Харьков",
+        "description": null,
+        "category": "Житлова нерухомість",
+        "realty_type": "Кімната",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Держпром",
+            "street": "Квитки-Основьяненко",
+            "house_num": "14",
+            "map_lat": "49.98847105",
+            "map_lng": "36.231201575142",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Госпром",
+            "street_ru": "Квитки-Основьяненко"
+        },
+        "total_floors": "9",
+        "floor": "5",
+        "area_total": "45",
+        "area_living": "24",
+        "area_kitchen": "9",
+        "room_count": "1",
+        "newbuilding_name": "ЖД Квітка",
+        "price": "23",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Нет"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "капитальный ремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "свободная планировка"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Так"
+            },
+            {
+                "id": "property_71",
+                "label": "Ссылка на видео",
+                "value": "ккеее"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:14:22+03:00",
+        "updated_at": "2023-06-29T23:14:22+03:00"
+    },
+    {
+        "id": "33",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "33",
+        "title": "куцкцууц",
+        "description": "5ш5зшг560шг065щг0щ56",
+        "category": "Земельні ділянки",
+        "realty_type": "Земля під інд. будівництво",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Павлове Поле",
+            "street": null,
+            "house_num": null,
+            "map_lat": "49.9923181",
+            "map_lng": "36.2310146",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Павлово Поле"
+        },
+        "area_total": "12",
+        "price": "25000",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Есть"
+            },
+            {
+                "id": "property_32",
+                "label": "Целевое назначение",
+                "value": "под продажу"
+            },
+            {
+                "id": "property_71",
+                "label": "Ссылка на видео",
+                "value": "пере"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            },
+            {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Ні"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:18:40+03:00",
+        "updated_at": "2023-06-29T23:18:40+03:00"
+    },
+    {
+        "id": "34",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "34",
+        "title": "Продажа / Офис / Сумская, Павловка, Харьков",
+        "description": "олрпшгшщгещегрще",
+        "category": "Комерційна нерухомість",
+        "realty_type": "Офіс",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Шевченківський",
+            "district": "Павлівка",
+            "street": "Сумская",
+            "house_num": "130",
+            "map_lat": "50.0187961",
+            "map_lng": "36.251269387017",
+            "landmark": "парк горького",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Шевченковский",
+            "district_ru": "Павловка",
+            "street_ru": "Сумская"
+        },
+        "total_floors": "9",
+        "floor": "1",
+        "area_total": "350",
+        "area_land": "12",
+        "room_count": "4",
+        "newbuilding_name": "Urban One Sumskaya",
+        "price": "23000",
+        "images": [],
+        "properties": [
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "капитальный ремонт"
+            },
+            {
+                "id": "property_33",
+                "label": "Тип здания",
+                "value": "торговый центр"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Так"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "ankontrakt2012@gmail.com",
+            "name": "Яровой Сергей Александрович",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f8dd183b5865647aafc7b959f324bb68.jpg",
+            "phones": [
+                "0504007182"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-06-29T23:26:40+03:00",
+        "updated_at": "2023-06-29T23:26:40+03:00"
+    }
+]

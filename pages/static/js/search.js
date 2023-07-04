@@ -15,7 +15,7 @@ class SearchForm {
             this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
             this.activeFilters = this.initFiltes();
             this.countUrl = this.form.getAttribute('data-count');
-            this.listingsCount = null;
+            this.listingsCount = parseInt(this.form.getAttribute('data-initial-count'), 10);
             this.initEvents();
             this.updateActiveFilters();
             this.update();
@@ -194,6 +194,7 @@ class SearchForm {
         this.activeFiltersContainer.innerHTML = '';
         const filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
+            if (key === 'deal') continue;
             const filterTag = `
             <div class="active-filters__item">
                 <span class="active-filters__label">${filter.label}</span>
@@ -213,7 +214,8 @@ class SearchForm {
                 }
             });
         });
-        this.activeFiltersContainer.style.display = filtersCount ? 'flex' : 'none';
+        this.activeFiltersContainer.style.display = filtersCount > 1 ||
+                (filtersCount === 1 && !this.activeFilters['deal']) ? 'flex' : 'none';
         filtersCount > 3 ? (this.addMoreBtn(filtersCount - 3), this.addClearBtn()) : null;
         this.getCount();
     }

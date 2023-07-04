@@ -5,11 +5,15 @@ import xml.etree.ElementTree as ET
 import json
 import re
 from django.utils.html import strip_tags
-from listings.models import Listing, Category, RealtyType, \
+from listings.models import Listing, Category, RealtyType, Deal, \
     Image, Kit, Attribute, Country, City, Street
 from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
 from slugify import slugify
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+
+validate_url = URLValidator()
 
 
 config = SiteConfiguration.objects.get()
@@ -20,7 +24,7 @@ GOOGLE_API_KEY = config.google_api_key
 class Command(BaseCommand):
     help = 'Update listings from Feed API'
 
-    def handle_from_api(self, *args, **options):
+    def handle(self, *args, **options):
         response = requests.get(CRM_API)
 
         # Bad request
@@ -34,11 +38,11 @@ class Command(BaseCommand):
         items = []
         for item in root:
             items.append(self.parse_item(item))
-        with open('result.json', 'w', encoding='utf-8') as json_file:
+        with open('api-result.json', 'w', encoding='utf-8') as json_file:
             json.dump(items, json_file, indent=4, ensure_ascii=False)
         self.update_models(items)
 
-    def handle(self, *args, **options):
+    def handle_temp(self, *args, **options):
         with open('result.json', encoding='utf-8') as json_file:
             items = json.load(json_file)
             json_file.close()
@@ -184,8 +188,9 @@ class Command(BaseCommand):
     def update_models(self, items):
         for data in items:
             # Create or update Category and RealtyType
-            category, _ = Category.objects.get_or_create(title=data['category'], slug=slugify(data['category'], allow_unicode=True))
+            category = self.get_category(data.get('realty_type', False))
             realty_type = self.get_realty_type(data.get('realty_type', False))
+            deal = self.get_deal(data.get('deal', False))
 
             # Create Listing object
             listing, _ = Listing.objects.get_or_create(id=int(data['id']))
@@ -202,6 +207,7 @@ class Command(BaseCommand):
             listing.price = int(data.get('price', '0'))
             listing.category = category
             listing.realty_type = realty_type
+            listing.deal = deal
 
             lng = float(data['location']['map_lng'])
             lat = float(data['location']['map_lat'])
@@ -243,14 +249,26 @@ class Command(BaseCommand):
                 if image.image_url not in data['images']:
                     image.delete()
 
+            # Clear all kits
+            listing.kits.clear()
             # Create Kits (Attributes)
             for attribute_data in data['properties']:
                 if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
                     attribute, _ = Attribute.objects.get_or_create(slug=attribute_data['id'], defaults={
-                        'title': attribute_data['label'], 
+                        'title': attribute_data['label'],
                     })
-                    kit, _ = Kit.objects.get_or_create(attribute=attribute, value=attribute_data['value'])
+                    kit, created = Kit.objects.get_or_create(attribute=attribute, value=attribute_data['value'])
+                    if created:
+                        kit.save()
                     kit.listing.add(listing)
+                elif attribute_data['id'] == 'property_71':
+                    try:
+                        validate_url(attribute_data['value'])
+                        listing.video_url = attribute_data['value']
+                        listing.save()
+                    except ValidationError:
+                        pass
+
             # Update listing status
             listing_ids = Listing.objects.values_list('id', flat=True)
             api_ids = {item['id'] for item in items}
@@ -274,9 +292,22 @@ class Command(BaseCommand):
 
         return street
 
+    def get_category(self, category):
+        if category:
+            category, _ = Category.objects.get_or_create(slug=slugify(category, allow_unicode=True),
+                                                         defaults={'title': category})
+            return category
+        return None
+
     def get_realty_type(self, realty):
         if realty:
             realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=True), 
                                                               defaults={'title': realty})
             return realty_type
-        return False
+        return None
+
+    def get_deal(self, deal):
+        if deal:
+            deal, _ = Deal.objects.get_or_create(slug=slugify(deal, allow_unicode=True), defaults={'title': deal})
+            return deal
+        return None

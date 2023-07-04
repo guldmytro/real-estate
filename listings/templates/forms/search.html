@@ -1,10 +1,20 @@
 {% load static %}
 
 {% if search_form %}
-    <form id="search-form" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
+    <form id="search-form" data-initial-count="{{ count }}" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
         <div class="search-header">
-            <button type="button" class="search-header__btn active">Купити</button>
-            <button type="button" class="search-header__btn">Орендувати</button>
+            {% for choice in search_form.deal %}
+                <label class="deal-type">
+                    {{ choice.tag }}
+                    <div class="search-header__btn">
+                        {% if choice.choice_label == 'Продаж' %}
+                            Купити
+                        {% else %}
+                            Орендувати
+                        {% endif %}
+                    </div>
+                </label>
+            {% endfor %}
             <button type="button" class="search-header__btn">Продати</button>
             <button type="button" class="search-header__btn">Здати в оренду</button>
             <button type="button" class="search-header__btn">Кредит та іпотека</button>
@@ -74,35 +84,6 @@
                 </button>
                 <div class="additional-fields__section additional-section">
                     <div class="fieldset-group">
-                        <legend class="fieldset-group__legend">Популярне</legend>
-                        <div class="controls-group">
-                            <label class="checkbox-item">
-                                {{ search_form.is_new_building }}
-                                <span>{{ search_form.is_new_building.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.animals }}
-                                <span>{{ search_form.animals.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.furniture }}
-                                <span>{{ search_form.furniture.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.for_students }}
-                                <span>{{ search_form.for_students.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.conditioner }}
-                                <span>{{ search_form.conditioner.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.without_furniture }}
-                                <span>{{ search_form.without_furniture.label }}</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="fieldset-group">
                         <legend class="fieldset-group__legend">Медіа</legend>
                         <div class="controls-group">
                             <label class="checkbox-item">
@@ -146,10 +127,34 @@
                             </label>
                             <label class="filter-item">
                                 <span class="filter-item__label">
-                                    {{ search_form.lift.label }}
+                                    {{ search_form.planning.label }}
                                 </span>
                                 <div class="select-wrapper">
-                                    {{ search_form.lift }}
+                                    {{ search_form.planning }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.listing_class.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.listing_class }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.floor.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.floor }}
+                                </div>
+                            </label>
+                            <label class="filter-item">
+                                <span class="filter-item__label">
+                                    {{ search_form.windows.label }}
+                                </span>
+                                <div class="select-wrapper">
+                                    {{ search_form.windows }}
                                 </div>
                             </label>
                         </div>
@@ -159,18 +164,10 @@
                         <div class="controls-group">
                             <label class="filter-item">
                                 <span class="filter-item__label">
-                                    {{ search_form.parking.label }}
+                                    {{ search_form.enter.label }}
                                 </span>
                                 <div class="select-wrapper">
-                                    {{ search_form.parking }}
-                                </div>
-                            </label>
-                            <label class="filter-item">
-                                <span class="filter-item__label">
-                                    {{ search_form.outside_decorating.label }}
-                                </span>
-                                <div class="select-wrapper">
-                                    {{ search_form.outside_decorating }}
+                                    {{ search_form.enter }}
                                 </div>
                             </label>
                         </div>

@@ -1,8 +1,10 @@
 from .models import Listing, Kit, City, Street
 from django.template.loader import render_to_string
+from django.db.models import Count
 
 
 def filter_listings(cleaned_data, listings):
+    deal = cleaned_data.get('deal')
     city_id = cleaned_data.get('city')
     street_id = cleaned_data.get('street')
     number_of_rooms = cleaned_data.get('number_of_rooms')
@@ -11,13 +13,21 @@ def filter_listings(cleaned_data, listings):
     realty_type = cleaned_data.get('realty_type')
 
     repair = cleaned_data.get('repair')
-    lift = cleaned_data.get('lift')
-    parking = cleaned_data.get('parking')
+    planning = cleaned_data.get('planning')
+    listing_class = cleaned_data.get('listing_class')
+    floor = cleaned_data.get('floor')
+    windows = cleaned_data.get('windows')
+    enter = cleaned_data.get('enter')
     outside_decorating = cleaned_data.get('outside_decorating')
     floor_from = cleaned_data.get('floor_from')
     floor_to = cleaned_data.get('floor_to')
     floors_from = cleaned_data.get('floors_from')
     floors_to = cleaned_data.get('floors_to')
+    with_photo = cleaned_data.get('with_photo')
+    with_video = cleaned_data.get('with_video')
+
+    if deal:
+        listings = listings.filter(deal=deal)
 
     if street_id:
         listings = listings.filter(street_id=street_id)
@@ -43,11 +53,20 @@ def filter_listings(cleaned_data, listings):
     if repair:
         listings = listings.filter(kits=repair)
 
-    if lift:
-        listings = listings.filter(kits=lift)
+    if planning:
+        listings = listings.filter(kits=planning)
 
-    if parking:
-        listings = listings.filter(kits=parking)
+    if listing_class:
+        listings = listings.filter(kits=listing_class)
+
+    if floor:
+        listings = listings.filter(kits=floor)
+
+    if windows:
+        listings = listings.filter(kits=windows)
+
+    if enter:
+        listings = listings.filter(kits=enter)
 
     if outside_decorating:
         listings = listings.filter(kits=outside_decorating)
@@ -63,6 +82,12 @@ def filter_listings(cleaned_data, listings):
 
     if floors_to:
         listings = listings.filter(total_floors__lte=floors_to)
+
+    if with_photo:
+        listings = listings.annotate(photo_cnt=Count('images')).filter(photo_cnt__gte=1)
+
+    if with_video:
+        listings = listings.exclude(video_url__isnull=True)
         
     return listings
 

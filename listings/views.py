@@ -160,7 +160,7 @@ def get_address_predictions(request):
     search_query = body_data.get('search_query', '')
 
     cities = City.objects.annotate(
-        cnt=Count('streets'),
+        cnt=Count('streets__listings'),
         similarity=TrigramSimilarity('title', search_query)
     ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
 
@@ -175,7 +175,6 @@ def get_address_predictions(request):
         'streets': [{'title': street.title, 'id': street.pk, 
                      'related_city': {'title': street.city.title, 'id': street.city.pk}} for street in streets],
         })
-
 
 
 def get_listings_coordinates(request):

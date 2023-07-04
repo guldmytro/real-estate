@@ -48,10 +48,15 @@ class Listing(models.Model):
                                related_name='listings')
     street_number = models.CharField(verbose_name='House Number', blank=True, null=True, max_length=10)
 
+    # Category / type / deal
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
                                  blank=True, null=True, verbose_name='Category', related_name='listings')
     realty_type = models.ForeignKey('RealtyType', on_delete=models.CASCADE, verbose_name='Realty type',
                                     related_name='listings', blank=True, null=True)
+    deal = models.ForeignKey('Deal', verbose_name='Deal', blank=True, null=True, related_name='listings',
+                             on_delete=models.CASCADE)
+
+    video_url = models.URLField(verbose_name='Video', blank=True, null=True)
 
     objects = models.Manager()
     active = ActiveManager()
@@ -92,7 +97,7 @@ class Listing(models.Model):
         return self.coordinates.coords[0] if self.coordinates else None
 
     def get_address_string(self):
-        return ', '.join(filter(lambda string: string != '' or string != None,
+        return ', '.join(filter(lambda string: string != '' or string is not None,
                                 [self.street.title, self.street_number, self.street.city.title])
                          )
     
@@ -129,13 +134,25 @@ class TermFields(models.Model):
 
 
 class Category(TermFields):
-    pass
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 
 class RealtyType(TermFields):
     class Meta:
         verbose_name = 'Realty Type'
         verbose_name_plural = 'Realty Types'
+
+
+class Deal(TermFields):
+
+    def __str__(self):
+        return self.title.capitalize()
+
+    class Meta:
+        verbose_name = 'Deal'
+        verbose_name_plural = 'Deals'
 
 
 class Image(models.Model):
@@ -162,6 +179,7 @@ class Image(models.Model):
 class Attribute(models.Model):
     BLACKLIST_ATTRIBUTES = [
         'property_56',
+        'property_71', # video
         'property_80',
         'property_82',
         'property_83',
@@ -179,7 +197,7 @@ class Attribute(models.Model):
 
 class Kit(models.Model):
     listing = models.ManyToManyField(Listing, verbose_name='Listing',
-                                related_name='kits')
+                                     related_name='kits')
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name='Attribute',
                                   related_name='kits')
     value = models.CharField(max_length=255, verbose_name='Value')
@@ -188,12 +206,15 @@ class Kit(models.Model):
         unique_together = (
             ('attribute', 'value')
         )
+        indexes = [
+            models.Index(fields=['value'])
+        ]
         ordering = ('attribute__title',)
         verbose_name = 'Kit'
         verbose_name_plural = 'Kits'
 
     def __str__(self):
-        return f'{self.value}'
+        return f'{self.value.capitalize()}'
 
 
 class Country(models.Model):
