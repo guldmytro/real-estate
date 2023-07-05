@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Список вакансій{% endblock %}
 
@@ -30,8 +31,8 @@
                 {% include 'pagination.html' with page=vacantions %}
             {% else %}
                 <div class="section-header">
-                    <h1 class="section-header__title">
-                        На даній сторінці будуть публікуватись свіжі вакансії.
+                    <h1 class="section-header__title animate animate_text">
+                        {{ 'На даній сторінці будуть публікуватись свіжі вакансії'|wrap_words_in_span|safe }}
                     </h1>
                     <p class="section-header__subtitle"><a href="/">Повернутись на головну</a></p>
                 </div>

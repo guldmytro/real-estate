@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load listing_extras %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -7,7 +8,7 @@
     <main class="analytics">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">{{ title }}</h1>
+                <h1 class="section-header__title animate animate_text">{{ title|wrap_words_in_span|safe }}</h1>
             </div>
             {% if news %}
                 <ul class="analytics-group">

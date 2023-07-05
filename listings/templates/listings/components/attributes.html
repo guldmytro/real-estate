@@ -1,7 +1,11 @@
+{% load listing_extras %}
+
 {% if kits %}
     <div id="params" class="object-box">
         <div class="object-box-header">
-            <h1 class="object-box-header__title">Характеристики</h1>
+            <h2 class="object-box-header__title animate animate_text">
+                {{ 'Характеристики'|wrap_words_in_span|safe }}
+            </h2>
         </div>
         <table class="object-box__table">
             <tbody>

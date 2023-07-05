@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load listing_extras %}
 
 {% block title %}Акції{% endblock %}
 
@@ -6,7 +7,9 @@
 <main class="discount">
     <div class="container">
         <div class="section-header">
-            <h1 class="section-header__title">Aкції</h1>
+            <h1 class="section-header__title animate animate_text">
+                {{ "Aкції"|wrap_words_in_span|safe }}
+            </h1>
         </div>
         {% if discounts %}
             <ul class="discount-group">

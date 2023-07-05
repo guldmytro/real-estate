@@ -18,7 +18,7 @@
             <button type="button" class="search-header__btn">Продати</button>
             <button type="button" class="search-header__btn">Здати в оренду</button>
             <button type="button" class="search-header__btn">Кредит та іпотека</button>
-            <button type="button" class="search-header__btn">Оцінка</button>
+            <a href="{% url 'pages:seller' %}" class="search-header__btn">Оцінка</a>
         </div>
         <div class="search-filters">
             <label class="search-filters__item filter-item filter-item_grow">
@@ -84,19 +84,6 @@
                 </button>
                 <div class="additional-fields__section additional-section">
                     <div class="fieldset-group">
-                        <legend class="fieldset-group__legend">Медіа</legend>
-                        <div class="controls-group">
-                            <label class="checkbox-item">
-                                {{ search_form.with_photo }}
-                                <span>{{ search_form.with_photo.label }}</span>
-                            </label>
-                            <label class="checkbox-item">
-                                {{ search_form.with_video }}
-                                <span>{{ search_form.with_video.label }}</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="fieldset-group">
                         <legend class="fieldset-group__legend">Дім</legend>
                         <div class="controls-group">
                             <label class="filter-item">
@@ -157,6 +144,11 @@
                                     {{ search_form.windows }}
                                 </div>
                             </label>
+                            <br>
+                            <label class="checkbox-item" style="width:100%;margin-top:0.5em;">
+                                {{ search_form.is_new_building }}
+                                <span>{{ search_form.is_new_building.label }}</span>
+                            </label>
                         </div>
                     </div>
                     <div class="fieldset-group">
@@ -169,6 +161,19 @@
                                 <div class="select-wrapper">
                                     {{ search_form.enter }}
                                 </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="fieldset-group">
+                        <legend class="fieldset-group__legend">Медіа</legend>
+                        <div class="controls-group">
+                            <label class="checkbox-item">
+                                {{ search_form.with_photo }}
+                                <span>{{ search_form.with_photo.label }}</span>
+                            </label>
+                            <label class="checkbox-item">
+                                {{ search_form.with_video }}
+                                <span>{{ search_form.with_video.label }}</span>
                             </label>
                         </div>
                     </div>

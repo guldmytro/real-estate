@@ -1,0 +1,55 @@
+{% load static %}
+<footer class="footer">
+        <div class="container">
+            <a href="{% url 'pages:home' %}" class="logo invert" aria-label="перейти на головну">
+                <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
+            </a>
+            <nav class="footer-menu">
+                <a href="{% url 'pages:about' %}" class="footer-menu__link">Про нас</a>
+                <a href="{% url 'pages:guarantees' %}" class="footer-menu__link">Гарантії</a>
+                <a href="{% url 'pages:seller' %}" class="footer-menu__link">Оцінка</a>
+                <a href="{% url 'pages:pricing' %}" class="footer-menu__link">Ціни</a>
+                <a href="{% url 'pages:abroad_properties' %}" class="footer-menu__link">Нерухомість за кордоном</a>
+                <a href="{% url 'news:list' %}" class="footer-menu__link">Новини</a>
+                <a href="{% url 'discounts:list' %}" class="footer-menu__link">Акції</a>
+                <a href="{% url 'managers:list' %}" class="footer-menu__link">Спеціалісти</a>
+                <a href="{% url 'pages:reviews' %}" class="footer-menu__link">Відгуки</a>
+                <a href="{% url 'analytics:list' %}" class="footer-menu__link">Аналітика</a>
+                <a href="{% url 'documents:list' %}" class="footer-menu__link">Документи</a>
+                <a href="{% url 'vacantions:page' %}" class="footer-menu__link">Вакансії</a>
+                <a href="{% url 'pages:contacts' %}" class="footer-menu__link">Контакти</a>
+            </nav>
+            <a href="{% url 'pages:course' %}" class="link">
+                <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
+                <span class="link__text">Наш онлайн курс</span>
+            </a>
+            <div class="footer-contacts">
+                <a href="tel:+380322949679" class="link">
+                    <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
+                    <span class="link__text">+38 (032) 294 96 79</span>
+                </a>
+                <ul class="footer-socials">
+                    <li class="socials-item">
+                        <a href="https://web.telegram.org/a/" class="socials-item__link" aria-label="перейти у телеграм">
+                            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://www.viber.com/ru/" class="socials-item__link" aria-label="перейти у вайбер">
+                            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://www.instagram.com/" class="socials-item__link" aria-label="перейти у інстаграм">
+                            <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
+                        </a>
+                    </li>
+                    <li class="socials-item">
+                        <a href="https://uk-ua.facebook.com/" class="socials-item__link" aria-label="перейти у фейсбук">
+                            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>

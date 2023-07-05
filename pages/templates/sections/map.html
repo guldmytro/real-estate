@@ -1,9 +1,13 @@
+{% load listing_extras %}
+
 {% if search_form_simplified %}
     <section class="map">
         <div class="container">
             <form class="map-form" id="map-form" action="{% url 'listings:get_listings_coordinates' %}">
                 <div class="section-header">
-                    <h2 class="section-header__title">Пошук по мапі!</h2>
+                    <h2 class="section-header__title animate animate_text">
+                        {{ 'Пошук по мапі!'|wrap_words_in_span|safe }}
+                    </h2>
                     <p class="section-header__subtitle section-header__subtitle_lighter">Напишіть адресу об'єкту</p>
                 </div>
                 <label class="search-filters__item filter-item">

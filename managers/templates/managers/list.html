@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load listing_extras %}
 
 {% block title %}Наші менеджери{% endblock %}
 
@@ -28,7 +29,9 @@
     <main class="employees">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Фахівці з нерухомості</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {{ 'Фахівці з нерухомості'|wrap_words_in_span|safe }}
+                </h1>
             </div>
             <ul class="employees-group">
                 {% for manager in managers %}

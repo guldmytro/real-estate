@@ -1,7 +1,11 @@
+{% load listing_extras %}
+
 <section class="stats">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-header__title">Цифри говорять краще за слова</h2>
+            <h2 class="section-header__title animate animate_text">
+                {{ 'Цифри говорять краще за слова'|wrap_words_in_span|safe }}
+            </h2>
         </div>
         <ul class="stats-group">
             <li class="stats-item">

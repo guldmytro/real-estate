@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Продавцю{% endblock %}
 
@@ -9,7 +10,9 @@
             <div class="seller-row">
                 <div class="col">
                     <div class="section-header">
-                        <h1 class="section-header__title">Допоможемо продати нерухомість швидко та вигідно</h1>
+                        <h1 class="section-header__title animate animate_text">
+                            {{ 'Допоможемо продати нерухомість швидко та вигідно'|wrap_words_in_span|safe }}
+                        </h1>
                         <p class="section-header__subtitle section-header__subtitle_strong">Залиште заявку і ми передзвонимо</p>
                     </div>
                 </div>
@@ -48,7 +51,9 @@
             <div class="how-works__row">
                 <div class="col">
                     <div class="section-header">
-                        <h2 class="section-header__title">Як це працює</h2>
+                        <h2 class="section-header__title animate animate_text">
+                            {{ 'Як це працює'|wrap_words_in_span|safe }}
+                        </h2>
                     </div>
                     <ul class="accordeon">
                         <li class="accordeon-item active">
@@ -106,7 +111,9 @@
     <section class="advantages">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-header__title">4 причини оцінити нерухомість прямо зараз</h2>
+                <h2 class="section-header__title animate animate_text">
+                    {{ '4 причини оцінити нерухомість прямо зараз'|wrap_words_in_span|safe }}
+                </h2>
             </div>
             <ul class="advantages-group">
                 <li class="advantages-item">

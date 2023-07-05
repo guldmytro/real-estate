@@ -1,7 +1,11 @@
+{% load listing_extras %}
+
 {% if listings_the_same_street_num or listings_within_distance %}
     <div class="object-box">
         <div class="object-box-header">
-            <h1 class="object-box-header__title">Вам може бути цікаво</h1>
+            <h1 class="object-box-header__title animate animate_text">
+                {{ 'Вам може бути цікаво'|wrap_words_in_span|safe }}
+            </h1>
             <div class="object-box-header__conrtrols">
                 {% if listings_the_same_street_num %}
                     <button type="button" class="tab active" data-id="#slider-1">В цьому будинку</button>

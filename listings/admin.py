@@ -1,10 +1,16 @@
-from .models import Listing, Image, Country, City, Street, Kit, Attribute
+from .models import Listing, Image, Country, City, Street, Kit, Attribute, RealtyType
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 
 
 class ImageInline(admin.StackedInline):
     model = Image
+
+
+@admin.register(RealtyType)
+class RealtyTypeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'menu_label')
+    list_editable = ('menu_label',)
 
 
 @admin.register(Country)

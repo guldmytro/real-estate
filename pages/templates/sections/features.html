@@ -1,8 +1,12 @@
 {% load static %}
+{% load listing_extras %}
+
 <section class="features">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-header__title">Чому з нами краще?</h2>
+            <h2 class="section-header__title animate animate_text">
+                {{ 'Чому з нами краще?'|wrap_words_in_span|safe }}
+            </h2>
         </div>
         <ul class="features-group">
             <li class="features-group__item features-item">

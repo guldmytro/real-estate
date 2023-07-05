@@ -26,56 +26,7 @@
         {% block content %}{% endblock %}
     </div>
     <!-- /.content -->
-    <footer class="footer">
-        <div class="container">
-            <a href="index.html" class="logo invert" aria-label="перейти на головну">
-                <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
-            </a>
-            <nav class="footer-menu">
-                <a href="archive-objects.html" class="footer-menu__link">Новобудови</a>
-                <a href="archive-objects.html" class="footer-menu__link">Квартири</a>
-                <a href="archive-objects.html" class="footer-menu__link">Комерція</a>
-                <a href="archive-objects.html" class="footer-menu__link">Будинки</a>
-                <a href="archive-objects.html" class="footer-menu__link">Земельні ділянки</a>
-                <a href="abroad.html" class="footer-menu__link">Нерухомість за кордоном</a>
-                <a href="employees.html" class="footer-menu__link">Спеціалісти</a>
-                <a href="archive-analytic.html" class="footer-menu__link">Аналітика</a>
-                <a href="contacts.html" class="footer-menu__link">Контакти</a>
-            </nav>
-            <a href="course.html" class="link">
-                <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                <span class="link__text">Наш онлайн курс</span>
-            </a>
-            <div class="footer-contacts">
-                <a href="tel:+380322949679" class="link">
-                    <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
-                    <span class="link__text">+38 (032) 294 96 79</span>
-                </a>
-                <ul class="footer-socials">
-                    <li class="socials-item">
-                        <a href="https://web.telegram.org/a/" class="socials-item__link" aria-label="перейти у телеграм">
-                            <img src="{% static 'img/icon-telegram.png' %}" class="social-item__icon" alt="телеграм" loading="lazy" width="64" height="54">
-                        </a>
-                    </li>
-                    <li class="socials-item">
-                        <a href="https://www.viber.com/ru/" class="socials-item__link" aria-label="перейти у вайбер">
-                            <img src="{% static 'img/icon-viber.png' %}" class="social-item__icon" alt="вайбер" loading="lazy" width="50" height="56">
-                        </a>
-                    </li>
-                    <li class="socials-item">
-                        <a href="https://www.instagram.com/" class="socials-item__link" aria-label="перейти у інстаграм">
-                            <img src="{% static 'img/icon-instagram.png' %}" class="social-item__icon" alt="інстаграм" loading="lazy" width="64" height="64">
-                        </a>
-                    </li>
-                    <li class="socials-item">
-                        <a href="https://uk-ua.facebook.com/" class="socials-item__link" aria-label="перейти у фейсбук">
-                            <img src="{% static 'img/icon-facebook.png' %}" class="social-item__icon" alt="фейсбук" loading="lazy" width="34" height="64">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    {% include 'sections/footer.html' %}
     {% include 'sections/popup.html' %}
     <script src="{% static 'js/common.js' %}"></script>
     {% if site_config.google_api_key %}

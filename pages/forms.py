@@ -21,7 +21,8 @@ class SellerForm(forms.Form):
                             }))
     realty_type = forms.ModelChoiceField(
         label="Тип об'єкту",
-        queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0),
+        queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0)
+                .order_by('title'),
         empty_label='Виберіть тип',
         required=False,
         widget=forms.Select(attrs={

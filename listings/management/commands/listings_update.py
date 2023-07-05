@@ -294,20 +294,20 @@ class Command(BaseCommand):
 
     def get_category(self, category):
         if category:
-            category, _ = Category.objects.get_or_create(slug=slugify(category, allow_unicode=True),
+            category, _ = Category.objects.get_or_create(slug=slugify(category, allow_unicode=False),
                                                          defaults={'title': category})
             return category
         return None
 
     def get_realty_type(self, realty):
         if realty:
-            realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=True), 
+            realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=False),
                                                               defaults={'title': realty})
             return realty_type
         return None
 
     def get_deal(self, deal):
         if deal:
-            deal, _ = Deal.objects.get_or_create(slug=slugify(deal, allow_unicode=True), defaults={'title': deal})
+            deal, _ = Deal.objects.get_or_create(slug=slugify(deal, allow_unicode=False), defaults={'title': deal})
             return deal
         return None

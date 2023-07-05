@@ -20,12 +20,13 @@ class SearchForm(forms.Form):
         widget=forms.widgets.RadioSelect(attrs={'class': 'radio', 'data-prefix': 'Тип угоди:'})
     )
     address_input = forms.CharField(label='Адреса', required=False, 
-                                   widget=forms.widgets.TextInput(
-                                       attrs={
+                                    widget=forms.widgets.TextInput(
+                                        attrs={
                                            'class': 'input',
-                                           'placeholder': 'Наприклад, Львів, Полуботка...',
+                                           'placeholder': 'Наприклад, Харків, Сумська...',
                                            'autocomplete': 'off'
-                                           }))
+                                        })
+                                    )
     city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     street = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     number_of_rooms = forms.ChoiceField(
@@ -55,7 +56,8 @@ class SearchForm(forms.Form):
     )
     realty_type = forms.ModelChoiceField(
         label="Тип об'єкту",
-        queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0),
+        queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0)
+        .order_by('title'),
         empty_label='Виберіть тип',
         required=False,
         widget=forms.Select(attrs={
@@ -65,10 +67,9 @@ class SearchForm(forms.Form):
 
     # Popular fields
     is_new_building = forms.BooleanField(
-        label='Новий дім',
+        label='Новобудова',
         required=False,
-        widget=forms.CheckboxInput(attrs={'class': 'checkbox',
-                                          'data-label': 'Новий дім'})
+        widget=forms.CheckboxInput(attrs={'data-label': 'Новобудова'})
     )
     animals = forms.BooleanField(
         label='Можна з тваринами',

@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Відгуки{% endblock %}
 
@@ -7,7 +8,9 @@
     <main class="reviews-main">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Відгуки про фахівців компанії</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {{ 'Відгуки про фахівців компанії'|wrap_words_in_span|safe }}
+                </h1>
             </div>
             <div class="managers-filters choose-manager-form">
                 <label class="filter-item">

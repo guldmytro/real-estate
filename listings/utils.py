@@ -25,6 +25,10 @@ def filter_listings(cleaned_data, listings):
     floors_to = cleaned_data.get('floors_to')
     with_photo = cleaned_data.get('with_photo')
     with_video = cleaned_data.get('with_video')
+    is_new_building = cleaned_data.get('is_new_building')
+
+    if is_new_building:
+        listings = listings.filter(is_new_building=True)
 
     if deal:
         listings = listings.filter(deal=deal)

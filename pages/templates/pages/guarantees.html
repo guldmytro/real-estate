@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load listing_extras %}
 
 {% block title %}Гарантії{% endblock %}
 
@@ -6,7 +7,9 @@
     <main class="guarante">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Гарантія безпеки угоди</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {{ 'Гарантія безпеки угоди'|wrap_words_in_span|safe }}
+                </h1>
                 <p class="section-header__subtitle section-header__subtitle_strong">Купляйте нерухомість без ризику</p>
                 <p class="section-header__p">У випадку виникнення спірних ситуацій беремо всі витрати на себе</p>
             </div>
@@ -15,7 +18,9 @@
     <section class="protection">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-header__title"> Як ми захищаємо клієнтів </h2>
+                <h2 class="section-header__title animate animate_text">
+                    {{ 'Як ми захищаємо клієнтів'|wrap_words_in_span|safe }}
+                </h2>
             </div>
             <ul class="protection-group">
                 <li class="protection-item">

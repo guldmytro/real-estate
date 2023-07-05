@@ -15,7 +15,8 @@
 {% block content %}
     <section class="archive-objects">
         <div class="container">
-            <div class="archive-objects__row">
+            {% if listings %}
+                <div class="archive-objects__row">
                 <div class="col">
                     <div class="section-header">
                         <h1 class="section-header__title animate animate_text">
@@ -33,6 +34,9 @@
                     <div id="clustered-map" style="width:100%;height:100vh;"></div>
                 </div>
             </div>
+            {% else %}
+                {% include 'sections/empty-result.html' %}
+            {% endif %}
         </div>
     </section>
 {% endblock %}

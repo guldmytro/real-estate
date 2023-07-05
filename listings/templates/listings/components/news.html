@@ -1,7 +1,11 @@
+{% load listing_extras %}
+
 {% if news %}
     <div class="object-box">
         <div class="object-box-header">
-            <h1 class="object-box-header__title">Новини</h1>
+            <h2 class="object-box-header__title animate animate_text">
+                {{ 'Новини'|wrap_words_in_span|safe }}
+            </h2>
         </div>
         <ul class="post-group object-slider">
             {% for item in news %}

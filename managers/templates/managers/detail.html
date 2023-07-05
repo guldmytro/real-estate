@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load listing_extras %}
 
 {% block title %}{{ manager.full_name }}{% endblock %}
 
@@ -14,8 +15,8 @@
                         <img src="{{ manager.image|thumbnail_url:'medium' }}" class="employee-header__img" alt="Вікторова Вікторія Олександрівна" width="266">
                     {% endif %}
                     <div class="section-header section-header_invert">
-                        <h1 class="section-header__title">
-                            {{ manager.full_name }}
+                        <h1 class="section-header__title animate animate_text">
+                            {{ manager.full_name|wrap_words_in_span|safe }}
                         </h1>
                         <p class="section-header__subtitle section-header__subtitle_strong">Фахівець з нерухомості</p>
                         <table class="section-header__table">

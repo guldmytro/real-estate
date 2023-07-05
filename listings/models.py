@@ -120,6 +120,7 @@ class Listing(models.Model):
 
 class TermFields(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
+    menu_label = models.CharField(max_length=300, verbose_name='Menu label', blank=True, null=True)
     slug = models.SlugField(max_length=255, verbose_name='Slug', unique=True)
 
     def __str__(self):
@@ -140,6 +141,10 @@ class Category(TermFields):
 
 
 class RealtyType(TermFields):
+
+    def get_absolute_url(self):
+        return f"{reverse('listings:list')}?realty_type={self.id}"
+
     class Meta:
         verbose_name = 'Realty Type'
         verbose_name_plural = 'Realty Types'

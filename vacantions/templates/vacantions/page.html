@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load listing_extras %}
 
 {% block title %}Вакансії{% endblock %}
 
@@ -21,7 +22,9 @@
     <section class="advantages">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-header__title">Працювати у нас це:</h2>
+                <h2 class="section-header__title animate animate_text">
+                    {{ 'Працювати у нас це:'|wrap_words_in_span|safe }}
+                </h2>
             </div>
             <ul class="advantages-group">
                 <li class="advantages-item">
@@ -50,7 +53,9 @@
     <section class="values">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-header__title">Нам потрібні люди, які розділяють наші цінності</h2>
+                <h2 class="section-header__title animate animate_text">
+                    {{ 'Нам потрібні люди, які розділяють наші цінності'|wrap_words_in_span|safe }}
+                </h2>
             </div>
             <div class="values-list-row">
                 <ul class="values-group">

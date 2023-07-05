@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Документи{% endblock %}
 
@@ -7,7 +8,9 @@
     <main class="documents">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Корисні документи</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {{ 'Корисні документи'|wrap_words_in_span|safe }}
+                </h1>
                 <p class="section-header__subtitle section-header__subtitle_strong">Ми вирішили створити сторінку та об&#39;єднати усі корисні документи в одному місці</p>
             </div>
             {% if documents %}

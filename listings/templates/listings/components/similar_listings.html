@@ -1,8 +1,11 @@
 {% load static %}
+{% load listing_extras %}
 {% if similar_listings %}
     <div class="object-box">
         <div class="object-box-header">
-            <h1 class="object-box-header__title">Вартість аналогічних квартир по місту</h1>
+            <h2 class="object-box-header__title animate animate_text">
+                {{ 'Вартість аналогічних квартир по місту'|wrap_words_in_span|safe }}
+            </h2>
             <p class="object-box-header__subtitle">Аналогічні квартири підбираються за подібними параметрами: кімнатність, поверховість, матеріал стін, ремонт, рік</p>
         </div>
         <ul class="post-group object-slider">

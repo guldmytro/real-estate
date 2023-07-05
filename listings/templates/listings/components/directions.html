@@ -1,9 +1,12 @@
 {% load static %}
+{% load listing_extras %}
 
 {% if listing.get_google_maps_link %}
     <div id="time" class="object-box">
         <div class="object-box-header">
-            <h1 class="object-box-header__title">Час на дорогу</h1>
+            <h2 class="object-box-header__title animate animate_text">
+                {{ 'Час на дорогу'|wrap_words_in_span|safe }}
+            </h2>
             <p class="object-box-header__subtitle"> Дізнайтеся час до роботи, школи чи дитячого садка </p>
         </div>
         <a href="{{ listing.get_google_maps_link }}" target="_blank" class="btn btn_invert btn_darken">

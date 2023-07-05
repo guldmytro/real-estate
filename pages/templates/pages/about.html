@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load listing_extras %}
 
 {% block title %}Про нас{% endblock %}
 
@@ -6,7 +7,7 @@
     <main class="about">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">{{ page.title_1 }}</h1>
+                <h1 class="section-header__title animate animate_text">{{ page.title_1|wrap_words_in_span|safe }}</h1>
                 <p class="section-header__subtitle">{{ page.description_1|linebreaks }}</p>
             </div>
         </div>
@@ -15,7 +16,7 @@
         <div class="container">
             <div class="about-secondary__row">
                 <div class="section-header">
-                    <h2 class="section-header__title">{{ page.title_2 }}</h2>
+                    <h2 class="section-header__title animate animate_text">{{ page.title_2|wrap_words_in_span|safe }}</h2>
                     <p class="section-header__subtitle">{{ page.description_2|linebreaks }}</p>
                 </div>
             </div>

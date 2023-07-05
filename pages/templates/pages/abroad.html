@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load listing_extras %}
 
 {% block title %}Про нас{% endblock %}
 
@@ -8,7 +9,7 @@
     <main class="abroad">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">{{ page.title }}</h1>
+                <h1 class="section-header__title animate animate_text">{{ page.title|wrap_words_in_span|safe }}</h1>
                 <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description }}</p>
             </div>
         </div>
@@ -21,7 +22,7 @@
             <div class="container">
                 <div class="abroad-row">
                     <div class="col">
-                        <p class="abroad-item__super-title">{{ item.title_bg }}</p>
+                        <p class="abroad-item__super-title animate animate_text">{{ item.title_bg|wrap_words_in_span|safe }}</p>
                         <div class="abroad-gallery">
                             <img src="{{ item.photo_1|thumbnail_url:'extra-large' }}" class="abroad-gallery__img" alt="дім" loading="lazy" width="489" height="326">
                             <img src="{{ item.photo_2|thumbnail_url:'extra-large' }}" class="abroad-gallery__img" alt="дім" loading="lazy" width="505" height="336">
@@ -29,7 +30,7 @@
                     </div>
                     <div class="col">
                         <div class="section-header">
-                            <h2 class="section-header__title">{{ item.title }}</h2>
+                            <h2 class="section-header__title animate animate_text">{{ item.title|wrap_words_in_span|safe }}</h2>
                             <p class="section-header__subtitle">{{ item.description }}</p>
                         </div>
                         <a href="{{ item.link }}" class="btn btn_primary btn_rounded">

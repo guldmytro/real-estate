@@ -35,14 +35,14 @@ def listings_list(request):
                 city = City.objects.get(id=city)
                 crumb_title = city.title
             except: 
-                pass
+                crumb_title = ''
         if street:
             try:
                 street = Street.objects.get(id=street)
                 city = street.city
                 crumb_title = f'{street.title} ({city.title})'
             except: 
-                pass
+                crumb_title = ''
         
         if not city and not street:
             try:
@@ -62,6 +62,8 @@ def listings_list(request):
         cleaned_data['city'] = city
         cleaned_data['address'] = address
         listings_list = filter_listings(cleaned_data, listings_list)
+    else:
+        listings_list = Listing.objects.none()
     
     # Parsing listing coordinates for GoogleMaps
     coordinates = get_listings_map_data(listings_list)

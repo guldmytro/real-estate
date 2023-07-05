@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Вартість послуг{% endblock %}
 
@@ -7,7 +8,9 @@
     <main class="pricing">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Вартість послуг</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {{ 'Вартість послуг'|wrap_words_in_span|safe }}
+                </h1>
             </div>
             <div class="pricing-wrapper">
                 <ul class="pricing-box">

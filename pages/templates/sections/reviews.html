@@ -1,11 +1,14 @@
 {% load static %}
+{% load listing_extras %}
 
 {% if reviews %}
     <section class="reviews">
         <div class="container">
             <div class="reviews-row">
                 <div class="section-header">
-                    <h2 class="section-header__title">Що говорять про нас клієнти:</h2>
+                    <h2 class="section-header__title animate animate_text">
+                        {{ 'Що говорять про нас клієнти:'|wrap_words_in_span|safe }}
+                    </h2>
                     <p class="section-header__subtitle">В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють їхню роботу.</p>
                 </div>
                 <a href="{% url 'managers:list' %}" class="btn btn_shadow">

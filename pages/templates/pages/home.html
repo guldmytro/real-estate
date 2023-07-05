@@ -1,12 +1,15 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load listing_extras %}
 
 {% block title %}Головна{% endblock %}
 
 {% block content %}
     <main class="main-search">
         <div class="container">
-            <h1 class="title-main">Знайти нерухомість</h1>
+            <h1 class="title-main animate animate_text">
+                {{ 'Знайти нерухомість'|wrap_words_in_span|safe }}
+            </h1>
             {% include 'forms/search.html' %}
         </div>
     </main>

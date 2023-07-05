@@ -1,9 +1,12 @@
 {% load static %}
+{% load listing_extras %}
 
 <section class="service">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-header__title"> Сервіси </h2>
+            <h2 class="section-header__title animate animate_text">
+                {{ 'Сервіси'|wrap_words_in_span|safe }}
+            </h2>
         </div>
         <ul class="services-group">
             <li class="services-item">
