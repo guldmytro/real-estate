@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.contrib.gis.geos import Point
 from django.urls import reverse
 from managers.models import Manager
+from django.utils.translation import gettext_lazy as _
 
 
 class ActiveManager(models.Manager):
@@ -13,58 +14,58 @@ class ActiveManager(models.Manager):
 
 class Listing(models.Model):
     STATUS_CHOICES = [
-        ('active', 'Active'),
-        ('archive', 'Archive'),
+        ('active', _('Active')),
+        ('archive', _('Archive')),
     ]
-    status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='active', verbose_name='Status')
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Created')
-    updated = models.DateTimeField(auto_now=True, verbose_name='Updated')
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='active', verbose_name=_('Status'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
 
-    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, verbose_name='Manager', blank=True, null=True)
+    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, verbose_name=_('Manager'), blank=True, null=True)
 
-    title = models.CharField(max_length=255, verbose_name='Title', default='')
-    description = models.TextField(verbose_name='Description', blank=True, null=True)
+    title = models.CharField(max_length=255, verbose_name=_('Title'), default='')
+    description = models.TextField(verbose_name=_('Description'), blank=True, null=True)
 
-    is_new_building = models.BooleanField(verbose_name='Is new building', default=False)
+    is_new_building = models.BooleanField(verbose_name=_('Is new building'), default=False)
 
     # Area
-    area_total = models.PositiveSmallIntegerField(verbose_name='Total Area', blank=True, null=True)
-    area_living = models.PositiveSmallIntegerField(verbose_name='Living Area', blank=True, null=True)
-    area_kitchen = models.PositiveSmallIntegerField(verbose_name='Kitchen Area', blank=True, null=True)
+    area_total = models.PositiveSmallIntegerField(verbose_name=_('Total Area'), blank=True, null=True)
+    area_living = models.PositiveSmallIntegerField(verbose_name=_('Living Area'), blank=True, null=True)
+    area_kitchen = models.PositiveSmallIntegerField(verbose_name=_('Kitchen Area'), blank=True, null=True)
 
     # Rooms
-    room_count = models.PositiveSmallIntegerField(verbose_name='Room Count', blank=True, null=True)
+    room_count = models.PositiveSmallIntegerField(verbose_name=_('Room Count'), blank=True, null=True)
 
     # Floors
-    floor = models.PositiveSmallIntegerField(verbose_name='Floor', blank=True, null=True)
-    total_floors = models.PositiveSmallIntegerField(verbose_name='Total Floors', blank=True, null=True)
+    floor = models.PositiveSmallIntegerField(verbose_name=_('Floor'), blank=True, null=True)
+    total_floors = models.PositiveSmallIntegerField(verbose_name=_('Total Floors'), blank=True, null=True)
 
     # Price
-    price = models.PositiveIntegerField(verbose_name='Price', blank=True, null=True)
+    price = models.PositiveIntegerField(verbose_name=_('Price'), blank=True, null=True)
 
     # Location
     coordinates = models.PointField(default=Point(float(0), float(0)))
-    street = models.ForeignKey('Street', verbose_name='Street', blank=True, null=True, on_delete=models.CASCADE,
+    street = models.ForeignKey('Street', verbose_name=_('Street'), blank=True, null=True, on_delete=models.CASCADE,
                                related_name='listings')
-    street_number = models.CharField(verbose_name='House Number', blank=True, null=True, max_length=10)
+    street_number = models.CharField(verbose_name=_('House Number'), blank=True, null=True, max_length=10)
 
     # Category / type / deal
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
-                                 blank=True, null=True, verbose_name='Category', related_name='listings')
-    realty_type = models.ForeignKey('RealtyType', on_delete=models.CASCADE, verbose_name='Realty type',
+                                 blank=True, null=True, verbose_name=_('Category'), related_name='listings')
+    realty_type = models.ForeignKey('RealtyType', on_delete=models.CASCADE, verbose_name=_('Realty type'),
                                     related_name='listings', blank=True, null=True)
-    deal = models.ForeignKey('Deal', verbose_name='Deal', blank=True, null=True, related_name='listings',
+    deal = models.ForeignKey('Deal', verbose_name=_('Deal'), blank=True, null=True, related_name='listings',
                              on_delete=models.CASCADE)
 
-    video_url = models.URLField(verbose_name='Video', blank=True, null=True)
+    video_url = models.URLField(verbose_name=_('Video'), blank=True, null=True)
 
     objects = models.Manager()
     active = ActiveManager()
 
     class Meta:
         ordering = ('-created',)
-        verbose_name = 'Listing'
-        verbose_name_plural = 'Listings'
+        verbose_name = _('Listing')
+        verbose_name_plural = _('Listings')
 
     def __str__(self):
         return self.title
@@ -119,9 +120,9 @@ class Listing(models.Model):
 
 
 class TermFields(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Title')
-    menu_label = models.CharField(max_length=300, verbose_name='Menu label', blank=True, null=True)
-    slug = models.SlugField(max_length=255, verbose_name='Slug', unique=True)
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    menu_label = models.CharField(max_length=300, verbose_name=_('Menu label'), blank=True, null=True)
+    slug = models.SlugField(max_length=255, verbose_name=_('Slug'), unique=True)
 
     def __str__(self):
         return self.title
@@ -136,8 +137,8 @@ class TermFields(models.Model):
 
 class Category(TermFields):
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
 
 class RealtyType(TermFields):
@@ -146,8 +147,8 @@ class RealtyType(TermFields):
         return f"{reverse('listings:list')}?realty_type={self.id}"
 
     class Meta:
-        verbose_name = 'Realty Type'
-        verbose_name_plural = 'Realty Types'
+        verbose_name = _('Realty Type')
+        verbose_name_plural = _('Realty Types')
 
 
 class Deal(TermFields):
@@ -156,14 +157,14 @@ class Deal(TermFields):
         return self.title.capitalize()
 
     class Meta:
-        verbose_name = 'Deal'
-        verbose_name_plural = 'Deals'
+        verbose_name = _('Deal')
+        verbose_name_plural = _('Deals')
 
 
 class Image(models.Model):
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='images')
-    file = models.ImageField(upload_to='listings/%Y/%m/%d', blank=True, null=True)
-    image_url = models.URLField(blank=True, null=True)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, verbose_name=_('Listing'), related_name='images')
+    file = models.ImageField(upload_to='listings/%Y/%m/%d', verbose_name=_('File'), blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True, verbose_name=_('Image url'))
 
     def save(self, *args, **kwargs):
         if self.image_url and not self.file:
@@ -189,23 +190,23 @@ class Attribute(models.Model):
         'property_82',
         'property_83',
     ]
-    title = models.CharField(max_length=255, verbose_name='Title')
-    slug = models.SlugField(max_length=255, unique=True, verbose_name='Slug')
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
     class Meta:
-        verbose_name = 'Attribute'
-        verbose_name_plural = 'Attributes'
+        verbose_name = _('Attribute')
+        verbose_name_plural = _('Attributes')
 
     def __str__(self):
         return self.title
 
 
 class Kit(models.Model):
-    listing = models.ManyToManyField(Listing, verbose_name='Listing',
+    listing = models.ManyToManyField(Listing, verbose_name=_('Listing'),
                                      related_name='kits')
-    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name='Attribute',
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name=_('Attribute'),
                                   related_name='kits')
-    value = models.CharField(max_length=255, verbose_name='Value')
+    value = models.CharField(max_length=255, verbose_name=_('Value'))
 
     class Meta:
         unique_together = (
@@ -215,27 +216,27 @@ class Kit(models.Model):
             models.Index(fields=['value'])
         ]
         ordering = ('attribute__title',)
-        verbose_name = 'Kit'
-        verbose_name_plural = 'Kits'
+        verbose_name = _('Kit')
+        verbose_name_plural = _('Kits')
 
     def __str__(self):
         return f'{self.value.capitalize()}'
 
 
 class Country(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Country', unique=True)
+    title = models.CharField(max_length=100, verbose_name=_('Country'), unique=True)
 
     def __str__(self):
         return f'{self.title}'
 
     class Meta:
-        verbose_name = 'Country'
-        verbose_name_plural = 'Countries'
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')
 
 
 class City(models.Model):
-    title = models.CharField(max_length=255, verbose_name='City')
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name='Country')
+    title = models.CharField(max_length=255, verbose_name=_('City'))
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name=_('Country'))
 
     def __str__(self):
         return self.title
@@ -244,22 +245,22 @@ class City(models.Model):
         return reverse('listings:list') + f'?city={self.id}'
 
     class Meta:
-        verbose_name = 'City'
-        verbose_name_plural = 'Cities'
+        verbose_name = _('City')
+        verbose_name_plural = _('Cities')
         unique_together = (
             ('title', 'country'),
         )
 
 class Street(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Street')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='streets')
+    title = models.CharField(max_length=255, verbose_name=_('Street'))
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='streets', verbose_name=_('City'))
 
     def __str__(self):
         return f'{self.city.country.title}, {self.city.title}, {self.title}'
 
     class Meta:
-        verbose_name = 'Street'
-        verbose_name_plural = 'Streets'
+        verbose_name = _('Street')
+        verbose_name_plural = _('Streets')
         unique_together = (
             ('title', 'city'),
         )

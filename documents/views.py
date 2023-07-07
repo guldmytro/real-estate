@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Document
 from django.core.paginator import Paginator, EmptyPage
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 
 def documents_list(request):
@@ -14,7 +15,7 @@ def documents_list(request):
         documents = paginator.page(paginator.num_pages)
 
     crumbs = [
-        ('Документи', reverse_lazy('documents:list'))
+        (_('Documents'), reverse_lazy('documents:list'))
     ]
     context = {
         'documents': documents,

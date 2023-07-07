@@ -1,0 +1,661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-07 19:36+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: analytics/apps.py:8 analytics/models.py:9 analytics/views.py:13
+#: analytics/views.py:19 analytics/views.py:32
+msgid "Analytical reviews"
+msgstr ""
+
+#: analytics/models.py:8
+msgid "Analytical review"
+msgstr ""
+
+#: config/settings.py:149
+msgid "English"
+msgstr ""
+
+#: config/settings.py:150
+msgid "Ukrainian"
+msgstr ""
+
+#: discounts/apps.py:8 discounts/models.py:12 discounts/views.py:18
+#: discounts/views.py:30
+msgid "Discounts"
+msgstr ""
+
+#: discounts/models.py:8
+msgid "Short description"
+msgstr ""
+
+#: discounts/models.py:11
+msgid "Discount"
+msgstr ""
+
+#: documents/apps.py:8 documents/models.py:16 documents/views.py:18
+msgid "Documents"
+msgstr ""
+
+#: documents/models.py:6 listings/models.py:26 listings/models.py:123
+#: listings/models.py:193 news/models.py:8 pages/models.py:33
+#: pages/models.py:49 pages/models.py:66 pages/models.py:149
+#: vacantions/models.py:6 vacantions/models.py:22
+msgid "Title"
+msgstr ""
+
+#: documents/models.py:7 listings/models.py:166
+msgid "File"
+msgstr ""
+
+#: documents/models.py:8 listings/models.py:21 managers/models.py:70
+#: news/models.py:11 vacantions/models.py:10
+msgid "Created"
+msgstr ""
+
+#: documents/models.py:15
+msgid "Document"
+msgstr ""
+
+#: emails/forms.py:10 emails/forms.py:35
+msgid "Your name:*"
+msgstr ""
+
+#: emails/forms.py:15 emails/forms.py:42 emails/forms.py:56
+msgid "Phone:*"
+msgstr ""
+
+#: emails/forms.py:25
+msgid "Resume"
+msgstr ""
+
+#: emails/forms.py:39
+msgid "Write your review"
+msgstr ""
+
+#: emails/forms.py:67
+msgid "Message"
+msgstr ""
+
+#: listings/apps.py:8 listings/models.py:68 listings/views.py:58
+#: listings/views.py:102
+msgid "Listings"
+msgstr ""
+
+#: listings/forms.py:18
+msgid "Type of agreement"
+msgstr ""
+
+#: listings/forms.py:21
+msgid "Type of agreement:"
+msgstr ""
+
+#: listings/forms.py:23
+msgid "Address"
+msgstr ""
+
+#: listings/forms.py:27
+msgid "For example, Kharkiv"
+msgstr ""
+
+#: listings/forms.py:34
+msgid "Rooms"
+msgstr ""
+
+#: listings/forms.py:42
+msgid "Rooms:"
+msgstr ""
+
+#: listings/forms.py:45
+msgid "Minimum price"
+msgstr ""
+
+#: listings/forms.py:48 listings/forms.py:120 listings/forms.py:123
+#: listings/forms.py:134 listings/forms.py:137
+msgid "From"
+msgstr ""
+
+#: listings/forms.py:49
+msgid "Price from:"
+msgstr ""
+
+#: listings/forms.py:52
+msgid "Maximum price"
+msgstr ""
+
+#: listings/forms.py:55 listings/forms.py:127 listings/forms.py:130
+#: listings/forms.py:141 listings/forms.py:144
+msgid "To"
+msgstr ""
+
+#: listings/forms.py:56
+msgid "Price to:"
+msgstr ""
+
+#: listings/forms.py:59 listings/models.py:55 pages/forms.py:24
+msgid "Realty type"
+msgstr ""
+
+#: listings/forms.py:62
+msgid "Select a type"
+msgstr ""
+
+#: listings/forms.py:65 pages/forms.py:30
+msgid "Realty type:"
+msgstr ""
+
+#: listings/forms.py:71 listings/forms.py:73
+msgid "New building"
+msgstr ""
+
+#: listings/forms.py:108 listings/forms.py:110
+msgid "With photo"
+msgstr ""
+
+#: listings/forms.py:113 listings/forms.py:115
+msgid "With video"
+msgstr ""
+
+#: listings/forms.py:124
+msgid "Floor from:"
+msgstr ""
+
+#: listings/forms.py:131
+msgid "Floor to:"
+msgstr ""
+
+#: listings/forms.py:138
+msgid "Floors in the house from:"
+msgstr ""
+
+#: listings/forms.py:145
+msgid "Floors in the house to:"
+msgstr ""
+
+#: listings/forms.py:148
+msgid "Repair"
+msgstr ""
+
+#: listings/forms.py:152 listings/forms.py:162 listings/forms.py:172
+#: listings/forms.py:182 listings/forms.py:192 listings/forms.py:203
+msgid "Select"
+msgstr ""
+
+#: listings/forms.py:154
+msgid "Repair:"
+msgstr ""
+
+#: listings/forms.py:158
+msgid "Layout"
+msgstr ""
+
+#: listings/forms.py:164
+msgid "Layout:"
+msgstr ""
+
+#: listings/forms.py:168
+msgid "Housing class"
+msgstr ""
+
+#: listings/forms.py:174
+msgid "Housing class:"
+msgstr ""
+
+#: listings/forms.py:178
+msgid "Roof of the house"
+msgstr ""
+
+#: listings/forms.py:184
+msgid "Roof of the house:"
+msgstr ""
+
+#: listings/forms.py:188
+msgid "Windows come out"
+msgstr ""
+
+#: listings/forms.py:194
+msgid "Windows come out:"
+msgstr ""
+
+#: listings/forms.py:199
+msgid "Entrance"
+msgstr ""
+
+#: listings/forms.py:205
+msgid "Entrance:"
+msgstr ""
+
+#: listings/models.py:17
+msgid "Active"
+msgstr ""
+
+#: listings/models.py:18
+msgid "Archive"
+msgstr ""
+
+#: listings/models.py:20
+msgid "Status"
+msgstr ""
+
+#: listings/models.py:22
+msgid "Updated"
+msgstr ""
+
+#: listings/models.py:24 managers/models.py:40 managers/models.py:71
+msgid "Manager"
+msgstr ""
+
+#: listings/models.py:27 pages/models.py:34 pages/models.py:50
+#: pages/models.py:67 vacantions/models.py:8
+msgid "Description"
+msgstr ""
+
+#: listings/models.py:29
+msgid "Is new building"
+msgstr ""
+
+#: listings/models.py:32
+msgid "Total Area"
+msgstr ""
+
+#: listings/models.py:33
+msgid "Living Area"
+msgstr ""
+
+#: listings/models.py:34
+msgid "Kitchen Area"
+msgstr ""
+
+#: listings/models.py:37
+msgid "Room Count"
+msgstr ""
+
+#: listings/models.py:40
+msgid "Floor"
+msgstr ""
+
+#: listings/models.py:41
+msgid "Total Floors"
+msgstr ""
+
+#: listings/models.py:44
+msgid "Price"
+msgstr ""
+
+#: listings/models.py:48 listings/models.py:255 listings/models.py:262
+msgid "Street"
+msgstr ""
+
+#: listings/models.py:50
+msgid "House Number"
+msgstr ""
+
+#: listings/models.py:54 listings/models.py:140
+msgid "Category"
+msgstr ""
+
+#: listings/models.py:57 listings/models.py:160
+msgid "Deal"
+msgstr ""
+
+#: listings/models.py:60 pages/models.py:132
+msgid "Video"
+msgstr ""
+
+#: listings/models.py:67 listings/models.py:165 listings/models.py:205
+msgid "Listing"
+msgstr ""
+
+#: listings/models.py:124
+msgid "Menu label"
+msgstr ""
+
+#: listings/models.py:125 listings/models.py:194 news/models.py:9
+msgid "Slug"
+msgstr ""
+
+#: listings/models.py:141
+msgid "Categories"
+msgstr ""
+
+#: listings/models.py:150
+msgid "Realty Type"
+msgstr ""
+
+#: listings/models.py:151
+msgid "Realty Types"
+msgstr ""
+
+#: listings/models.py:161
+msgid "Deals"
+msgstr ""
+
+#: listings/models.py:167 managers/models.py:13
+msgid "Image url"
+msgstr ""
+
+#: listings/models.py:197 listings/models.py:207
+msgid "Attribute"
+msgstr ""
+
+#: listings/models.py:198
+msgid "Attributes"
+msgstr ""
+
+#: listings/models.py:209
+msgid "Value"
+msgstr ""
+
+#: listings/models.py:219
+msgid "Kit"
+msgstr ""
+
+#: listings/models.py:220
+msgid "Kits"
+msgstr ""
+
+#: listings/models.py:227 listings/models.py:233 listings/models.py:239
+msgid "Country"
+msgstr ""
+
+#: listings/models.py:234
+msgid "Countries"
+msgstr ""
+
+#: listings/models.py:238 listings/models.py:248 listings/models.py:256
+msgid "City"
+msgstr ""
+
+#: listings/models.py:249
+msgid "Cities"
+msgstr ""
+
+#: listings/models.py:263
+msgid "Streets"
+msgstr ""
+
+#: managers/apps.py:8
+msgid "Managers"
+msgstr ""
+
+#: managers/forms.py:8
+msgid "Enter the last name of the specialist"
+msgstr ""
+
+#: managers/models.py:11
+msgid "Name"
+msgstr ""
+
+#: managers/models.py:12 news/models.py:12
+msgid "Image"
+msgstr ""
+
+#: managers/models.py:15 pages/models.py:92 props/models.py:10
+msgid "Email"
+msgstr ""
+
+#: managers/models.py:17
+msgid "Experience"
+msgstr ""
+
+#: managers/models.py:18
+msgid "Has Car?"
+msgstr ""
+
+#: managers/models.py:19
+msgid "About"
+msgstr ""
+
+#: managers/models.py:39 managers/models.py:51
+msgid "Phone"
+msgstr ""
+
+#: managers/models.py:52
+msgid "Phones"
+msgstr ""
+
+#: managers/models.py:67
+msgid "Rating"
+msgstr ""
+
+#: managers/models.py:68
+msgid "Author"
+msgstr ""
+
+#: managers/models.py:69 managers/models.py:78
+msgid "Review"
+msgstr ""
+
+#: managers/models.py:79
+msgid "Reviews"
+msgstr ""
+
+#: managers/views.py:80
+msgid "Real estate specialists"
+msgstr ""
+
+#: news/apps.py:8 news/models.py:27 news/models.py:28 news/views.py:13
+#: news/views.py:20 news/views.py:33
+msgid "News"
+msgstr ""
+
+#: news/models.py:10
+msgid "Text"
+msgstr ""
+
+#: pages/apps.py:8
+msgid "Pages"
+msgstr ""
+
+#: pages/forms.py:10
+msgid "Full name"
+msgstr ""
+
+#: pages/forms.py:27
+msgid "Select type"
+msgstr ""
+
+#: pages/models.py:9
+msgid "Title 1 of the section"
+msgstr ""
+
+#: pages/models.py:10
+msgid "Description 1 of the section"
+msgstr ""
+
+#: pages/models.py:12
+msgid "Title 2 of the section"
+msgstr ""
+
+#: pages/models.py:13
+msgid "Description 2 of the section"
+msgstr ""
+
+#: pages/models.py:22 pages/models.py:23 pages/models.py:32
+msgid "About us"
+msgstr ""
+
+#: pages/models.py:35
+msgid "Column size"
+msgstr ""
+
+#: pages/models.py:37 pages/models.py:77
+msgid "Order"
+msgstr ""
+
+#: pages/models.py:44
+msgid "About us detail"
+msgstr ""
+
+#: pages/models.py:45
+msgid "About us details"
+msgstr ""
+
+#: pages/models.py:59 pages/models.py:60
+msgid "Real estate abroad"
+msgstr ""
+
+#: pages/models.py:65
+msgid "Bg title"
+msgstr ""
+
+#: pages/models.py:68
+msgid "Link"
+msgstr ""
+
+#: pages/models.py:71
+msgid "Background image"
+msgstr ""
+
+#: pages/models.py:73
+msgid "Photo 1"
+msgstr ""
+
+#: pages/models.py:75
+msgid "Photo 2"
+msgstr ""
+
+#: pages/models.py:84 pages/models.py:85
+msgid "Real estate element"
+msgstr ""
+
+#: pages/models.py:89
+msgid "Phone 1"
+msgstr ""
+
+#: pages/models.py:90
+msgid "Phone 2"
+msgstr ""
+
+#: pages/models.py:94
+msgid "Schedule"
+msgstr ""
+
+#: pages/models.py:96
+msgid "Office 1"
+msgstr ""
+
+#: pages/models.py:97
+msgid "Office 2"
+msgstr ""
+
+#: pages/models.py:98
+msgid "Office 3"
+msgstr ""
+
+#: pages/models.py:100
+msgid "Telegram"
+msgstr ""
+
+#: pages/models.py:101
+msgid "Viber"
+msgstr ""
+
+#: pages/models.py:102
+msgid "Instagram"
+msgstr ""
+
+#: pages/models.py:103
+msgid "Facebook"
+msgstr ""
+
+#: pages/models.py:106 pages/models.py:112 pages/models.py:113
+#: pages/views.py:40
+msgid "Contacts"
+msgstr ""
+
+#: pages/models.py:117
+msgid "Register link"
+msgstr ""
+
+#: pages/models.py:118
+msgid "Auth link"
+msgstr ""
+
+#: pages/models.py:121 pages/models.py:127 pages/models.py:128
+msgid "Course"
+msgstr ""
+
+#: pages/models.py:134
+msgid "Poster"
+msgstr ""
+
+#: pages/models.py:138 pages/models.py:144 pages/models.py:145
+#: vacantions/apps.py:8 vacantions/models.py:18
+msgid "Vacantions"
+msgstr ""
+
+#: pages/models.py:150
+msgid "About us section"
+msgstr ""
+
+#: pages/models.py:153 pages/models.py:159 pages/models.py:160
+msgid "Home"
+msgstr ""
+
+#: pages/views.py:63
+msgid "Cost of services"
+msgstr ""
+
+#: profiles/apps.py:7
+msgid "Users"
+msgstr ""
+
+#: profiles/models.py:6
+msgid "Profile"
+msgstr ""
+
+#: profiles/models.py:7
+msgid "Profiles"
+msgstr ""
+
+#: props/apps.py:7
+msgid "Site Settings"
+msgstr ""
+
+#: props/models.py:7
+msgid "Site name"
+msgstr ""
+
+#: props/models.py:8
+msgid "API-key for Google Maps"
+msgstr ""
+
+#: props/models.py:9
+msgid "CRM-feed for parsing"
+msgstr ""
+
+#: props/models.py:13 props/models.py:16
+msgid "Site Configuration"
+msgstr ""
+
+#: vacantions/models.py:7
+msgid "Salary"
+msgstr ""
+
+#: vacantions/models.py:9 vacantions/models.py:29
+msgid "Department"
+msgstr ""
+
+#: vacantions/models.py:17
+msgid "Vacantion"
+msgstr ""
+
+#: vacantions/models.py:30
+msgid "Departments"
+msgstr ""

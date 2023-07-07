@@ -13,7 +13,7 @@ from .utils import filter_listings, get_similar_listings, modify_get, get_listin
 from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
-
+from django.utils.translation import gettext_lazy as _
 
 
 def listings_list(request):
@@ -55,7 +55,7 @@ def listings_list(request):
                 pass
 
         crumbs.append(
-            (f'Оголошення {crumb_title}', reverse_lazy('listings:list'))
+            (_('Listings') + f' {crumb_title}', reverse_lazy('listings:list'))
         )
             
             
@@ -99,7 +99,7 @@ def listings_detail(request, id):
 
     if listing.street:
         crumbs.append(
-            (f'Оголошення {listing.street.city.title}', listing.street.city.get_absolute_url())
+            (_('Listings') + f' {listing.street.city.title}', listing.street.city.get_absolute_url())
         )
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')

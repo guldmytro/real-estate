@@ -1,17 +1,18 @@
 from django import forms
 from vacantions.models import Vacantion
 from managers.models import Review, Manager
+from django.utils.translation import gettext_lazy as _
 
 
 class FeadbackForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(
                            attrs={
-                               'placeholder': "Ваше ім'я:*",
+                               'placeholder': _("Your name:*"),
                                'class': 'input input_secondary'
                            }))
     phone = forms.CharField(widget=forms.TextInput(
                             attrs={
-                                'placeholder': "Телефон:*",
+                                'placeholder': _("Phone:*"),
                                 'class': 'input input_secondary'
                             }))
     
@@ -21,7 +22,7 @@ class FeadbackForm(forms.Form):
 
 class ApplyForm(FeadbackForm):
     file = forms.FileField()
-    vacantion = forms.ModelChoiceField(label='Резюме',
+    vacantion = forms.ModelChoiceField(label=_('Resume'),
                                        queryset=Vacantion.objects.all(),
                                        widget=forms.HiddenInput())
     
@@ -31,14 +32,14 @@ class ReviewForm(forms.ModelForm):
                                choices=Review.RATING_CHOICES, initial=5)
     author = forms.CharField(widget=forms.TextInput(
                              attrs={
-                                 'placeholder': "Ваше ім'я:*",
+                                 'placeholder': _("Your name:*"),
                                  'class': 'input'
                              }))
     body = forms.CharField(widget=forms.Textarea(attrs={'class': 'textarea',
-                                                           'placeholder': 'Напишіть ваш відгук'}))
+                                                        'placeholder': _("Write your review")}))
     phone = forms.CharField(widget=forms.TextInput(
                             attrs={
-                                'placeholder': "Телефон:*",
+                                'placeholder': _("Phone:*"),
                                 'class': 'input'
                             }))
     manager = forms.ModelChoiceField(widget=forms.HiddenInput,
@@ -52,7 +53,7 @@ class ReviewForm(forms.ModelForm):
 class ListingPhoneForm(forms.Form):
     phone = forms.CharField(widget=forms.TextInput(
                         attrs={
-                            'placeholder': "Телефон:*",
+                            'placeholder': _("Phone:*"),
                             'class': 'input'
                         }))
     
@@ -63,7 +64,7 @@ class ListingPhoneForm(forms.Form):
 class ListingMessageForm(ListingPhoneForm):
     message = forms.CharField(
         widget=forms.Textarea(
-            attrs={'class': 'textarea', 'placeholder': 'Повідомлення'}
+            attrs={'class': 'textarea', 'placeholder': _("Message")}
             )
         )
 

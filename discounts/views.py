@@ -3,6 +3,7 @@ from .models import Discount
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 
 def discounts_list(request):
@@ -14,7 +15,7 @@ def discounts_list(request):
     except EmptyPage:
         discounts = paginator.page(paginator.num_pages)
     crumbs = [
-        ('Акції', reverse_lazy('discounts:list')),
+        (_('Discounts'), reverse_lazy('discounts:list')),
     ]
     context = {
         'discounts': discounts,
@@ -26,7 +27,7 @@ def discounts_list(request):
 def discounts_detail(request, slug):
     post = get_object_or_404(Discount, slug=slug)
     crumbs = [
-        ('Акції', reverse_lazy('discounts:list')),
+        (_('Discounts'), reverse_lazy('discounts:list')),
         (post.title, post.get_absolute_url),
     ]
     context = {

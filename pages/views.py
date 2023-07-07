@@ -8,6 +8,7 @@ from emails.forms import ReviewForm
 from django.urls import reverse_lazy
 from listings.forms import SearchForm, SearchFormSimplified
 from news.models import News
+from django.utils.translation import gettext_lazy as _
 
 
 def about(request):
@@ -36,7 +37,7 @@ def contacts(request):
     feadback_form = FeadbackForm(request.POST)
     page = Contact.objects.get()
     crumbs = [
-        ('Контакти', reverse_lazy('pages:contacts'))
+        (_('Contacts'), reverse_lazy('pages:contacts'))
     ]
     context = {
         'page': page,
@@ -59,7 +60,7 @@ def course(request):
 def pricing(request):
     feadback_form = FeadbackForm(request.POST)
     crumbs = [
-        ('Вартість послуг', reverse_lazy('pages:pricing'))
+        (_('Cost of services'), reverse_lazy('pages:pricing'))
     ]
     context = {
         'feadback_form': feadback_form,

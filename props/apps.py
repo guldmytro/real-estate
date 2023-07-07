@@ -1,7 +1,8 @@
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
 
 class PropsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    verbose_name = 'Site Settings'
+    verbose_name = _('Site Settings')
     name = 'props'

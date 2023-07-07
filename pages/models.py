@@ -2,14 +2,15 @@ from django.db import models
 from solo.models import SingletonModel
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 
 class About(SingletonModel):
-    title_1 = models.CharField(max_length=255, verbose_name='Заголовок 1 секції')
-    description_1 = models.TextField(max_length=300, verbose_name='Опис 1 секції')
+    title_1 = models.CharField(max_length=255, verbose_name=_('Title 1 of the section'))
+    description_1 = models.TextField(max_length=300, verbose_name=_('Description 1 of the section'))
 
-    title_2 = models.CharField(max_length=255, verbose_name='Заголовок 2 секції')
-    description_2 = models.TextField(max_length=300, verbose_name='Опис 2 секції')
+    title_2 = models.CharField(max_length=255, verbose_name=_('Title 2 of the section'))
+    description_2 = models.TextField(max_length=300, verbose_name=_('Description 2 of the section'))
 
     def __str__(self):
         return self.title_1
@@ -18,8 +19,8 @@ class About(SingletonModel):
         return reverse('pages:about')
 
     class Meta:
-        verbose_name = 'Про нас'
-        verbose_name_plural = 'Про нас'
+        verbose_name = _('About us')
+        verbose_name_plural = _('About us')
 
 
 class AboutItem(models.Model):
@@ -28,25 +29,25 @@ class AboutItem(models.Model):
         ('about-item_half', '1/2'),
         ('about-item_full', '1/1'),
     )
-    about = models.ForeignKey(About, on_delete=models.CASCADE, related_name='items')
-    title = models.CharField(max_length=100, verbose_name='Заголовок')
-    description = models.TextField(max_length=500, verbose_name='Опис')
-    size = models.CharField(max_length=16, verbose_name='Розмір (в колонках)', 
+    about = models.ForeignKey(About, on_delete=models.CASCADE, related_name='items', verbose_name=_('About us'))
+    title = models.CharField(max_length=100, verbose_name=_('Title'))
+    description = models.TextField(max_length=500, verbose_name=_('Description'))
+    size = models.CharField(max_length=16, verbose_name=_('Column size'), 
                             default='about-item_half', choices=CLASS_CHOICES)
-    order = models.PositiveSmallIntegerField(verbose_name='Порядок', null=True, blank=True)
+    order = models.PositiveSmallIntegerField(verbose_name=_('Order'), null=True, blank=True)
 
     def __str__(self):
         return self.title
     
     class Meta:
         ordering = ('order',)
-        verbose_name = 'Про нас деталь'
-        verbose_name_plural = 'Про нас деталі'
+        verbose_name = _('About us detail')
+        verbose_name_plural = _('About us details')
 
 
 class Abroad(SingletonModel):
-    title = models.CharField(max_length=255, verbose_name='Заголовок')
-    description = models.TextField(max_length=300, verbose_name='Опис')
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    description = models.TextField(max_length=300, verbose_name=_('Description'))
 
     def __str__(self):
         return self.title
@@ -55,105 +56,105 @@ class Abroad(SingletonModel):
         return reverse('pages:abroad_properties')
 
     class Meta:
-        verbose_name = 'Нерухомість закордоном'
-        verbose_name_plural = 'Нерухомість закордоном'
+        verbose_name = _('Real estate abroad')
+        verbose_name_plural = _('Real estate abroad')
 
 
 class AbroadItem(models.Model):
     abroad = models.ForeignKey(Abroad, on_delete=models.CASCADE, related_name='items')
-    title_bg = models.CharField(max_length=15, verbose_name='Заголовок на фоні')
-    title = models.CharField(max_length=100, verbose_name='Заголовок')
-    description = models.TextField(max_length=500, verbose_name='Опис')
-    link = models.URLField(verbose_name='Посилання')
+    title_bg = models.CharField(max_length=15, verbose_name=_('Bg title'))
+    title = models.CharField(max_length=100, verbose_name=_('Title'))
+    description = models.TextField(max_length=500, verbose_name=_('Description'))
+    link = models.URLField(verbose_name=_('Link'))
 
     background_image = models.ImageField(upload_to='abroad_properties/%Y/%m/%d',
-                                         verbose_name='Фон')
+                                         verbose_name=_('Background image'))
     photo_1 = models.ImageField(upload_to='abroad_properties/%Y/%m/%d',
-                                verbose_name='Фото 1')
+                                verbose_name=_('Photo 1'))
     photo_2 = models.ImageField(upload_to='abroad_properties/%Y/%m/%d',
-                                verbose_name='Фото 2')
+                                verbose_name=_('Photo 2'))
 
-    order = models.PositiveSmallIntegerField(verbose_name='Порядок', null=True, blank=True)
+    order = models.PositiveSmallIntegerField(verbose_name=_('Order'), null=True, blank=True)
 
     def __str__(self):
         return self.title
     
     class Meta:
         ordering = ('order',)
-        verbose_name = 'Нерухомість закордоном (елемент)'
-        verbose_name_plural = 'Нерухомість закордоном (елемент)'
+        verbose_name = _('Real estate element')
+        verbose_name_plural = _('Real estate element')
 
 
 class Contact(SingletonModel):
-    phone_1 = models.CharField(max_length=30, verbose_name='Телефон 1')
-    phone_2 = models.CharField(max_length=30, verbose_name='Телефон 2')
+    phone_1 = models.CharField(max_length=30, verbose_name=_('Phone 1'))
+    phone_2 = models.CharField(max_length=30, verbose_name=_('Phone 2'))
     
-    email = models.EmailField(verbose_name='Пошта')
+    email = models.EmailField(verbose_name=_('Email'))
     
-    schedule = models.CharField(max_length=255, verbose_name='Режим роботи')
+    schedule = models.CharField(max_length=255, verbose_name=_('Schedule'))
     
-    office_1 = models.CharField(max_length=255, verbose_name='Офіс 1')
-    office_2 = models.CharField(max_length=255, verbose_name='Офіс 2')
-    office_3 = models.CharField(max_length=255, verbose_name='Офіс 3')
+    office_1 = models.CharField(max_length=255, verbose_name=_('Office 1'))
+    office_2 = models.CharField(max_length=255, verbose_name=_('Office 2'))
+    office_3 = models.CharField(max_length=255, verbose_name=_('Office 3'))
 
-    telegram = models.URLField(verbose_name='Телеграм', blank=True, null=True)
-    viber = models.URLField(verbose_name='Вайбер', blank=True, null=True)
-    instagram = models.URLField(verbose_name='Інстаграм', blank=True, null=True)
-    facebook = models.URLField(verbose_name='Фейсбук', blank=True, null=True)
+    telegram = models.URLField(verbose_name=_('Telegram'), blank=True, null=True)
+    viber = models.URLField(verbose_name=_('Viber'), blank=True, null=True)
+    instagram = models.URLField(verbose_name=_('Instagram'), blank=True, null=True)
+    facebook = models.URLField(verbose_name=_('Facebook'), blank=True, null=True)
 
     def __str__(self):
-        return 'Контакти'
+        return _('Contacts')
 
     def get_absolute_url(self):
         return reverse('pages:contacts')
     
     class Meta:
-        verbose_name = 'Контакти'
-        verbose_name_plural = 'Контакти'
+        verbose_name = _('Contacts')
+        verbose_name_plural = _('Contacts')
 
 
 class Course(SingletonModel):
-    register_link = models.URLField(verbose_name='Зсилка на реєстрацію', blank=True, null=True)
-    auth_link = models.URLField(verbose_name='Зсилка на авторизацію', blank=True, null=True)
+    register_link = models.URLField(verbose_name=_('Register link'), blank=True, null=True)
+    auth_link = models.URLField(verbose_name=_('Auth link'), blank=True, null=True)
 
     def __str__(self):
-        return 'Курс'
+        return _('Course')
 
     def get_absolute_url(self):
         return reverse('pages:course')
     
     class Meta:
-        verbose_name = 'Курс'
-        verbose_name_plural = 'Курс'
+        verbose_name = _('Course')
+        verbose_name_plural = _('Course')
 
 
 class VacantionPage(SingletonModel):
-    video = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name='Video',
+    video = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name=_('Video'),
                              blank=True, null=True)
-    poster = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name='Poster',
+    poster = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name=_('Poster'),
                               blank=True, null=True)
 
     def __str__(self):
-        return 'Вакансії'
+        return _('Vacantions')
 
     def get_absolute_url(self):
         return reverse('vacantions:page')
     
     class Meta:
-        verbose_name = 'Вакансії'
-        verbose_name_plural = 'Вакансії'
+        verbose_name = _('Vacantions')
+        verbose_name_plural = _('Vacantions')
 
 
 class Home(SingletonModel):
-    title = models.CharField(max_length=150, verbose_name='Заголовок', null=True, blank=True)
-    about = RichTextUploadingField(verbose_name='Про нас секція', null=True, blank=True)
+    title = models.CharField(max_length=150, verbose_name=_('Title'), null=True, blank=True)
+    about = RichTextUploadingField(verbose_name=_('About us section'), null=True, blank=True)
     
     def __str__(self):
-        return 'Головна'
+        return _('Home')
 
     def get_absolute_url(self):
         return reverse('pages:home')
     
     class Meta:
-        verbose_name = 'Головна'
-        verbose_name_plural = 'Головна'
+        verbose_name = _('Home')
+        verbose_name_plural = _('Home')

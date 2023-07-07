@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 POSTS_PER_PAGE = 8
 
@@ -76,7 +77,7 @@ def managers_list(request):
         managers = paginator.page(paginator.num_pages)
 
     crumbs = [
-        ('Фахівці з нерухомості', reverse_lazy('managers:list'))
+        (_('Real estate specialists'), reverse_lazy('managers:list'))
     ]
     context = {
         'managers': managers,
