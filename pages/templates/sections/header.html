@@ -1,4 +1,5 @@
 {% load static %}
+{% load listing_extras %}
 
 <header class="header">
     <div class="header-toper">
@@ -7,10 +8,12 @@
                 <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
             </a>
             <div class="header-toper__controls">
-                <a href="tel:+380322949679" class="link">
+                {% if contacts.phone_1 %}
+                <a href="tel:+{{ contacts.phone_1|clean_phone }}" class="link">
                     <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
-                    <span class="link__text">+38 (032) 294 96 79</span>
+                    <span class="link__text">{{ contacts.phone_1 }}</span>
                 </a>
+                {% endif %}
                 <a href="{% url 'pages:course' %}" class="link">
                     <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
                     <span class="link__text">Наш онлайн курс</span>
@@ -28,6 +31,7 @@
             </form>
             <a href="{% url 'wishlist:archive' %}" class="wishlist-link" title="Перейти у вибране" aria-label="Перейти у вибране">
                 <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
+                <span data-count="{{ wishlist_count }}" class="wishlist-link__cnt"></span>
             </a>
             <div class="header-menu">
                 <button type="button" class="menu-btn" aria-label="відкрити закрити меню">
@@ -58,10 +62,12 @@
                         <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Контакти</a>
                     </nav>
                     <div class="header-toper__controls">
-                        <a href="tel:+380322949679" class="link">
-                            <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
-                            <span class="link__text">+38 (032) 294 96 79</span>
-                        </a>
+                        {% if contacts.phone_1 %}
+                            <a href="tel:+{{ contacts.phone_1|clean_phone }}" class="link">
+                                <img src="{% static 'img/icon-phone.png' %}" alt="телефон" class="link__img accent" width="30" height="30">
+                                <span class="link__text">{{ contacts.phone_1 }}</span>
+                            </a>
+                        {% endif %}
                         <a href="{% url 'pages:course' %}" class="link">
                             <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
                             <span class="link__text">Наш онлайн курс</span>

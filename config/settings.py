@@ -88,6 +88,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'listings.context_processors.real_types',
+                'listings.context_processors.wishlist_types',
+                'pages.context_processors.contacts',
             ],
         },
     },

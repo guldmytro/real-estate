@@ -38,13 +38,14 @@
           });
         </script>
     {% endif %}
+    <script>
+        const csrfToken = "{{ csrf_token }}";
+    </script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script src="{% static 'js/predictions.js' %}" type="module"></script>
     <script src="{% static 'js/search.js' %}" type="module"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
-    <script>
-        const csrfToken = "{{ csrf_token }}";
-    </script>
+
     {% block scripts %}{% endblock %}
 </body>
 </html>

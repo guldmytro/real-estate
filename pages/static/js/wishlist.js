@@ -28,7 +28,7 @@ function setCookie(name, value) {
     document.cookie = updatedCookie;
 }
 
-$('.add-to-wishlist').on('click', function() {
+$('.add-to-wishlist').on('click', async function() {
 	const $this = $(this);
 	$this.attr('disabled', true);
 	const id = $this.attr('data-id');
@@ -50,6 +50,26 @@ $('.add-to-wishlist').on('click', function() {
 		}
 		setCookie('wishlist', wishlistArray.join(','));
 	}
+	try {
+		const res = await fetch('/wishlist/count/', {
+			'method': 'POST',
+			'headers': {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': csrfToken
+			},
+			'body': JSON.stringify({'wishlist': getCookie('wishlist')})
+		}).then(res => {
+			if (res.ok) {
+				return res.json();
+			} else {
+				throw new Error('Bad request');
+			}
+		});
+		$('.wishlist-link__cnt').attr('data-count', res?.cnt);
+	} catch(e) {
+		console.warn(e);
+	}
+
 	$this.attr('disabled', false);
 });
 

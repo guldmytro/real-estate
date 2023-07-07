@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from listings.models import Listing
 from django.core.paginator import Paginator, EmptyPage
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+import json
 
 
 def wishlist_archive(request):
@@ -16,3 +19,17 @@ def wishlist_archive(request):
         'listings': listings
     }
     return render(request, 'wishlist/list.html', context)
+
+
+@require_POST
+def wishlist_count(request):
+    try:
+        body = json.loads(request.body)
+        wishlist = body.get('wishlist')
+        ids = list(filter(lambda id: id != '', wishlist.split(',')))
+        cnt = Listing.active.filter(id__in=ids).count()
+        if cnt > 9:
+            cnt = '9+'
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    return JsonResponse({'cnt': cnt})
