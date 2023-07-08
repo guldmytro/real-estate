@@ -1,7 +1,8 @@
+{% load i18n %}
 {% load static %}
 
 <div class="empty-result">
     <img class="empty-result__img" src="{% static 'img/icon-search_colored.svg' %}" alt="лупа" width="1290" height="1290">
-    <h2 class="empty-result__title">Вибачте, ми не змогли нічого знайти по ваших критеріях</h2>
-    <p class="empty-result__subtitle">Спробуйте, будь ласка, інші параметри пошуку</p>
+    <h2 class="empty-result__title">{% trans "Sorry, I couldn't find anything according to your criteria" %}</h2>
+    <p class="empty-result__subtitle">{% trans 'Please try other search options' %}</p>
 </div>

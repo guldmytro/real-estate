@@ -1,27 +1,28 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Курс{% endblock %}
+{% block title %}{% trans 'Course' %}{% endblock %}
 
 {% block content %}
     <main class="course">
         <div class="container">
             <div class="section-header">
-                <p class="section-header__upheader">PRO_нерухомість</p>
+                <p class="section-header__upheader">{% trans 'Pro_real_estate' %}</p>
                 <h1 class="section-header__title animate animate_text">
-                    <span>БЕЗКОШТОВНИЙ</span>
+                    <span>{% trans 'FREE' %}</span>
                     <br>
-                    <span>ОНЛАЙН-КУРС</span>
+                    <span>{% trans 'ONLINE-COURSE' %}</span>
                 </h1>
-                <p class="section-header__subtitle section-header__subtitle_strong">Для тих, хто хоче дізнатись більше про ринок нерухомості</p>
+                <p class="section-header__subtitle section-header__subtitle_strong">{% trans 'For those who want to learn more about the real estate market' %}</p>
             </div>
             <div class="course-links">
                 {% if page.register_link %}
-                    <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                    <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">{% trans 'Register' %}</a>
                 {% endif %}
                 {% if page.auth_link %}
-                    <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                    <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">{% trans 'Log in' %}</a>
                 {% endif %}
             </div>
         </div>
@@ -34,8 +35,8 @@
                         <img src="{% static 'img/icon-calendar.png' %}" class="accent course-feature__img" alt="календар" loading="lazy" width="128" height="124">
                     </div>
                     <div class="course-feature__desc">
-                        <p class="course-feature__title">дата</p>
-                        <p class="course-feature__content">Одразу після реєстрації</p>
+                        <p class="course-feature__title">{% trans 'Date' %}</p>
+                        <p class="course-feature__content">{% trans 'Immediately after registration' %}</p>
                     </div>
                 </li>
                 <li class="course-feature">
@@ -43,8 +44,8 @@
                         <img src="{% static 'img/icon-marker-2.png' %}" class="accent course-feature__img" alt="маркер" loading="lazy" width="116" height="128">
                     </div>
                     <div class="course-feature__desc">
-                        <p class="course-feature__title">місце</p>
-                        <p class="course-feature__content">Курс проходить онлайн</p>
+                        <p class="course-feature__title">{% trans 'Place' %}</p>
+                        <p class="course-feature__content">{% trans 'The course is held online' %}</p>
                     </div>
                 </li>
                 <li class="course-feature">
@@ -52,8 +53,8 @@
                         <img src="{% static 'img/icon-badge.png' %}" class="accent course-feature__img" alt="бейджик" loading="lazy" width="96" height="93">
                     </div>
                     <div class="course-feature__desc">
-                        <p class="course-feature__title">ціна</p>
-                        <p class="course-feature__content">Безкоштовно</p>
+                        <p class="course-feature__title">{% trans 'Price' %}</p>
+                        <p class="course-feature__content">{% trans 'Free' %}</p>
                     </div>
                 </li>
                 <li class="course-feature">
@@ -61,8 +62,8 @@
                         <img src="{% static 'img/icon-messages.png' %}" class="accent course-feature__img" alt="повідомлення" loading="lazy" width="116" height="116">
                     </div>
                     <div class="course-feature__desc">
-                        <p class="course-feature__title">мова</p>
-                        <p class="course-feature__content">Українська</p>
+                        <p class="course-feature__title">{% trans 'language' %}</p>
+                        <p class="course-feature__content">{% trans 'Ukrainian' %}</p>
                     </div>
                 </li>
             </ul>
@@ -74,13 +75,14 @@
                 <div class="col">
                     <div class="section-header">
                         <h2 class="section-header__title animate animate_text">
-                            {{ 'PRO_нерухомість'|wrap_words_in_span|safe }}
+                            {% trans 'PRO_real_estate' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h2>
-                        <p class="section-header__text">Якщо ви хочете вчитися та розвиватися, то нам є про що поговорити. Ми сподіваємося, що знання, отриманы на курсі допоможуть Вам більше розібратись в ринку нерухомості, заключати безпечні угоди, вигідно інвестувати чи знайти цікаву роботу, яка приноситеме дохід та задоволення.</p>
-                        <h3 class="section-header__title section-header__title_smaller">Подальша співпраця та взаємодія</h3>
-                        <p class="section-header__text section-header__text_smaller">В процесі та після проходження курсу у Вас буде можливість продовжити взаємодію з компанією по різним напрямкам.</p>
-                        <h3 class="section-header__title section-header__title_smaller">Про курс</h3>
-                        <p class="section-header__text section-header__text_smaller">В курсі &#39;PRO_нерухомість&#39; ми розповідаємо про базові принципи та основні теми, на які треба звернути увагу, щоб не розгубитися на ринку нерухомості.</p>
+                        <p class="section-header__text">{% trans 'If you want to learn and develop, then we have something to talk about. We hope that the knowledge gained during the course will help you to better understand the real estate market, conclude safe deals, invest profitably or find an interesting job that will bring you income and satisfaction.' %}</p>
+                        <h3 class="section-header__title section-header__title_smaller">{% trans 'Further cooperation and interaction' %}</h3>
+                        <p class="section-header__text section-header__text_smaller">{% trans 'In the process and after completing the course, you will have the opportunity to continue interaction with the company in various directions.' %}</p>
+                        <h3 class="section-header__title section-header__title_smaller">{% trans 'About the course' %}Про курс</h3>
+                        <p class="section-header__text section-header__text_smaller">{% trans 'In the course PRO_real estate we talk about the basic principles and main topics that you need to pay attention to in order not to get lost in the real estate market.' %}</p>
                     </div>
                 </div>
                 <div class="col">
@@ -93,7 +95,8 @@
         <div class="container">
             <div class="section-header section-header_center section-header_invert">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Кому підійде цей курс'|wrap_words_in_span|safe }}
+                    {% trans 'Who is this course suitable for?' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <ul class="course-suit__group">
@@ -102,8 +105,8 @@
                         <img src="{% static 'img/icon-house-large.png' %}" class="course-suit__img accent" alt="дім" width="128" height="94" loading="lazy">
                     </div>
                     <div class="course-suit-item__desc">
-                        <h3 class="course-suit-item__title">Тим, хто планує купити чи продати нерухомість</h3>
-                        <p class="course-suit-item__content">Ознайомитесь з принципами функціонування ринку нерухомості та проведення безпечних угод.</p>
+                        <h3 class="course-suit-item__title">{% trans 'For those who plan to buy or sell real estate' %}</h3>
+                        <p class="course-suit-item__content">{% trans 'Get acquainted with the principles of functioning of the real estate market and conducting safe transactions.' %}</p>
                     </div>
                 </li>
                 <li class="course-suit-item">
@@ -111,8 +114,8 @@
                         <img src="{% static 'img/icon-grow.png' %}" class="course-suit__img accent" alt="ріст" width="120" height="120" loading="lazy">
                     </div>
                     <div class="course-suit-item__desc">
-                        <h3 class="course-suit-item__title">Тим, хто цікавиться інвестиціями в нерухомість</h3>
-                        <p class="course-suit-item__content">Ознайомитесь з кейсами по отриманню прибутку на ринку нерухомості.</p>
+                        <h3 class="course-suit-item__title">{% trans 'For those interested in investing in real estate' %}</h3>
+                        <p class="course-suit-item__content">{% trans 'Familiarize yourself with cases of profit in the real estate market.' %}</p>
                     </div>
                 </li>
                 <li class="course-suit-item">
@@ -120,8 +123,8 @@
                         <img src="{% static 'img/icon-cash.png' %}" class="course-suit__img accent" alt="гроші" width="128" height="128" loading="lazy">
                     </div>
                     <div class="course-suit-item__desc">
-                        <h3 class="course-suit-item__title">Тим, хто шукає цікаву та прибуткову роботу</h3>
-                        <p class="course-suit-item__content">Ознайомитеся з професією ріелтор, корпоративною культурою та перевагами роботи з &#39;Контракт-Нерухомість&#39;.</p>
+                        <h3 class="course-suit-item__title">{% trans 'Those who are looking for interesting and profitable work' %}</h3>
+                        <p class="course-suit-item__content">{% trans 'Get acquainted with the realtor profession, corporate culture and the benefits of working with "Contract-Real Estate".' %}</p>
                     </div>
                 </li>
                 <li class="course-suit-item">
@@ -129,8 +132,8 @@
                         <img src="{% static 'img/icon-house-medium.png' %}" class="course-suit__img accent" alt="дім" width="128" height="116" loading="lazy">
                     </div>
                     <div class="course-suit-item__desc">
-                        <h3 class="course-suit-item__title">Тим, кого цікавить закордонна нерухомість</h3>
-                        <p class="course-suit-item__content">Ознайомитесь з цінами та особливостями здійснення угод на нерухомість в ОАЕ(Дубай), Туреччині, Грузії та Сєвєрному Кіпрі.</p>
+                        <h3 class="course-suit-item__title">{% trans 'For those who are interested in foreign real estate' %}</h3>
+                        <p class="course-suit-item__content">{% trans 'Get acquainted with the prices and features of real estate transactions in the UAE (Dubai), Turkey, Georgia and Northern Cyprus.' %}</p>
                     </div>
                 </li>
                 <li class="course-suit-item course-suit-item_full">
@@ -138,18 +141,18 @@
                         <img src="{% static 'img/icon-deal.png' %}" class="course-suit__img accent" alt="рукотискання" width="128" height="128" loading="lazy">
                     </div>
                     <div class="course-suit-item__desc">
-                        <h3 class="course-suit-item__title">Підприємцям, які шукають можливості для створення бізнесу</h3>
-                        <p class="course-suit-item__content">Ознайомитесь з можливостями побудови бізнесу на ринку нерухомості.</p>
+                        <h3 class="course-suit-item__title">{% trans 'Entrepreneurs looking for business opportunities' %}</h3>
+                        <p class="course-suit-item__content">{% trans 'Get acquainted with the possibilities of building a business in the real estate market.' %}</p>
                     </div>
                 </li>
             </ul>
             <div class="course-links-wrapper">
                 <div class="course-links">
                     {% if page.register_link %}
-                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">{% trans 'Register' %}</a>
                     {% endif %}
                     {% if page.auth_link %}
-                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">{% trans 'Log in' %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -159,7 +162,8 @@
         <div class="container">
             <div class="section-header section-header_center section-header_invert">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Основні напрямки курсу'|wrap_words_in_span|safe }}
+                    {% trans 'The main directions of the course' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <ul class="section-directions-group">
@@ -168,8 +172,8 @@
                         <img src="{% static 'img/city-1.jpg' %}" class="section-directions-item__img" alt="місто" width="702" height="377" loading="lazy">
                     </div>
                     <div class="section-directions-item__desc">
-                        <h3 class="section-directions-item__title">Придбання нерухомості в Україні</h3>
-                        <p class="section-directions-item__content">Допомагаємо клієнтам продати чи придбати нерухомість в Харкові, Києві, Дніпрі, Одесі та Львові.</p>
+                        <h3 class="section-directions-item__title">{% trans 'Purchase of real estate in Ukraine' %}</h3>
+                        <p class="section-directions-item__content">{% trans 'We help clients sell or buy real estate in Kharkiv, Kyiv, Dnipro, Odesa and Lviv.' %}</p>
                     </div>
                 </li>
                 <li class="section-directions-item">
@@ -177,18 +181,18 @@
                         <img src="{% static 'img/city-2.jpg' %}" class="section-directions-item__img" alt="місто" width="724" height="482" loading="lazy">
                     </div>
                     <div class="section-directions-item__desc">
-                        <h3 class="section-directions-item__title">Придбання нерухомості за кордоном</h3>
-                        <p class="section-directions-item__content">Допомагаємо клієнтам з інвестуванням в нерухомість в ОАЕ(Дубай), Туреччині, Грузії та Сєвєрному Кіпрі.</p>
+                        <h3 class="section-directions-item__title">{% trans 'Purchase of real estate abroad' %}</h3>
+                        <p class="section-directions-item__content">{% trans 'We help clients invest in real estate in the UAE (Dubai), Turkey, Georgia and Northern Cyprus.' %}</p>
                     </div>
                 </li>
             </ul>
             <div class="course-links-wrapper">
                 <div class="course-links">
                     {% if page.register_link %}
-                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">{% trans 'Register' %}</a>
                     {% endif %}
                     {% if page.auth_link %}
-                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">{% trans 'Log in' %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -198,63 +202,64 @@
         <div class="container">
             <div class="section-header section-header_center">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Що буде на курсі:'|wrap_words_in_span|safe }}
+                    {% trans 'What will be on the course:' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <ul class="course-includes-group">
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">10 розділів навчання</h3>
-                    <p class="course-includes-item__content">Курс складається з теоретичного матеріалу, відеороликів та тесту. Курс розрахований на 60+ хвилин часу. Он-лайн уроки чітко структуровані та розбиті по темам, які ви зможете пройти одразу після реєстрації та в будь-який зручний для Вас час.</p>
+                    <h3 class="course-includes-item__title">{% trans '10 sections of training' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'The course consists of theoretical material, videos and a test. The course is designed for 60+ minutes of time. Online lessons are clearly structured and divided into topics, which you can take immediately after registration and at any time convenient for you.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ про професію ріелтор та про компанію</h3>
-                    <p class="course-includes-item__content">Ви дізнаєтесь про особливості роботи ріелтора і познайомитися з історією, традиціями та цінностями компанії &#39;Контракт-Нерухомість&#39;.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section about the realtor profession and about the company' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'You will learn about the peculiarities of the work of a realtor and get acquainted with the history, traditions and values of the company "Contract-Real Estate".' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ про безпеку при здійсненні угод</h3>
-                    <p class="course-includes-item__content">Ви дізнаєтеся про основні види шахрайських схем на ринку та як уникнути ризикових ситуацій при здійсненні угод.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section on security when making transactions' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'You will learn about the main types of fraudulent schemes on the market and how to avoid risky situations when making transactions.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ про стандарти роботи компанії для претендентів на вакансію</h3>
-                    <p class="course-includes-item__content"> Познайомитесь з унікальними торговими пропозиціями компанії &#39;Контракт-Нерухомість&#39; для клієнтів, перевагами роботи в компанії, можливостями кар&#39;єрного росту та з регламентами та правилами корпоративної етики.</p>
+                    <h3 class="course-includes-item__title">{% trans "The company's work standards section for job applicants" %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Get acquainted with the unique sales offers of the company "Contract-Real Estate" for clients, benefits of working in the company, career growth opportunities and with regulations and rules of corporate ethics.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ про послуги компанії для клієнтів</h3>
-                    <p class="course-includes-item__content">Дізнаєтесь про основні помилки, які роблять власники.Ознайомитесь з переліком послуг , які надає компанія клієнтам. Дізнаєтесь, як правильно оцінити квартиру для продажу. Отримаєте інструкції, чек-листи та корисні посилання, які можуть допомогти при здійсненні угод на ринку нерухомості. Знайдете інформацію з оподаткування нерухомості при здійсненні угод.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section on company services for customers' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Learn about the main mistakes that owners make. Get acquainted with the list of services that the company provides to clients. Learn how to correctly evaluate an apartment for sale. You will receive instructions, checklists and useful links that can help you when making deals in the real estate market. You will find information on real estate taxation when making transactions.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ з інвестицій в закордонну нерухомість</h3>
-                    <p class="course-includes-item__content">Ознайомитесь з ринком, особливостями придбання та основними правилами здійснення угод в Дубай, Турції, Грузії та Сєвєрному Кіпрі.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section on investments in foreign real estate' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Familiarize yourself with the market, purchase features and basic rules for transactions in Dubai, Turkey, Georgia and Northern Cyprus.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ для підприємців</h3>
-                    <p class="course-includes-item__content">Тут ви знайдете інформацію про те, як побудувати партнерський чи власний бізнес в сфері нерухомості.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section for entrepreneurs' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Here you will find information on how to build a partnership or your own real estate business.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Розділ з інвестування в нерухомість</h3>
-                    <p class="course-includes-item__content">Ознайомитесь з основними кейсами інвестування у нерухомість.</p>
+                    <h3 class="course-includes-item__title">{% trans 'Section on investing in real estate' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Familiarize yourself with the main cases of investing in real estate.' %}</p>
                 </li>
                 <li class="course-includes-item">
                     <img src="{% static 'img/icon-checked-2.png' %}" class="accent course-includes-item__img" alt="галочка" loading="lazy" width="64" height="64">
-                    <h3 class="course-includes-item__title">Про напрямки подальшого навчання та взаємодії з компанією</h3>
-                    <p class="course-includes-item__content">Познайомитесь з можливим планом дій після завершення курсу.</p>
+                    <h3 class="course-includes-item__title">{% trans 'About directions for further training and interaction with the company' %}</h3>
+                    <p class="course-includes-item__content">{% trans 'Get acquainted with a possible plan of action after completing the course.' %}</p>
                 </li>
             </ul>
             <div class="course-links-wrapper">
                 <div class="course-links">
                     {% if page.register_link %}
-                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">Зареєструватись</a>
+                        <a href="{{ page.register_link }}" target="_blank" class="btn btn_primary">{% trans 'Register' %}</a>
                     {% endif %}
                     {% if page.auth_link %}
-                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">Авторизуватись</a>
+                        <a href="{{ page.auth_link }}" target="_blank" class="btn btn_invert">{% trans 'Log in' %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -265,25 +270,26 @@
             <div class="col">
                 <div class="section-header">
                     <h2 class="section-header__title animate animate_text">
-                        {{ 'Детально про нас'|wrap_words_in_span|safe }}
+                        {% trans 'Details about us' as title %}
+                        {{ title|wrap_words_in_span|safe }}
                     </h2>
                 </div>
                 <ul class="course-detail-group">
                     <li class="course-detail-item">
                         <img src="{% static 'img/icon-shield-2.png' %}" class="course-detail-item__img" alt="щит" loading="lazy" width="47" height="55">
-                        <h3 class="course-detail-item__title">Гарантія безпеки угоди</h3>
+                        <h3 class="course-detail-item__title">{% trans 'Agreement security guarantee' %}</h3>
                     </li>
                     <li class="course-detail-item">
                         <img src="{% static 'img/icon-marker-3.png' %}" class="course-detail-item__img" alt="маркер" loading="lazy" width="44" height="56">
-                        <h3 class="course-detail-item__title">Велика база нерухомості</h3>
+                        <h3 class="course-detail-item__title">{% trans 'A large base of real estate' %}</h3>
                     </li>
                     <li class="course-detail-item">
                         <img src="{% static 'img/icon-hummer.png' %}" class="course-detail-item__img" alt="молоток" loading="lazy" width="53" height="52">
-                        <h3 class="course-detail-item__title">Юридичний супровід</h3>
+                        <h3 class="course-detail-item__title">{% trans 'Legal support' %}</h3>
                     </li>
                     <li class="course-detail-item">
                         <img src="{% static 'img/icon-percent-2.png' %}" class="course-detail-item__img" alt="відсотки" loading="lazy" width="50" height="48">
-                        <h3 class="course-detail-item__title">Іпотечний сервіс</h3>
+                        <h3 class="course-detail-item__title">{% trans 'Mortgage service' %}</h3>
                     </li>
                 </ul>
             </div>

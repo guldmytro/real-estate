@@ -1,14 +1,16 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Головна{% endblock %}
+{% block title %}{% trans 'Home' %}{% endblock %}
 
 {% block content %}
     <main class="main-search">
         <div class="container">
             <h1 class="title-main animate animate_text">
-                {{ 'Знайти нерухомість'|wrap_words_in_span|safe }}
+                {% trans 'Find real estate' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h1>
             {% include 'forms/search.html' %}
         </div>

@@ -46,7 +46,7 @@ export class Prediction {
         try {
             const options = this.getRequestOptions();
             this.inputWrapper.setAttribute('data-loading', 'yes');
-            const res = await fetch('/listings/get_address_predictions/', options)
+            const res = await fetch('/uk/listings/get_address_predictions/', options)
                               .then(res => {
                                 if (res.ok) {
                                     return res.json();

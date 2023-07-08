@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load thumbnail %}
 {% load static %}
 
@@ -25,7 +26,7 @@
             <a href="{{ review.manager.get_absolute_url }}" class="review-item__manager line line_1">
                 {{ review.manager.full_name }}
             </a>
-            <p class="review-item__profession line line_1">Спеціаліст по нерухомості</p>
+            <p class="review-item__profession line line_1">{% trans 'Real estate specialist' %}</p>
         </div>
     </div>
 </li>

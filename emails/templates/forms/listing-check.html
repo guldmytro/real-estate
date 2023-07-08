@@ -1,18 +1,22 @@
+{% load i18n %}
+
 <form class="form-add-review form send-form" action="{% url 'emails:listing_check' id=listing.id %}" method="post">
     <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
         <span></span>
         <span></span>
     </button>
-    <h2 class="form__title">Залиште свої контактні дані повідомлення нашому менеджеру.</h2>
+    <h2 class="form__title">
+        {% trans 'Leave your contact details to our manager' %}
+    </h2>
     <fieldset class="form__fieldset">
         {{ listing_phone_form.phone }}
         {% csrf_token %}
     </fieldset>
-    <p class="form__info">Вкажіть номер телефону, щоб ми могли зв'язатися з вами.</p>
+    <p class="form__info">{% trans 'Enter a phone number so we can contact you' %}</p>
     <button type="submit" class="btn btn_primary">
-        <span class="ready">Надіслати резюме</span>
-        <span class="sending">Надсилання...</span>
-        <span class="sent">Надіслано!</span>
-        <span class="error">Помилка надсилання...</span>
+        <span class="ready">{% trans 'Send' %}</span>
+        <span class="sending">{% trans 'Sending...' %}</span>
+        <span class="sent">{% trans 'Sent!' %}</span>
+        <span class="error">{% trans 'Error sending...' %}</span>
     </button>
 </form>

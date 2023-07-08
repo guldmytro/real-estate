@@ -1,9 +1,10 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% load listing_extras %}
 
-{% block title %}Про нас{% endblock %}
+{% block title %}{% trans 'Real estate abroad' %}{% endblock %}
 
 {% block content %}
     <main class="abroad">
@@ -34,7 +35,7 @@
                             <p class="section-header__subtitle">{{ item.description }}</p>
                         </div>
                         <a href="{{ item.link }}" class="btn btn_primary btn_rounded">
-                            <span>Детальніше</span>
+                            <span>{% trans 'More details' %}</span>
                             <img src="{% static 'img/icon-arrow.png' %}" class="btn__img-arrow" alt="стрілка" loading="lazy">
                         </a>
                     </div>

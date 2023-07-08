@@ -1,5 +1,6 @@
 from django import template
 import re
+from django.utils.translation import gettext_lazy as _
 
 register = template.Library()
 

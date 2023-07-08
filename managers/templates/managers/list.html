@@ -1,9 +1,10 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% load listing_extras %}
 
-{% block title %}Наші менеджери{% endblock %}
+{% block title %}{% trans 'Our managers' %}{% endblock %}
 
 {% block extra_main %}
     <div class="section employees-search">
@@ -12,13 +13,13 @@
                 <fieldset class="employees-search__fieldset">
                     <label class="search-filters__item">
                         <span class="filter-item__label">
-                            Фахівець
+                            {% trans 'Manager' %}
                         </span>
                         <div class="input-wrapper">
                             {{ search_form.full_name }}
                         </div>
                     </label>
-                    <button type="submit" class="btn btn_primary">Пошук</button>
+                    <button type="submit" class="btn btn_primary">{% trans 'Search' %}</button>
                 </fieldset>
             </form>
         </div>
@@ -30,7 +31,8 @@
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Фахівці з нерухомості'|wrap_words_in_span|safe }}
+                    {% trans 'Real estate specialists' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
             </div>
             <ul class="employees-group">
@@ -46,17 +48,17 @@
                         <h2 class="employees-item__title">
                             <a href="{{ manager.get_absolute_url }}">{{ manager.full_name }}</a>
                         </h2>
-                        <p class="employees-item__profession">Фахівець з нерухомості</p>
+                        <p class="employees-item__profession">{% trans 'Real estate specialist' %}</p>
                         <button type="button" class="btn btn_darken show-phones">
                             <img src="{% static 'img/icon-phone.png' %}" alt="телефон" width="30" height="30" loading="lazy" class="btn__img accent">
-                            <span>Показати телефон</span>
+                            <span>{% trans 'Show phone' %}</span>
                         </button>
                         <ul class="employees-item__phones">
                             {% for phone in manager.phones.all %}
                                 <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
                             {% endfor %}
                         </ul>
-                        <a href="{{ manager.get_absolute_url }}" class="employees-item__link">Більше про спеціаліста</a>
+                        <a href="{{ manager.get_absolute_url }}" class="employees-item__link">{% trans 'More about the specialist' %}</a>
                     </li>
                 {% endfor %}
             </ul>

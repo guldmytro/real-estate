@@ -1,9 +1,10 @@
+{% load i18n %}
 {% load thumbnail %}
 {% load static %}
 <li class="object-item"{% if next_page %} data-page="{{ next_page }}"{% endif %} data-id="{{ item.id }}">
     <div class="object-item-inner">
         <a href="{{ item.get_absolute_url }}" class="object-item__thumb">
-            <span class="visited"><span>Переглянуто</span></span>
+            <span class="visited"><span>{% trans 'Reviewed' %}</span></span>
             {% if item.images.last %}
                 <img src="{{ item.images.first.file|thumbnail_url:'medium' }}" width="1000" height="667"
                      alt="{{ item.title }}" class="object-item__img" loading="lazy">
@@ -20,7 +21,7 @@
             <div class="object-item__header">
                 <div class="object-item__price">
                     <strong>{{ item.formated_price }}$</strong>
-                    <span>{{ item.price_per_square }}$/м²</span>
+                    <span>{{ item.price_per_square }}$/{% trans 'm²' %}</span>
                 </div>
                 <h2 class="object-item__title line line_2" title="{{ item.title }}">
                     <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
@@ -29,7 +30,7 @@
             <hr>
             <p class="object-item__address line line_2">{{ item.get_address_string }}</p>
             {% if hide_phones == None %}
-                <button type="button" class="btn btn_invert btn_bordered show-phones">Показати телефон</button>
+                <button type="button" class="btn btn_invert btn_bordered show-phones">{% trans 'Show phone' %}</button>
                 <ul class="employees-item__phones">
                     {% for phone in item.manager.phones.all %}
                         <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>

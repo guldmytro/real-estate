@@ -1,21 +1,23 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Відгуки{% endblock %}
+{% block title %}{% trans 'Reviews' %}{% endblock %}
 
 {% block content %}
     <main class="reviews-main">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Відгуки про фахівців компанії'|wrap_words_in_span|safe }}
+                    {% trans "Reviews about the company's specialists" as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
             </div>
             <div class="managers-filters choose-manager-form">
                 <label class="filter-item">
                     <span class="filter-item__label">
-                        Виберіть фахівця
+                        {% trans 'Choose a specialist' %}
                     </span>
                     <div class="select-wrapper">
                         {{ search_manager_form.manager }}

@@ -1,12 +1,16 @@
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 {% if similar_listings %}
     <div class="object-box">
         <div class="object-box-header">
             <h2 class="object-box-header__title animate animate_text">
-                {{ 'Вартість аналогічних квартир по місту'|wrap_words_in_span|safe }}
+                {% trans 'The cost of similar apartments in the city' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h2>
-            <p class="object-box-header__subtitle">Аналогічні квартири підбираються за подібними параметрами: кімнатність, поверховість, матеріал стін, ремонт, рік</p>
+            <p class="object-box-header__subtitle">
+                {% trans 'Similar apartments are selected according to similar parameters: roominess, number of floors, wall material, repair, year' %}
+            </p>
         </div>
         <ul class="post-group object-slider">
             {% for item in similar_listings %}

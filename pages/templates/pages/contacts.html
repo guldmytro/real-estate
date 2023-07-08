@@ -1,22 +1,24 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Контакти{% endblock %}
+{% block title %}{% trans 'Contacts' %}{% endblock %}
 
 {% block content %}
     <main class="contacts">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Контакти'|wrap_words_in_span|safe }}
+                    {% trans 'Contacts' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
             </div>
             <ul class="contacts-group">
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" loading="lazy" width="30" height="30">
-                        <span>Телефонуйте нам</span>
+                        <span>{% trans 'Call us' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
@@ -30,7 +32,7 @@
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
-                        <span>Офіс №1</span>
+                        <span>{% trans 'Office No. 1' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
@@ -41,7 +43,7 @@
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-letter.png' %}" class="accent" alt="конверт" loading="lazy" width="22" height="22">
-                        <span>Пишіть нам</span>
+                        <span>{% trans 'Write to us' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
@@ -52,7 +54,7 @@
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
-                        <span>Офіс №2</span>
+                        <span>{% trans 'Office No. 2' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
@@ -63,7 +65,7 @@
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-clock.png' %}" class="accent" alt="годинник" loading="lazy" width="32" height="32">
-                        <span>Режим роботи</span>
+                        <span>{% trans 'Work schedule' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
@@ -74,7 +76,7 @@
                 <li class="contacts-item">
                     <h2 class="contacts-item__title">
                         <img src="{% static 'img/icon-marker.png' %}" class="accent" alt="маркер" loading="lazy" width="48" height="48">
-                        <span>Офіс №3</span>
+                        <span>{% trans 'Office No. 3' %}</span>
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">

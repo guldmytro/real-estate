@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 {% if search_form %}
@@ -8,17 +9,17 @@
                     {{ choice.tag }}
                     <div class="search-header__btn">
                         {% if choice.choice_label == 'Продаж' %}
-                            Купити
+                            {% trans 'Buy' %}
                         {% else %}
-                            Орендувати
+                            {% trans 'Rent' %}
                         {% endif %}
                     </div>
                 </label>
             {% endfor %}
-            <button type="button" class="search-header__btn">Продати</button>
-            <button type="button" class="search-header__btn">Здати в оренду</button>
-            <button type="button" class="search-header__btn">Кредит та іпотека</button>
-            <a href="{% url 'pages:seller' %}" class="search-header__btn">Оцінка</a>
+            <button type="button" class="search-header__btn">{% trans 'Sell' %}</button>
+            <button type="button" class="search-header__btn">{% trans 'Rent out' %}</button>
+            <button type="button" class="search-header__btn">{% trans 'Credit and mortgage' %}</button>
+            <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Property valuation' %}</a>
         </div>
         <div class="search-filters">
             <label class="search-filters__item filter-item filter-item_grow">
@@ -57,7 +58,7 @@
             </div>
             <label class="search-filters__item filter-item">
                 <span class="filter-item__label">
-                    Вартість ($)
+                    {% trans 'Price' %} ($)
                 </span>
                 <div class="input-wrapper">
                     {{ search_form.min_price }}
@@ -67,12 +68,12 @@
         </div>
         <div class="submit-row">
             <button type="submit" class="form-search__submit btn btn_primary">
-                <span class="text">Показати</span>
+                <span class="text">{% trans 'Show' %}</span>
                 <span class="count">({{ count }})</span>
             </button>
             <button type="button" class="form-search__advanced-btn btn btn_invert">
                 <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
-                <span>Розширений пошук</span>
+                <span>{% trans 'Advanced search' %}</span>
             </button>
         </div>
         <div class="active-filters"></div>
@@ -84,11 +85,11 @@
                 </button>
                 <div class="additional-fields__section additional-section">
                     <div class="fieldset-group">
-                        <legend class="fieldset-group__legend">Дім</legend>
+                        <legend class="fieldset-group__legend">{% trans 'Building' %}</legend>
                         <div class="controls-group">
                             <label class="filter-item">
                                 <span class="filter-item__label">
-                                    Поверх
+                                    {% trans 'Floor' %}
                                 </span>
                                 <div class="input-wrapper">
                                     {{ search_form.floor_from }}
@@ -97,7 +98,7 @@
                             </label>
                             <label class="filter-item">
                                 <span class="filter-item__label">
-                                    Поверхів у домі
+                                    {% trans 'Floors in the house' %}
                                 </span>
                                 <div class="input-wrapper">
                                     {{ search_form.floors_from }}
@@ -152,7 +153,7 @@
                         </div>
                     </div>
                     <div class="fieldset-group">
-                        <legend class="fieldset-group__legend">Двір</legend>
+                        <legend class="fieldset-group__legend">{% trans 'Court' %}</legend>
                         <div class="controls-group">
                             <label class="filter-item">
                                 <span class="filter-item__label">
@@ -165,7 +166,7 @@
                         </div>
                     </div>
                     <div class="fieldset-group">
-                        <legend class="fieldset-group__legend">Медіа</legend>
+                        <legend class="fieldset-group__legend">{% trans 'Media' %}</legend>
                         <div class="controls-group">
                             <label class="checkbox-item">
                                 {{ search_form.with_photo }}
@@ -180,10 +181,10 @@
                 </div>
                 <footer class="additional-fields__footer">
                     <button type="reset" class="btn btn_darken">
-                        <span>Очистити</span>
+                        <span>{% trans 'Reset' %}</span>
                     </button>
                     <button type="submit" class="btn btn_primary">
-                        <span class="text">Показати</span>
+                        <span class="text">{% trans 'Show' %}</span>
                         <span class="count">({{ count }})</span></button>
                 </footer>
             </div>

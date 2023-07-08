@@ -1,13 +1,17 @@
+{% load i18n %}
+
 <form class="form-add-review form send-form" method="post" action="{% url 'emails:manager_add_review' id=manager.id|default:1 %}">
     <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
         <span></span>
         <span></span>
     </button>
-    <h2 class="form__title">Залиште відгук про спеціаліста</h2>
+    <h2 class="form__title">
+        {% trans 'Leave a review about the specialist' %}
+    </h2>
     <fieldset class="form__fieldset">
         <div class="filter-item">
             <span class="filter-item__label">
-                Оцініть якість роботи
+                {% trans 'Rate the quality of the work' %}
             </span>
             <div class="rating__group">
                 {% for choice_value, choice_label in review_form.rating.field.choices %}
@@ -23,12 +27,15 @@
         {{ review_form.manager }}
         {% csrf_token %}
     </fieldset>
-    <p class="form__info"> Вкажіть номер телефону, щоб ми могли зв'язатися з вами для підтвердження зворотного зв'язку в разі негативного відгуку або залишити свій відгук, зателефонувавши за номером +38 (050) 100-86-96 </p>
+    <p class="form__info">
+        {% trans 'Enter a phone number so that we can contact you to confirm feedback in case of negative feedback or leave your feedback by calling +38 (050) 100-86-96' %}
+        
+    </p>
     <button type="submit" class="btn btn_primary">
-        <span class="ready">Залишити відгук</span>
-        <span class="sending">Надсилання...</span>
-        <span class="sent">Надіслано!</span>
-        <span class="error">Помилка надсилання...</span>
+        <span class="ready">{% trans 'Send' %}</span>
+        <span class="sending">{% trans 'Sending...' %}</span>
+        <span class="sent">{% trans 'Sent!' %}</span>
+        <span class="error">{% trans 'Error sending...' %}</span>
     </button>
-    <p class="form__agreement"> Залишаючи відгук, ви даєте згоду на обробку персональних даних </p>
+    <p class="form__agreement">{% trans 'By leaving feedback, you consent to the processing of personal data' %}</p>
 </form>

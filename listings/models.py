@@ -92,10 +92,10 @@ class Listing(models.Model):
         super().delete(*args, **kwargs)
 
     def get_coordinates_lat(self):
-        return self.coordinates.coords[1] if self.coordinates else None
+        return str(self.coordinates.coords[1]).replace(",", ".") if self.coordinates else None
 
     def get_coordinates_lng(self):
-        return self.coordinates.coords[0] if self.coordinates else None
+        return str(self.coordinates.coords[0]).replace(",", ".") if self.coordinates else None
 
     def get_address_string(self):
         return ', '.join(filter(lambda string: string != '' or string is not None,

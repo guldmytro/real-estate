@@ -1,10 +1,12 @@
+{% load i18n %}
 {% load listing_extras %}
 
 <section class="stats">
     <div class="container">
         <div class="section-header">
             <h2 class="section-header__title animate animate_text">
-                {{ 'Цифри говорять краще за слова'|wrap_words_in_span|safe }}
+                {% trans 'Numbers speak better than words' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h2>
         </div>
         <ul class="stats-group">
@@ -12,25 +14,33 @@
                 <p class="stats-item__val">
                     <span class="stats-item__count" data-max="840" data-time="1000">0</span>+
                 </p>
-                <p class="stats-item__subtitle">Продаємо об’ктів за рік</p>
+                <p class="stats-item__subtitle">
+                    {% trans 'We sell objects for a year' %}
+                </p>
             </li>
             <li class="stats-item">
                 <p class="stats-item__val">
                     <span class="stats-item__count" data-max="286" data-time="1000">0</span>
                 </p>
-                <p class="stats-item__subtitle">Оформили орендних угод</p>
+                <p class="stats-item__subtitle">
+                    {% trans 'Lease agreements have been drawn up' %}
+                </p>
             </li>
             <li class="stats-item">
                 <p class="stats-item__val">
                     <span class="stats-item__count" data-max="16" data-time="1000">0</span>
                 </p>
-                <p class="stats-item__subtitle">Років працюємо на ринку</p>
+                <p class="stats-item__subtitle">
+                    {% trans 'Years we have been working on the market' %}
+                </p>
             </li>
             <li class="stats-item">
                 <p class="stats-item__val">
                     <span class="stats-item__count" data-max="1000" data-time="1000">0</span>+
                 </p>
-                <p class="stats-item__subtitle">Відгуків задоволенних клієнтів</p>
+                <p class="stats-item__subtitle">
+                    {% trans 'Reviews of satisfied customers' %}
+                </p>
             </li>
         </ul>
     </div>

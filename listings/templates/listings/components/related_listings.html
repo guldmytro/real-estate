@@ -1,19 +1,25 @@
+{% load i18n %}
 {% load listing_extras %}
 
 {% if listings_the_same_street_num or listings_within_distance %}
     <div class="object-box">
         <div class="object-box-header">
             <h1 class="object-box-header__title animate animate_text">
-                {{ 'Вам може бути цікаво'|wrap_words_in_span|safe }}
+                {% trans 'You may be interested' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h1>
             <div class="object-box-header__conrtrols">
                 {% if listings_the_same_street_num %}
-                    <button type="button" class="tab active" data-id="#slider-1">В цьому будинку</button>
+                    <button type="button" class="tab active" data-id="#slider-1">
+                        {% trans 'In this house' %}
+                    </button>
                 {% endif %}
                 {% if listings_within_distance %}
                     <button type="button"
                             class="tab{% if not listings_the_same_street_num %} active{% endif %}"
-                            data-id="#slider-2">Схожі по місцезнаходженню</button>
+                            data-id="#slider-2">
+                            {% trans 'Similar in location' %}
+                    </button>
                 {% endif %}
             </div>
         </div>

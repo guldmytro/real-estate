@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load listing_extras %}
 
 {% block title %}Акції{% endblock %}
@@ -8,7 +9,8 @@
     <div class="container">
         <div class="section-header">
             <h1 class="section-header__title animate animate_text">
-                {{ "Aкції"|wrap_words_in_span|safe }}
+                {% trans "Discounts" as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h1>
         </div>
         {% if discounts %}
@@ -19,9 +21,7 @@
             </ul>
             {% include 'pagination.html' with page=discounts %}
         {% else %}
-            <p class="section-header__subtitle section-header__subtitle_strong">
-                Поки що немає записів... Повернутись на <a href="/">головну</a>
-            </p>
+            {% include 'nothing-found.html' %}
         {% endif %}
     </div>
 </main>

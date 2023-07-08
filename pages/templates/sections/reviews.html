@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
@@ -7,12 +8,17 @@
             <div class="reviews-row">
                 <div class="section-header">
                     <h2 class="section-header__title animate animate_text">
-                        {{ 'Що говорять про нас клієнти:'|wrap_words_in_span|safe }}
+                        {% trans 'What clients say about us:' as title %}
+                        {{ title|wrap_words_in_span|safe }}
                     </h2>
-                    <p class="section-header__subtitle">В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють їхню роботу.</p>
+                    <p class="section-header__subtitle">
+                        {% trans 'Our team has 400 qualified employees. We carefully select and train each real estate professional, and after the deal, clients rate their work.' %}
+                    </p>
                 </div>
                 <a href="{% url 'managers:list' %}" class="btn btn_shadow">
-                    <span>Усі фахівці</span>
+                    <span>
+                        {% trans 'All specialists' %}
+                    </span>
                     <img src="{% static 'img/icon-arrow.png' %}" 
                         class="btn__img" alt="стрілка" width="18" height="32" loading="lazy">
                 </a>

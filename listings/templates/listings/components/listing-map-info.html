@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 
@@ -13,31 +14,31 @@
             <table class="info-window__table">
                 <tbody>
                     <tr>
-                        <th>Price:</th>
+                        <th>{% trans 'Price' %}:</th>
                         <td>{% firstof listing.formated_price '?' %} ($)</td>
                     </tr>
                     <tr>
-                        <th>Area (total / living / kitchen):</th>
-                        <td>{% firstof listing.area_total '?' %} / {% firstof listing.area_living '?' %} / {% firstof listing.area_kitchen '?' %} (m²)</td>
+                        <th>{% trans 'Area (total / living / kitchen)' %}:</th>
+                        <td>{% firstof listing.area_total '?' %} / {% firstof listing.area_living '?' %} / {% firstof listing.area_kitchen '?' %} ({% trans 'm²' %})</td>
                     </tr>
                     <tr>
-                        <th>Rooms:</th>
+                        <th>{% trans 'Rooms' %}:</th>
                         <td>{% firstof listing.room_count '?' %}</td>
                     </tr>
                     <tr>
-                        <th>Floors:</th>
+                        <th>{% trans 'Floors' %}:</th>
                         <td>{% firstof listing.floor '?' %} / {% firstof listing.floor '?' %}</td>
                     </tr>
                     {% if year.count %}
                         <tr>
-                            <th>Year of construction:</th>
+                            <th>{% trans 'Year of construction' %}:</th>
                             <td>{% firstof year.first.value %}</td>
                         </tr>
                     {% endif %}
                 </tbody>
             </table>
             <a href="{{ listing.get_absolute_url }}" class="info-window__link" target="_blank">
-                <span>More details</span>
+                <span>{% trans 'More details' %}</span>
             </a>
         </div>
     </div>

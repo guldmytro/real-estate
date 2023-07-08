@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
@@ -7,23 +8,23 @@
                 <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
             </a>
             <nav class="footer-menu">
-                <a href="{% url 'pages:about' %}" class="footer-menu__link">Про нас</a>
-                <a href="{% url 'pages:guarantees' %}" class="footer-menu__link">Гарантії</a>
-                <a href="{% url 'pages:seller' %}" class="footer-menu__link">Оцінка</a>
-                <a href="{% url 'pages:pricing' %}" class="footer-menu__link">Ціни</a>
-                <a href="{% url 'pages:abroad_properties' %}" class="footer-menu__link">Нерухомість за кордоном</a>
-                <a href="{% url 'news:list' %}" class="footer-menu__link">Новини</a>
-                <a href="{% url 'discounts:list' %}" class="footer-menu__link">Акції</a>
-                <a href="{% url 'managers:list' %}" class="footer-menu__link">Спеціалісти</a>
-                <a href="{% url 'pages:reviews' %}" class="footer-menu__link">Відгуки</a>
-                <a href="{% url 'analytics:list' %}" class="footer-menu__link">Аналітика</a>
-                <a href="{% url 'documents:list' %}" class="footer-menu__link">Документи</a>
-                <a href="{% url 'vacantions:page' %}" class="footer-menu__link">Вакансії</a>
-                <a href="{% url 'pages:contacts' %}" class="footer-menu__link">Контакти</a>
+                <a href="{% url 'pages:about' %}" class="footer-menu__link">{% trans 'About us' %}</a>
+                <a href="{% url 'pages:guarantees' %}" class="footer-menu__link">{% trans 'Guarantees' %}</a>
+                <a href="{% url 'pages:seller' %}" class="footer-menu__link">{% trans 'Property valuation' %}</a>
+                <a href="{% url 'pages:pricing' %}" class="footer-menu__link">{% trans 'Prices' %}</a>
+                <a href="{% url 'pages:abroad_properties' %}" class="footer-menu__link">{% trans 'Real estate abroad' %}</a>
+                <a href="{% url 'news:list' %}" class="footer-menu__link">{% trans 'News' %}</a>
+                <a href="{% url 'discounts:list' %}" class="footer-menu__link">{% trans 'Discounts' %}</a>
+                <a href="{% url 'managers:list' %}" class="footer-menu__link">{% trans 'Managers' %}</a>
+                <a href="{% url 'pages:reviews' %}" class="footer-menu__link">{% trans 'Reviews' %}</a>
+                <a href="{% url 'analytics:list' %}" class="footer-menu__link">{% trans 'Analytics' %}</a>
+                <a href="{% url 'documents:list' %}" class="footer-menu__link">{% trans 'Documents' %}</a>
+                <a href="{% url 'vacantions:page' %}" class="footer-menu__link">{% trans 'Vacantions' %}</a>
+                <a href="{% url 'pages:contacts' %}" class="footer-menu__link">{% trans 'Contacts' %}</a>
             </nav>
             <a href="{% url 'pages:course' %}" class="link">
                 <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                <span class="link__text">Наш онлайн курс</span>
+                <span class="link__text">{% trans 'Our online course' %}</span>
             </a>
             <div class="footer-contacts">
                 {% if contacts.phone_1 %}

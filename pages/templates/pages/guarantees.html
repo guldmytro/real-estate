@@ -1,17 +1,23 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load listing_extras %}
 
-{% block title %}Гарантії{% endblock %}
+{% block title %}{% trans 'Guarantees' %}{% endblock %}
 
 {% block content %}
     <main class="guarante">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Гарантія безпеки угоди'|wrap_words_in_span|safe }}
+                    {% trans 'Agreement security guarantee' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
-                <p class="section-header__subtitle section-header__subtitle_strong">Купляйте нерухомість без ризику</p>
-                <p class="section-header__p">У випадку виникнення спірних ситуацій беремо всі витрати на себе</p>
+                <p class="section-header__subtitle section-header__subtitle_strong">
+                    {% trans 'Buy real estate risk-free' %}
+                </p>
+                <p class="section-header__p">
+                    {% trans 'In case of disputed situations, we bear all costs' %}
+                </p>
             </div>
         </div>
     </main>
@@ -19,21 +25,34 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Як ми захищаємо клієнтів'|wrap_words_in_span|safe }}
+                    {% trans 'How we protect customers' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <ul class="protection-group">
                 <li class="protection-item">
-                    <h3 class="protection-item__title">Перевірка об&#39;єкту та сторін угоди</h3>
-                    <p class="protection-item__description">На вході ми перевіряємо всю документацію на нерухомість, щоб знизити ймовірність яких-небудь ризиків при оформленні угоди</p>
+                    <h3 class="protection-item__title">
+                        {% trans 'Verification of the object and parties to the agreement' %}
+                    </h3>
+                    <p class="protection-item__description">
+                        {% trans 'At the entrance, we check all real estate documentation to reduce the likelihood of any risks during the transaction' %}
+                    </p>
                 </li>
                 <li class="protection-item">
-                    <h3 class="protection-item__title">Безпечні розрахунки</h3>
-                    <p class="protection-item__description">Сам процес оформлення угоди відбувається строго за розробленими регламентами з використанням безпечних розрахунків</p>
+                    <h3 class="protection-item__title">
+                        {% trans 'Safe calculations' %}
+                    </h3>
+                    <p class="protection-item__description">
+                        {% trans 'The very process of signing the agreement takes place strictly according to the developed regulations with the use of secure calculations' %}
+                    </p>
                 </li>
                 <li class="protection-item">
-                    <h3 class="protection-item__title">Юридичний захист</h3>
-                    <p class="protection-item__description">Після оформлення угоди ми безкоштовно для клієнта захищаємо його інтереси у разі виникнення будь-яких суперечок</p>
+                    <h3 class="protection-item__title">
+                        {% trans 'Legal protection' %}
+                    </h3>
+                    <p class="protection-item__description">
+                        {% trans "After signing the agreement, we protect the client's interests free of charge in case of any disputes" %}
+                    </p>
                 </li>
             </ul>
         </div>
@@ -41,4 +60,3 @@
     {% include 'sections/reviews.html' %}
     {% include 'sections/feadback.html' %}
 {% endblock %}
-

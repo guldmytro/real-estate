@@ -51,11 +51,11 @@ $('.add-to-wishlist').on('click', async function() {
 		setCookie('wishlist', wishlistArray.join(','));
 	}
 	try {
-		const res = await fetch('/wishlist/count/', {
+		const res = await fetch('/uk/wishlist/count/', {
 			'method': 'POST',
 			'headers': {
 				'Content-Type': 'application/json',
-				'X-CSRFToken': csrfToken
+				'X-CSRFToken': csrfToken,
 			},
 			'body': JSON.stringify({'wishlist': getCookie('wishlist')})
 		}).then(res => {

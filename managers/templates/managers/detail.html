@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% load listing_extras %}
@@ -18,12 +19,12 @@
                         <h1 class="section-header__title animate animate_text">
                             {{ manager.full_name|wrap_words_in_span|safe }}
                         </h1>
-                        <p class="section-header__subtitle section-header__subtitle_strong">Фахівець з нерухомості</p>
+                        <p class="section-header__subtitle section-header__subtitle_strong">{% trans 'Real estate specialist' %}</p>
                         <table class="section-header__table">
                             <tbody>
                                 {% if manager.email %}
                                     <tr>
-                                        <th>Пошта:</th>
+                                        <th>{% trans 'Email' %}:</th>
                                         <td>
                                             <a href="mailto:{{ manager.email }}">
                                                 {{ manager.email }}
@@ -35,9 +36,9 @@
                                     {% for phone in manager.phones.all %}
                                         <tr>
                                             {% if manager.phones.count > 1 %}
-                                                <th>Телефон {{ forloop.counter }}:</th>
+                                                <th>{% trans 'Phone' %} {{ forloop.counter }}:</th>
                                             {% else %}
-                                            <th>Телефон:</th>
+                                            <th>{% trans 'Phone' %}:</th>
                                             {% endif %}
                                             <td>
                                                 <a href="tel:{{ phone.clean_phone }}">{{ phone.phone }}</a>
@@ -47,25 +48,25 @@
                                 {% endif %}
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn_primary open-popup" data-popup="popup-review">Залишити відгук</button>
+                        <button type="button" class="btn btn_primary open-popup" data-popup="popup-review">{% trans 'Leave a review' %}</button>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <form class="employee-form send-form" method="post" action="{% url 'emails:manager_quick_message' id=manager.id %}">
-                    <h2 class="employee-form__title"> Залиште ваш номер телефону і ми передзвонимо через 5 хв </h2>
+                    <h2 class="employee-form__title">{% trans 'Leave your phone number and we will call you back in 5 minutes' %}</h2>
                     <fieldset class="employee-form__fieldset">
                         {{ feadback_form.name }}
                         {{ feadback_form.phone }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn_primary">
-                            <span class="ready">Передзвоніть мені</span>
-                            <span class="sending">Надсилання...</span>
-                            <span class="sent">Надіслано!</span>
-                            <span class="error">Помилка надсилання...</span>
+                            <span class="ready">{% trans 'Call me back' %}</span>
+                            <span class="sending">{% trans 'Sending...' %}</span>
+                            <span class="sent">{% trans 'Sent!' %}</span>
+                            <span class="error">{% trans 'Error sending...' %}</span>
                         </button>
                     </fieldset>
-                    <p class="employee-form__footer">Надсилаючи заявку, ви погоджуєтесь на обробку персональних даних</p>
+                    <p class="employee-form__footer">{% trans 'By submitting an application, you agree to the processing of personal data' %}</p>
                 </form>
             </div>
         </div>
@@ -75,14 +76,14 @@
     <div class="container">
         <div class="employee-tabs">
             {% if manager.experience or manager.has_car or manager.about %}
-                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">Про мене</button>
+                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-1">{% trans 'About me' %}</button>
             {% endif %}
             {% if reviews_count %}
-                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">Відгуки {% if reviews_count %}({{ reviews_count }}) {% endif %}</button>
+                <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-2">{% trans 'Reviews' %} {% if reviews_count %}({{ reviews_count }}) {% endif %}</button>
             {% endif %}
             {% if listings_count %}
                 <button class="employee-tabs__btn btn btn_darken" type="button" data-id="#tab-3">
-                    Мої пропозиції ({{ listings_count }})
+                    {% trans 'My offers' %} ({{ listings_count }})
                 </button>
             {% endif %}
         </div>
@@ -98,7 +99,7 @@
                                              height="52" loading="lazy">
                                     </div>
                                     <div class="employee-props__content">
-                                        <p class="employee-props__label">Стаж</p>
+                                        <p class="employee-props__label">{% trans 'Experience' %}</p>
                                         <p class="employee-props__value">{{ manager.experience }}</p>
                                     </div>
                                 </li>
@@ -110,8 +111,8 @@
                                              height="42" loading="lazy">
                                     </div>
                                     <div class="employee-props__content">
-                                        <p class="employee-props__label">Автомобіль</p>
-                                        <p class="employee-props__value">In stock</p>
+                                        <p class="employee-props__label">{% trans 'Car' %}</p>
+                                        <p class="employee-props__value">{% trans 'In stock' %}</p>
                                     </div>
                                 </li>
                             {% endif %}
@@ -129,7 +130,7 @@
                     {% if reviews_count > reviews.count %}
                         <div class="pagination pagination_center">
                             <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
-                                    data-url="{{ request.path }}" data-page="2" data-type="review">Показати більше</button>
+                                    data-url="{{ request.path }}" data-page="2" data-type="review">{% trans 'Show more' %}</button>
                         </div>
                     {% endif %}
                 </div>
@@ -144,7 +145,7 @@
                     {% if listings_count > listings.count %}
                         <div class="pagination pagination_center">
                             <button type="button" class="btn btn_invert btn_rounded ajax-show-more"
-                                    data-url="{{ request.path }}" data-page="2" data-type="listing">Показати більше</button>
+                                    data-url="{{ request.path }}" data-page="2" data-type="listing">{% trans 'Show more' %}</button>
                         </div>
                     {% endif %}
                 </div>

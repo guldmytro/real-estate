@@ -1,14 +1,15 @@
 {% load solo_tags %}
+{% load i18n %}
 {% load static %}
 {% load leaflet_tags %}
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="{{ request.LANGUAGE_CODE|default:'uk' }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% get_solo 'props.SiteConfiguration' as site_config %}
-    <title>{% block title %}Головна{% endblock %} - {{ site_config.site_name }}</title>
+    <title>{% block title %}{% trans 'Home' %}{% endblock %} - {{ site_config.site_name }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
@@ -16,11 +17,11 @@
                 {% endif %}
                 <a href="{% url 'pages:course' %}" class="link">
                     <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                    <span class="link__text">Наш онлайн курс</span>
+                    <span class="link__text">{% trans 'Our online course' %}</span>
                 </a>
                 <a href="{% url 'discounts:list' %}" class="link">
                     <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
-                    <span class="link__text accent">Акції</span>
+                    <span class="link__text accent">{% trans 'Discounts' %}</span>
                 </a>
             </div>
             <form class="header-lang">
@@ -53,13 +54,13 @@
                             <a class="mobile-nav__link{% if request.GET.realty_type|stringformat:'s' == item.id|stringformat:'s' %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
                         {% endfor %}
                         {% url 'pages:abroad_properties' as url %}
-                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Нерухомість за кордоном</a>
+                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>
                         {% url 'managers:list' as url %}
-                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Спеціалісти</a>
+                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Managers' %}</a>
                         {% url 'analytics:list' as url %}
-                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Аналітика</a>
+                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Analytics' %}</a>
                         {% url 'pages:contacts' as url %}
-                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Контакти</a>
+                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Contacts' %}</a>
                     </nav>
                     <div class="header-toper__controls">
                         {% if contacts.phone_1 %}
@@ -70,11 +71,11 @@
                         {% endif %}
                         <a href="{% url 'pages:course' %}" class="link">
                             <img src="{% static 'img/icon-hat.png' %}" alt="шапка" class="link__img" width="64" height="46">
-                            <span class="link__text">Наш онлайн курс</span>
+                            <span class="link__text">{% trans 'Our online course' %}</span>
                         </a>
                         <a href="{% url 'discounts:list' %}" class="link">
                             <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
-                            <span class="link__text accent">Акції</span>
+                            <span class="link__text accent">{% trans 'Discounts' %}</span>
                         </a>
                     </div>
                 </div>
@@ -84,18 +85,18 @@
     <div class="header-bottom">
         <div class="container">
             <nav class="header-nav">
-                <a class="header-nav__link{% if request.GET.is_new_building == 'on' %} active{% endif %}" href="{% url 'listings:list' %}?is_new_building=on">Новобудови</a>
+                <a class="header-nav__link{% if request.GET.is_new_building == 'on' %} active{% endif %}" href="{% url 'listings:list' %}?is_new_building=on">{% trans 'New buildings' %}</a>
                 {% for item in real_types %}
                     <a class="header-nav__link{% if request.GET.realty_type|stringformat:'s' == item.id|stringformat:'s' %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
                 {% endfor %}
                 {% url 'pages:abroad_properties' as url %}
-                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Нерухомість за кордоном</a>
+                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>
                 {% url 'managers:list' as url %}
-                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Спеціалісти</a>
+                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Managers' %}</a>
                 {% url 'analytics:list' as url %}
-                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Аналітика</a>
+                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Analytics' %}</a>
                 {% url 'pages:contacts' as url %}
-                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">Контакти</a>
+                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Contacts' %}</a>
             </nav>
         </div>
     </div>

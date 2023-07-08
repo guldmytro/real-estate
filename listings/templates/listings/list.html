@@ -1,8 +1,9 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Оголошення{% endblock %}
+{% block title %}{% trans 'Listings' %}{% endblock %}
 
 {% block extra_main %}
     <div class="archive-search-form">
@@ -20,7 +21,8 @@
                 <div class="col">
                     <div class="section-header">
                         <h1 class="section-header__title animate animate_text">
-                            {{ 'Результати пошуку квартир'|wrap_words_in_span|safe }}
+                            {% trans 'Real estate search results' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h1>
                     </div>
                     <ul class="objects-group">

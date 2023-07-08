@@ -1,10 +1,12 @@
+{% load i18n %}
 {% load listing_extras %}
 
 {% if news %}
     <div class="object-box">
         <div class="object-box-header">
             <h2 class="object-box-header__title animate animate_text">
-                {{ 'Новини'|wrap_words_in_span|safe }}
+                {% trans 'News' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h2>
         </div>
         <ul class="post-group object-slider">

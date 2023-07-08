@@ -1,15 +1,17 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Вартість послуг{% endblock %}
+{% block title %}{% trans 'Cost of services' %}{% endblock %}
 
 {% block content %}
     <main class="pricing">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Вартість послуг'|wrap_words_in_span|safe }}
+                    {% trans 'Cost of services' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
             </div>
             <div class="pricing-wrapper">
@@ -17,12 +19,20 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">Придбати</h2>
-                                <p class="pricing-item__subtitle">5% від ринкової вартості об'єкту</p>
-                                <p class="pricing-item__description">Знижки від компанії в цьому блоці:</p>
+                                <h2 class="pricing-item__title">
+                                    {% trans 'Buy' %}
+                                </h2>
+                                <p class="pricing-item__subtitle">
+                                    {% trans '5% of the market value of the object' %}
+                                </p>
+                                <p class="pricing-item__description">
+                                    {% trans 'Discounts from the company in this block:' %}
+                                </p>
                             </div>
                             <div class="pricing-item__content">
-                                <p> Здійснюючи продаж старої квартири та купівлю нової разом з компанією «Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При повторному зверненні до компанії. Продаж / Покупка протягом року на себе або родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для військових та ЗСУ знижка від 5%. </p>
+                                <p>
+                                    {% trans "By selling an old apartment and buying a new one together with Contract Real Estate, you receive a 5% discount on the company's services when you contact the company again. Sale / Purchase during the year for yourself or first-line relatives, you get a 5% discount on the company's services. For the military and armed forces, a discount of 5%." %}
+                                </p>
                             </div>
                         </div>
                         <div class="pricing-item__bg">
@@ -32,12 +42,20 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">Продати</h2>
-                                <p class="pricing-item__subtitle">0-5% Вартість послуг компанії залежить від типу нерухомості, вартості та готовності об'єкта до угоди</p>
-                                <p class="pricing-item__description">Знижки від компанії в цьому блоці:</p>
+                                <h2 class="pricing-item__title">
+                                    {% trans 'Sell' %}
+                                </h2>
+                                <p class="pricing-item__subtitle">
+                                    {% trans "0-5% The cost of the company's services depends on the type of real estate, the value and readiness of the object for the deal" %}
+                                </p>
+                                <p class="pricing-item__description">
+                                    {% trans 'Discounts from the company in this block:' %}
+                                </p>
                             </div>
                             <div class="pricing-item__content">
-                                <p> Здійснюючи продаж старої квартири та купівлю нової разом з компанією «Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При повторному зверненні до компанії. Продаж / Покупка протягом року на себе або родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для військових та ЗСУ знижка від 5%. </p>
+                                <p>
+                                    {% trans "By selling an old apartment and buying a new one together with Contract Real Estate, you receive a 5% discount on the company's services when you contact the company again. Sale / Purchase during the year for yourself or first-line relatives, you get a 5% discount on the company's services. For the military and armed forces, a discount of 5%." %}
+                                </p>
                             </div>
                         </div>
                         <div class="pricing-item__bg">
@@ -47,47 +65,67 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">Орендувати</h2>
-                                <p class="pricing-item__subtitle">50% вартості оренди</p>
-                                <p class="pricing-item__description">Тарифи:</p>
+                                <h2 class="pricing-item__title">
+                                    {% trans 'Rent' %}
+                                </h2>
+                                <p class="pricing-item__subtitle">
+                                    {% trans '50% of the rental price' %}
+                                </p>
+                                <p class="pricing-item__description">
+                                    {% trans 'Tariffs:' %}
+                                </p>
                             </div>
                             <div class="pricing-item__content pricing-content">
                                 <ul class="pricing-content__group">
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Базовий 0%</h3>
+                                        <h3 class="pricing-content-item__title">
+                                            {% trans 'Base 0%' %}
+                                        </h3>
                                         <ul>
-                                            <li>Додавання на сайт компанії</li>
-                                            <li>Професійне фотографування квартири</li>
+                                            <li>
+                                                {% trans "Adding to the company's website" %}
+                                            </li>
+                                            <li>
+                                                {% trans 'Professional photography of the apartment' %}
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Мінімум 20%</h3>
+                                        <h3 class="pricing-content-item__title">
+                                            {% trans 'Minimum 20%' %}
+                                        </h3>
                                         <ul>
-                                            <li>Прийом ключів у власника</li>
-                                            <li>Проведення показів без вашої участі</li>
+                                            <li>
+                                                {% trans 'Reception of keys from the owner' %}
+                                            </li>
+                                            <li>
+                                                {% trans 'Conducting screenings without your participation' %}
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Економ 30%</h3>
+                                        <h3 class="pricing-content-item__title">
+                                            {% trans 'Econom 30%' %}
+                                        </h3>
                                         <ul>
-                                            <li>Реклама на 7 майданчиках</li>
-                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
-                                            <li>Фінансова гарантія на 3 місяці **</li>
+                                            <li>{% trans 'Advertising on 7 sites' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (call to the hotline)' %}</li>
+                                            <li>{% trans 'Financial guarantee for 3 months **' %}</li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Стандарт</h3>
+                                        <h3 class="pricing-content-item__title">{% trans 'Standard' %}</h3>
                                         <ul>
-                                            <li>Реклама на 7 майданчиках</li>
-                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
-                                            <li>Фінансова гарантія на 3 місяці**</li>
-                                            <li>Фінансова гарантія на 6 місяців**</li>
-                                            <li>Гарантія юридичного захисту (гарантійний сертифікат)*</li>
-                                            <li>Застосування додаткових (платних) статусів на рекламних майданчиках</li>
-                                            <li>Надання аналітики за зацікавленістю вашою квартирою</li>
-                                            <li>Перевірка наймача службою економічної безпеки***</li>
-                                            <li>Прийом квартири після звільнення наймачем та надання фото-, відеозвіту (2 рази за час дії договору)</li>
-                                            <li>Виготовлення відео-огляду квартири</li>
+                                            <li>{% trans 'Advertising on 7 sites' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (call to the hotline)' %}</li>
+                                            <li>{% trans 'Financial guarantee for 3 months**' %}</li>
+                                            <li>{% trans 'Financial guarantee for 6 months**' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (guarantee certificate)*' %}</li>
+                                            <li>{% trans 'Application of additional (paid) statuses on advertising platforms' %}</li>
+                                            <li>{% trans 'Providing analytics based on interest in your apartment' %}</li>
+                                            <li>{% trans 'Verification of the employer by the Economic Security Service***' %}</li>
+                                            <li>{% trans 'Reception of the apartment after vacating by the tenant and provision of a photo and video report (2 times during the term of the contract)' %}</li>
+                                            <li>{% trans 'Production of a video overview of the apartment' %}</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -100,46 +138,46 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">Здати</h2>
-                                <p class="pricing-item__description">Тарифи:</p>
+                                <h2 class="pricing-item__title">{% trans 'Rent out' %}</h2>
+                                <p class="pricing-item__description">{% trans 'Tariffs:' %}</p>
                             </div>
                             <div class="pricing-item__content pricing-content">
                                 <ul class="pricing-content__group">
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Базовий 0%</h3>
+                                        <h3 class="pricing-content-item__title">{% trans 'Base 0%' %}</h3>
                                         <ul>
-                                            <li>Додавання на сайт компанії</li>
-                                            <li>Професійне фотографування квартири</li>
+                                            <li>{% trans "Adding to the company's website" %}</li>
+                                            <li>{% trans 'Professional photography of the apartment' %}</li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Мінімум 20%</h3>
+                                        <h3 class="pricing-content-item__title">{% trans 'Minimum 20%' %}</h3>
                                         <ul>
-                                            <li>Прийом ключів у власника</li>
-                                            <li>Проведення показів без вашої участі</li>
+                                            <li>{% trans 'Reception of keys from the owner' %}</li>
+                                            <li>{% trans 'Conducting screenings without your participation' %}</li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Економ 30%</h3>
+                                        <h3 class="pricing-content-item__title">{% trans 'Econom 30%' %}</h3>
                                         <ul>
-                                            <li>Реклама на 7 майданчиках</li>
-                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
-                                            <li>Фінансова гарантія на 3 місяці **</li>
+                                            <li>{% trans 'Advertising on 7 sites' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (call to the hotline)' %}</li>
+                                            <li>{% trans 'Financial guarantee for 3 months **' %}</li>
                                         </ul>
                                     </li>
                                     <li class="pricing-content-item">
-                                        <h3 class="pricing-content-item__title">Стандарт</h3>
+                                        <h3 class="pricing-content-item__title">{% trans 'Standard' %}</h3>
                                         <ul>
-                                            <li>Реклама на 7 майданчиках</li>
-                                            <li>Гарантія юридичного захисту (дзвінок на гарячу лінію)</li>
-                                            <li>Фінансова гарантія на 3 місяці**</li>
-                                            <li>Фінансова гарантія на 6 місяців**</li>
-                                            <li>Гарантія юридичного захисту (гарантійний сертифікат)*</li>
-                                            <li>Застосування додаткових (платних) статусів на рекламних майданчиках</li>
-                                            <li>Надання аналітики за зацікавленістю вашою квартирою</li>
-                                            <li>Перевірка наймача службою економічної безпеки***</li>
-                                            <li>Прийом квартири після звільнення наймачем та надання фото-, відеозвіту (2 рази за час дії договору)</li>
-                                            <li>Виготовлення відео-огляду квартири</li>
+                                            <li>{% trans 'Advertising on 7 sites' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (call to the hotline)' %}</li>
+                                            <li>{% trans 'Financial guarantee for 3 months**' %}</li>
+                                            <li>{% trans 'Financial guarantee for months**' %}</li>
+                                            <li>{% trans 'Guarantee of legal protection (guarantee certificate)*' %}</li>
+                                            <li>{% trans 'Application of additional (paid) statuses on advertising platforms' %}</li>
+                                            <li>{% trans 'Providing analytics based on interest in your apartment' %}</li>
+                                            <li>{% trans 'Verification of the employer by the Economic Security Service***' %}</li>
+                                            <li>{% trans 'Reception of the apartment after vacating by the tenant and provision of a photo and video report (2 times during the term of the contract)' %}</li>
+                                            <li>{% trans 'Production of a video overview of the apartment' %}</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -152,22 +190,22 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">Що входити у вартість послуг</h2>
+                                <h2 class="pricing-item__title">{% trans 'What is included in the price of services' %}</h2>
                             </div>
                             <div class="pricing-item__content pricing-item__content_simple">
-                                <h3>при купівлі оренди:</h3>
+                                <h3>{% trans 'when buying a lease:' %}</h3>
                                 <ul>
-                                    <li>Консультація з ринку нерухомості в регіоні (динаміка цін та попиту)</li>
-                                    <li>Допомога у підготовці та оформленні документів для угоди</li>
-                                    <li>Гарантійний сертифікат безпеки</li>
-                                    <li>Переговори з власниками (у тому числі щодо торгу), експертна оцінка нерухомості</li>
-                                    <li>Підбір варіантів нерухомості з урахуванням усіх побажань та потреб</li>
-                                    <li>Організація та проведення переглядів квартир</li>
-                                    <li>Трансфер до об'єктів (за домовленістю)</li>
-                                    <li>Організація та проведення задатку</li>
-                                    <li>Супровід до нотаріуса, банк</li>
-                                    <li>Повний юридичний супровід</li>
-                                    <li>Послуги іпотечного брокера</li>
+                                    <li>{% trans 'Consultation on the real estate market in the region (price and demand dynamics)' %}</li>
+                                    <li>{% trans 'Assistance in the preparation and execution of documents for the agreement' %}</li>
+                                    <li>{% trans 'Security guarantee certificate' %}</li>
+                                    <li>{% trans 'Negotiations with owners (including regarding the sale), expert evaluation of real estate' %}</li>
+                                    <li>{% trans 'Selection of real estate options taking into account all wishes and needs' %}</li>
+                                    <li>{% trans 'Organization and inspection of apartments' %}</li>
+                                    <li>{% trans 'Transfer to the facilities (by arrangement)' %}</li>
+                                    <li>{% trans 'Organization and implementation of the deposit' %}</li>
+                                    <li>{% trans 'Escort to the notary, bank' %}</li>
+                                    <li>{% trans 'Full legal support' %}</li>
+                                    <li>{% trans 'Services of a mortgage broker' %}</li>
                                 </ul>
                             </div>
                         </div>
@@ -176,21 +214,21 @@
                     <li class="pricing-item">
                         <div class="pricing-item__ctx">
                             <div class="pricing-item__header">
-                                <h2 class="pricing-item__title">При продажу</h2>
+                                <h2 class="pricing-item__title">{% trans 'When selling' %}</h2>
                             </div>
                             <div class="pricing-item__content pricing-item__content_simple">
-                                <h3>При продажу:</h3>
+                                <h3>{% trans 'When selling:' %}</h3>
                                 <ul>
-                                    <li>Допомога у підготовці та оформленні документів для угоди</li>
-                                    <li>Надання звітів продавцю про виконану спеціалістом роботу</li>
-                                    <li>Формування сторінки об'єкта на сайті компанії</li>
-                                    <li>Пошук покупців, організація показів</li>
-                                    <li>Допомога у знятті обтяжень</li>
-                                    <li>Супровід до нотаріуса, до банку</li>
-                                    <li>Статистика переглядів об'єкта та дзвінків</li>
-                                    <li>Рекламне просування об'єкту на різних майданчиках</li>
-                                    <li>Повний юридичний супровід (юрист, аудитор, служба економічної безпеки)</li>
-                                    <li>Аналітика ринку та встановлення об'єктивної ціни на об'єкт</li>
+                                    <li>{% trans 'Assistance in the preparation and execution of documents for the agreement' %}</li>
+                                    <li>{% trans 'Providing reports to the seller about the work performed by the specialist' %}</li>
+                                    <li>{% trans "Formation of the object's page on the company's website" %}</li>
+                                    <li>{% trans 'Search for buyers, organization of showings' %}</li>
+                                    <li>{% trans 'Help in removing burdens' %}</li>
+                                    <li>{% trans 'Escort to the notary, to the bank' %}</li>
+                                    <li>{% trans 'Statistics of object views and calls' %}</li>
+                                    <li>{% trans 'Advertising promotion of the object on various platforms' %}</li>
+                                    <li>{% trans 'Full legal support (lawyer, auditor, economic security service)' %}</li>
+                                    <li>{% trans 'Market analysis and setting an objective price for the object' %}</li>
                                 </ul>
                             </div>
                         </div>
@@ -199,9 +237,9 @@
                 </ul>
                 <div class="pricing-footer">
                     <ul class="pricing-footer__group">
-                        <li class="pricing-footer__item"> Умови гарантії юридичного захисту вказані в Гарантійному сертифікаті. </li>
-                        <li> Виконавець зобов'язаний виконати пошук іншого наймача у разі з'єднання наймача з Об'єкта протягом 3/6/ місяців (в залежності від вибраного пакета Услуг) з моменту заключення договору найма Об'єкта. </li>
-                        <li> Послуга надається шляхом перевірки наймача на наступних сервісах: Єдиний реєстр боржників, Судовий реєстр </li>
+                        <li class="pricing-footer__item">{% trans 'The terms of the legal protection guarantee are specified in the Guarantee Certificate.' %}</li>
+                        <li>{% trans 'The Contractor is obliged to search for another tenant in the event that the tenant is connected to the Object within 3/6/ months (depending on the selected package of Services) from the moment of concluding the Object rental agreement.' %}</li>
+                        <li>{% trans 'The service is provided by checking the tenant on the following services: Unified Register of Debtors, Court Register' %}</li>
                     </ul>
                 </div>
             </div>

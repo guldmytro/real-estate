@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load listing_extras %}
 
 {% block title %}{{ title }}{% endblock %}
@@ -8,7 +9,10 @@
     <main class="analytics">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title animate animate_text">{{ title|wrap_words_in_span|safe }}</h1>
+                <h1 class="section-header__title animate animate_text">
+                    {% trans title as translated_title %}
+                    {{ translated_title|wrap_words_in_span|safe }}
+                </h1>
             </div>
             {% if news %}
                 <ul class="analytics-group">
@@ -18,9 +22,7 @@
                 </ul>
                 {% include 'pagination.html' with page=news %}
             {% else %}
-                <p class="section-header__subtitle section-header__subtitle_strong">
-                    Поки що немає записів... Повернутись на <a href="/">головну</a>
-                </p>
+                {% include 'nothing-found.html' %}
             {% endif %}
         </div>
     </main>

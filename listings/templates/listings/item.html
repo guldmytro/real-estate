@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% load listing_extras %}
@@ -9,13 +10,13 @@
 <main class="object" data-id="{{ listing.id }}">
     <div class="container">
         <nav class="object-nav">
-            <a href="#gallery" class="object-nav__link">Галерея</a>
-            <a href="#about" class="object-nav__link">Опис</a>
-            <a href="#params" class="object-nav__link">Характеристики</a>
-            <a href="#check" class="object-nav__link">Перевірка нерухомості</a>
-            <a href="#reserve" class="object-nav__link">Забронювати</a>
-            <a href="#mortgage" class="object-nav__link">Іпотека</a>
-            <a href="#time" class="object-nav__link">Час на дорогу</a>
+            <a href="#gallery" class="object-nav__link">{% trans 'Gallery' %}</a>
+            <a href="#about" class="object-nav__link">{% trans 'Description' %}</a>
+            <a href="#params" class="object-nav__link">{% trans 'Characteristics' %}</a>
+            <a href="#check" class="object-nav__link">{% trans 'Real estate inspection' %}</a>
+            <a href="#reserve" class="object-nav__link">{% trans 'Reserve' %}</a>
+            <a href="#mortgage" class="object-nav__link">{% trans 'Mortgage' %}</a>
+            <a href="#time" class="object-nav__link">{% trans 'Time to go' %}</a>
         </nav>
         <div class="object-row">
             <div class="col object-data">
@@ -36,7 +37,7 @@
                         <img src="{% static 'img/object-map.jpg' %}" alt="план" class="object-gallery-interactive__image" loading="lazy">
                         <p class="object-gallery-interactive__label">
                             <img src="{% static 'img/icon-marker-4.png' %}" width="24" height="32" alt="маркер" loading="lazy">
-                            <span>Мапа</span>
+                            <span>{% trans 'Map' %}</span>
                         </p>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                                 <p class="object-box-header__subtitle">{{ listing.get_address_string }}</p>
                                 <button type="button" data-popup="popup-listing-map" class="object-map-button open-popup">
                                     <img src="{% static 'img/icon-marker.png' %}" alt="маркер" loading="lazy" width="48" height="64">
-                                    <span>На мапі</span>
+                                    <span>{% trans 'On the map' %}</span>
                                 </button>
                             </div>
                             <div class="object-box__controls">
@@ -68,40 +69,45 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="object-box">
-                    <div class="object-box-header">
-                        <h2 class="object-box-header__title animate animate_text">
-                        {{ 'Опис'|wrap_words_in_span|safe }}
-                        </h2>
+                {% if listing.description %}
+                    <div class="object-box">
+                        <div class="object-box-header">
+                            <h2 class="object-box-header__title animate animate_text">
+                            {% trans 'Description' as title %}
+                            {{ title|wrap_words_in_span|safe }}
+                            </h2>
+                        </div>
+                        <div class="object-box__content">
+                            {{ listing.description }}
+                        </div>
                     </div>
-                    <div class="object-box__content">
-                        {{ listing.description }}
-                    </div>
-                </div>
+                {% endif %}
                 {% include 'listings/components/attributes.html' with kits=listing.kits %}
                 <div id="check" class="object-box">
                     <div class="object-box-header">
                         <h2 class="object-box-header__title animate animate_text">
-                            {{ 'Перевірте нерухомість перед покупкою'|wrap_words_in_span|safe }}
+                            {% trans 'Inspect the property before you buy' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h2>
-                        <p class="object-box-header__subtitle"> Отримайте юридичну перевірку нерухомості для мінімізації ризиків </p>
+                        <p class="object-box-header__subtitle">{% trans 'Get a legal due diligence on your property to minimize your risks' %}</p>
                     </div>
                     <div class="object-box__content">
                         <ul>
-                            <li>Кількість власників</li>
-                            <li>Наявність обтяжень</li>
-                            <li>Чи є іпотека</li>
-                            <li>Роки володіння нерухомістю</li>
+                            <li>{% trans 'Number of owners' %}</li>
+                            <li>{% trans 'The presence of encumbrances' %}</li>
+                            <li>{% trans 'Is there a mortgage?' %}</li>
+                            <li>{% trans 'Years of property ownership' %}</li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn_invert btn_shadow open-popup" data-popup="popup-listing-check">Перевірити нерухомість</button>
+                    <button type="button" class="btn btn_invert btn_shadow open-popup" data-popup="popup-listing-check">{% trans 'Check the property' %}</button>
                 </div>
                 <div id="reserve" class="object-box">
                     <div class="object-box-header">
                         <h2 class="object-box-header__title animate animate_text">
-                            {{ 'Записатись на перегляд'|wrap_words_in_span|safe }}
+                            {% trans 'Sign up for viewing' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h2>
-                        <p class="object-box-header__subtitle"> З вами зв'яжеться спеціаліст з нерухомості, підтвердить обраний час перегляду, організує відвідування пропозиції та проведе вам екскурсію. </p>
+                        <p class="object-box-header__subtitle">{% trans 'A real estate specialist will contact you, confirm the selected viewing time, arrange a visit to the offer and give you a tour.' %}</p>
                     </div>
                     <form class="object-box-form send-form" method="post" 
                           action="{% url 'emails:listing_visit' id=listing.id %}">
@@ -111,20 +117,21 @@
                             {{ listing_visit_form.phone }}
                             {% csrf_token %}
                             <button type="submit" class="btn btn_primary">
-                                <span class="ready">Записатись на перегляд</span>
-                                <span class="sending">Надсилання...</span>
-                                <span class="sent">Надіслано!</span>
-                                <span class="error">Помилка надсилання...</span>
+                                <span class="ready">{% trans 'Sign up for viewing' %}</span>
+                                <span class="sending">{% trans 'Sending...' %}</span>
+                                <span class="sent">{% trans 'Sent!' %}</span>
+                                <span class="error">{% trans 'Error sending...' %}</span>
                             </button>
                         </fieldset>
                     </form>
                 </div>
                 <div id="mortgage" class="object-box">
                     <div class="object-box-header">
-                        <h2 class="object-box-header__title animate animate_text">Розрахуйте іпотеку
-                            {{ 'Розрахуйте іпотеку'|wrap_words_in_span|safe }}
+                        <h2 class="object-box-header__title animate animate_text">
+                            {% trans 'Calculate the mortgage' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h2>
-                        <p class="object-box-header__subtitle"> Можемо розрахувати іпотеку без початкового внеску, просто вкажіть 0%. </p>
+                        <p class="object-box-header__subtitle">{% trans 'We can calculate a mortgage with no down payment, just specify 0%.' %}</p>
                     </div>
                     <form class="object-box-form send-form" method="post" 
                           action="{% url 'emails:listing_credit' id=listing.id %}">
@@ -132,10 +139,10 @@
                             {{ listing_phone_form.phone }}
                             {% csrf_token %}
                             <button type="submit" class="btn btn_primary">
-                                <span class="ready">Отримати консультацію</span>
-                                <span class="sending">Надсилання...</span>
-                                <span class="sent">Надіслано!</span>
-                                <span class="error">Помилка надсилання...</span>
+                                <span class="ready">{% trans 'Get a consultation' %}</span>
+                                <span class="sending">{% trans 'Sending...' %}</span>
+                                <span class="sent">{% trans 'Sent!' %}</span>
+                                <span class="error">{% trans 'Error sending...' %}</span>
                             </button>
                         </fieldset>
                     </form>
@@ -143,11 +150,12 @@
                 <div class="object-box">
                     <div class="object-box-header">
                         <h2 class="object-box-header__title animate animate_text">
-                            {{ 'Гарантія безпеки угоди'|wrap_words_in_span|safe }}
+                            {% trans 'Agreement security guarantee' as title %}
+                            {{ title|wrap_words_in_span|safe }}
                         </h2>
-                        <p class="object-box-header__subtitle"> Ви під надійним захистом - у разі спірних ситуацій беремо всі витрати на себе. </p>
+                        <p class="object-box-header__subtitle">{% trans 'You are under reliable protection - in case of disputed situations, we bear all costs.' %}</p>
                     </div>
-                    <a href="{% url 'pages:guarantees' %}" class="btn btn_primary">Детальніше</a>
+                    <a href="{% url 'pages:guarantees' %}" class="btn btn_primary">{% trans 'More details' %}</a>
                 </div>
                 {% include 'listings/components/directions.html' %}
                 {% include 'listings/components/similar_listings.html' %}
@@ -160,33 +168,33 @@
                         <div class="employees-item">
                             <a href="{{ manager.get_absolute_url }}" class="employees-item__thumb">
                                 {% if manager.image %}
-                                    <img src="{{ manager.image|thumbnail_url:'small' }}" alt="Вікторова Вікторія Олександрівна" loading="lazy" width="200" height="200">
+                                    <img src="{{ manager.image|thumbnail_url:'small' }}" alt="{{ manager.full_name }}" loading="lazy" width="200" height="200">
                                 {% endif %}
                             </a>
                             <h2 class="employees-item__title">
                                 <a href="{{ manager.get_absolute_url }}">{{ manager.full_name }}</a>
                             </h2>
-                            <p class="employees-item__profession">Фахівець з нерухомості</p>
+                            <p class="employees-item__profession">{% trans 'Real estate specialist' %}</p>
                             {% for phone in manager.phones.all %}
                                 <a href="tel:{{ phone.clean_phone }}" class="employees-item__phone">
                                     <img src="{% static 'img/icon-phone.png' %}" class="accent" alt="телефон" width="30" height="30">
                                     <span>{{ phone.phone }}</span>
                                 </a>
                             {% endfor %}
-                            <p class="employees-item__more">або залиште номер, і ми вам передзвонимо протягом 2 хвилин</p>
+                            <p class="employees-item__more">{% trans 'or leave the number and we will call you back within 2 minutes' %}</p>
                             <form class="employees-item__form send-form" method="post" 
                                   action="{% url 'emails:listing_quick_message' id=listing.id %}">
                                 {{ listing_phone_form.phone }}
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn_primary">
-                                    <span class="ready">Передзвоніть мені</span>
-                                    <span class="sending">Надсилання...</span>
-                                    <span class="sent">Надіслано!</span>
-                                    <span class="error">Помилка надсилання...</span>
+                                    <span class="ready">{% trans 'Call me back' %}</span>
+                                    <span class="sending">{% trans 'Sending...' %}</span>
+                                    <span class="sent">{% trans 'Sent!' %}</span>
+                                    <span class="error">{% trans 'Error sending...' %}</span>
                                 </button>
                                 <button type="button" 
                                         class="btn btn_invert btn_bordered open-popup" 
-                                        data-popup="popup-listing-message">Написати спеціалісту</button>
+                                        data-popup="popup-listing-message">{% trans 'Write to a specialist' %}</button>
                             </form>
                         </div>
                     </div>
@@ -238,7 +246,6 @@
     
 </script>
 <script>
-
     const listingId = "{{ listing.id }}";
     let viewedListings = localStorage.getItem('viewedListings');
 
@@ -251,6 +258,5 @@
         }
     }
     localStorage.setItem('viewedListings', JSON.stringify(viewedListings));
-
 </script>
 {% endblock %}

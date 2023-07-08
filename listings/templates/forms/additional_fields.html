@@ -1,5 +1,8 @@
+{% load i18n %}
 <div class="fieldset-group">
-    <legend class="fieldset-group__legend">Популярне</legend>
+    <legend class="fieldset-group__legend">
+        {% trans 'Popular' %}
+    </legend>
     <div class="controls-group">
         <label class="checkbox-item">
             {{ search_form.is_new_building }}

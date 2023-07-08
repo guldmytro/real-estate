@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
@@ -5,12 +6,13 @@
     <div id="time" class="object-box">
         <div class="object-box-header">
             <h2 class="object-box-header__title animate animate_text">
-                {{ 'Час на дорогу'|wrap_words_in_span|safe }}
+                {% trans 'Time to go' as title %}
+                {{ title|wrap_words_in_span|safe }}
             </h2>
-            <p class="object-box-header__subtitle"> Дізнайтеся час до роботи, школи чи дитячого садка </p>
+            <p class="object-box-header__subtitle">{% trans 'Find out the time to work, school or kindergarten' %}</p>
         </div>
         <a href="{{ listing.get_google_maps_link }}" target="_blank" class="btn btn_invert btn_darken">
-            <span>Побудувати маршрут</span>
+            <span>{% trans 'Build a route' %}</span>
         </a>
         <img class="object-box__bg" src="{% static 'img/bg-map-ways.jpg' %}" alt="карта">
     </div>

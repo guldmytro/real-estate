@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 19:36+0300\n"
-"PO-Revision-Date: 2023-07-07 16:37+0000\n"
+"POT-Creation-Date: 2023-07-08 14:13+0300\n"
+"PO-Revision-Date: 2023-07-08 11:13+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -32,12 +32,15 @@ msgstr "Аналітичний огляд"
 msgid "English"
 msgstr "Англійська"
 
-#: config/settings.py:150
+#: config/settings.py:150 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: discounts/apps.py:8 discounts/models.py:12 discounts/views.py:18
-#: discounts/views.py:30
+#: discounts/apps.py:8 discounts/models.py:12
+#: discounts/templates/discounts/list.html:12 discounts/views.py:18
+#: discounts/views.py:30 pages/templates/sections/footer.html:17
+#: pages/templates/sections/header.html:24
+#: pages/templates/sections/header.html:78
 msgid "Discounts"
 msgstr "Акції"
 
@@ -49,7 +52,18 @@ msgstr "Короткий опис"
 msgid "Discount"
 msgstr "Акція"
 
-#: documents/apps.py:8 documents/models.py:16 documents/views.py:18
+#: discounts/templates/nothing-found.html:3
+msgid ""
+"\n"
+"        No entries yet... Return to <a href=\"/\">home</a>\n"
+"    "
+msgstr ""
+"\n"
+"Поки що немає записів... Повернутись на <a href=\"/\">головну</a>"
+
+#: documents/apps.py:8 documents/models.py:16
+#: documents/templates/documents/list.html:6 documents/views.py:18
+#: pages/templates/sections/footer.html:21
 msgid "Documents"
 msgstr "Документи"
 
@@ -73,6 +87,20 @@ msgstr "Створено"
 msgid "Document"
 msgstr "Документ"
 
+#: documents/templates/documents/list.html:13
+msgid "Useful documents"
+msgstr "Корисні документи"
+
+#: documents/templates/documents/list.html:17
+msgid ""
+"We decided to create a page and combine all useful documents in one place"
+msgstr "Ми вирішили створити сторінку на якій об'єднати усі корисні документи"
+
+#: documents/templates/documents/list.html:26 managers/models.py:69
+#: managers/models.py:78 news/templates/news/archive-item.html:11
+msgid "Review"
+msgstr "Відгук"
+
 #: emails/forms.py:10 emails/forms.py:35
 msgid "Your name:*"
 msgstr "Ваше ім'я:*"
@@ -93,7 +121,102 @@ msgstr "Напишіть ваш відгук"
 msgid "Message"
 msgstr "Повідомлення"
 
-#: listings/apps.py:8 listings/models.py:68 listings/views.py:58
+#: emails/templates/forms/apply.html:8
+msgid "Leave your contact details and attach a file with your resume"
+msgstr "Залиште свої контактні дані та прикрепіть файл з вашим резюме"
+
+#: emails/templates/forms/apply.html:18
+#: emails/templates/forms/listing-check.html:15
+#: emails/templates/forms/listing-message.html:16
+msgid "Enter a phone number so we can contact you"
+msgstr "Введіть ваш номер телефону, щоб ми могли зв'язатись із вами"
+
+#: emails/templates/forms/apply.html:21
+msgid "Send resume"
+msgstr "Надіслати резюме"
+
+#: emails/templates/forms/apply.html:22
+#: emails/templates/forms/listing-check.html:18
+#: emails/templates/forms/listing-message.html:19
+#: emails/templates/forms/review.html:36
+#: listings/templates/listings/item.html:121
+#: listings/templates/listings/item.html:143
+#: listings/templates/listings/item.html:191
+#: managers/templates/managers/detail.html:64
+#: pages/templates/pages/seller.html:44
+#: pages/templates/sections/feadback.html:22
+msgid "Sending..."
+msgstr "Надсилання..."
+
+#: emails/templates/forms/apply.html:23
+#: emails/templates/forms/listing-check.html:19
+#: emails/templates/forms/listing-message.html:20
+#: emails/templates/forms/review.html:37
+#: listings/templates/listings/item.html:122
+#: listings/templates/listings/item.html:144
+#: listings/templates/listings/item.html:192
+#: managers/templates/managers/detail.html:65
+#: pages/templates/pages/seller.html:45
+#: pages/templates/sections/feadback.html:23
+msgid "Sent!"
+msgstr "Надіслано!"
+
+#: emails/templates/forms/apply.html:24
+#: emails/templates/forms/listing-check.html:20
+#: emails/templates/forms/listing-message.html:21
+#: emails/templates/forms/review.html:38
+#: listings/templates/listings/item.html:123
+#: listings/templates/listings/item.html:145
+#: listings/templates/listings/item.html:193
+#: managers/templates/managers/detail.html:66
+#: pages/templates/pages/seller.html:46
+#: pages/templates/sections/feadback.html:24
+msgid "Error sending..."
+msgstr "Помилка надсилання..."
+
+#: emails/templates/forms/apply.html:26
+msgid "By sending your resume, you consent to the processing of personal data"
+msgstr ""
+"Надсилаючи ваше резюме, ви погоджуєтесь на обробку ваших персональних даних"
+
+#: emails/templates/forms/listing-check.html:9
+msgid "Leave your contact details to our manager"
+msgstr "Залиште свої контактні дані для нашого менеджера"
+
+#: emails/templates/forms/listing-check.html:17
+#: emails/templates/forms/listing-message.html:18
+#: emails/templates/forms/review.html:35
+msgid "Send"
+msgstr "Надіслати"
+
+#: emails/templates/forms/listing-message.html:9
+msgid "Leave your contact details and message to our manager"
+msgstr "Залиште свої контактні дані та повідомлення для нашого менеджера"
+
+#: emails/templates/forms/review.html:9
+msgid "Leave a review about the specialist"
+msgstr "Залиште відгук про спеціаліста"
+
+#: emails/templates/forms/review.html:14
+msgid "Rate the quality of the work"
+msgstr "Оцініть якість роботи"
+
+#: emails/templates/forms/review.html:31
+msgid ""
+"Enter a phone number so that we can contact you to confirm feedback in case "
+"of negative feedback or leave your feedback by calling +38 (050) 100-86-96"
+msgstr ""
+"Вкажіть номер телефону, щоб ми могли зв'язатися з вами для підтвердження "
+"зворотного зв'язку в разі негативного відгуку або залишити свій відгук, "
+"зателефонувавши за номером +38 (050) 100-86-96 "
+
+#: emails/templates/forms/review.html:40
+msgid "By leaving feedback, you consent to the processing of personal data"
+msgstr ""
+"Надсилаючи відгук, ви погоджуютесь на обробку своїх персональних данних"
+
+#: listings/apps.py:8 listings/models.py:68
+#: listings/templates/listings/list.html:6 listings/views.py:58
 #: listings/views.py:102
 msgid "Listings"
 msgstr "Оголошення"
@@ -115,6 +238,7 @@ msgid "For example, Kharkiv"
 msgstr "Наприклад, Харків"
 
 #: listings/forms.py:34
+#: listings/templates/listings/components/listing-map-info.html:25
 msgid "Rooms"
 msgstr "Кімнатність"
 
@@ -258,11 +382,13 @@ msgid "Updated"
 msgstr "Оновлено"
 
 #: listings/models.py:24 managers/models.py:40 managers/models.py:71
+#: managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr "Менеджер"
 
-#: listings/models.py:27 pages/models.py:34 pages/models.py:50
-#: pages/models.py:67 vacantions/models.py:8
+#: listings/models.py:27 listings/templates/listings/item.html:14
+#: listings/templates/listings/item.html:76 pages/models.py:34
+#: pages/models.py:50 pages/models.py:67 vacantions/models.py:8
 msgid "Description"
 msgstr "Опис"
 
@@ -286,7 +412,8 @@ msgstr "Площа кухні"
 msgid "Room Count"
 msgstr "Кількість кімнат"
 
-#: listings/models.py:40
+#: listings/models.py:40 listings/templates/forms/search.html:92
+#: listings/templates/listings/components/attributes.html:44
 msgid "Floor"
 msgstr "Поверх"
 
@@ -294,7 +421,9 @@ msgstr "Поверх"
 msgid "Total Floors"
 msgstr "Загальна кількість поверхів"
 
-#: listings/models.py:44
+#: listings/models.py:44 listings/templates/forms/search.html:61
+#: listings/templates/listings/components/listing-map-info.html:17
+#: pages/templates/pages/course.html:56
 msgid "Price"
 msgstr "Ціна"
 
@@ -390,7 +519,313 @@ msgstr "Міста"
 msgid "Streets"
 msgstr "Вулиці"
 
-#: managers/apps.py:8
+#: listings/templates/forms/additional_fields.html:4
+msgid "Popular"
+msgstr "Популярне"
+
+#: listings/templates/forms/search.html:12
+#: pages/templates/pages/pricing.html:23
+msgid "Buy"
+msgstr "Купити"
+
+#: listings/templates/forms/search.html:14
+#: pages/templates/pages/pricing.html:69
+msgid "Rent"
+msgstr "Орендувати"
+
+#: listings/templates/forms/search.html:19
+#: pages/templates/pages/pricing.html:46
+msgid "Sell"
+msgstr "Продати"
+
+#: listings/templates/forms/search.html:20
+#: pages/templates/pages/pricing.html:141
+msgid "Rent out"
+msgstr "Здати в оренду"
+
+#: listings/templates/forms/search.html:21
+msgid "Credit and mortgage"
+msgstr "Кредит та іпотека"
+
+#: listings/templates/forms/search.html:22
+#: pages/templates/sections/footer.html:13
+msgid "Property valuation"
+msgstr "Оцінка"
+
+#: listings/templates/forms/search.html:71
+#: listings/templates/forms/search.html:187
+msgid "Show"
+msgstr "Показати"
+
+#: listings/templates/forms/search.html:76
+msgid "Advanced search"
+msgstr "Розширений пошук"
+
+#: listings/templates/forms/search.html:88
+msgid "Building"
+msgstr "Будинок"
+
+#: listings/templates/forms/search.html:101
+msgid "Floors in the house"
+msgstr "Поверхів у домі"
+
+#: listings/templates/forms/search.html:156
+msgid "Court"
+msgstr "Двір"
+
+#: listings/templates/forms/search.html:169
+msgid "Media"
+msgstr "Медіа"
+
+#: listings/templates/forms/search.html:184
+msgid "Reset"
+msgstr "Очистити"
+
+#: listings/templates/listings/archive-item.html:7
+msgid "Reviewed"
+msgstr "Переглянуто"
+
+#: listings/templates/listings/archive-item.html:24
+#: listings/templates/listings/components/listing-map-info.html:22
+msgid "m²"
+msgstr "м²"
+
+#: listings/templates/listings/archive-item.html:33
+#: managers/templates/managers/list.html:54
+msgid "Show phone"
+msgstr "Показати телефон"
+
+#: listings/templates/listings/components/attributes.html:8
+#: listings/templates/listings/item.html:15
+msgid "Characteristics"
+msgstr "Характеристики"
+
+#: listings/templates/listings/components/attributes.html:15
+msgid "Is new house"
+msgstr "Новий будинок"
+
+#: listings/templates/listings/components/attributes.html:16
+msgid "Yes"
+msgstr "Так"
+
+#: listings/templates/listings/components/attributes.html:16
+msgid "No"
+msgstr "Ні"
+
+#: listings/templates/listings/components/attributes.html:20
+msgid "Total area"
+msgstr "Загальна площа"
+
+#: listings/templates/listings/components/attributes.html:26
+msgid "Living area"
+msgstr "Житлова площа"
+
+#: listings/templates/listings/components/attributes.html:32
+msgid "Kitchen area"
+msgstr "Площа кухні"
+
+#: listings/templates/listings/components/attributes.html:38
+msgid "Rooms count"
+msgstr "Кількість кімнат"
+
+#: listings/templates/listings/components/attributes.html:57
+#: managers/templates/managers/detail.html:133
+#: managers/templates/managers/detail.html:148
+msgid "Show more"
+msgstr "Показати більше"
+
+#: listings/templates/listings/components/directions.html:9
+#: listings/templates/listings/item.html:19
+msgid "Time to go"
+msgstr "Час на дорогу"
+
+#: listings/templates/listings/components/directions.html:12
+msgid "Find out the time to work, school or kindergarten"
+msgstr "Дізнайтесь час до роботи, школи чи дитячого садка"
+
+#: listings/templates/listings/components/directions.html:15
+msgid "Build a route"
+msgstr "Побудувати маршрут"
+
+#: listings/templates/listings/components/listing-map-info.html:21
+msgid "Area (total / living / kitchen)"
+msgstr "Площа (загальна / житлова / кухня)"
+
+#: listings/templates/listings/components/listing-map-info.html:29
+msgid "Floors"
+msgstr "Поверхів"
+
+#: listings/templates/listings/components/listing-map-info.html:34
+msgid "Year of construction"
+msgstr "Рік будівництва"
+
+#: listings/templates/listings/components/listing-map-info.html:41
+#: listings/templates/listings/item.html:158
+#: pages/templates/pages/abroad.html:38
+msgid "More details"
+msgstr "Детальніше"
+
+#: listings/templates/listings/components/news.html:8 news/apps.py:8
+#: news/models.py:27 news/models.py:28 news/views.py:13 news/views.py:20
+#: news/views.py:33 pages/templates/sections/footer.html:16
+#: pages/templates/sections/news.html:9
+msgid "News"
+msgstr "Новини"
+
+#: listings/templates/listings/components/related_listings.html:8
+msgid "You may be interested"
+msgstr "Вас може зацікавити"
+
+#: listings/templates/listings/components/related_listings.html:14
+msgid "In this house"
+msgstr "В одному будинку"
+
+#: listings/templates/listings/components/related_listings.html:21
+msgid "Similar in location"
+msgstr "Схожі по місцезнаходженню"
+
+#: listings/templates/listings/components/similar_listings.html:8
+msgid "The cost of similar apartments in the city"
+msgstr "Вартість аналогічних об'єктів по місту"
+
+#: listings/templates/listings/components/similar_listings.html:12
+msgid ""
+"Similar apartments are selected according to similar parameters: roominess, "
+"number of floors, wall material, repair, year"
+msgstr ""
+"Аналогічні квартири підбираються за подібними параметрами: кімнатність, "
+"поверховість, матеріал стін, ремонт, рік"
+
+#: listings/templates/listings/item.html:13
+msgid "Gallery"
+msgstr "Галерея"
+
+#: listings/templates/listings/item.html:16
+msgid "Real estate inspection"
+msgstr "Перевірка нерухомості"
+
+#: listings/templates/listings/item.html:17
+msgid "Reserve"
+msgstr "Забронювати"
+
+#: listings/templates/listings/item.html:18
+msgid "Mortgage"
+msgstr "Іпотека"
+
+#: listings/templates/listings/item.html:40
+msgid "Map"
+msgstr "Карта"
+
+#: listings/templates/listings/item.html:52
+msgid "On the map"
+msgstr "На карті"
+
+#: listings/templates/listings/item.html:89
+msgid "Inspect the property before you buy"
+msgstr "Перевірте нерухомість перед покупкою"
+
+#: listings/templates/listings/item.html:92
+msgid "Get a legal due diligence on your property to minimize your risks"
+msgstr "Отримайте юридичну перевірку нерухомості для мінімізації ризиків"
+
+#: listings/templates/listings/item.html:96
+msgid "Number of owners"
+msgstr "Кількість власників"
+
+#: listings/templates/listings/item.html:97
+msgid "The presence of encumbrances"
+msgstr "Наявність обтяжень"
+
+#: listings/templates/listings/item.html:98
+msgid "Is there a mortgage?"
+msgstr "Чи є іпотека"
+
+#: listings/templates/listings/item.html:99
+msgid "Years of property ownership"
+msgstr "Роки володіння нерухомістю"
+
+#: listings/templates/listings/item.html:102
+msgid "Check the property"
+msgstr "Перевірити нерухомість"
+
+#: listings/templates/listings/item.html:107
+#: listings/templates/listings/item.html:120
+msgid "Sign up for viewing"
+msgstr "Записатись на перегляд"
+
+#: listings/templates/listings/item.html:110
+msgid ""
+"A real estate specialist will contact you, confirm the selected viewing "
+"time, arrange a visit to the offer and give you a tour."
+msgstr ""
+"З вами зв'яжеться спеціаліст з нерухомості, підтвердить обраний час "
+"перегляду, організує відвідування пропозиції та проведе вам екскурсію."
+
+#: listings/templates/listings/item.html:131
+msgid "Calculate the mortgage"
+msgstr "Розрахувати іпотеку"
+
+#: listings/templates/listings/item.html:134
+#, python-format
+msgid "We can calculate a mortgage with no down payment, just specify 0%%."
+msgstr "Можемо розрахувати іпотеку без початкового внеску, просто вкажіть 0%."
+
+#: listings/templates/listings/item.html:142
+#: pages/templates/sections/feadback.html:21
+msgid "Get a consultation"
+msgstr "Отримати консультацію"
+
+#: listings/templates/listings/item.html:153
+#: pages/templates/pages/course.html:280
+#: pages/templates/pages/guarantees.html:12
+#: pages/templates/sections/services.html:42
+msgid "Agreement security guarantee"
+msgstr "Гарантії безпеки угоди"
+
+#: listings/templates/listings/item.html:156
+msgid ""
+"You are under reliable protection - in case of disputed situations, we bear "
+"all costs."
+msgstr ""
+"Ви під надійним захистом - у разі спірних ситуацій беремо всі витрати на "
+"себе."
+
+#: listings/templates/listings/item.html:177
+#: managers/templates/managers/detail.html:22
+#: managers/templates/managers/list.html:51
+#: managers/templates/reviews/item.html:29
+msgid "Real estate specialist"
+msgstr "Спеціаліст з нерухомості"
+
+#: listings/templates/listings/item.html:184
+msgid "or leave the number and we will call you back within 2 minutes"
+msgstr "або залиште номер, і ми вам передзвонимо протягом 2 хвилин"
+
+#: listings/templates/listings/item.html:190
+#: managers/templates/managers/detail.html:63
+msgid "Call me back"
+msgstr "Передзвоніть мені"
+
+#: listings/templates/listings/item.html:197
+msgid "Write to a specialist"
+msgstr "Написати спеціалісту"
+
+#: listings/templates/listings/list.html:24
+#| msgid "Real estate specialists"
+msgid "Real estate search results"
+msgstr "Результати пошуку нерухомості"
+
+#: listings/templates/sections/empty-result.html:6
+msgid "Sorry, I couldn't find anything according to your criteria"
+msgstr "Вибачте, ми не змогли нічого знайти по ваших критеріях"
+
+#: listings/templates/sections/empty-result.html:7
+msgid "Please try other search options"
+msgstr "Спробуйте, будь ласка, інші параметри пошуку"
+
+#: managers/apps.py:8 pages/templates/sections/footer.html:18
+#: pages/templates/sections/header.html:59
+#: pages/templates/sections/header.html:95
 msgid "Managers"
 msgstr "Менеджери"
 
@@ -406,11 +841,12 @@ msgstr "Ім'я"
 msgid "Image"
 msgstr "Картинка"
 
-#: managers/models.py:15 pages/models.py:92 props/models.py:10
+#: managers/models.py:15 managers/templates/managers/detail.html:27
+#: pages/models.py:92 props/models.py:10
 msgid "Email"
 msgstr "Email"
 
-#: managers/models.py:17
+#: managers/models.py:17 managers/templates/managers/detail.html:102
 msgid "Experience"
 msgstr "Досвід роботи"
 
@@ -423,6 +859,9 @@ msgid "About"
 msgstr "Про нас"
 
 #: managers/models.py:39 managers/models.py:51
+#: managers/templates/managers/detail.html:39
+#: managers/templates/managers/detail.html:41
+#: pages/templates/pages/seller.html:35
 msgid "Phone"
 msgstr "Телефон"
 
@@ -438,22 +877,56 @@ msgstr "Рейтинг"
 msgid "Author"
 msgstr "Автор"
 
-#: managers/models.py:69 managers/models.py:78
-msgid "Review"
-msgstr "Відгук"
-
-#: managers/models.py:79
+#: managers/models.py:79 managers/templates/managers/detail.html:82
+#: pages/templates/pages/reviews.html:6
+#: pages/templates/sections/footer.html:19
 msgid "Reviews"
 msgstr "Відгуки"
 
-#: managers/views.py:80
+#: managers/templates/managers/detail.html:51
+msgid "Leave a review"
+msgstr "Залишити відгук"
+
+#: managers/templates/managers/detail.html:57
+msgid "Leave your phone number and we will call you back in 5 minutes"
+msgstr "Залиште ваш номер телефону і ми передзвонимо через 5 хв"
+
+#: managers/templates/managers/detail.html:69
+msgid ""
+"By submitting an application, you agree to the processing of personal data"
+msgstr "Надсилаючи заявку, ви погоджуєтесь на обробку персональних даних"
+
+#: managers/templates/managers/detail.html:79
+msgid "About me"
+msgstr "Про мене"
+
+#: managers/templates/managers/detail.html:86
+msgid "My offers"
+msgstr "Мої пропозиції"
+
+#: managers/templates/managers/detail.html:114
+msgid "Car"
+msgstr "Машина"
+
+#: managers/templates/managers/detail.html:115
+msgid "In stock"
+msgstr "В наявності"
+
+#: managers/templates/managers/list.html:7
+msgid "Our managers"
+msgstr "Наші менеджери"
+
+#: managers/templates/managers/list.html:22
+msgid "Search"
+msgstr "Пошук"
+
+#: managers/templates/managers/list.html:34 managers/views.py:80
 msgid "Real estate specialists"
 msgstr "Спеціалісти з нерухомості"
 
-#: news/apps.py:8 news/models.py:27 news/models.py:28 news/views.py:13
-#: news/views.py:20 news/views.py:33
-msgid "News"
-msgstr "Новини"
+#: managers/templates/managers/list.html:61
+msgid "More about the specialist"
+msgstr "Більше про спеціаліста"
 
 #: news/models.py:10
 msgid "Text"
@@ -488,6 +961,7 @@ msgid "Description 2 of the section"
 msgstr "Опис 2 секції"
 
 #: pages/models.py:22 pages/models.py:23 pages/models.py:32
+#: pages/templates/pages/about.html:5 pages/templates/sections/footer.html:11
 msgid "About us"
 msgstr "Про нас"
 
@@ -507,7 +981,10 @@ msgstr "Про нас деталь"
 msgid "About us details"
 msgstr "Про нас деталі"
 
-#: pages/models.py:59 pages/models.py:60
+#: pages/models.py:59 pages/models.py:60 pages/templates/pages/abroad.html:7
+#: pages/templates/sections/footer.html:15
+#: pages/templates/sections/header.html:57
+#: pages/templates/sections/header.html:93
 msgid "Real estate abroad"
 msgstr "Нерухомість закордоном"
 
@@ -576,7 +1053,11 @@ msgid "Facebook"
 msgstr "Фейсбук"
 
 #: pages/models.py:106 pages/models.py:112 pages/models.py:113
-#: pages/views.py:40
+#: pages/templates/pages/contacts.html:6
+#: pages/templates/pages/contacts.html:13
+#: pages/templates/sections/footer.html:23
+#: pages/templates/sections/header.html:63
+#: pages/templates/sections/header.html:99 pages/views.py:40
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -589,6 +1070,7 @@ msgid "Auth link"
 msgstr "Зсилка авторизації"
 
 #: pages/models.py:121 pages/models.py:127 pages/models.py:128
+#: pages/templates/pages/course.html:6
 msgid "Course"
 msgstr "Курс"
 
@@ -597,7 +1079,8 @@ msgid "Poster"
 msgstr "Постер"
 
 #: pages/models.py:138 pages/models.py:144 pages/models.py:145
-#: vacantions/apps.py:8 vacantions/models.py:18
+#: pages/templates/sections/footer.html:22 vacantions/apps.py:8
+#: vacantions/models.py:18
 msgid "Vacantions"
 msgstr "Вакансії"
 
@@ -606,12 +1089,973 @@ msgid "About us section"
 msgstr "Про нас секція"
 
 #: pages/models.py:153 pages/models.py:159 pages/models.py:160
+#: pages/templates/layout/base.html:12 pages/templates/pages/home.html:6
+#: pages/templates/sections/breadcrumbs.html:7
 msgid "Home"
 msgstr "Головна"
 
+#: pages/templates/pages/contacts.html:21
+msgid "Call us"
+msgstr "Телефонуйте нам"
+
+#: pages/templates/pages/contacts.html:35
+msgid "Office No. 1"
+msgstr "Офіс № 1"
+
+#: pages/templates/pages/contacts.html:46
+msgid "Write to us"
+msgstr "Пишіть нам"
+
+#: pages/templates/pages/contacts.html:57
+msgid "Office No. 2"
+msgstr "Офіс № 2"
+
+#: pages/templates/pages/contacts.html:68
+msgid "Work schedule"
+msgstr "Графік роботи"
+
+#: pages/templates/pages/contacts.html:79
+msgid "Office No. 3"
+msgstr "Офіс № 3"
+
+#: pages/templates/pages/course.html:12
+msgid "Pro_real_estate"
+msgstr "ПРО_нерухомість"
+
+#: pages/templates/pages/course.html:14
+msgid "FREE"
+msgstr "БЕЗКОШТОВНО"
+
+#: pages/templates/pages/course.html:16
+msgid "ONLINE-COURSE"
+msgstr "ОНЛАЙН-КУРС"
+
+#: pages/templates/pages/course.html:18
+msgid "For those who want to learn more about the real estate market"
+msgstr "Для тих, хто хоче дізнатись більше про ринок нерухомості"
+
+#: pages/templates/pages/course.html:22 pages/templates/pages/course.html:152
+#: pages/templates/pages/course.html:192 pages/templates/pages/course.html:259
+msgid "Register"
+msgstr "Зареєструватись"
+
+#: pages/templates/pages/course.html:25 pages/templates/pages/course.html:155
+#: pages/templates/pages/course.html:195 pages/templates/pages/course.html:262
+msgid "Log in"
+msgstr "Авторизуватись"
+
+#: pages/templates/pages/course.html:38
+msgid "Date"
+msgstr "Дата"
+
+#: pages/templates/pages/course.html:39
+msgid "Immediately after registration"
+msgstr "Одразу після реєстрації"
+
+#: pages/templates/pages/course.html:47
+msgid "Place"
+msgstr "Місце"
+
+#: pages/templates/pages/course.html:48
+msgid "The course is held online"
+msgstr "Курс проходить онлайн"
+
+#: pages/templates/pages/course.html:57
+msgid "Free"
+msgstr "Безкоштовно"
+
+#: pages/templates/pages/course.html:65
+msgid "language"
+msgstr "мова"
+
+#: pages/templates/pages/course.html:78
+msgid "PRO_real_estate"
+msgstr "PRO_Нерухомість"
+
+#: pages/templates/pages/course.html:81
+msgid ""
+"If you want to learn and develop, then we have something to talk about. We "
+"hope that the knowledge gained during the course will help you to better "
+"understand the real estate market, conclude safe deals, invest profitably or"
+" find an interesting job that will bring you income and satisfaction."
+msgstr ""
+"Якщо ви хочете вчитися та розвиватися, то нам є про що поговорити. Ми "
+"сподіваємося, що знання, отриманы на курсі допоможуть Вам більше розібратись"
+" в ринку нерухомості, заключати безпечні угоди, вигідно інвестувати чи "
+"знайти цікаву роботу, яка приноситеме дохід та задоволення."
+
+#: pages/templates/pages/course.html:82
+msgid "Further cooperation and interaction"
+msgstr "Подальша співпраця та взаємодія"
+
+#: pages/templates/pages/course.html:83
+msgid ""
+"In the process and after completing the course, you will have the "
+"opportunity to continue interaction with the company in various directions."
+msgstr ""
+"В процесі та після проходження курсу у Вас буде можливість продовжити "
+"взаємодію з компанією по різним напрямкам."
+
+#: pages/templates/pages/course.html:84
+msgid "About the course"
+msgstr "Про курс"
+
+#: pages/templates/pages/course.html:85
+msgid ""
+"In the course PRO_real estate we talk about the basic principles and main "
+"topics that you need to pay attention to in order not to get lost in the "
+"real estate market."
+msgstr ""
+"В курсі PRO_нерухомість ми розповідаємо про базові принципи та основні теми,"
+" на які треба звернути увагу, щоб не розгубитися на ринку нерухомості."
+
+#: pages/templates/pages/course.html:98
+msgid "Who is this course suitable for?"
+msgstr "Для кого цей курс?"
+
+#: pages/templates/pages/course.html:108
+msgid "For those who plan to buy or sell real estate"
+msgstr "Тим, хто планує купити чи продати нерухомість"
+
+#: pages/templates/pages/course.html:109
+msgid ""
+"Get acquainted with the principles of functioning of the real estate market "
+"and conducting safe transactions."
+msgstr ""
+"Ознайомитесь з принципами функціонування ринку нерухомості та проведення "
+"безпечних угод."
+
+#: pages/templates/pages/course.html:117
+msgid "For those interested in investing in real estate"
+msgstr "Тим, хто цікавиться інвестиціями в нерухомість"
+
+#: pages/templates/pages/course.html:118
+msgid "Familiarize yourself with cases of profit in the real estate market."
+msgstr "Ознайомитесь з кейсами по отриманню прибутку на ринку нерухомості."
+
+#: pages/templates/pages/course.html:126
+msgid "Those who are looking for interesting and profitable work"
+msgstr "Тим, хто шукає цікаву та прибуткову роботу"
+
+#: pages/templates/pages/course.html:127
+msgid ""
+"Get acquainted with the realtor profession, corporate culture and the "
+"benefits of working with \"Contract-Real Estate\"."
+msgstr ""
+"Ознайомитеся з професією ріелтор, корпоративною культурою та перевагами "
+"роботи з Контракт-Нерухомість."
+
+#: pages/templates/pages/course.html:135
+msgid "For those who are interested in foreign real estate"
+msgstr "Тим, кого цікавить закордонна нерухомість"
+
+#: pages/templates/pages/course.html:136
+msgid ""
+"Get acquainted with the prices and features of real estate transactions in "
+"the UAE (Dubai), Turkey, Georgia and Northern Cyprus."
+msgstr ""
+"Ознайомитесь з цінами та особливостями здійснення угод на нерухомість в "
+"ОАЕ(Дубай), Туреччині, Грузії та Сєвєрному Кіпрі."
+
+#: pages/templates/pages/course.html:144
+msgid "Entrepreneurs looking for business opportunities"
+msgstr "Підприємцям, які шукають можливості для створення бізнесу"
+
+#: pages/templates/pages/course.html:145
+msgid ""
+"Get acquainted with the possibilities of building a business in the real "
+"estate market."
+msgstr "Ознайомитесь з можливостями побудови бізнесу на ринку нерухомості."
+
+#: pages/templates/pages/course.html:165
+msgid "The main directions of the course"
+msgstr "Основні напрямки курсу"
+
+#: pages/templates/pages/course.html:175
+msgid "Purchase of real estate in Ukraine"
+msgstr "Придбання нерухомості в Україні"
+
+#: pages/templates/pages/course.html:176
+msgid ""
+"We help clients sell or buy real estate in Kharkiv, Kyiv, Dnipro, Odesa and "
+"Lviv."
+msgstr ""
+"Допомагаємо клієнтам продати чи придбати нерухомість в Харкові, Києві, "
+"Дніпрі, Одесі та Львові."
+
+#: pages/templates/pages/course.html:184
+msgid "Purchase of real estate abroad"
+msgstr "Купівля нерухомості за кордоном"
+
+#: pages/templates/pages/course.html:185
+msgid ""
+"We help clients invest in real estate in the UAE (Dubai), Turkey, Georgia "
+"and Northern Cyprus."
+msgstr ""
+"Допомагаємо клієнтам з інвестуванням в нерухомість в ОАЕ(Дубай), Туреччині, "
+"Грузії та Сєвєрному Кіпрі."
+
+#: pages/templates/pages/course.html:205
+msgid "What will be on the course:"
+msgstr "Що буде на курсі:"
+
+#: pages/templates/pages/course.html:212
+msgid "10 sections of training"
+msgstr "10 розділів навчання"
+
+#: pages/templates/pages/course.html:213
+msgid ""
+"The course consists of theoretical material, videos and a test. The course "
+"is designed for 60+ minutes of time. Online lessons are clearly structured "
+"and divided into topics, which you can take immediately after registration "
+"and at any time convenient for you."
+msgstr ""
+"Курс складається з теоретичного матеріалу, відеороликів та тесту. Курс "
+"розрахований на 60+ хвилин часу. Он-лайн уроки чітко структуровані та "
+"розбиті по темам, які ви зможете пройти одразу після реєстрації та в будь-"
+"який зручний для Вас час."
+
+#: pages/templates/pages/course.html:217
+msgid "Section about the realtor profession and about the company"
+msgstr "Розділ про професію ріелтор та про компанію"
+
+#: pages/templates/pages/course.html:218
+msgid ""
+"You will learn about the peculiarities of the work of a realtor and get "
+"acquainted with the history, traditions and values of the company "
+"\"Contract-Real Estate\"."
+msgstr ""
+"Ви дізнаєтесь про особливості роботи ріелтора і познайомитися з історією, "
+"традиціями та цінностями компанії Контракт-Нерухомість."
+
+#: pages/templates/pages/course.html:222
+msgid "Section on security when making transactions"
+msgstr "Розділ про безпеку при здійсненні угод"
+
+#: pages/templates/pages/course.html:223
+msgid ""
+"You will learn about the main types of fraudulent schemes on the market and "
+"how to avoid risky situations when making transactions."
+msgstr ""
+"Ви дізнаєтеся про основні види шахрайських схем на ринку та як уникнути "
+"ризикових ситуацій при здійсненні угод."
+
+#: pages/templates/pages/course.html:227
+msgid "The company's work standards section for job applicants"
+msgstr "Розділ про стандарти роботи компанії для претендентів на вакансію"
+
+#: pages/templates/pages/course.html:228
+msgid ""
+"Get acquainted with the unique sales offers of the company \"Contract-Real "
+"Estate\" for clients, benefits of working in the company, career growth "
+"opportunities and with regulations and rules of corporate ethics."
+msgstr ""
+"Познайомитесь з унікальними торговими пропозиціями компанії &#39;Контракт-"
+"Нерухомість&#39; для клієнтів, перевагами роботи в компанії, можливостями "
+"кар&#39;єрного росту та з регламентами та правилами корпоративної етики."
+
+#: pages/templates/pages/course.html:232
+msgid "Section on company services for customers"
+msgstr "Розділ про послуги компанії для клієнтів"
+
+#: pages/templates/pages/course.html:233
+msgid ""
+"Learn about the main mistakes that owners make. Get acquainted with the list"
+" of services that the company provides to clients. Learn how to correctly "
+"evaluate an apartment for sale. You will receive instructions, checklists "
+"and useful links that can help you when making deals in the real estate "
+"market. You will find information on real estate taxation when making "
+"transactions."
+msgstr ""
+"Дізнаєтесь про основні помилки, які роблять власники.Ознайомитесь з "
+"переліком послуг , які надає компанія клієнтам. Дізнаєтесь, як правильно "
+"оцінити квартиру для продажу. Отримаєте інструкції, чек-листи та корисні "
+"посилання, які можуть допомогти при здійсненні угод на ринку нерухомості. "
+"Знайдете інформацію з оподаткування нерухомості при здійсненні угод."
+
+#: pages/templates/pages/course.html:237
+msgid "Section on investments in foreign real estate"
+msgstr "Розділ з інвестицій в закордонну нерухомість"
+
+#: pages/templates/pages/course.html:238
+msgid ""
+"Familiarize yourself with the market, purchase features and basic rules for "
+"transactions in Dubai, Turkey, Georgia and Northern Cyprus."
+msgstr ""
+"Ознайомитесь з ринком, особливостями придбання та основними правилами "
+"здійснення угод в Дубай, Турції, Грузії та Сєвєрному Кіпрі."
+
+#: pages/templates/pages/course.html:242
+msgid "Section for entrepreneurs"
+msgstr "Розділ для підприємців"
+
+#: pages/templates/pages/course.html:243
+msgid ""
+"Here you will find information on how to build a partnership or your own "
+"real estate business."
+msgstr ""
+"Тут ви знайдете інформацію про те, як побудувати партнерський чи власний "
+"бізнес в сфері нерухомості."
+
+#: pages/templates/pages/course.html:247
+msgid "Section on investing in real estate"
+msgstr "Розділ з інвестування в нерухомість"
+
+#: pages/templates/pages/course.html:248
+msgid "Familiarize yourself with the main cases of investing in real estate."
+msgstr "Ознайомитесь з основними кейсами інвестування у нерухомість."
+
+#: pages/templates/pages/course.html:252
+msgid "About directions for further training and interaction with the company"
+msgstr "Про напрямки подальшого навчання та взаємодії з компанією"
+
+#: pages/templates/pages/course.html:253
+msgid ""
+"Get acquainted with a possible plan of action after completing the course."
+msgstr "Познайомитесь з можливим планом дій після завершення курсу."
+
+#: pages/templates/pages/course.html:273
+msgid "Details about us"
+msgstr "Детальніше про нас"
+
+#: pages/templates/pages/course.html:284
+msgid "A large base of real estate"
+msgstr "Велика база нерухомості"
+
+#: pages/templates/pages/course.html:288
+msgid "Legal support"
+msgstr "Юридичний супровід"
+
+#: pages/templates/pages/course.html:292
+msgid "Mortgage service"
+msgstr "Іпотечний сервіс"
+
+#: pages/templates/pages/guarantees.html:5
+#: pages/templates/sections/footer.html:12
+msgid "Guarantees"
+msgstr "Гарантія"
+
+#: pages/templates/pages/guarantees.html:16
+msgid "Buy real estate risk-free"
+msgstr "Купляйте нерухомість без ризику"
+
+#: pages/templates/pages/guarantees.html:19
+msgid "In case of disputed situations, we bear all costs"
+msgstr "У випадку виникнення спірних ситуацій беремо всі витрати на себе"
+
+#: pages/templates/pages/guarantees.html:28
+msgid "How we protect customers"
+msgstr "Як ми захищаємо клієнтів"
+
+#: pages/templates/pages/guarantees.html:35
+msgid "Verification of the object and parties to the agreement"
+msgstr "Перевірка об'єкту та сторін угоди"
+
+#: pages/templates/pages/guarantees.html:38
+msgid ""
+"At the entrance, we check all real estate documentation to reduce the "
+"likelihood of any risks during the transaction"
+msgstr ""
+"На вході ми перевіряємо всю документацію на нерухомість, щоб знизити "
+"ймовірність яких-небудь ризиків при оформленні угоди"
+
+#: pages/templates/pages/guarantees.html:43
+msgid "Safe calculations"
+msgstr "Безпечні розрахунки"
+
+#: pages/templates/pages/guarantees.html:46
+msgid ""
+"The very process of signing the agreement takes place strictly according to "
+"the developed regulations with the use of secure calculations"
+msgstr ""
+"Сам процес оформлення угоди відбувається строго за розробленими регламентами"
+" з використанням безпечних розрахунків"
+
+#: pages/templates/pages/guarantees.html:51
+msgid "Legal protection"
+msgstr "Юридичний захист"
+
+#: pages/templates/pages/guarantees.html:54
+msgid ""
+"After signing the agreement, we protect the client's interests free of "
+"charge in case of any disputes"
+msgstr ""
+"Після оформлення угоди ми безкоштовно для клієнта захищаємо його інтереси у "
+"разі виникнення будь-яких суперечок"
+
+#: pages/templates/pages/home.html:12
+msgid "Find real estate"
+msgstr "Знайти нерухомість"
+
+#: pages/templates/pages/pricing.html:6 pages/templates/pages/pricing.html:13
 #: pages/views.py:63
 msgid "Cost of services"
 msgstr "Вартість послуг"
+
+#: pages/templates/pages/pricing.html:26
+#, python-format
+msgid "5%% of the market value of the object"
+msgstr "5% від ринкової вартості об'єкту"
+
+#: pages/templates/pages/pricing.html:29 pages/templates/pages/pricing.html:52
+msgid "Discounts from the company in this block:"
+msgstr "Знижки від компанії в цьому блоці:"
+
+#: pages/templates/pages/pricing.html:34 pages/templates/pages/pricing.html:57
+#, python-format
+msgid ""
+"By selling an old apartment and buying a new one together with Contract Real"
+" Estate, you receive a 5%% discount on the company's services when you "
+"contact the company again. Sale / Purchase during the year for yourself or "
+"first-line relatives, you get a 5%% discount on the company's services. For "
+"the military and armed forces, a discount of 5%%."
+msgstr ""
+"Здійснюючи продаж старої квартири та купівлю нової разом з компанією "
+"«Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При "
+"повторному зверненні до компанії. Продаж / Покупка протягом року на себе або"
+" родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
+"військових та ЗСУ знижка від 5%."
+
+#: pages/templates/pages/pricing.html:49
+#, python-format
+msgid ""
+"0-5%% The cost of the company's services depends on the type of real estate,"
+" the value and readiness of the object for the deal"
+msgstr ""
+"0-5% Вартість послуг компанії залежить від типу нерухомості, вартості та "
+"готовності об'єкта до угоди"
+
+#: pages/templates/pages/pricing.html:72
+#, python-format
+msgid "50%% of the rental price"
+msgstr "50% вартості оренди"
+
+#: pages/templates/pages/pricing.html:75
+#: pages/templates/pages/pricing.html:142
+msgid "Tariffs:"
+msgstr "Тарифи:"
+
+#: pages/templates/pages/pricing.html:82
+#: pages/templates/pages/pricing.html:147
+#, python-format
+msgid "Base 0%%"
+msgstr "Базовий 0%"
+
+#: pages/templates/pages/pricing.html:86
+#: pages/templates/pages/pricing.html:149
+msgid "Adding to the company's website"
+msgstr "Додавання на сайт компанії"
+
+#: pages/templates/pages/pricing.html:89
+#: pages/templates/pages/pricing.html:150
+msgid "Professional photography of the apartment"
+msgstr "Професійне фотографування квартири"
+
+#: pages/templates/pages/pricing.html:95
+#: pages/templates/pages/pricing.html:154
+#, python-format
+msgid "Minimum 20%%"
+msgstr "Мінімум 20%"
+
+#: pages/templates/pages/pricing.html:99
+#: pages/templates/pages/pricing.html:156
+msgid "Reception of keys from the owner"
+msgstr "Прийом ключів у власника"
+
+#: pages/templates/pages/pricing.html:102
+#: pages/templates/pages/pricing.html:157
+msgid "Conducting screenings without your participation"
+msgstr "Проведення показів без вашої участі"
+
+#: pages/templates/pages/pricing.html:108
+#: pages/templates/pages/pricing.html:161
+#, python-format
+msgid "Econom 30%%"
+msgstr "Економ 30%"
+
+#: pages/templates/pages/pricing.html:111
+#: pages/templates/pages/pricing.html:119
+#: pages/templates/pages/pricing.html:163
+#: pages/templates/pages/pricing.html:171
+msgid "Advertising on 7 sites"
+msgstr "Реклама на 7 майданчиках"
+
+#: pages/templates/pages/pricing.html:112
+#: pages/templates/pages/pricing.html:120
+#: pages/templates/pages/pricing.html:164
+#: pages/templates/pages/pricing.html:172
+msgid "Guarantee of legal protection (call to the hotline)"
+msgstr "Гарантія юридичного захисту (дзвінок на гарячу лінію)"
+
+#: pages/templates/pages/pricing.html:113
+#: pages/templates/pages/pricing.html:165
+msgid "Financial guarantee for 3 months **"
+msgstr "Фінансова гарантія на 3 місяці **"
+
+#: pages/templates/pages/pricing.html:117
+#: pages/templates/pages/pricing.html:169
+msgid "Standard"
+msgstr "Стандарт"
+
+#: pages/templates/pages/pricing.html:121
+#: pages/templates/pages/pricing.html:173
+msgid "Financial guarantee for 3 months**"
+msgstr "Фінансова гарантія на 3 місяці**"
+
+#: pages/templates/pages/pricing.html:122
+msgid "Financial guarantee for 6 months**"
+msgstr "Фінансова гарантія на 6 місяців**"
+
+#: pages/templates/pages/pricing.html:123
+#: pages/templates/pages/pricing.html:175
+msgid "Guarantee of legal protection (guarantee certificate)*"
+msgstr "Гарантія юридичного захисту (гарантійний сертифікат)*"
+
+#: pages/templates/pages/pricing.html:124
+#: pages/templates/pages/pricing.html:176
+msgid "Application of additional (paid) statuses on advertising platforms"
+msgstr "Застосування додаткових (платних) статусів на рекламних майданчиках"
+
+#: pages/templates/pages/pricing.html:125
+#: pages/templates/pages/pricing.html:177
+msgid "Providing analytics based on interest in your apartment"
+msgstr "Надання аналітики за зацікавленістю вашою квартирою"
+
+#: pages/templates/pages/pricing.html:126
+#: pages/templates/pages/pricing.html:178
+msgid "Verification of the employer by the Economic Security Service***"
+msgstr "Перевірка наймача службою економічної безпеки***"
+
+#: pages/templates/pages/pricing.html:127
+#: pages/templates/pages/pricing.html:179
+msgid ""
+"Reception of the apartment after vacating by the tenant and provision of a "
+"photo and video report (2 times during the term of the contract)"
+msgstr ""
+"Прийом квартири після звільнення наймачем та надання фото-, відеозвіту (2 "
+"рази за час дії договору)"
+
+#: pages/templates/pages/pricing.html:128
+#: pages/templates/pages/pricing.html:180
+msgid "Production of a video overview of the apartment"
+msgstr "Виготовлення відео-огляду квартири"
+
+#: pages/templates/pages/pricing.html:174
+msgid "Financial guarantee for months**"
+msgstr "Фінансова гарантія на 6 місяців**"
+
+#: pages/templates/pages/pricing.html:193
+msgid "What is included in the price of services"
+msgstr "Що входити у вартість послуг"
+
+#: pages/templates/pages/pricing.html:196
+msgid "when buying a lease:"
+msgstr "при купівлі оренди:"
+
+#: pages/templates/pages/pricing.html:198
+msgid ""
+"Consultation on the real estate market in the region (price and demand "
+"dynamics)"
+msgstr "Консультація з ринку нерухомості в регіоні (динаміка цін та попиту)"
+
+#: pages/templates/pages/pricing.html:199
+#: pages/templates/pages/pricing.html:222
+msgid ""
+"Assistance in the preparation and execution of documents for the agreement"
+msgstr "Допомога у підготовці та оформленні документів для угоди"
+
+#: pages/templates/pages/pricing.html:200
+msgid "Security guarantee certificate"
+msgstr "Гарантійний сертифікат безпеки"
+
+#: pages/templates/pages/pricing.html:201
+msgid ""
+"Negotiations with owners (including regarding the sale), expert evaluation "
+"of real estate"
+msgstr ""
+"Переговори з власниками (у тому числі щодо торгу), експертна оцінка "
+"нерухомості"
+
+#: pages/templates/pages/pricing.html:202
+msgid ""
+"Selection of real estate options taking into account all wishes and needs"
+msgstr "Підбір варіантів нерухомості з урахуванням усіх побажань та потреб"
+
+#: pages/templates/pages/pricing.html:203
+msgid "Organization and inspection of apartments"
+msgstr "Організація та проведення переглядів квартир"
+
+#: pages/templates/pages/pricing.html:204
+msgid "Transfer to the facilities (by arrangement)"
+msgstr "Трансфер до об'єктів (за домовленістю)"
+
+#: pages/templates/pages/pricing.html:205
+msgid "Organization and implementation of the deposit"
+msgstr "Організація та проведення задатку"
+
+#: pages/templates/pages/pricing.html:206
+msgid "Escort to the notary, bank"
+msgstr "Супровід до нотаріуса, банк"
+
+#: pages/templates/pages/pricing.html:207
+msgid "Full legal support"
+msgstr "Повний юридичний супровід"
+
+#: pages/templates/pages/pricing.html:208
+msgid "Services of a mortgage broker"
+msgstr "Послуги іпотечного брокера"
+
+#: pages/templates/pages/pricing.html:217
+msgid "When selling"
+msgstr "При продажу"
+
+#: pages/templates/pages/pricing.html:220
+msgid "When selling:"
+msgstr "При продажу:"
+
+#: pages/templates/pages/pricing.html:223
+msgid ""
+"Providing reports to the seller about the work performed by the specialist"
+msgstr "Надання звітів продавцю про виконану спеціалістом роботу"
+
+#: pages/templates/pages/pricing.html:224
+msgid "Formation of the object's page on the company's website"
+msgstr "Формування сторінки об'єкта на сайті компанії"
+
+#: pages/templates/pages/pricing.html:225
+msgid "Search for buyers, organization of showings"
+msgstr "Пошук покупців, організація показів"
+
+#: pages/templates/pages/pricing.html:226
+msgid "Help in removing burdens"
+msgstr "Допомога у знятті обтяжень"
+
+#: pages/templates/pages/pricing.html:227
+msgid "Escort to the notary, to the bank"
+msgstr "Супровід до нотаріуса, до банку"
+
+#: pages/templates/pages/pricing.html:228
+msgid "Statistics of object views and calls"
+msgstr "Статистика переглядів об'єкта та дзвінків"
+
+#: pages/templates/pages/pricing.html:229
+msgid "Advertising promotion of the object on various platforms"
+msgstr "Рекламне просування об'єкту на різних майданчиках"
+
+#: pages/templates/pages/pricing.html:230
+msgid "Full legal support (lawyer, auditor, economic security service)"
+msgstr ""
+"Повний юридичний супровід (юрист, аудитор, служба економічної безпеки)"
+
+#: pages/templates/pages/pricing.html:231
+msgid "Market analysis and setting an objective price for the object"
+msgstr "Аналітика ринку та встановлення об'єктивної ціни на об'єкт"
+
+#: pages/templates/pages/pricing.html:240
+msgid ""
+"The terms of the legal protection guarantee are specified in the Guarantee "
+"Certificate."
+msgstr "Умови гарантії юридичного захисту вказані в Гарантійному сертифікаті."
+
+#: pages/templates/pages/pricing.html:241
+msgid ""
+"The Contractor is obliged to search for another tenant in the event that the"
+" tenant is connected to the Object within 3/6/ months (depending on the "
+"selected package of Services) from the moment of concluding the Object "
+"rental agreement."
+msgstr ""
+"Виконавець зобов'язаний виконати пошук іншого наймача у разі з'єднання "
+"наймача з Об'єкта протягом 3/6/ місяців (в залежності від вибраного пакета "
+"Услуг) з моменту заключення договору найма Об'єкта."
+
+#: pages/templates/pages/pricing.html:242
+msgid ""
+"The service is provided by checking the tenant on the following services: "
+"Unified Register of Debtors, Court Register"
+msgstr ""
+"Послуга надається шляхом перевірки наймача на наступних сервісах: Єдиний "
+"реєстр боржників, Судовий реєстр"
+
+#: pages/templates/pages/reviews.html:13
+msgid "Reviews about the company's specialists"
+msgstr "Відгуки про фахівців компанії"
+
+#: pages/templates/pages/reviews.html:20
+msgid "Choose a specialist"
+msgstr "Виберіть фахівця"
+
+#: pages/templates/pages/seller.html:6
+msgid "To the seller"
+msgstr "Продавцю"
+
+#: pages/templates/pages/seller.html:15
+msgid "We will help sell real estate quickly and profitably"
+msgstr "Допоможемо продати нерухомість швидко та вигідно"
+
+#: pages/templates/pages/seller.html:19
+msgid "Leave a request and we will call you back"
+msgstr "Залиште заявку і ми передзвонимо"
+
+#: pages/templates/pages/seller.html:27
+msgid "Object type"
+msgstr "Тип об'єкту"
+
+#: pages/templates/pages/seller.html:43
+msgid "Get a free consultation"
+msgstr "Отримати безкоштовну консультацію"
+
+#: pages/templates/pages/seller.html:59
+msgid "How it works?"
+msgstr "Як це працює?"
+
+#: pages/templates/pages/seller.html:65
+msgid "Placing an ad"
+msgstr "Розміщення оголошення"
+
+#: pages/templates/pages/seller.html:68 pages/templates/pages/seller.html:76
+#: pages/templates/pages/seller.html:83 pages/templates/pages/seller.html:89
+msgid ""
+"Post an ad about your property and within 2 hours buyers will see it on the "
+"site. Or just leave your phone and we'll do the rest."
+msgstr ""
+"Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його"
+" на сайті. Або просто залиште свій телефон, і ми все зробимо."
+
+#: pages/templates/pages/seller.html:73
+msgid "Preparation for sale"
+msgstr "Підготовка до продажу"
+
+#: pages/templates/pages/seller.html:81
+msgid "Search for buyers"
+msgstr "Пошук покупців"
+
+#: pages/templates/pages/seller.html:87 pages/templates/pages/seller.html:109
+msgid "Conclusion of the agreement"
+msgstr "Укладення угоди"
+
+#: pages/templates/pages/seller.html:101
+msgid "Start selling now"
+msgstr "Почніть продавати зараз"
+
+#: pages/templates/pages/seller.html:102
+msgid ""
+"Post a real estate for rent ad or just leave your phone number and we'll "
+"help"
+msgstr ""
+"Додайте оголошення про здачу нерухомості або просто залиште свій телефон і "
+"ми допоможемо."
+
+#: pages/templates/pages/seller.html:105
+msgid "Search for tenants"
+msgstr "Пошук орендарів"
+
+#: pages/templates/pages/seller.html:106
+msgid ""
+"Tenants will see your ad on our website and in the bot, and if you order "
+"additional services, we will place your ad on 7 more sites. We will find you"
+" reliable tenants and organize apartment showings."
+msgstr ""
+"Ваше оголошення побачать орендарі на нашому сайті та в боті, а при "
+"замовленні додаткових послуг розмістимо оголошення ще на 7 майданчиках. "
+"Знайдемо вам надійних орендарів і організуємо покази квартири."
+
+#: pages/templates/pages/seller.html:110
+msgid ""
+"Complete the agreement in person or remotely. We will introduce you to the "
+"tenant via video call, help you conclude an agreement and make an online "
+"payment."
+msgstr ""
+"Оформіть угоду особисто чи дистанційно. Познайомимо з орендарем з відео "
+"зв'язку, допоможемо укласти угоду та здійснити оплату онлайн."
+
+#: pages/templates/pages/seller.html:113
+msgid "Preparation for submission"
+msgstr "Підготовка до здачі"
+
+#: pages/templates/pages/seller.html:114
+msgid ""
+"Order cleaning or clean it yourself.<br> Photography of the real estate as a"
+" gift!<br> A real estate specialist will come, take a photo and upload it to"
+" the ad.<br> We will help you prepare and complete the documents for the "
+"deal. <br> Use trust management, and we will monitor the condition of the "
+"apartment while you are gone.<br> Sign a paid contract and we will rent your"
+" apartment faster."
+msgstr ""
+"Замовте клінінг або приберіться самі.<br> Фотозйомка нерухомості у "
+"подарунок!<br> Фахівець з нерухомості приїде, зробить фото та завантажить до"
+" оголошення.<br> Допоможемо у підготовці та оформленні документів для угоди."
+" <br> Скористайтеся довірчим управлінням, і ми простежимо стан квартири, "
+"поки вас немає.<br> Підпишіть платний договір, і ми здамо вашу квартиру "
+"швидше."
+
+#: pages/templates/pages/seller.html:124
+msgid "4 reasons to evaluate real estate right now"
+msgstr "4 причини оцінити нерухомість прямо зараз"
+
+#: pages/templates/pages/seller.html:131
+msgid "Only real prices"
+msgstr "Тільки реальні ціни"
+
+#: pages/templates/pages/seller.html:132
+msgid ""
+"We know not only the price at which offers are placed, but also the real "
+"selling price. Therefore, our estimate is closer to reality."
+msgstr ""
+"Ми знаємо не тільки, за якою ціною розміщуються пропозиції, але і реальну "
+"ціну продажу. Тому наша оцінка ближче до реальності."
+
+#: pages/templates/pages/seller.html:136
+msgid "We do not ask for money or phone"
+msgstr "Ми не просимо грошей і телефону"
+
+#: pages/templates/pages/seller.html:137
+msgid ""
+"Information about the market value is available to anyone just like that: "
+"you don't have to pay for it or leave your phone if you don't want to."
+msgstr ""
+"Інформація про ринкову вартість доступна будь-кому просто так: за неї не "
+"потрібно платити або залишати телефон, якщо не хочеться."
+
+#: pages/templates/pages/seller.html:141
+msgid "Let's show similar offers"
+msgstr "Покажемо схожі пропозиції"
+
+#: pages/templates/pages/seller.html:142
+msgid ""
+"No need to waste time searching for similar offers on other sites, we'll "
+"show you offers that compete with yours right now."
+msgstr ""
+"Не потрібно витрачати час на пошук схожих пропозицій на інших сайтах, ми "
+"покажемо пропозиції, які конкурують з вашим прямо зараз."
+
+#: pages/templates/pages/seller.html:146
+msgid "It's simple and convenient"
+msgstr "Це просто і зручно"
+
+#: pages/templates/pages/seller.html:147
+msgid ""
+"You do not need to enter a lot of information, it is enough to fill in 5 "
+"fields."
+msgstr ""
+"Вам не потрібно вказувати багато інформації, досить заповнити 5 полів."
+
+#: pages/templates/sections/feadback.html:10
+msgid "Free consultation"
+msgstr "Безкоштовна консультація"
+
+#: pages/templates/sections/feadback.html:13
+msgid "Fill out the form and our manager will contact you"
+msgstr "Заповніть форму і з ваши зв’яжеться наш менеджер"
+
+#: pages/templates/sections/features.html:9
+msgid "Why is it better with us?"
+msgstr "Чому з нами краще?"
+
+#: pages/templates/sections/features.html:18
+msgid "We carefully select the database of real estate objects"
+msgstr "Ретельно відбираємо базу об'єктів"
+
+#: pages/templates/sections/features.html:24
+msgid "Legal protection of the agreement"
+msgstr "Юридичний захист угоди"
+
+#: pages/templates/sections/features.html:30
+msgid "All consultations and services of the company are free of charge"
+msgstr "Усі консультації та сервіси компанії безкоштовні"
+
+#: pages/templates/sections/features.html:36
+msgid "We save your time"
+msgstr "Заощаджуємо ваш час"
+
+#: pages/templates/sections/footer.html:14
+msgid "Prices"
+msgstr "Ціни"
+
+#: pages/templates/sections/footer.html:20
+#: pages/templates/sections/header.html:61
+#: pages/templates/sections/header.html:97
+#: pages/templates/sections/services.html:54
+msgid "Analytics"
+msgstr "Аналітичні огляди"
+
+#: pages/templates/sections/footer.html:27
+#: pages/templates/sections/header.html:20
+#: pages/templates/sections/header.html:74
+msgid "Our online course"
+msgstr "Наш онлайн курс"
+
+#: pages/templates/sections/header.html:88
+msgid "New buildings"
+msgstr "Новобудови"
+
+#: pages/templates/sections/map.html:10
+msgid "Search on the map!"
+msgstr "Пошук на мапі!"
+
+#: pages/templates/sections/map.html:14
+msgid "Enter the address of the object"
+msgstr "Введіть адресу об'єкта"
+
+#: pages/templates/sections/reviews.html:11
+msgid "What clients say about us:"
+msgstr "Що говорять про нас клієнти:"
+
+#: pages/templates/sections/reviews.html:15
+msgid ""
+"Our team has 400 qualified employees. We carefully select and train each "
+"real estate professional, and after the deal, clients rate their work."
+msgstr ""
+"В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та"
+" навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють "
+"їхню роботу."
+
+#: pages/templates/sections/reviews.html:20
+msgid "All specialists"
+msgstr "Всі фахівці"
+
+#: pages/templates/sections/services.html:9
+msgid "Services"
+msgstr "Сервіси"
+
+#: pages/templates/sections/services.html:18
+msgid "Submission of ads online"
+msgstr "Подача оголошень онлайн"
+
+#: pages/templates/sections/services.html:24
+msgid "Assessment of market value"
+msgstr "Оцінка ринкової вартості"
+
+#: pages/templates/sections/services.html:30
+msgid "Assistance in mortgage registration"
+msgstr "Допомога в оформленні іпотеки"
+
+#: pages/templates/sections/services.html:36
+msgid "Legal support of the agreement"
+msgstr "Юридичний супровід угоди"
+
+#: pages/templates/sections/services.html:48
+msgid "Online signing of contracts"
+msgstr "Онлайн підписання договорів"
+
+#: pages/templates/sections/stats.html:8
+msgid "Numbers speak better than words"
+msgstr "Цифри говорять краще за слова"
+
+#: pages/templates/sections/stats.html:18
+msgid "We sell objects for a year"
+msgstr "Продаємо об’ктів за рік"
+
+#: pages/templates/sections/stats.html:26
+msgid "Lease agreements have been drawn up"
+msgstr "Оформили орендних угод"
+
+#: pages/templates/sections/stats.html:34
+msgid "Years we have been working on the market"
+msgstr "Років працюємо на ринку"
+
+#: pages/templates/sections/stats.html:42
+msgid "Reviews of satisfied customers"
+msgstr "Відгуків задоволенних клієнтів"
 
 #: profiles/apps.py:7
 msgid "Users"
@@ -654,11 +2098,39 @@ msgid "Department"
 msgstr "Департамент"
 
 #: vacantions/models.py:17
-#| msgid "Vacantions"
 msgid "Vacantion"
 msgstr "Вакансія"
 
 #: vacantions/models.py:30
-#| msgid "Documents"
 msgid "Departments"
 msgstr "Документи"
+
+#, python-format
+#~ msgid ""
+#~ "By selling an old apartment and buying a new one together with Contract Real"
+#~ " Estate, you receive a 5%% discount on the company"
+#~ msgstr ""
+#~ "Здійснюючи продаж старої квартири та купівлю нової разом з компанією "
+#~ "«Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При "
+#~ "повторному зверненні до компанії. Продаж / Покупка протягом року на себе або"
+#~ " родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
+#~ "військових та ЗСУ знижка від 5%."
+
+#~ msgid "ukrainian"
+#~ msgstr "українська"
+
+#~ msgid ""
+#~ "\n"
+#~ "                    No entries yet... Return to <a href=\"/\">home</a>\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "Поки що немає записів... Повернутись на <a href=\"/\">головну</a>"
+
+#~ msgid ""
+#~ "\n"
+#~ "                    Поки що немає записів... Повернутись на <a href=\"/\">головну</a>\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "No entries yet... Return to <a href=\"/\">home</a>"

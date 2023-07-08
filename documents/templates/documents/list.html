@@ -1,17 +1,21 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Документи{% endblock %}
+{% block title %}{% trans 'Documents' %}{% endblock %}
 
 {% block content %}
     <main class="documents">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-header__title animate animate_text">
-                    {{ 'Корисні документи'|wrap_words_in_span|safe }}
+                    {% trans 'Useful documents' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h1>
-                <p class="section-header__subtitle section-header__subtitle_strong">Ми вирішили створити сторінку та об&#39;єднати усі корисні документи в одному місці</p>
+                <p class="section-header__subtitle section-header__subtitle_strong">
+                    {% trans 'We decided to create a page and combine all useful documents in one place' %}
+                </p>
             </div>
             {% if documents %}
                 <ul class="documets-group">
@@ -19,7 +23,7 @@
                         <li class="documents-item">
                             <img src="{% static 'img/icon-document.png' %}" alt="документ" class="documents-item__img accent" width="26" height="NaN" loading="lazy">
                             <h2 class="documents-item__title line line_2">{{ document.title }}</h2>
-                            <a href="{{ document.file.url }}" target="_blank" class="documents-item__link">Переглянути</a>
+                            <a href="{{ document.file.url }}" target="_blank" class="documents-item__link">{% trans 'Review' %}</a>
                         </li>
                     {% endfor %}
                 </ul>
