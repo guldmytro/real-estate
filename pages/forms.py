@@ -3,14 +3,16 @@ from managers.models import Manager
 from listings.models import RealtyType
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
+from parler.forms import TranslatableModelForm
 
 
-class SearchManager(forms.Form):
+class SearchManager(TranslatableModelForm):
     manager = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'select'}),
                                      empty_label=_("Full name"),
-                                     queryset=Manager.objects.all().order_by('full_name'))
+                                     queryset=Manager.objects.language().order_by('translations__full_name'))
     
     class Meta:
+        model = Manager
         fields = '__all__'
 
 

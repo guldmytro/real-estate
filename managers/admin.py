@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Manager, Phone, Review
+from parler.admin import TranslatableAdmin
 
 
 class PhoneInline(admin.StackedInline):
@@ -7,7 +8,7 @@ class PhoneInline(admin.StackedInline):
 
 
 @admin.register(Manager)
-class ManagerAdmin(admin.ModelAdmin):
+class ManagerAdmin(TranslatableAdmin):
     list_display = ('full_name', 'email')
     inlines = [PhoneInline]
 
@@ -15,4 +16,3 @@ class ManagerAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('author', 'manager', 'created')
-    list_filter = ('manager__full_name', 'rating', 'created')
