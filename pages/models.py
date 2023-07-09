@@ -6,11 +6,15 @@ from django.utils.translation import gettext_lazy as _
 
 
 class About(SingletonModel):
-    title_1 = models.CharField(max_length=255, verbose_name=_('Title 1 of the section'))
-    description_1 = models.TextField(max_length=300, verbose_name=_('Description 1 of the section'))
+    title_1 = models.CharField(max_length=255, verbose_name=_('Title 1 of the section (English)'))
+    title_1_uk = models.CharField(max_length=255, verbose_name=_('Title 1 of the section (Ukrainian)'))
+    description_1 = models.TextField(max_length=300, verbose_name=_('Description 1 of the section (English)'))
+    description_1_uk = models.TextField(max_length=300, verbose_name=_('Description 1 of the section (Ukrainian)'))
 
-    title_2 = models.CharField(max_length=255, verbose_name=_('Title 2 of the section'))
-    description_2 = models.TextField(max_length=300, verbose_name=_('Description 2 of the section'))
+    title_2 = models.CharField(max_length=255, verbose_name=_('Title 2 of the section (English)'))
+    title_2_uk = models.CharField(max_length=255, verbose_name=_('Title 2 of the section (Ukrainian)'))
+    description_2 = models.TextField(max_length=300, verbose_name=_('Description 2 of the section (English)'))
+    description_2_uk = models.TextField(max_length=300, verbose_name=_('Description 2 of the section (Ukrainian)'))
 
     def __str__(self):
         return self.title_1
@@ -30,8 +34,10 @@ class AboutItem(models.Model):
         ('about-item_full', '1/1'),
     )
     about = models.ForeignKey(About, on_delete=models.CASCADE, related_name='items', verbose_name=_('About us'))
-    title = models.CharField(max_length=100, verbose_name=_('Title'))
-    description = models.TextField(max_length=500, verbose_name=_('Description'))
+    title = models.CharField(max_length=100, verbose_name=_('Title (English)'))
+    title_uk = models.CharField(max_length=100, verbose_name=_('Title (Ukrainian)'))
+    description = models.TextField(max_length=500, verbose_name=_('Description (English)'))
+    description_uk = models.TextField(max_length=500, verbose_name=_('Description (Ukrainian)'))
     size = models.CharField(max_length=16, verbose_name=_('Column size'), 
                             default='about-item_half', choices=CLASS_CHOICES)
     order = models.PositiveSmallIntegerField(verbose_name=_('Order'), null=True, blank=True)
@@ -46,8 +52,10 @@ class AboutItem(models.Model):
 
 
 class Abroad(SingletonModel):
-    title = models.CharField(max_length=255, verbose_name=_('Title'))
-    description = models.TextField(max_length=300, verbose_name=_('Description'))
+    title = models.CharField(max_length=255, verbose_name=_('Title (English)'))
+    title_uk = models.CharField(max_length=255, verbose_name=_('Title (Ukrainian)'), default='uk')
+    description = models.TextField(max_length=300, verbose_name=_('Description (English)'))
+    description_uk = models.TextField(max_length=300, verbose_name=_('Description (Ukrainian)'), default='uk')
 
     def __str__(self):
         return self.title
@@ -63,8 +71,10 @@ class Abroad(SingletonModel):
 class AbroadItem(models.Model):
     abroad = models.ForeignKey(Abroad, on_delete=models.CASCADE, related_name='items')
     title_bg = models.CharField(max_length=15, verbose_name=_('Bg title'))
-    title = models.CharField(max_length=100, verbose_name=_('Title'))
-    description = models.TextField(max_length=500, verbose_name=_('Description'))
+    title = models.CharField(max_length=100, verbose_name=_('Title (English)'))
+    title_uk = models.CharField(max_length=100, verbose_name=_('Title (Ukrainian)'), default='uk')
+    description = models.TextField(max_length=500, verbose_name=_('Description (English)'))
+    description_uk = models.TextField(max_length=500, verbose_name=_('Description (Ukrainian)'), default='uk')
     link = models.URLField(verbose_name=_('Link'))
 
     background_image = models.ImageField(upload_to='abroad_properties/%Y/%m/%d',

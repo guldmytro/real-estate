@@ -8,8 +8,13 @@
     <main class="about">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title animate animate_text">{{ page.title_1|wrap_words_in_span|safe }}</h1>
-                <p class="section-header__subtitle">{{ page.description_1|linebreaks }}</p>
+                {% if request.LANGUAGE_CODE == 'en' %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title_1|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle">{{ page.description_1|linebreaks }}</p>
+                {% else %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title_1_uk|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle">{{ page.description_1_uk|linebreaks }}</p>
+                {% endif %}
             </div>
         </div>
     </main>
@@ -17,8 +22,13 @@
         <div class="container">
             <div class="about-secondary__row">
                 <div class="section-header">
-                    <h2 class="section-header__title animate animate_text">{{ page.title_2|wrap_words_in_span|safe }}</h2>
-                    <p class="section-header__subtitle">{{ page.description_2|linebreaks }}</p>
+                    {% if request.LANGUAGE_CODE == 'en' %}
+                        <h2 class="section-header__title animate animate_text">{{ page.title_2|wrap_words_in_span|safe }}</h2>
+                        <p class="section-header__subtitle">{{ page.description_2|linebreaks }}</p>
+                    {% else %}
+                        <h2 class="section-header__title animate animate_text">{{ page.title_2_uk|wrap_words_in_span|safe }}</h2>
+                        <p class="section-header__subtitle">{{ page.description_2_uk|linebreaks }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -29,8 +39,13 @@
                 <ul class="about-group">
                     {% for item in page.items.all %}
                         <li class="about-item {{ item.size }}">
-                            <h2 class="about-item__title">{{ item.title }}</h2>
-                            <div class="about-item__content">{{ item.description }}</div>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <h2 class="about-item__title">{{ item.title }}</h2>
+                                <div class="about-item__content">{{ item.description }}</div>
+                            {% else %}
+                                <h2 class="about-item__title">{{ item.title_uk }}</h2>
+                                <div class="about-item__content">{{ item.description_uk }}</div>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>

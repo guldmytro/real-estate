@@ -10,8 +10,13 @@
     <main class="abroad">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title animate animate_text">{{ page.title|wrap_words_in_span|safe }}</h1>
-                <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description }}</p>
+                {% if request.LANGUAGE_CODE == 'en' %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description }}</p>
+                {% else %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title_uk|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description_uk }}</p>
+                {% endif %}
             </div>
         </div>
     </main>
@@ -31,8 +36,13 @@
                     </div>
                     <div class="col">
                         <div class="section-header">
-                            <h2 class="section-header__title animate animate_text">{{ item.title|wrap_words_in_span|safe }}</h2>
-                            <p class="section-header__subtitle">{{ item.description }}</p>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <h2 class="section-header__title animate animate_text">{{ item.title|wrap_words_in_span|safe }}</h2>
+                                <p class="section-header__subtitle">{{ item.description }}</p>
+                            {% else %}
+                                <h2 class="section-header__title animate animate_text">{{ item.title_uk|wrap_words_in_span|safe }}</h2>
+                                <p class="section-header__subtitle">{{ item.description_uk }}</p>
+                            {% endif %}
                         </div>
                         <a href="{{ item.link }}" class="btn btn_primary btn_rounded">
                             <span>{% trans 'More details' %}</span>

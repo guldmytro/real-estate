@@ -4,7 +4,7 @@ from .models import About, AboutItem, Abroad, AbroadItem,\
 from solo.admin import SingletonModelAdmin
 
 
-class AboutItemInlineAdmin(admin.TabularInline):
+class AboutItemInlineAdmin(admin.StackedInline):
     model = AboutItem
 
 

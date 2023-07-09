@@ -1,6 +1,8 @@
 from django import template
 import re
 from django.utils.translation import gettext_lazy as _
+from django.template import TemplateSyntaxError
+from django.utils.translation import get_language
 
 register = template.Library()
 

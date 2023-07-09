@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 12:22+0300\n"
+"POT-Creation-Date: 2023-07-09 14:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr ""
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
 #: pages/templates/sections/header.html:24
-#: pages/templates/sections/header.html:78
+#: pages/templates/sections/header.html:88
 msgid "Discounts"
 msgstr ""
 
@@ -65,8 +65,7 @@ msgid "Documents"
 msgstr ""
 
 #: documents/models.py:6 listings/models.py:26 listings/models.py:123
-#: listings/models.py:193 news/models.py:8 pages/models.py:33
-#: pages/models.py:49 pages/models.py:66 pages/models.py:149
+#: listings/models.py:193 news/models.py:8 pages/models.py:159
 #: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr ""
@@ -379,8 +378,7 @@ msgid "Manager"
 msgstr ""
 
 #: listings/models.py:27 listings/templates/listings/item.html:14
-#: listings/templates/listings/item.html:76 pages/models.py:34
-#: pages/models.py:50 pages/models.py:67 vacantions/models.py:10
+#: listings/templates/listings/item.html:76 vacantions/models.py:10
 msgid "Description"
 msgstr ""
 
@@ -435,7 +433,7 @@ msgstr ""
 msgid "Deal"
 msgstr ""
 
-#: listings/models.py:60 pages/models.py:132
+#: listings/models.py:60 pages/models.py:142
 msgid "Video"
 msgstr ""
 
@@ -810,8 +808,8 @@ msgstr ""
 
 #: managers/apps.py:8 managers/models.py:23
 #: pages/templates/sections/footer.html:18
-#: pages/templates/sections/header.html:59
-#: pages/templates/sections/header.html:95
+#: pages/templates/sections/header.html:69
+#: pages/templates/sections/header.html:105
 msgid "Managers"
 msgstr ""
 
@@ -828,7 +826,7 @@ msgid "Image"
 msgstr ""
 
 #: managers/models.py:15 managers/templates/managers/detail.html:27
-#: pages/models.py:92 props/models.py:10
+#: pages/models.py:102 props/models.py:11
 msgid "Email"
 msgstr ""
 
@@ -930,149 +928,181 @@ msgid "Select type"
 msgstr ""
 
 #: pages/models.py:9
-msgid "Title 1 of the section"
+msgid "Title 1 of the section (English)"
 msgstr ""
 
 #: pages/models.py:10
-msgid "Description 1 of the section"
+msgid "Title 1 of the section (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:11
+msgid "Description 1 of the section (English)"
 msgstr ""
 
 #: pages/models.py:12
-msgid "Title 2 of the section"
+msgid "Description 1 of the section (Ukrainian)"
 msgstr ""
 
-#: pages/models.py:13
-msgid "Description 2 of the section"
+#: pages/models.py:14
+msgid "Title 2 of the section (English)"
 msgstr ""
 
-#: pages/models.py:22 pages/models.py:23 pages/models.py:32
+#: pages/models.py:15
+msgid "Title 2 of the section (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:16
+msgid "Description 2 of the section (English)"
+msgstr ""
+
+#: pages/models.py:17
+msgid "Description 2 of the section (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:26 pages/models.py:27 pages/models.py:36
 #: pages/templates/pages/about.html:5 pages/templates/sections/footer.html:11
 msgid "About us"
 msgstr ""
 
-#: pages/models.py:35
+#: pages/models.py:37 pages/models.py:55 pages/models.py:74
+msgid "Title (English)"
+msgstr ""
+
+#: pages/models.py:38 pages/models.py:56 pages/models.py:75
+msgid "Title (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:39 pages/models.py:57 pages/models.py:76
+msgid "Description (English)"
+msgstr ""
+
+#: pages/models.py:40 pages/models.py:58 pages/models.py:77
+msgid "Description (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:41
 msgid "Column size"
 msgstr ""
 
-#: pages/models.py:37 pages/models.py:77
+#: pages/models.py:43 pages/models.py:87
 msgid "Order"
 msgstr ""
 
-#: pages/models.py:44
+#: pages/models.py:50
 msgid "About us detail"
 msgstr ""
 
-#: pages/models.py:45
+#: pages/models.py:51
 msgid "About us details"
 msgstr ""
 
-#: pages/models.py:59 pages/models.py:60 pages/templates/pages/abroad.html:7
+#: pages/models.py:67 pages/models.py:68 pages/templates/pages/abroad.html:7
 #: pages/templates/sections/footer.html:15
-#: pages/templates/sections/header.html:57
-#: pages/templates/sections/header.html:93
+#: pages/templates/sections/header.html:67
+#: pages/templates/sections/header.html:103
 msgid "Real estate abroad"
 msgstr ""
 
-#: pages/models.py:65
+#: pages/models.py:73
 msgid "Bg title"
 msgstr ""
 
-#: pages/models.py:68
+#: pages/models.py:78
 msgid "Link"
 msgstr ""
 
-#: pages/models.py:71
+#: pages/models.py:81
 msgid "Background image"
 msgstr ""
 
-#: pages/models.py:73
+#: pages/models.py:83
 msgid "Photo 1"
 msgstr ""
 
-#: pages/models.py:75
+#: pages/models.py:85
 msgid "Photo 2"
 msgstr ""
 
-#: pages/models.py:84 pages/models.py:85
+#: pages/models.py:94 pages/models.py:95
 msgid "Real estate element"
 msgstr ""
 
-#: pages/models.py:89
+#: pages/models.py:99
 msgid "Phone 1"
 msgstr ""
 
-#: pages/models.py:90
+#: pages/models.py:100
 msgid "Phone 2"
 msgstr ""
 
-#: pages/models.py:94
+#: pages/models.py:104
 msgid "Schedule"
 msgstr ""
 
-#: pages/models.py:96
+#: pages/models.py:106
 msgid "Office 1"
 msgstr ""
 
-#: pages/models.py:97
+#: pages/models.py:107
 msgid "Office 2"
 msgstr ""
 
-#: pages/models.py:98
+#: pages/models.py:108
 msgid "Office 3"
 msgstr ""
 
-#: pages/models.py:100
+#: pages/models.py:110
 msgid "Telegram"
 msgstr ""
 
-#: pages/models.py:101
+#: pages/models.py:111
 msgid "Viber"
 msgstr ""
 
-#: pages/models.py:102
+#: pages/models.py:112
 msgid "Instagram"
 msgstr ""
 
-#: pages/models.py:103
+#: pages/models.py:113
 msgid "Facebook"
 msgstr ""
 
-#: pages/models.py:106 pages/models.py:112 pages/models.py:113
+#: pages/models.py:116 pages/models.py:122 pages/models.py:123
 #: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
-#: pages/templates/sections/header.html:63
-#: pages/templates/sections/header.html:99 pages/views.py:40
+#: pages/templates/sections/header.html:73
+#: pages/templates/sections/header.html:109 pages/views.py:40
 msgid "Contacts"
 msgstr ""
 
-#: pages/models.py:117
+#: pages/models.py:127
 msgid "Register link"
 msgstr ""
 
-#: pages/models.py:118
+#: pages/models.py:128
 msgid "Auth link"
 msgstr ""
 
-#: pages/models.py:121 pages/models.py:127 pages/models.py:128
+#: pages/models.py:131 pages/models.py:137 pages/models.py:138
 #: pages/templates/pages/course.html:6
 msgid "Course"
 msgstr ""
 
-#: pages/models.py:134
+#: pages/models.py:144
 msgid "Poster"
 msgstr ""
 
-#: pages/models.py:138 pages/models.py:144 pages/models.py:145
+#: pages/models.py:148 pages/models.py:154 pages/models.py:155
 #: vacantions/apps.py:8 vacantions/models.py:21 vacantions/views.py:12
 msgid "Vacancies"
 msgstr ""
 
-#: pages/models.py:150
+#: pages/models.py:160
 msgid "About us section"
 msgstr ""
 
-#: pages/models.py:153 pages/models.py:159 pages/models.py:160
-#: pages/templates/layout/base.html:12 pages/templates/pages/home.html:6
+#: pages/models.py:163 pages/models.py:169 pages/models.py:170
+#: pages/templates/layout/base.html:11 pages/templates/pages/home.html:6
 #: pages/templates/sections/breadcrumbs.html:7
 msgid "Home"
 msgstr ""
@@ -1865,8 +1895,8 @@ msgid "Prices"
 msgstr ""
 
 #: pages/templates/sections/footer.html:20
-#: pages/templates/sections/header.html:61
-#: pages/templates/sections/header.html:97
+#: pages/templates/sections/header.html:71
+#: pages/templates/sections/header.html:107
 #: pages/templates/sections/services.html:54
 msgid "Analytics"
 msgstr ""
@@ -1877,11 +1907,11 @@ msgstr ""
 
 #: pages/templates/sections/footer.html:27
 #: pages/templates/sections/header.html:20
-#: pages/templates/sections/header.html:74
+#: pages/templates/sections/header.html:84
 msgid "Our online course"
 msgstr ""
 
-#: pages/templates/sections/header.html:88
+#: pages/templates/sections/header.html:98
 msgid "New buildings"
 msgstr ""
 
@@ -1968,18 +1998,22 @@ msgid "Site Settings"
 msgstr ""
 
 #: props/models.py:7
-msgid "Site name"
+msgid "Site name (English)"
 msgstr ""
 
 #: props/models.py:8
-msgid "API-key for Google Maps"
+msgid "Site name (Ukraininan)"
 msgstr ""
 
 #: props/models.py:9
+msgid "API-key for Google Maps"
+msgstr ""
+
+#: props/models.py:10
 msgid "CRM-feed for parsing"
 msgstr ""
 
-#: props/models.py:13 props/models.py:16
+#: props/models.py:14 props/models.py:17
 msgid "Site Configuration"
 msgstr ""
 

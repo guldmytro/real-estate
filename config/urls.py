@@ -23,7 +23,11 @@ from django.views.decorators.cache import never_cache
 from django.conf.urls.i18n import i18n_patterns
 
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
+    path("i18n/", include("django.conf.urls.i18n")),
+]
+
+urlpatterns += i18n_patterns(
     path('analytics/', include('analytics.urls', namespace='analytics')),
     path('discounts/', include('discounts.urls', namespace='discounts')),
     path('documents/', include('documents.urls', namespace='documents')),
@@ -38,6 +42,8 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('pages.urls', namespace='pages')),
 )
+
+
 
 if settings.DEBUG:
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))

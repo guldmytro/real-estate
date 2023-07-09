@@ -24,11 +24,21 @@
                     <span class="link__text accent">{% trans 'Discounts' %}</span>
                 </a>
             </div>
-            <form class="header-lang">
-                <select name="lang" id="lang">
-                    <option value="uk">ua</option>
-                    <option value="en">en</option>
-                </select>
+            <form class="header-lang" action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <div class="header-lang">
+                    <select name="language" id="lang">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.code }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
             </form>
             <a href="{% url 'wishlist:archive' %}" class="wishlist-link" title="Перейти у вибране" aria-label="Перейти у вибране">
                 <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
