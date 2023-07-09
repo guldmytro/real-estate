@@ -3,9 +3,15 @@ from .models import Vacantion
 from django.core.paginator import Paginator, EmptyPage
 from emails.forms import ApplyForm, FeadbackForm
 from pages.models import VacantionPage
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 
 def vacantions_list(request):
+    crumbs = [
+        (_('Vacancies'), reverse_lazy('vacantions:page')),
+        (_('List'), reverse_lazy('vacantions:list')),
+    ]
     apply_form = ApplyForm()
     vacantions_list = Vacantion.objects.all()
     count = vacantions_list.count()
@@ -18,7 +24,8 @@ def vacantions_list(request):
     context = {
         'vacantions': vacantions,
         'count': count,
-        'apply_form': apply_form
+        'apply_form': apply_form,
+        'crumbs': crumbs
     }
     return render(request, 'vacantions/list.html', context)
 

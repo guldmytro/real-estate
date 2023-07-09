@@ -25,3 +25,23 @@ def url_with_query_params(context, page_number):
 @register.filter
 def clean_phone(value):
     return re.sub(r'\D+', '', str(value))
+
+
+@register.filter
+def pluralize_uk(value, forms):
+    forms = forms.split(',')
+    if len(forms) != 3:
+        return value
+
+    try:
+        value = int(value)
+    except (ValueError, TypeError):
+        return value
+
+    if value % 10 == 1 and value % 100 != 11:
+        return f'{value} {forms[0]}'
+    elif 2 <= value % 10 <= 4 and (value % 100 < 10 or value % 100 >= 20):
+        return f'{value} {forms[1]}'
+    else:
+        return f'{value} {forms[2]}'
+    

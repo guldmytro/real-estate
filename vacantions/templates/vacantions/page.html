@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% load listing_extras %}
@@ -10,12 +11,17 @@
     <main class="vacantions-main">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title">Ми шукаємо <em>агентів</em> в нашу команду</h1>
-                <p class="section-header__subtitle section-header__subtitle_strong">Вибирайте те, що підходить саме вам</p>
+                <h1 class="section-header__title animate animate_text">
+                    {% trans 'We are looking for agents to join our team' as title %}
+                    {{ title|wrap_words_in_span|safe }}
+                </h1>
+                <p class="section-header__subtitle section-header__subtitle_strong">
+                    {% trans 'Choose what suits you' %}
+                </p>
             </div>
             <div class="vacantions-main__links">
-                <a href="{% url 'vacantions:list' %}" class="btn btn_primary">Подивитись вакансії</a>
-                <a href="{% url 'pages:about' %}" class="btn btn_invert-2">Детально про компанію</a>
+                <a href="{% url 'vacantions:list' %}" class="btn btn_primary">{% trans 'See vacancies' %}</a>
+                <a href="{% url 'pages:about' %}" class="btn btn_invert-2">{% trans 'Details about the company' %}</a>
             </div>
         </div>
     </main>
@@ -23,29 +29,46 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Працювати у нас це:'|wrap_words_in_span|safe }}
+                    {% trans 'To work for us is:' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <ul class="advantages-group">
                 <li class="advantages-item">
                     <img src="{% static 'img/icon-vacantion-feature-1.png' %}" alt="рука" class="advantages-item__image accent" loading="lazy" width="92" height="128">
-                    <h3 class="advantages-item__title">Технології та інструменти</h3>
-                    <p class="advantages-item__description">Власні зручні IT-сервіси: , CRM, Навчальний портал, боти</p>
+                    <h3 class="advantages-item__title">
+                        {% trans 'Technologies and tools' %}
+                    </h3>
+                    <p class="advantages-item__description">
+                        {% trans 'Own convenient IT services: CRM, Learning portal, bots' %}
+                    </p>
                 </li>
                 <li class="advantages-item">
                     <img src="{% static 'img/icon-vacantion-feature-2.png' %}" alt="сходинки вверх" class="advantages-item__image accent" loading="lazy" width="116" height="128">
-                    <h3 class="advantages-item__title">Кар&#39;єрний ріст</h3>
-                    <p class="advantages-item__description">Ми створюємо відкрите та доступне середовище для кар&#39;єрного росту</p>
+                    <h3 class="advantages-item__title">
+                        {% trans 'Career growth' %}
+                    </h3>
+                    <p class="advantages-item__description">
+                        {% trans 'We create an open and accessible environment for career growth' %}
+                    </p>
                 </li>
                 <li class="advantages-item">
                     <img src="{% static 'img/icon-vacantion-feature-3.png' %}" alt="успіх" class="advantages-item__image accent" loading="lazy" width="128" height="128">
-                    <h3 class="advantages-item__title">Постійний розвиток</h3>
-                    <p class="advantages-item__description">Ви зможете пройти безкоштовне навчання професії нерухомості з нуля. Досвідчений ментор та підтримка на всіх етапах</p>
+                    <h3 class="advantages-item__title">
+                        {% trans 'Continuous development' %}
+                    </h3>
+                    <p class="advantages-item__description">
+                        {% trans 'You will be able to complete free real estate training from scratch. Experienced mentor and support at all stages' %}
+                    </p>
                 </li>
                 <li class="advantages-item">
                     <img src="{% static 'img/icon-vacantion-feature-4.png' %}" alt="гроші" class="advantages-item__image accent" loading="lazy" width="128" height="128">
-                    <h3 class="advantages-item__title">Дохід без стелі</h3>
-                    <p class="advantages-item__description">Компанія надає повний пакет інструментів для вашого результату і заробітку</p>
+                    <h3 class="advantages-item__title">
+                        {% trans 'Unlimited income' %}
+                    </h3>
+                    <p class="advantages-item__description">
+                        {% trans 'The company provides a complete package of tools for your results and earnings' %}
+                    </p>
                 </li>
             </ul>
         </div>
@@ -54,58 +77,61 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-header__title animate animate_text">
-                    {{ 'Нам потрібні люди, які розділяють наші цінності'|wrap_words_in_span|safe }}
+                    {% trans 'We need people who share our values' as title %}
+                    {{ title|wrap_words_in_span|safe }}
                 </h2>
             </div>
             <div class="values-list-row">
                 <ul class="values-group">
                     <li class="values-item">
-                        <h3 class="values-item__title">Клієнтоорієнтованість</h3>
-                        <p class="values-item__description">все починається з потреби клієнта</p>
+                        <h3 class="values-item__title">
+                            {% trans 'Customer orientation' %}
+                        </h3>
+                        <p class="values-item__description">{% trans "everything starts with the customer's need" %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Командний дух</h3>
-                        <p class="values-item__description">ми віримо у свою команду</p>
+                        <h3 class="values-item__title">{% trans 'Team spirit' %}</h3>
+                        <p class="values-item__description">{% trans 'we believe in our team' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Відповідальність</h3>
-                        <p class="values-item__description">ми відповідальні за результати нашої роботи</p>
+                        <h3 class="values-item__title">{% trans 'Responsibility' %}</h3>
+                        <p class="values-item__description">{% trans 'we are responsible for the results of our work' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Довіра</h3>
-                        <p class="values-item__description">перша необхідна умова великих починань</p>
+                        <h3 class="values-item__title">{% trans 'Trust' %}</h3>
+                        <p class="values-item__description">{% trans 'the first necessary condition of great undertakings' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Прагнення до результату </h3>
-                        <p class="values-item__description">результат починається з мене</p>
+                        <h3 class="values-item__title">{% trans 'Strive for results' %}</h3>
+                        <p class="values-item__description">{% trans 'the result starts with me' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Чесність</h3>
-                        <p class="values-item__description">основа успіху в бізнесі</p>
+                        <h3 class="values-item__title">{% trans 'Honesty' %}</h3>
+                        <p class="values-item__description">{% trans 'the basis of success in business' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Успіх</h3>
-                        <p class="values-item__description">це сума маленьких досягнень, що повторюються щодня</p>
+                        <h3 class="values-item__title">{% trans 'Success' %}</h3>
+                        <p class="values-item__description">{% trans 'it is the sum of small achievements repeated every day' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Розвиток</h3>
-                        <p class="values-item__description">це результат планування та цілеспрямовані зусилля</p>
+                        <h3 class="values-item__title">{% trans 'Development' %}</h3>
+                        <p class="values-item__description">{% trans 'it is the result of planning and focused effort' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Сім&#39;я</h3>
-                        <p class="values-item__description">це наше натхнення для досягнення великих висот, і наша опора коли ми робимо помилки</p>
+                        <h3 class="values-item__title">{% trans 'Family' %}</h3>
+                        <p class="values-item__description">{% trans 'it is our inspiration to reach great heights and our support when we make mistakes' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Доброта</h3>
-                        <p class="values-item__description">вона непомітна, коли володієш нею, і вона дає успіх у будь-якій справі</p>
+                        <h3 class="values-item__title">{% trans 'Kindness' %}</h3>
+                        <p class="values-item__description">{% trans 'it is invisible when you possess it, and it gives success in any business' %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Щастя</h3>
-                        <p class="values-item__description">це коли вранці з радістю йдеш на роботу, а ввечері з радістю повертаєшся додому</p>
+                        <h3 class="values-item__title">{% trans 'Happiness' %}</h3>
+                        <p class="values-item__description">{% trans "it's when you go to work with joy in the morning, and come home with joy in the evening" %}</p>
                     </li>
                     <li class="values-item">
-                        <h3 class="values-item__title">Радість</h3>
-                        <p class="values-item__description">це велике благо, володіти можливістю дарувати її іншим - найбільше щастя</p>
+                        <h3 class="values-item__title">{% trans 'Joy' %}</h3>
+                        <p class="values-item__description">{% trans 'this is a great blessing, to have the opportunity to give it to others is the greatest happiness' %}</p>
                     </li>
                 </ul>
                 <img src="{% static 'img/vacantion-girl.png' %}" alt="жінка" class="values__bg" loading="lazy" width="698" height="663">

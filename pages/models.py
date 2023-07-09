@@ -135,14 +135,14 @@ class VacantionPage(SingletonModel):
                               blank=True, null=True)
 
     def __str__(self):
-        return _('Vacantions')
+        return _('Vacancies')
 
     def get_absolute_url(self):
         return reverse('vacantions:page')
     
     class Meta:
-        verbose_name = _('Vacantions')
-        verbose_name_plural = _('Vacantions')
+        verbose_name = _('Vacancies')
+        verbose_name_plural = _('Vacancies')
 
 
 class Home(SingletonModel):

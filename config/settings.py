@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'solo',
     'easy_thumbnails',
     'rosetta',
+    'parler',
     # Local
     'profiles.apps.ProfilesConfig',
     'props.apps.PropsConfig',
@@ -137,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -153,6 +154,17 @@ LANGUAGES = [
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'uk'},
+    ),
+    'default': {
+        'fallback': 'uk',
+        'hide_untranslated': False,
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)

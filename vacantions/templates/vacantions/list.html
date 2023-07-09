@@ -1,17 +1,23 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}Список вакансій{% endblock %}
+{% block title %}{% trans 'List of vacancies' %}{% endblock %}
 
 
 {% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
     <main class="vacantions">
         <div class="container">
             {% if vacantions %}
                 <div class="section-header">
                     <h1 class="section-header__title">
-                        <em>{{ count }} вакансій</em> підходять саме вам
+                        {% if LANGUAGE_CODE == 'uk' %}
+                            <em> {{ count|pluralize_uk:"вакансія,вакансії,вакансій" }}</em> підходять саме вам
+                        {% else %}
+                            <em>{{ count }} {{ count|pluralize:"vacancy is,vacancies are" }}</em> suitable for you
+                        {% endif %}
                     </h1>
                 </div>
                 <ul class="vacantions-group">
@@ -24,7 +30,9 @@
                                 <img class="vacantion-item__icon accent" src="{% static 'img/icon-case.png' %}" alt="кейс" loading="lazy" width="60" height="52">
                                 <span class="accent">{{ vacantion.department.title }}</span>
                             </p>
-                            <button class="vacantion-item__add-feadback open-popup" data-name="vacantion" data-value="{{ vacantion.pk }}" data-popup="popup-add-apply" type="button">Залишити резюме</button>
+                            <button class="vacantion-item__add-feadback open-popup" data-name="vacantion" data-value="{{ vacantion.pk }}" data-popup="popup-add-apply" type="button">
+                                {% trans 'Leave a resume' %}
+                            </button>
                         </li>
                     {% endfor %}
                 </ul>
@@ -32,9 +40,10 @@
             {% else %}
                 <div class="section-header">
                     <h1 class="section-header__title animate animate_text">
-                        {{ 'На даній сторінці будуть публікуватись свіжі вакансії'|wrap_words_in_span|safe }}
+                        {% trans 'Fresh vacancies will be published on this page' as title %}
+                        {{ title|wrap_words_in_span|safe }}
                     </h1>
-                    <p class="section-header__subtitle"><a href="/">Повернутись на головну</a></p>
+                    <p class="section-header__subtitle"><a href="/">{% trans 'Return to the home page' %}</a></p>
                 </div>
             {% endif %}
         </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 14:13+0300\n"
+"POT-Creation-Date: 2023-07-09 12:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,11 +27,11 @@ msgstr ""
 msgid "Analytical review"
 msgstr ""
 
-#: config/settings.py:149
+#: config/settings.py:150
 msgid "English"
 msgstr ""
 
-#: config/settings.py:150 pages/templates/pages/course.html:66
+#: config/settings.py:151 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgstr ""
 #: documents/models.py:6 listings/models.py:26 listings/models.py:123
 #: listings/models.py:193 news/models.py:8 pages/models.py:33
 #: pages/models.py:49 pages/models.py:66 pages/models.py:149
-#: vacantions/models.py:6 vacantions/models.py:22
+#: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr ""
 
@@ -75,8 +75,8 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: documents/models.py:8 listings/models.py:21 managers/models.py:70
-#: news/models.py:11 vacantions/models.py:10
+#: documents/models.py:8 listings/models.py:21 managers/models.py:74
+#: news/models.py:11 vacantions/models.py:13
 msgid "Created"
 msgstr ""
 
@@ -93,8 +93,8 @@ msgid ""
 "We decided to create a page and combine all useful documents in one place"
 msgstr ""
 
-#: documents/templates/documents/list.html:26 managers/models.py:69
-#: managers/models.py:78 news/templates/news/archive-item.html:11
+#: documents/templates/documents/list.html:26 managers/models.py:73
+#: managers/models.py:82 news/templates/news/archive-item.html:11
 msgid "Review"
 msgstr ""
 
@@ -373,14 +373,14 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-#: listings/models.py:24 managers/models.py:40 managers/models.py:71
-#: managers/templates/managers/list.html:16
+#: listings/models.py:24 managers/models.py:22 managers/models.py:44
+#: managers/models.py:75 managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr ""
 
 #: listings/models.py:27 listings/templates/listings/item.html:14
 #: listings/templates/listings/item.html:76 pages/models.py:34
-#: pages/models.py:50 pages/models.py:67 vacantions/models.py:8
+#: pages/models.py:50 pages/models.py:67 vacantions/models.py:10
 msgid "Description"
 msgstr ""
 
@@ -808,7 +808,8 @@ msgstr ""
 msgid "Please try other search options"
 msgstr ""
 
-#: managers/apps.py:8 pages/templates/sections/footer.html:18
+#: managers/apps.py:8 managers/models.py:23
+#: pages/templates/sections/footer.html:18
 #: pages/templates/sections/header.html:59
 #: pages/templates/sections/header.html:95
 msgid "Managers"
@@ -843,26 +844,26 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: managers/models.py:39 managers/models.py:51
+#: managers/models.py:43 managers/models.py:55
 #: managers/templates/managers/detail.html:39
 #: managers/templates/managers/detail.html:41
 #: pages/templates/pages/seller.html:35
 msgid "Phone"
 msgstr ""
 
-#: managers/models.py:52
+#: managers/models.py:56
 msgid "Phones"
 msgstr ""
 
-#: managers/models.py:67
+#: managers/models.py:71
 msgid "Rating"
 msgstr ""
 
-#: managers/models.py:68
+#: managers/models.py:72
 msgid "Author"
 msgstr ""
 
-#: managers/models.py:79 managers/templates/managers/detail.html:82
+#: managers/models.py:83 managers/templates/managers/detail.html:82
 #: pages/templates/pages/reviews.html:6 pages/templates/sections/footer.html:19
 msgid "Reviews"
 msgstr ""
@@ -1062,9 +1063,8 @@ msgid "Poster"
 msgstr ""
 
 #: pages/models.py:138 pages/models.py:144 pages/models.py:145
-#: pages/templates/sections/footer.html:22 vacantions/apps.py:8
-#: vacantions/models.py:18
-msgid "Vacantions"
+#: vacantions/apps.py:8 vacantions/models.py:21 vacantions/views.py:12
+msgid "Vacancies"
 msgstr ""
 
 #: pages/models.py:150
@@ -1871,6 +1871,10 @@ msgstr ""
 msgid "Analytics"
 msgstr ""
 
+#: pages/templates/sections/footer.html:22
+msgid "Vacantions"
+msgstr ""
+
 #: pages/templates/sections/footer.html:27
 #: pages/templates/sections/header.html:20
 #: pages/templates/sections/header.html:74
@@ -1979,18 +1983,201 @@ msgstr ""
 msgid "Site Configuration"
 msgstr ""
 
-#: vacantions/models.py:7
+#: vacantions/models.py:9
 msgid "Salary"
 msgstr ""
 
-#: vacantions/models.py:9 vacantions/models.py:29
+#: vacantions/models.py:12 vacantions/models.py:33
 msgid "Department"
 msgstr ""
 
-#: vacantions/models.py:17
-msgid "Vacantion"
+#: vacantions/models.py:20
+msgid "Vacancy"
 msgstr ""
 
-#: vacantions/models.py:30
+#: vacantions/models.py:34
 msgid "Departments"
+msgstr ""
+
+#: vacantions/templates/vacantions/list.html:6
+msgid "List of vacancies"
+msgstr ""
+
+#: vacantions/templates/vacantions/list.html:34
+msgid "Leave a resume"
+msgstr ""
+
+#: vacantions/templates/vacantions/list.html:43
+msgid "Fresh vacancies will be published on this page"
+msgstr ""
+
+#: vacantions/templates/vacantions/list.html:46
+msgid "Return to the home page"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:15
+msgid "We are looking for agents to join our team"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:19
+msgid "Choose what suits you"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:23
+msgid "See vacancies"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:24
+msgid "Details about the company"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:32
+msgid "To work for us is:"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:40
+msgid "Technologies and tools"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:43
+msgid "Own convenient IT services: CRM, Learning portal, bots"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:49
+msgid "Career growth"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:52
+msgid "We create an open and accessible environment for career growth"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:58
+msgid "Continuous development"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:61
+msgid ""
+"You will be able to complete free real estate training from scratch. "
+"Experienced mentor and support at all stages"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:67
+msgid "Unlimited income"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:70
+msgid ""
+"The company provides a complete package of tools for your results and "
+"earnings"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:80
+msgid "We need people who share our values"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:88
+msgid "Customer orientation"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:90
+msgid "everything starts with the customer's need"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:93
+msgid "Team spirit"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:94
+msgid "we believe in our team"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:97
+msgid "Responsibility"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:98
+msgid "we are responsible for the results of our work"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:101
+msgid "Trust"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:102
+msgid "the first necessary condition of great undertakings"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:105
+msgid "Strive for results"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:106
+msgid "the result starts with me"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:109
+msgid "Honesty"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:110
+msgid "the basis of success in business"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:113
+msgid "Success"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:114
+msgid "it is the sum of small achievements repeated every day"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:117
+msgid "Development"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:118
+msgid "it is the result of planning and focused effort"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:121
+msgid "Family"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:122
+msgid ""
+"it is our inspiration to reach great heights and our support when we make "
+"mistakes"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:125
+msgid "Kindness"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:126
+msgid ""
+"it is invisible when you possess it, and it gives success in any business"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:129
+msgid "Happiness"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:130
+msgid ""
+"it's when you go to work with joy in the morning, and come home with joy in "
+"the evening"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:133
+msgid "Joy"
+msgstr ""
+
+#: vacantions/templates/vacantions/page.html:134
+msgid ""
+"this is a great blessing, to have the opportunity to give it to others is "
+"the greatest happiness"
+msgstr ""
+
+#: vacantions/views.py:13
+msgid "List"
 msgstr ""

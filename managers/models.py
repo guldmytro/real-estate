@@ -18,6 +18,10 @@ class Manager(models.Model):
     has_car = models.BooleanField(default=False, verbose_name=_('Has Car?'))
     about = models.TextField(verbose_name=_('About'), blank=True, null=True)
 
+    class Meta:
+        verbose_name = _('Manager')
+        verbose_name_plural = _('Managers')
+
     def __str__(self):
         return self.full_name
 

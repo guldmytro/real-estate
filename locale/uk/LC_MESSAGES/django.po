@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 14:13+0300\n"
-"PO-Revision-Date: 2023-07-08 11:13+0000\n"
+"POT-Creation-Date: 2023-07-09 12:22+0300\n"
+"PO-Revision-Date: 2023-07-09 09:22+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -28,11 +28,11 @@ msgstr "Аналітичні огляди"
 msgid "Analytical review"
 msgstr "Аналітичний огляд"
 
-#: config/settings.py:149
+#: config/settings.py:150
 msgid "English"
 msgstr "Англійська"
 
-#: config/settings.py:150 pages/templates/pages/course.html:66
+#: config/settings.py:151 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr "Українська"
 
@@ -70,7 +70,7 @@ msgstr "Документи"
 #: documents/models.py:6 listings/models.py:26 listings/models.py:123
 #: listings/models.py:193 news/models.py:8 pages/models.py:33
 #: pages/models.py:49 pages/models.py:66 pages/models.py:149
-#: vacantions/models.py:6 vacantions/models.py:22
+#: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr "Заголовок"
 
@@ -78,8 +78,8 @@ msgstr "Заголовок"
 msgid "File"
 msgstr "Файл"
 
-#: documents/models.py:8 listings/models.py:21 managers/models.py:70
-#: news/models.py:11 vacantions/models.py:10
+#: documents/models.py:8 listings/models.py:21 managers/models.py:74
+#: news/models.py:11 vacantions/models.py:13
 msgid "Created"
 msgstr "Створено"
 
@@ -96,8 +96,8 @@ msgid ""
 "We decided to create a page and combine all useful documents in one place"
 msgstr "Ми вирішили створити сторінку на якій об'єднати усі корисні документи"
 
-#: documents/templates/documents/list.html:26 managers/models.py:69
-#: managers/models.py:78 news/templates/news/archive-item.html:11
+#: documents/templates/documents/list.html:26 managers/models.py:73
+#: managers/models.py:82 news/templates/news/archive-item.html:11
 msgid "Review"
 msgstr "Відгук"
 
@@ -381,14 +381,14 @@ msgstr "Статус"
 msgid "Updated"
 msgstr "Оновлено"
 
-#: listings/models.py:24 managers/models.py:40 managers/models.py:71
-#: managers/templates/managers/list.html:16
+#: listings/models.py:24 managers/models.py:22 managers/models.py:44
+#: managers/models.py:75 managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr "Менеджер"
 
 #: listings/models.py:27 listings/templates/listings/item.html:14
 #: listings/templates/listings/item.html:76 pages/models.py:34
-#: pages/models.py:50 pages/models.py:67 vacantions/models.py:8
+#: pages/models.py:50 pages/models.py:67 vacantions/models.py:10
 msgid "Description"
 msgstr "Опис"
 
@@ -811,7 +811,6 @@ msgid "Write to a specialist"
 msgstr "Написати спеціалісту"
 
 #: listings/templates/listings/list.html:24
-#| msgid "Real estate specialists"
 msgid "Real estate search results"
 msgstr "Результати пошуку нерухомості"
 
@@ -823,7 +822,8 @@ msgstr "Вибачте, ми не змогли нічого знайти по в
 msgid "Please try other search options"
 msgstr "Спробуйте, будь ласка, інші параметри пошуку"
 
-#: managers/apps.py:8 pages/templates/sections/footer.html:18
+#: managers/apps.py:8 managers/models.py:23
+#: pages/templates/sections/footer.html:18
 #: pages/templates/sections/header.html:59
 #: pages/templates/sections/header.html:95
 msgid "Managers"
@@ -858,26 +858,26 @@ msgstr "Є машина?"
 msgid "About"
 msgstr "Про нас"
 
-#: managers/models.py:39 managers/models.py:51
+#: managers/models.py:43 managers/models.py:55
 #: managers/templates/managers/detail.html:39
 #: managers/templates/managers/detail.html:41
 #: pages/templates/pages/seller.html:35
 msgid "Phone"
 msgstr "Телефон"
 
-#: managers/models.py:52
+#: managers/models.py:56
 msgid "Phones"
 msgstr "Телефони"
 
-#: managers/models.py:67
+#: managers/models.py:71
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: managers/models.py:68
+#: managers/models.py:72
 msgid "Author"
 msgstr "Автор"
 
-#: managers/models.py:79 managers/templates/managers/detail.html:82
+#: managers/models.py:83 managers/templates/managers/detail.html:82
 #: pages/templates/pages/reviews.html:6
 #: pages/templates/sections/footer.html:19
 msgid "Reviews"
@@ -1079,9 +1079,8 @@ msgid "Poster"
 msgstr "Постер"
 
 #: pages/models.py:138 pages/models.py:144 pages/models.py:145
-#: pages/templates/sections/footer.html:22 vacantions/apps.py:8
-#: vacantions/models.py:18
-msgid "Vacantions"
+#: vacantions/apps.py:8 vacantions/models.py:21 vacantions/views.py:12
+msgid "Vacancies"
 msgstr "Вакансії"
 
 #: pages/models.py:150
@@ -1978,6 +1977,10 @@ msgstr "Ціни"
 msgid "Analytics"
 msgstr "Аналітичні огляди"
 
+#: pages/templates/sections/footer.html:22
+msgid "Vacantions"
+msgstr "Вакансії"
+
 #: pages/templates/sections/footer.html:27
 #: pages/templates/sections/header.html:20
 #: pages/templates/sections/header.html:74
@@ -2089,21 +2092,216 @@ msgstr "СРМ-фід для парсингу"
 msgid "Site Configuration"
 msgstr "Налаштування сайту"
 
-#: vacantions/models.py:7
+#: vacantions/models.py:9
 msgid "Salary"
 msgstr "Зарплата"
 
-#: vacantions/models.py:9 vacantions/models.py:29
+#: vacantions/models.py:12 vacantions/models.py:33
 msgid "Department"
 msgstr "Департамент"
 
-#: vacantions/models.py:17
-msgid "Vacantion"
+#: vacantions/models.py:20
+msgid "Vacancy"
 msgstr "Вакансія"
 
-#: vacantions/models.py:30
+#: vacantions/models.py:34
 msgid "Departments"
 msgstr "Документи"
+
+#: vacantions/templates/vacantions/list.html:6
+msgid "List of vacancies"
+msgstr "Список вакансій"
+
+#: vacantions/templates/vacantions/list.html:34
+msgid "Leave a resume"
+msgstr "Залишити резюме"
+
+#: vacantions/templates/vacantions/list.html:43
+msgid "Fresh vacancies will be published on this page"
+msgstr "На даній сторінці будуть публікуватись свіжі вакансії"
+
+#: vacantions/templates/vacantions/list.html:46
+msgid "Return to the home page"
+msgstr "Повернутись на головну"
+
+#: vacantions/templates/vacantions/page.html:15
+msgid "We are looking for agents to join our team"
+msgstr "Ми шукаємо агентів в нашу команду"
+
+#: vacantions/templates/vacantions/page.html:19
+msgid "Choose what suits you"
+msgstr "Вибирайте те, що підходить саме вам"
+
+#: vacantions/templates/vacantions/page.html:23
+msgid "See vacancies"
+msgstr "Подивитись вакансії"
+
+#: vacantions/templates/vacantions/page.html:24
+msgid "Details about the company"
+msgstr "Детально про компанію"
+
+#: vacantions/templates/vacantions/page.html:32
+msgid "To work for us is:"
+msgstr "Працювати у нас це:"
+
+#: vacantions/templates/vacantions/page.html:40
+msgid "Technologies and tools"
+msgstr "Технології та інструменти"
+
+#: vacantions/templates/vacantions/page.html:43
+msgid "Own convenient IT services: CRM, Learning portal, bots"
+msgstr "Власні зручні IT-сервіси: CRM, Навчальний портал, боти"
+
+#: vacantions/templates/vacantions/page.html:49
+msgid "Career growth"
+msgstr "Кар'єрний ріст"
+
+#: vacantions/templates/vacantions/page.html:52
+msgid "We create an open and accessible environment for career growth"
+msgstr "Ми створюємо відкрите та доступне середовище для кар'єрного росту"
+
+#: vacantions/templates/vacantions/page.html:58
+msgid "Continuous development"
+msgstr "Постійний розвиток"
+
+#: vacantions/templates/vacantions/page.html:61
+msgid ""
+"You will be able to complete free real estate training from scratch. "
+"Experienced mentor and support at all stages"
+msgstr ""
+"Ви зможете пройти безкоштовне навчання професії нерухомості з нуля. "
+"Досвідчений ментор та підтримка на всіх етапах"
+
+#: vacantions/templates/vacantions/page.html:67
+msgid "Unlimited income"
+msgstr "Дохід без стелі"
+
+#: vacantions/templates/vacantions/page.html:70
+msgid ""
+"The company provides a complete package of tools for your results and "
+"earnings"
+msgstr ""
+"Компанія надає повний пакет інструментів для вашого результату і заробітку"
+
+#: vacantions/templates/vacantions/page.html:80
+msgid "We need people who share our values"
+msgstr "Нам потрібні люди, які розділяють наші цінності"
+
+#: vacantions/templates/vacantions/page.html:88
+msgid "Customer orientation"
+msgstr "Клієнтоорієнтованість"
+
+#: vacantions/templates/vacantions/page.html:90
+msgid "everything starts with the customer's need"
+msgstr "все починається з потреби клієнта"
+
+#: vacantions/templates/vacantions/page.html:93
+msgid "Team spirit"
+msgstr "Командний дух"
+
+#: vacantions/templates/vacantions/page.html:94
+msgid "we believe in our team"
+msgstr "ми віримо у свою команду"
+
+#: vacantions/templates/vacantions/page.html:97
+msgid "Responsibility"
+msgstr "Відповідальність"
+
+#: vacantions/templates/vacantions/page.html:98
+msgid "we are responsible for the results of our work"
+msgstr "ми відповідальні за результати нашої роботи"
+
+#: vacantions/templates/vacantions/page.html:101
+msgid "Trust"
+msgstr "Довіра"
+
+#: vacantions/templates/vacantions/page.html:102
+msgid "the first necessary condition of great undertakings"
+msgstr "перша необхідна умова великих починань"
+
+#: vacantions/templates/vacantions/page.html:105
+msgid "Strive for results"
+msgstr "Прагнення до результату"
+
+#: vacantions/templates/vacantions/page.html:106
+msgid "the result starts with me"
+msgstr "результат починається з мене"
+
+#: vacantions/templates/vacantions/page.html:109
+msgid "Honesty"
+msgstr "Чесність"
+
+#: vacantions/templates/vacantions/page.html:110
+msgid "the basis of success in business"
+msgstr "основа успіху в бізнесі"
+
+#: vacantions/templates/vacantions/page.html:113
+msgid "Success"
+msgstr "Успіх"
+
+#: vacantions/templates/vacantions/page.html:114
+msgid "it is the sum of small achievements repeated every day"
+msgstr "це сума маленьких досягнень, що повторюються щодня"
+
+#: vacantions/templates/vacantions/page.html:117
+msgid "Development"
+msgstr "Розвиток"
+
+#: vacantions/templates/vacantions/page.html:118
+msgid "it is the result of planning and focused effort"
+msgstr "це результат планування та цілеспрямовані зусилля"
+
+#: vacantions/templates/vacantions/page.html:121
+msgid "Family"
+msgstr "Сім'я"
+
+#: vacantions/templates/vacantions/page.html:122
+msgid ""
+"it is our inspiration to reach great heights and our support when we make "
+"mistakes"
+msgstr ""
+"це наше натхнення для досягнення великих висот, і наша опора коли ми робимо "
+"помилки"
+
+#: vacantions/templates/vacantions/page.html:125
+msgid "Kindness"
+msgstr "Доброта"
+
+#: vacantions/templates/vacantions/page.html:126
+msgid ""
+"it is invisible when you possess it, and it gives success in any business"
+msgstr ""
+"вона непомітна, коли володієш нею, і вона дає успіх у будь-якій справі"
+
+#: vacantions/templates/vacantions/page.html:129
+msgid "Happiness"
+msgstr "Щастя"
+
+#: vacantions/templates/vacantions/page.html:130
+msgid ""
+"it's when you go to work with joy in the morning, and come home with joy in "
+"the evening"
+msgstr ""
+"це коли вранці з радістю йдеш на роботу, а ввечері з радістю повертаєшся "
+"додому"
+
+#: vacantions/templates/vacantions/page.html:133
+msgid "Joy"
+msgstr "Радість"
+
+#: vacantions/templates/vacantions/page.html:134
+msgid ""
+"this is a great blessing, to have the opportunity to give it to others is "
+"the greatest happiness"
+msgstr ""
+"це велике благо, володіти можливістю дарувати її іншим - найбільше щастя"
+
+#: vacantions/views.py:13
+msgid "List"
+msgstr "Список"
+
+#~ msgid "це результат планування та цілеспрямовані зусилля"
+#~ msgstr "це результат планування та цілеспрямовані зусилля"
 
 #, python-format
 #~ msgid ""
