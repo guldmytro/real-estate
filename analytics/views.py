@@ -30,7 +30,7 @@ def analytics_detail(request, id):
     post = get_object_or_404(Analytic, id=id)
     crumbs = [
         (_('Analytical reviews'), reverse_lazy('analytics:list')),
-        (post.title, post.get_absolute_url),
+        (getattr(post, 'title', ''), post.get_absolute_url),
     ]
     context = {
         'post': post,

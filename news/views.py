@@ -27,11 +27,11 @@ def news_list(request):
     return render(request, 'news/list.html', context)
 
 
-def news_detail(request, slug):
-    post = get_object_or_404(News, slug=slug)
+def news_detail(request, id):
+    post = get_object_or_404(News, id=id)
     crumbs = [
         (_('News'), reverse_lazy('news:list')),
-        (post.title, post.get_absolute_url),
+        (getattr(post, 'title', ''), post.get_absolute_url),
     ]
     context = {
         'post': post,

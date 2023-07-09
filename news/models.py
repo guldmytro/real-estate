@@ -8,7 +8,6 @@ from parler.models import TranslatableModel, TranslatedFields
 class News(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=255, verbose_name=_('Title')),
-        slug=models.SlugField(max_length=255, verbose_name=_('Slug'), unique=True),
         body=RichTextUploadingField(verbose_name=_('Text'))
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
@@ -23,6 +22,6 @@ class News(TranslatableModel):
         verbose_name_plural = _('News')
     
     def get_absolute_url(self):
-        return reverse('news:detail', kwargs={'slug': self.slug}) 
+        return reverse('news:detail', kwargs={'id': self.id}) 
 
     
