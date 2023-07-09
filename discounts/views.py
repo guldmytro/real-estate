@@ -24,8 +24,8 @@ def discounts_list(request):
     return render(request, 'discounts/list.html', context)
 
 
-def discounts_detail(request, slug):
-    post = get_object_or_404(Discount, slug=slug)
+def discounts_detail(request, id):
+    post = get_object_or_404(Discount, id=id)
     crumbs = [
         (_('Discounts'), reverse_lazy('discounts:list')),
         (getattr(post, 'title', ''), post.get_absolute_url),

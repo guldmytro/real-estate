@@ -7,7 +7,7 @@ from parler.admin import TranslatableAdmin
 
 @admin.register(Discount)
 class DiscountAdmin(TranslatableAdmin):
-    list_display = ['title', 'slug', 'created']
+    list_display = ['title', 'created']
     list_filter = ['created']
     search_fields = ['title', 'body']
     ordering = ['-created']

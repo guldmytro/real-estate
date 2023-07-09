@@ -9,7 +9,6 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Discount(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=255, verbose_name=_('Title')),
-        slug=models.SlugField(max_length=255, verbose_name=_('Slug'), unique=True),
         body=RichTextUploadingField(verbose_name=_('Text')),
         excerpt=models.TextField(verbose_name=_('Short description'), max_length=300)
     )
@@ -25,4 +24,4 @@ class Discount(TranslatableModel):
         verbose_name_plural = _('Discounts')
     
     def get_absolute_url(self):
-        return reverse('discounts:detail', kwargs={'slug': self.slug})
+        return reverse('discounts:detail', kwargs={'id': self.id})
