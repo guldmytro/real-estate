@@ -1,6 +1,15 @@
 from .models import Listing, Kit, City, Street
 from django.template.loader import render_to_string
 from django.db.models import Count
+import requests
+from props.models import SiteConfiguration
+
+
+languages = {'en': 'en_US', 'uk': 'uk_UA'}
+try:
+    config = SiteConfiguration.objects.get()
+except:
+    config = False
 
 
 def filter_listings(cleaned_data, listings):
@@ -154,3 +163,30 @@ def get_listings_map_data(listings):
             })
         } for listing in listings]
     return coordinates
+
+
+def translate(text, from_lang=None, to_lang=None):
+    api_key = config.translation_api_key
+    if not api_key:
+        return None
+    url = 'https://api-b2b.backenster.com/b1/api/v3/translate'
+    payload = {
+        "platform": "api",
+        "to": to_lang,
+        "data": text
+    }
+    if from_lang:
+        payload['from'] = from_lang
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": api_key
+    }
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        translation = response.json()
+        return translation.get('result')
+    except requests.exceptions.RequestException as e:
+        print(f"Translation error: {e}")
+        return None

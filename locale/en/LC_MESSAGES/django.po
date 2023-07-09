@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 17:19+0300\n"
+"POT-Creation-Date: 2023-07-09 22:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,24 +23,24 @@ msgstr ""
 msgid "Analytical reviews"
 msgstr ""
 
-#: analytics/models.py:10 discounts/models.py:11 documents/models.py:6
+#: analytics/models.py:10 discounts/models.py:11 documents/models.py:8
 #: listings/models.py:26 listings/models.py:123 listings/models.py:193
 #: news/models.py:10 vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr ""
 
-#: analytics/models.py:11 discounts/models.py:13 news/models.py:12
+#: analytics/models.py:11 discounts/models.py:12 news/models.py:11
 msgid "Text"
 msgstr ""
 
-#: analytics/models.py:13 discounts/models.py:16 documents/models.py:8
-#: listings/models.py:21 managers/models.py:74 news/models.py:14
+#: analytics/models.py:13 discounts/models.py:15 documents/models.py:12
+#: listings/models.py:21 managers/models.py:77 news/models.py:13
 #: vacantions/models.py:13
 msgid "Created"
 msgstr ""
 
-#: analytics/models.py:14 discounts/models.py:17 managers/models.py:12
-#: news/models.py:15
+#: analytics/models.py:14 discounts/models.py:16 managers/models.py:16
+#: news/models.py:14
 msgid "Image"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
-#: discounts/apps.py:8 discounts/models.py:25
+#: discounts/apps.py:8 discounts/models.py:24
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
 #: pages/templates/sections/header.html:24
@@ -64,16 +64,11 @@ msgstr ""
 msgid "Discounts"
 msgstr ""
 
-#: discounts/models.py:12 listings/models.py:125 listings/models.py:194
-#: news/models.py:11
-msgid "Slug"
-msgstr ""
-
-#: discounts/models.py:14
+#: discounts/models.py:13
 msgid "Short description"
 msgstr ""
 
-#: discounts/models.py:24
+#: discounts/models.py:23
 msgid "Discount"
 msgstr ""
 
@@ -84,17 +79,17 @@ msgid ""
 "    "
 msgstr ""
 
-#: documents/apps.py:8 documents/models.py:16
+#: documents/apps.py:8 documents/models.py:17
 #: documents/templates/documents/list.html:6 documents/views.py:18
 #: pages/templates/sections/footer.html:21
 msgid "Documents"
 msgstr ""
 
-#: documents/models.py:7 listings/models.py:166
+#: documents/models.py:11 listings/models.py:166
 msgid "File"
 msgstr ""
 
-#: documents/models.py:15
+#: documents/models.py:16
 msgid "Document"
 msgstr ""
 
@@ -107,8 +102,8 @@ msgid ""
 "We decided to create a page and combine all useful documents in one place"
 msgstr ""
 
-#: documents/templates/documents/list.html:26 managers/models.py:73
-#: managers/models.py:82
+#: documents/templates/documents/list.html:26 managers/models.py:76
+#: managers/models.py:85
 msgid "Review"
 msgstr ""
 
@@ -278,7 +273,7 @@ msgstr ""
 msgid "Price to:"
 msgstr ""
 
-#: listings/forms.py:59 listings/models.py:55 pages/forms.py:24
+#: listings/forms.py:59 listings/models.py:55 pages/forms.py:26
 msgid "Realty type"
 msgstr ""
 
@@ -286,7 +281,7 @@ msgstr ""
 msgid "Select a type"
 msgstr ""
 
-#: listings/forms.py:65 pages/forms.py:30
+#: listings/forms.py:65 pages/forms.py:32
 msgid "Realty type:"
 msgstr ""
 
@@ -387,8 +382,8 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-#: listings/models.py:24 managers/models.py:22 managers/models.py:44
-#: managers/models.py:75 managers/templates/managers/list.html:16
+#: listings/models.py:24 managers/models.py:28 managers/models.py:47
+#: managers/models.py:78 managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr ""
 
@@ -460,6 +455,10 @@ msgstr ""
 msgid "Menu label"
 msgstr ""
 
+#: listings/models.py:125 listings/models.py:194
+msgid "Slug"
+msgstr ""
+
 #: listings/models.py:141
 msgid "Categories"
 msgstr ""
@@ -476,7 +475,7 @@ msgstr ""
 msgid "Deals"
 msgstr ""
 
-#: listings/models.py:167 managers/models.py:13
+#: listings/models.py:167 managers/models.py:17
 msgid "Image url"
 msgstr ""
 
@@ -667,7 +666,7 @@ msgid "More details"
 msgstr ""
 
 #: listings/templates/listings/components/news.html:8 news/apps.py:8
-#: news/models.py:22 news/models.py:23 news/views.py:13 news/views.py:20
+#: news/models.py:21 news/models.py:22 news/views.py:13 news/views.py:20
 #: news/views.py:33 pages/templates/sections/footer.html:16
 #: pages/templates/sections/news.html:9
 msgid "News"
@@ -817,7 +816,7 @@ msgstr ""
 msgid "Please try other search options"
 msgstr ""
 
-#: managers/apps.py:8 managers/models.py:23
+#: managers/apps.py:8 managers/models.py:29
 #: pages/templates/sections/footer.html:18
 #: pages/templates/sections/header.html:69
 #: pages/templates/sections/header.html:105
@@ -828,47 +827,47 @@ msgstr ""
 msgid "Enter the last name of the specialist"
 msgstr ""
 
-#: managers/models.py:11
+#: managers/models.py:13
 msgid "Name"
 msgstr ""
 
-#: managers/models.py:15 managers/templates/managers/detail.html:27
-#: pages/models.py:102 props/models.py:11
-msgid "Email"
-msgstr ""
-
-#: managers/models.py:17 managers/templates/managers/detail.html:102
-msgid "Experience"
-msgstr ""
-
-#: managers/models.py:18
-msgid "Has Car?"
-msgstr ""
-
-#: managers/models.py:19
+#: managers/models.py:14
 msgid "About"
 msgstr ""
 
-#: managers/models.py:43 managers/models.py:55
+#: managers/models.py:19 managers/templates/managers/detail.html:27
+#: pages/models.py:102 props/models.py:13
+msgid "Email"
+msgstr ""
+
+#: managers/models.py:21 managers/templates/managers/detail.html:102
+msgid "Experience"
+msgstr ""
+
+#: managers/models.py:22
+msgid "Has Car?"
+msgstr ""
+
+#: managers/models.py:46 managers/models.py:58
 #: managers/templates/managers/detail.html:39
 #: managers/templates/managers/detail.html:41
 #: pages/templates/pages/seller.html:35
 msgid "Phone"
 msgstr ""
 
-#: managers/models.py:56
+#: managers/models.py:59
 msgid "Phones"
 msgstr ""
 
-#: managers/models.py:71
+#: managers/models.py:74
 msgid "Rating"
 msgstr ""
 
-#: managers/models.py:72
+#: managers/models.py:75
 msgid "Author"
 msgstr ""
 
-#: managers/models.py:83 managers/templates/managers/detail.html:82
+#: managers/models.py:86 managers/templates/managers/detail.html:82
 #: pages/templates/pages/reviews.html:6 pages/templates/sections/footer.html:19
 msgid "Reviews"
 msgstr ""
@@ -926,11 +925,11 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: pages/forms.py:10
+#: pages/forms.py:11
 msgid "Full name"
 msgstr ""
 
-#: pages/forms.py:27
+#: pages/forms.py:29
 msgid "Select type"
 msgstr ""
 
@@ -2036,10 +2035,14 @@ msgid "API-key for Google Maps"
 msgstr ""
 
 #: props/models.py:10
+msgid "API-key for translating service"
+msgstr ""
+
+#: props/models.py:12
 msgid "CRM-feed for parsing"
 msgstr ""
 
-#: props/models.py:14 props/models.py:17
+#: props/models.py:16 props/models.py:19
 msgid "Site Configuration"
 msgstr ""
 
