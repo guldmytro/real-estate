@@ -101,19 +101,22 @@ class Contact(SingletonModel):
     
     email = models.EmailField(verbose_name=_('Email'))
     
-    schedule = models.CharField(max_length=255, verbose_name=_('Schedule'))
+    schedule = models.CharField(max_length=255, verbose_name=_('Schedule (English)'))
+    schedule_uk = models.CharField(max_length=255, verbose_name=_('Schedule (Ukrainian)'), default='uk')
     
-    office_1 = models.CharField(max_length=255, verbose_name=_('Office 1'))
-    office_2 = models.CharField(max_length=255, verbose_name=_('Office 2'))
-    office_3 = models.CharField(max_length=255, verbose_name=_('Office 3'))
+    office_1 = models.CharField(max_length=255, verbose_name=_('Office 1 (English)'))
+    office_1_uk = models.CharField(max_length=255, verbose_name=_('Office 1 (Ukrainian)'), default='uk')
+
+    office_2 = models.CharField(max_length=255, verbose_name=_('Office 2 (English)'))
+    office_2_uk = models.CharField(max_length=255, verbose_name=_('Office 2 (Ukrainian)'), default='uk')
+    
+    office_3 = models.CharField(max_length=255, verbose_name=_('Office 3 (English)'))
+    office_3_uk = models.CharField(max_length=255, verbose_name=_('Office 3 (Ukrainian)'), default='uk')
 
     telegram = models.URLField(verbose_name=_('Telegram'), blank=True, null=True)
     viber = models.URLField(verbose_name=_('Viber'), blank=True, null=True)
     instagram = models.URLField(verbose_name=_('Instagram'), blank=True, null=True)
     facebook = models.URLField(verbose_name=_('Facebook'), blank=True, null=True)
-
-    def __str__(self):
-        return _('Contacts')
 
     def get_absolute_url(self):
         return reverse('pages:contacts')
@@ -126,9 +129,6 @@ class Contact(SingletonModel):
 class Course(SingletonModel):
     register_link = models.URLField(verbose_name=_('Register link'), blank=True, null=True)
     auth_link = models.URLField(verbose_name=_('Auth link'), blank=True, null=True)
-
-    def __str__(self):
-        return _('Course')
 
     def get_absolute_url(self):
         return reverse('pages:course')
@@ -144,9 +144,6 @@ class VacantionPage(SingletonModel):
     poster = models.FileField(upload_to='vacantions/%Y/%m/%d', verbose_name=_('Poster'),
                               blank=True, null=True)
 
-    def __str__(self):
-        return _('Vacancies')
-
     def get_absolute_url(self):
         return reverse('vacantions:page')
     
@@ -156,11 +153,10 @@ class VacantionPage(SingletonModel):
 
 
 class Home(SingletonModel):
-    title = models.CharField(max_length=150, verbose_name=_('Title'), null=True, blank=True)
-    about = RichTextUploadingField(verbose_name=_('About us section'), null=True, blank=True)
-    
-    def __str__(self):
-        return _('Home')
+    title = models.CharField(max_length=150, verbose_name=_('Title (English)'), null=True, blank=True)
+    title_uk = models.CharField(max_length=150, verbose_name=_('Title (Ukrainian)'), null=True, blank=True)
+    about = RichTextUploadingField(verbose_name=_('About us section (English)'), null=True, blank=True)
+    about_uk = RichTextUploadingField(verbose_name=_('About us section (Ukrainian)'), null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('pages:home')

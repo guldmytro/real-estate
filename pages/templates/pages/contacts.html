@@ -36,7 +36,11 @@
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
-                            <span>{{ page.office_1 }}</span>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <span>{{ page.office_1 }}</span>
+                            {% else %}
+                                <span>{{ page.office_1_uk }}</span>
+                            {% endif %}
                         </li>
                     </ul>
                 </li>
@@ -58,7 +62,11 @@
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
-                            <span>{{ page.office_2 }}</span>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <span>{{ page.office_2 }}</span>
+                            {% else %}
+                                <span>{{ page.office_2_uk }}</span>
+                            {% endif %}
                         </li>
                     </ul>
                 </li>
@@ -69,7 +77,11 @@
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
-                            <span>{{ page.schedule }}</span>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <span>{{ page.schedule }}</span>
+                            {% else %}
+                                <span>{{ page.schedule_uk }}</span>
+                            {% endif %}
                         </li>
                     </ul>
                 </li>
@@ -80,7 +92,11 @@
                     </h2>
                     <ul class="contact-item__list">
                         <li class="contact-value">
-                            <span>{{ page.office_3 }}</span>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                <span>{{ page.office_3 }}</span>
+                            {% else %}
+                                <span>{{ page.office_3_uk }}</span>
+                            {% endif %}
                         </li>
                     </ul>
                 </li>

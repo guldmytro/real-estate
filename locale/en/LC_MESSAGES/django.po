@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 14:38+0300\n"
+"POT-Creation-Date: 2023-07-09 17:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: analytics/apps.py:8 analytics/models.py:9 analytics/views.py:13
+#: analytics/apps.py:8 analytics/models.py:22 analytics/views.py:13
 #: analytics/views.py:19 analytics/views.py:32
 msgid "Analytical reviews"
 msgstr ""
 
-#: analytics/models.py:8
+#: analytics/models.py:10 discounts/models.py:11 documents/models.py:6
+#: listings/models.py:26 listings/models.py:123 listings/models.py:193
+#: news/models.py:10 vacantions/models.py:8 vacantions/models.py:26
+msgid "Title"
+msgstr ""
+
+#: analytics/models.py:11 discounts/models.py:13 news/models.py:12
+msgid "Text"
+msgstr ""
+
+#: analytics/models.py:13 discounts/models.py:16 documents/models.py:8
+#: listings/models.py:21 managers/models.py:74 news/models.py:14
+#: vacantions/models.py:13
+msgid "Created"
+msgstr ""
+
+#: analytics/models.py:14 discounts/models.py:17 managers/models.py:12
+#: news/models.py:15
+msgid "Image"
+msgstr ""
+
+#: analytics/models.py:21
 msgid "Analytical review"
 msgstr ""
 
@@ -35,7 +56,7 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
-#: discounts/apps.py:8 discounts/models.py:12
+#: discounts/apps.py:8 discounts/models.py:25
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
 #: pages/templates/sections/header.html:24
@@ -43,11 +64,16 @@ msgstr ""
 msgid "Discounts"
 msgstr ""
 
-#: discounts/models.py:8
+#: discounts/models.py:12 listings/models.py:125 listings/models.py:194
+#: news/models.py:11
+msgid "Slug"
+msgstr ""
+
+#: discounts/models.py:14
 msgid "Short description"
 msgstr ""
 
-#: discounts/models.py:11
+#: discounts/models.py:24
 msgid "Discount"
 msgstr ""
 
@@ -64,19 +90,8 @@ msgstr ""
 msgid "Documents"
 msgstr ""
 
-#: documents/models.py:6 listings/models.py:26 listings/models.py:123
-#: listings/models.py:193 news/models.py:8 pages/models.py:159
-#: vacantions/models.py:8 vacantions/models.py:26
-msgid "Title"
-msgstr ""
-
 #: documents/models.py:7 listings/models.py:166
 msgid "File"
-msgstr ""
-
-#: documents/models.py:8 listings/models.py:21 managers/models.py:74
-#: news/models.py:11 vacantions/models.py:13
-msgid "Created"
 msgstr ""
 
 #: documents/models.py:15
@@ -93,7 +108,7 @@ msgid ""
 msgstr ""
 
 #: documents/templates/documents/list.html:26 managers/models.py:73
-#: managers/models.py:82 news/templates/news/archive-item.html:11
+#: managers/models.py:82
 msgid "Review"
 msgstr ""
 
@@ -445,10 +460,6 @@ msgstr ""
 msgid "Menu label"
 msgstr ""
 
-#: listings/models.py:125 listings/models.py:194 news/models.py:9
-msgid "Slug"
-msgstr ""
-
 #: listings/models.py:141
 msgid "Categories"
 msgstr ""
@@ -651,12 +662,12 @@ msgstr ""
 
 #: listings/templates/listings/components/listing-map-info.html:41
 #: listings/templates/listings/item.html:158
-#: pages/templates/pages/abroad.html:38
+#: pages/templates/pages/abroad.html:48
 msgid "More details"
 msgstr ""
 
 #: listings/templates/listings/components/news.html:8 news/apps.py:8
-#: news/models.py:27 news/models.py:28 news/views.py:13 news/views.py:20
+#: news/models.py:22 news/models.py:23 news/views.py:13 news/views.py:20
 #: news/views.py:33 pages/templates/sections/footer.html:16
 #: pages/templates/sections/news.html:9
 msgid "News"
@@ -821,10 +832,6 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: managers/models.py:12 news/models.py:12
-msgid "Image"
-msgstr ""
-
 #: managers/models.py:15 managers/templates/managers/detail.html:27
 #: pages/models.py:102 props/models.py:11
 msgid "Email"
@@ -911,8 +918,8 @@ msgstr ""
 msgid "More about the specialist"
 msgstr ""
 
-#: news/models.py:10
-msgid "Text"
+#: news/templates/news/archive-item.html:11
+msgid "Read"
 msgstr ""
 
 #: pages/apps.py:8
@@ -964,11 +971,11 @@ msgstr ""
 msgid "About us"
 msgstr ""
 
-#: pages/models.py:37 pages/models.py:55 pages/models.py:74
+#: pages/models.py:37 pages/models.py:55 pages/models.py:74 pages/models.py:156
 msgid "Title (English)"
 msgstr ""
 
-#: pages/models.py:38 pages/models.py:56 pages/models.py:75
+#: pages/models.py:38 pages/models.py:56 pages/models.py:75 pages/models.py:157
 msgid "Title (Ukrainian)"
 msgstr ""
 
@@ -1036,38 +1043,54 @@ msgid "Phone 2"
 msgstr ""
 
 #: pages/models.py:104
-msgid "Schedule"
+msgid "Schedule (English)"
 msgstr ""
 
-#: pages/models.py:106
-msgid "Office 1"
+#: pages/models.py:105
+msgid "Schedule (Ukrainian)"
 msgstr ""
 
 #: pages/models.py:107
-msgid "Office 2"
+msgid "Office 1 (English)"
 msgstr ""
 
 #: pages/models.py:108
-msgid "Office 3"
+msgid "Office 1 (Ukrainian)"
 msgstr ""
 
 #: pages/models.py:110
-msgid "Telegram"
+msgid "Office 2 (English)"
 msgstr ""
 
 #: pages/models.py:111
-msgid "Viber"
-msgstr ""
-
-#: pages/models.py:112
-msgid "Instagram"
+msgid "Office 2 (Ukrainian)"
 msgstr ""
 
 #: pages/models.py:113
+msgid "Office 3 (English)"
+msgstr ""
+
+#: pages/models.py:114
+msgid "Office 3 (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:116
+msgid "Telegram"
+msgstr ""
+
+#: pages/models.py:117
+msgid "Viber"
+msgstr ""
+
+#: pages/models.py:118
+msgid "Instagram"
+msgstr ""
+
+#: pages/models.py:119
 msgid "Facebook"
 msgstr ""
 
-#: pages/models.py:116 pages/models.py:122 pages/models.py:123
+#: pages/models.py:125 pages/models.py:126
 #: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
 #: pages/templates/sections/header.html:73
@@ -1075,16 +1098,15 @@ msgstr ""
 msgid "Contacts"
 msgstr ""
 
-#: pages/models.py:127
+#: pages/models.py:130
 msgid "Register link"
 msgstr ""
 
-#: pages/models.py:128
+#: pages/models.py:131
 msgid "Auth link"
 msgstr ""
 
-#: pages/models.py:131 pages/models.py:137 pages/models.py:138
-#: pages/templates/pages/course.html:6
+#: pages/models.py:137 pages/models.py:138 pages/templates/pages/course.html:6
 msgid "Course"
 msgstr ""
 
@@ -1092,17 +1114,21 @@ msgstr ""
 msgid "Poster"
 msgstr ""
 
-#: pages/models.py:148 pages/models.py:154 pages/models.py:155
-#: vacantions/apps.py:8 vacantions/models.py:21 vacantions/views.py:12
+#: pages/models.py:151 pages/models.py:152 vacantions/apps.py:8
+#: vacantions/models.py:21 vacantions/views.py:12
 msgid "Vacancies"
 msgstr ""
 
-#: pages/models.py:160
-msgid "About us section"
+#: pages/models.py:158
+msgid "About us section (English)"
 msgstr ""
 
-#: pages/models.py:163 pages/models.py:169 pages/models.py:170
-#: pages/templates/layout/base.html:11 pages/templates/pages/home.html:6
+#: pages/models.py:159
+msgid "About us section (Ukrainian)"
+msgstr ""
+
+#: pages/models.py:165 pages/models.py:166 pages/templates/layout/base.html:11
+#: pages/templates/pages/home.html:6
 #: pages/templates/sections/breadcrumbs.html:7
 msgid "Home"
 msgstr ""
@@ -1115,19 +1141,19 @@ msgstr ""
 msgid "Office No. 1"
 msgstr ""
 
-#: pages/templates/pages/contacts.html:46
+#: pages/templates/pages/contacts.html:50
 msgid "Write to us"
 msgstr ""
 
-#: pages/templates/pages/contacts.html:57
+#: pages/templates/pages/contacts.html:61
 msgid "Office No. 2"
 msgstr ""
 
-#: pages/templates/pages/contacts.html:68
+#: pages/templates/pages/contacts.html:76
 msgid "Work schedule"
 msgstr ""
 
-#: pages/templates/pages/contacts.html:79
+#: pages/templates/pages/contacts.html:91
 msgid "Office No. 3"
 msgstr ""
 
