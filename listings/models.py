@@ -5,6 +5,7 @@ from django.contrib.gis.geos import Point
 from django.urls import reverse
 from managers.models import Manager
 from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel, TranslatedFields
 
 
 class ActiveManager(models.Manager):
@@ -182,7 +183,7 @@ class Image(models.Model):
         )
 
 
-class Attribute(models.Model):
+class Attribute(TranslatableModel):
     BLACKLIST_ATTRIBUTES = [
         'property_56',
         'property_71', # video
@@ -190,7 +191,9 @@ class Attribute(models.Model):
         'property_82',
         'property_83',
     ]
-    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('Title'))
+    )
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
     class Meta:
@@ -201,21 +204,18 @@ class Attribute(models.Model):
         return self.title
 
 
-class Kit(models.Model):
+class Kit(TranslatableModel):
     listing = models.ManyToManyField(Listing, verbose_name=_('Listing'),
                                      related_name='kits')
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name=_('Attribute'),
                                   related_name='kits')
-    value = models.CharField(max_length=255, verbose_name=_('Value'))
+    translations = TranslatedFields(
+        value=models.CharField(max_length=255, verbose_name=_('Value'))
+    )
+    untranslated_value = models.CharField(max_length=255)
 
     class Meta:
-        unique_together = (
-            ('attribute', 'value')
-        )
-        indexes = [
-            models.Index(fields=['value'])
-        ]
-        ordering = ('attribute__title',)
+        ordering = ('attribute__translations__title',)
         verbose_name = _('Kit')
         verbose_name_plural = _('Kits')
 
@@ -223,9 +223,10 @@ class Kit(models.Model):
         return f'{self.value.capitalize()}'
 
 
-class Country(models.Model):
-    title = models.CharField(max_length=100, verbose_name=_('Country'), unique=True)
-
+class Country(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=100, verbose_name=_('Country'), unique=True)
+    )
     def __str__(self):
         return f'{self.title}'
 
@@ -234,8 +235,10 @@ class Country(models.Model):
         verbose_name_plural = _('Countries')
 
 
-class City(models.Model):
-    title = models.CharField(max_length=255, verbose_name=_('City'))
+class City(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('City'))
+    )
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name=_('Country'))
 
     def __str__(self):
@@ -247,12 +250,12 @@ class City(models.Model):
     class Meta:
         verbose_name = _('City')
         verbose_name_plural = _('Cities')
-        unique_together = (
-            ('title', 'country'),
-        )
 
-class Street(models.Model):
-    title = models.CharField(max_length=255, verbose_name=_('Street'))
+
+class Street(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('Street'))
+    )
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='streets', verbose_name=_('City'))
 
     def __str__(self):
@@ -261,6 +264,3 @@ class Street(models.Model):
     class Meta:
         verbose_name = _('Street')
         verbose_name_plural = _('Streets')
-        unique_together = (
-            ('title', 'city'),
-        )

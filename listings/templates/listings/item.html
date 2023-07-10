@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 {% endif %}
-                {% include 'listings/components/attributes.html' with kits=listing.kits %}
+                {% include 'listings/components/attributes.html' %}
                 <div id="check" class="object-box">
                     <div class="object-box-header">
                         <h2 class="object-box-header__title animate animate_text">
@@ -203,6 +203,11 @@
         </div>
     </div>
 </main>
+<style>
+    .object-item__fix:nth-of-type(n + 2) {
+        display: none;
+    }
+</style>
 {% endblock %}
 
 

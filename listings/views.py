@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Listing, Attribute, City, Street
+from .models import Listing, Attribute, City, Street, Kit
 from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
@@ -19,7 +19,9 @@ from django.utils.translation import gettext_lazy as _
 def listings_list(request):
     GET = modify_get(request.GET)
     search_form = SearchForm(GET)
-    listings_list = Listing.active.prefetch_related('images').all()
+    listings_list = Listing.active.prefetch_related(
+        Prefetch('images'),
+    ).all()
     crumbs = []
 
     # Filtering
@@ -91,10 +93,10 @@ def listings_detail(request, id):
     listing = get_object_or_404(
         Listing.objects.prefetch_related(
             Prefetch('images'),
-            Prefetch('kits__attribute', queryset=Attribute.objects.order_by('-title'))
         ).select_related('manager').select_related('street'),
-        id=id
+        id=id,
     )
+    kits = Kit.objects.filter(listing=listing).order_by()
     crumbs = []
 
     if listing.street:
@@ -133,6 +135,7 @@ def listings_detail(request, id):
 
     context = {
         'listing': listing,
+        'kits': kits,
         'in_wishlist': in_wishlist,
         'listings_the_same_street_num': listings_the_same_street_num,
         'listings_within_distance': listings_within_distance,
@@ -163,12 +166,12 @@ def get_address_predictions(request):
 
     cities = City.objects.annotate(
         cnt=Count('streets__listings'),
-        similarity=TrigramSimilarity('title', search_query)
+        similarity=TrigramSimilarity('translations__title', search_query)
     ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
 
     streets = Street.objects.annotate(
         cnt=Count('listings'),
-        similarity=TrigramSimilarity('title', search_query)
+        similarity=TrigramSimilarity('translations__title', search_query)
     ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
 
     return JsonResponse({

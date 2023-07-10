@@ -12,6 +12,8 @@ from django.contrib.gis.geos import Point
 from slugify import slugify
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
+from django.utils.translation import activate, deactivate_all
+from listings.utils import translate, languages
 
 validate_url = URLValidator()
 
@@ -93,12 +95,15 @@ class Command(BaseCommand):
             return strip_tags(re.sub(r'^\s+|\s+$|\s+(?=\s)', '', str))
         return str
 
-    def fetch_geo_data(self, lng, lat):
+    def fetch_geo_data(self, lng, lat, lang):
         response = requests.get(
-            f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language=uk')
+            f'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&key={GOOGLE_API_KEY}&language={lang}')
         if response.status_code != 200:
             return False
         response_json = json.loads(response.text)
+        return self.parse_geo_data(response_json)
+    
+    def parse_geo_data(self, response_json):
 
         # Extract country
         country = next(
@@ -157,16 +162,33 @@ class Command(BaseCommand):
         if not user:
             return False
 
-        manager, _ = Manager.objects.get_or_create(
-            full_name=user.get('name', ''),
-            email=user.get('email', '')
-        )
+        email = user.get('email', None)
+        name = user.get('name', None)
+        if not email:
+            return False
+
+        try:
+            manager = Manager.objects.get(email=email)
+        except Manager.DoesNotExist:
+            manager = Manager()
+            manager.email = email
+            manager.set_current_language('uk')
+            manager.full_name = translate(text=name, to_lang=languages['uk'])
+            manager.set_current_language('en')
+            manager.full_name = translate(text=name, to_lang=languages['en'])
+            manager.save()
+
+        if not manager:
+            return False
+        
+        
         phones = user.get('phones', [])
         for phone in phones:
             phone_item, _ = Phone.objects.get_or_create(
                 manager=manager,
                 phone=phone
             )
+        
         # deleting phones that missed in CRM
         for phone in manager.phones.all():
             if phone.phone not in phones:
@@ -220,12 +242,14 @@ class Command(BaseCommand):
             street = None
             # Updating address
             if listing.street is None or need_update_address:
-                address_dict = self.fetch_geo_data(float(data['location']['map_lng']),
-                                                   float(data['location']['map_lat']))
+                address_dict = {
+                    'uk': self.fetch_geo_data(lng, lat, lang='uk'),
+                    'en': self.fetch_geo_data(lng, lat, lang='en')
+                    }
 
-                if address_dict:
+                if address_dict['uk'] and address_dict['en']:
                     street = self.create_listing_address(address_dict)
-                    listing.street_number = address_dict['street']['num']
+                    listing.street_number = address_dict['uk']['street']['num']
             if street:
                 listing.street = street
 
@@ -254,11 +278,27 @@ class Command(BaseCommand):
             # Create Kits (Attributes)
             for attribute_data in data['properties']:
                 if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
-                    attribute, _ = Attribute.objects.get_or_create(slug=attribute_data['id'], defaults={
-                        'title': attribute_data['label'],
-                    })
-                    kit, created = Kit.objects.get_or_create(attribute=attribute, value=attribute_data['value'])
-                    if created:
+                    # get or create attribute
+                    try:
+                        attribute = Attribute.objects.get(slug=attribute_data['id'])
+                    except Attribute.DoesNotExist:
+                        attribute = Attribute()
+                        attribute.slug = attribute_data['id']
+                        attribute.set_current_language('uk')
+                        attribute.title = translate(attribute_data['label'], to_lang=languages['uk'])
+                        attribute.set_current_language('en')
+                        attribute.title = translate(attribute_data['label'], to_lang=languages['en'])
+                        attribute.save()
+                    
+                    try:
+                        kit = Kit.objects.get(attribute=attribute, untranslated_value=attribute_data['value'])
+                    except Kit.DoesNotExist:
+                        kit = Kit()
+                        kit.set_current_language('uk')
+                        kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
+                        kit.set_current_language('en')
+                        kit.value = translate(attribute_data['value'], to_lang=languages['en'])
+                        kit.attribute = attribute
                         kit.save()
                     kit.listing.add(listing)
                 elif attribute_data['id'] == 'property_71':
@@ -276,19 +316,55 @@ class Command(BaseCommand):
             Listing.objects.filter(id__in=missing_ids).update(status='archive')
 
     def create_listing_address(self, address_dict):
-        country, _ = Country.objects.get_or_create(
-            title=address_dict['country']['title']
-        )
-
-        city, _ = City.objects.get_or_create(
-            country=country,
-            title=address_dict['city']['title']
-        )
-
-        street, _ = Street.objects.update_or_create(
-            city=city,
-            title=address_dict['street']['title']
-        )
+        try: 
+            country = Country.objects.get(
+                translations__language_code='uk',
+                translations__title=address_dict['uk']['country']['title']
+                )
+        except Country.DoesNotExist:
+            country = Country()
+            country.set_current_language('uk')
+            country.title = address_dict['uk']['country']['title']
+            country.set_current_language('en')
+            country.title = address_dict['en']['country']['title']
+            country.save()
+        
+        if not country:
+            return None
+        
+        try: 
+            city = City.objects.get(
+                translations__language_code='uk',
+                translations__title=address_dict['uk']['city']['title']
+                )
+        except City.DoesNotExist:
+            city = City()
+            city.set_current_language('uk')
+            city.title = address_dict['uk']['city']['title']
+            city.set_current_language('en')
+            city.title = address_dict['en']['city']['title']
+            city.country = country
+            city.save()
+        
+        if not city:
+            return None
+        
+        try: 
+            street = Street.objects.get(
+                translations__language_code='uk',
+                translations__title=address_dict['uk']['street']['title']
+                )
+        except Street.DoesNotExist:
+            street = Street()
+            street.set_current_language('uk')
+            street.title = address_dict['uk']['street']['title']
+            street.set_current_language('en')
+            street.title = address_dict['en']['street']['title']
+            street.city = city
+            street.save()
+        
+        if not city:
+            return None
 
         return street
 

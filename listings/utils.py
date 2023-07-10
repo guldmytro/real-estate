@@ -124,8 +124,8 @@ def get_similar_listings(listing):
 
         similar_listings = similar_listings.filter(
             kits__attribute__slug='property_23',
-            kits__value__gte=str(min_year_built),
-            kits__value__lte=str(max_year_built),
+            kits__translations__value__gte=str(min_year_built),
+            kits__translations__value__lte=str(max_year_built),
         )
     except Kit.DoesNotExist:
         pass
@@ -166,9 +166,10 @@ def get_listings_map_data(listings):
 
 
 def translate(text, from_lang=None, to_lang=None):
+    print(f'translating {text}')
     api_key = config.translation_api_key
-    if not api_key:
-        return None
+    if not api_key and not text:
+        return text
     url = 'https://api-b2b.backenster.com/b1/api/v3/translate'
     payload = {
         "platform": "api",
@@ -189,4 +190,5 @@ def translate(text, from_lang=None, to_lang=None):
         return translation.get('result')
     except requests.exceptions.RequestException as e:
         print(f"Translation error: {e}")
-        return None
+        print(f'Trying to translate {text}')
+        return text

@@ -47,3 +47,8 @@ def pluralize_uk(value, forms):
     else:
         return f'{value} {forms[2]}'
     
+
+@register.simple_tag
+def break_loop():
+    raise StopIteration
+    

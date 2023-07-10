@@ -40,6 +40,7 @@
     {% endif %}
     <script>
         const csrfToken = "{{ csrf_token }}";
+        const locale = "{{ request.LANGUAGE_CODE|default:'uk' }}";
     </script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script src="{% static 'js/predictions.js' %}" type="module"></script>

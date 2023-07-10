@@ -1,6 +1,7 @@
 from .models import Listing, Image, Country, City, Street, Kit, Attribute, RealtyType
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
+from parler.admin import TranslatableAdmin
 
 
 class ImageInline(admin.StackedInline):
@@ -14,7 +15,7 @@ class RealtyTypeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(TranslatableAdmin):
     list_display = ('title',)
 
 
@@ -47,12 +48,12 @@ class KitAdmin(admin.ModelAdmin):
     exclude = ['listing']
 
 @admin.register(City)
-class CityAdmin(LeafletGeoAdmin):
+class CityAdmin(TranslatableAdmin):
     list_display = ('title',)
 
 
 @admin.register(Street)
-class StreetAdmin(admin.ModelAdmin):
+class StreetAdmin(TranslatableAdmin):
     list_display = ('title',)
 
 

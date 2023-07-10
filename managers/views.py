@@ -67,7 +67,7 @@ def managers_list(request):
     if search_form.is_valid():
         cd = search_form.cleaned_data
         managers_list = managers_list.annotate(
-        similarity=TrigramSimilarity('full_name', cd['full_name']))\
+        similarity=TrigramSimilarity('translations__full_name', cd['full_name']))\
             .filter(similarity__gt=0.15).order_by('-similarity')
     paginator = Paginator(managers_list, 8)
     page_number = request.GET.get('page', 1)

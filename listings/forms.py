@@ -148,7 +148,7 @@ class SearchForm(forms.Form):
         label=_('Repair'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['repair'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0).order_by('value'),
+            .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Repair:')})
@@ -158,7 +158,7 @@ class SearchForm(forms.Form):
         label=_('Layout'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['planning'])
         .annotate(listing_count=Count('listing'))
-        .filter(listing_count__gt=0).order_by('value'),
+        .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Layout:')})
@@ -168,7 +168,7 @@ class SearchForm(forms.Form):
         label=_('Housing class'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['listing_class'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0).order_by('value'),
+            .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Housing class:')})
@@ -178,7 +178,7 @@ class SearchForm(forms.Form):
         label=_('Roof of the house'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['floor'])
         .annotate(listing_count=Count('listing'))
-        .filter(listing_count__gt=0).order_by('value'),
+        .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Roof of the house:')})
@@ -188,7 +188,7 @@ class SearchForm(forms.Form):
         label=_('Windows come out'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['windows'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0).order_by('value'),
+            .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Windows come out:')})
@@ -199,7 +199,7 @@ class SearchForm(forms.Form):
         label=_('Entrance'),
         queryset=Kit.objects.filter(attribute__slug=FILTER_PROPS['enter'])
             .annotate(listing_count=Count('listing'))
-            .filter(listing_count__gt=0).order_by('value'),
+            .filter(listing_count__gt=0).order_by('translations__value'),
         empty_label=_('Select'),
         required=False,
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Entrance:')})
