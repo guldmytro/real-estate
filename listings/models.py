@@ -13,7 +13,7 @@ class ActiveManager(models.Manager):
         return super().get_queryset().filter(status='active')
 
 
-class Listing(models.Model):
+class Listing(TranslatableModel):
     STATUS_CHOICES = [
         ('active', _('Active')),
         ('archive', _('Archive')),
@@ -23,9 +23,11 @@ class Listing(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
 
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE, verbose_name=_('Manager'), blank=True, null=True)
-
-    title = models.CharField(max_length=255, verbose_name=_('Title'), default='')
-    description = models.TextField(verbose_name=_('Description'), blank=True, null=True)
+    
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('Title'), default=''),
+        description=models.TextField(verbose_name=_('Description'), blank=True, null=True)
+    )
 
     is_new_building = models.BooleanField(verbose_name=_('Is new building'), default=False)
 
@@ -59,9 +61,6 @@ class Listing(models.Model):
                              on_delete=models.CASCADE)
 
     video_url = models.URLField(verbose_name=_('Video'), blank=True, null=True)
-
-    objects = models.Manager()
-    active = ActiveManager()
 
     class Meta:
         ordering = ('-created',)
@@ -136,16 +135,32 @@ class TermFields(models.Model):
         ordering = ['slug']
 
 
-class Category(TermFields):
+class Category(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('Title')),
+        menu_label=models.CharField(max_length=300, verbose_name=_('Menu label'), blank=True, null=True)
+    )
+
+    def __str__(self) -> str:
+        return self.title
+
     class Meta:
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
 
 
-class RealtyType(TermFields):
+
+class RealtyType(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255, verbose_name=_('Title')),
+        menu_label=models.CharField(max_length=300, verbose_name=_('Menu label'), blank=True, null=True)
+    )
 
     def get_absolute_url(self):
         return f"{reverse('listings:list')}?realty_type={self.id}"
+    
+    def __str__(self) -> str:
+        return self.title
 
     class Meta:
         verbose_name = _('Realty Type')

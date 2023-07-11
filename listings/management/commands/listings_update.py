@@ -210,15 +210,19 @@ class Command(BaseCommand):
     def update_models(self, items):
         for data in items:
             # Create or update Category and RealtyType
-            category = self.get_category(data.get('realty_type', False))
+            category = self.get_category(data.get('category', False))
             realty_type = self.get_realty_type(data.get('realty_type', False))
             deal = self.get_deal(data.get('deal', False))
 
             # Create Listing object
             listing, _ = Listing.objects.get_or_create(id=int(data['id']))
             listing.status = 'active'
+            listing.set_current_language('uk')
             listing.title = data['title']
             listing.description = data.get('description', '')
+            listing.set_current_language('en')
+            listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
+            listing.description = translate(data.get('description', ''), to_lang=['en'])
             listing.is_new_building = bool(int(data.get('is_new_building', '0')))
             listing.area_total = int(data.get('area_total', '0'))
             listing.area_living = int(data.get('area_living', '0'))
@@ -370,18 +374,38 @@ class Command(BaseCommand):
         return street
 
     def get_category(self, category):
-        if category:
-            category, _ = Category.objects.get_or_create(slug=slugify(category, allow_unicode=False),
-                                                         defaults={'title': category})
-            return category
-        return None
+        if not category:
+            return None
+        
+        try:
+            term = Category.objects.get(
+                translations__title=category, 
+                translations__language_code='uk')
+        except Category.DoesNotExist:
+            term = Category()
+            term.set_current_language('uk')
+            term.title = category
+            term.set_current_language('en')
+            term.title = translate(category, to_lang=languages['en'])
+            term.save()
+        return term
 
     def get_realty_type(self, realty):
-        if realty:
-            realty_type, _ = RealtyType.objects.get_or_create(slug=slugify(realty, allow_unicode=False),
-                                                              defaults={'title': realty})
-            return realty_type
-        return None
+        if not realty:
+            return None
+        
+        try:
+            term = RealtyType.objects.get(
+                translations__title=realty, 
+                translations__language_code='uk')
+        except RealtyType.DoesNotExist:
+            term = RealtyType()
+            term.set_current_language('uk')
+            term.title = realty
+            term.set_current_language('en')
+            term.title = translate(realty, to_lang=languages['en'])
+            term.save()
+        return term
 
     def get_deal(self, deal):
         if deal:

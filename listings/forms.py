@@ -58,7 +58,7 @@ class SearchForm(forms.Form):
     realty_type = forms.ModelChoiceField(
         label=_("Realty type"),
         queryset=RealtyType.objects.annotate(listing_count=Count('listings')).filter(listing_count__gt=0)
-        .order_by('title'),
+        .order_by(),
         empty_label=_('Select a type'),
         required=False,
         widget=forms.Select(attrs={

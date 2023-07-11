@@ -1,11 +1,15 @@
-from .models import Listing, Kit, City, Street
+from .models import Listing, Kit, City, Street, Country, RealtyType, Category
+from managers.models import Manager
 from django.template.loader import render_to_string
 from django.db.models import Count
-import requests
+import requests, uuid
 from props.models import SiteConfiguration
 
 
-languages = {'en': 'en_US', 'uk': 'uk_UA'}
+languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
+
+languages = {'en': 'en', 'uk': 'uk'}
+
 try:
     config = SiteConfiguration.objects.get()
 except:
@@ -109,7 +113,7 @@ def get_similar_listings(listing):
     city = listing.street.city
     room_count = listing.room_count
 
-    similar_listings = Listing.active.filter(
+    similar_listings = Listing.objects.filter(
         street__city=city,
         room_count=room_count,
     ).exclude(id=listing.id)
@@ -165,7 +169,7 @@ def get_listings_map_data(listings):
     return coordinates
 
 
-def translate(text, from_lang=None, to_lang=None):
+def translate_old(text, from_lang=None, to_lang=None):
     print(f'translating {text}')
     api_key = config.translation_api_key
     if not api_key and not text:
@@ -173,6 +177,7 @@ def translate(text, from_lang=None, to_lang=None):
     url = 'https://api-b2b.backenster.com/b1/api/v3/translate'
     payload = {
         "platform": "api",
+        "from": from_lang,
         "to": to_lang,
         "data": text
     }
@@ -185,10 +190,62 @@ def translate(text, from_lang=None, to_lang=None):
     }
     try:
         response = requests.post(url, json=payload, headers=headers)
+        print(response.json())
         response.raise_for_status()
         translation = response.json()
+        print('-----------------')
+        print(translation)
         return translation.get('result')
     except requests.exceptions.RequestException as e:
         print(f"Translation error: {e}")
         print(f'Trying to translate {text}')
         return text
+    
+
+def translate(text, from_lang=None, to_lang=None):
+    if not text:
+        return text
+    key = '73569957c2394652a0f23afffd218e6c'
+    endpoint = "https://api.cognitive.microsofttranslator.com"
+
+    location = 'westeurope'
+    
+    path = '/translate'
+    constructed_url = endpoint + path
+
+    params = {
+        'api-version': '3.0',
+        'to': [to_lang]
+    }
+
+    headers = {
+        'Ocp-Apim-Subscription-Key': key,
+        'Ocp-Apim-Subscription-Region': location,
+        'Content-type': 'application/json',
+        'X-ClientTraceId': str(uuid.uuid4())
+    }
+
+    body = [{'text': text}]
+
+    try:
+        request = requests.post(constructed_url, params=params, headers=headers, json=body)
+        request.raise_for_status()
+        response = request.json()[0]
+        if not 'translations' in response:
+            return text
+        try:
+            return response['translations'][0].get('text', text)
+        except:
+            return text
+    except requests.exceptions.RequestException as e:
+        print(f"Translation error with translating phrase {text}: {e}")
+        return text
+
+
+def clear_database():
+    Listing.objects.all().delete()
+    Country.objects.all().delete()
+    RealtyType.objects.all().delete()
+    Category.objects.all().delete()
+    Manager.objects.all().delete()
+

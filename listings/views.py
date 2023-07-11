@@ -19,7 +19,7 @@ from django.utils.translation import gettext_lazy as _
 def listings_list(request):
     GET = modify_get(request.GET)
     search_form = SearchForm(GET)
-    listings_list = Listing.active.prefetch_related(
+    listings_list = Listing.objects.prefetch_related(
         Prefetch('images'),
     ).all()
     crumbs = []
@@ -106,13 +106,13 @@ def listings_detail(request, id):
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
 
-    listings_the_same_street_num = Listing.active.prefetch_related(
+    listings_the_same_street_num = Listing.objects.prefetch_related(
         Prefetch('images')
     ).select_related('manager').filter(
         street_number=listing.street_number, street=listing.street
     ).exclude(id=listing.id)[:10]
 
-    listings_within_distance = Listing.active.prefetch_related(
+    listings_within_distance = Listing.objects.prefetch_related(
         Prefetch('images')
     ).select_related('manager').filter(
         coordinates__distance_lte=(listing.coordinates, Distance(m=5000))
@@ -152,7 +152,7 @@ def listings_detail(request, id):
 
 def get_listings_count(request):
     search_form = SearchForm(request.GET)
-    listings_list = Listing.active.prefetch_related('images').all()
+    listings_list = Listing.objects.prefetch_related('images').all()
     if search_form.is_valid():
         cleaned_data = search_form.cleaned_data
         listings_list = filter_listings(cleaned_data, listings_list)
@@ -189,7 +189,7 @@ def get_listings_coordinates(request):
         city = cd['city']
         street = cd['street']
         if city or street:
-            listings_list = Listing.active.prefetch_related('images').all()
+            listings_list = Listing.objects.prefetch_related('images').all()
             listings_list = filter_listings(cd, listings_list)
             
             # Parsing listing coordinates for GoogleMaps
