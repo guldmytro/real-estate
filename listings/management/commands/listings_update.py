@@ -294,6 +294,7 @@ class Command(BaseCommand):
                         kit = Kit.objects.get(attribute=attribute, untranslated_value=attribute_data['value'])
                     except Kit.DoesNotExist:
                         kit = Kit()
+                        kit.untranslated_value = attribute_data['value']
                         kit.set_current_language('uk')
                         kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
                         kit.set_current_language('en')
