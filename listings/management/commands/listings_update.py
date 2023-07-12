@@ -14,6 +14,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from listings.utils import translate, languages
 from listings.tasks import add_listing_image, delete_listing_image
+from django.core.exceptions import ValidationError
 
 validate_url = URLValidator()
 
@@ -273,8 +274,12 @@ class Command(BaseCommand):
         manager = self.get_manager(data.get('user', False))
         if manager:
             listing.manager = manager
-
-        listing.save()
+        try:
+            listing.full_clean()
+            listing.save()
+        except ValidationError as e:
+            print(f'Error while trying to save {int(data["id"])}. Error: {e}')
+            return False
 
         
         # Create Images

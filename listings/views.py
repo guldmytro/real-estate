@@ -31,7 +31,7 @@ def listings_list(request):
         city = cleaned_data.get('city')
         street = cleaned_data.get('street')
         address = cleaned_data.get('address')
-
+        crumb_title = False
         if city:
             try:
                 city = City.objects.get(id=city)
@@ -55,10 +55,11 @@ def listings_list(request):
                 crumb_title = city.title
             except:
                 pass
-
-        crumbs.append(
-            (_('Listings') + f' {crumb_title}', reverse_lazy('listings:list'))
-        )
+    
+        if crumb_title:
+            crumbs.append(
+                (_('Listings') + f' {crumb_title}', reverse_lazy('listings:list'))
+            )
             
             
         cleaned_data['city'] = city
