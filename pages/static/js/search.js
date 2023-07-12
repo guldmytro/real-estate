@@ -192,9 +192,12 @@ class SearchForm {
 
     updateActiveFilters() { 
         this.activeFiltersContainer.innerHTML = '';
-        const filtersCount = Object.keys(this.activeFilters).length;
+        let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
-            if (key === 'deal') continue;
+            if (key === 'deal') {
+                filtersCount--;
+                continue;
+            }
             const filterTag = `
             <div class="active-filters__item">
                 <span class="active-filters__label">${filter.label}</span>
