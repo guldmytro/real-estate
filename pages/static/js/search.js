@@ -285,14 +285,14 @@ class SearchForm {
             if (this.isFormDisabled()) {
                 button.setAttribute('disabled', true);
                 countTag.innerText = '';
-                textTag.innerText = 'Виберіть адресу';
+                textTag.innerText = localization[locale].searchBtn.enter;
             } else if (!this.listingsCount) {
                 button.setAttribute('disabled', true);
                 countTag.innerText = '';
-                textTag.innerText = 'Не знайдено оголошень';
+                textTag.innerText = localization[locale].searchBtn.notFound;
             } else {
                 button.removeAttribute('disabled');
-                textTag.innerText = 'Показати';
+                textTag.innerText = localization[locale].searchBtn.found;
                 countTag.innerText = `(${this.listingsCount})`;
             }
         });

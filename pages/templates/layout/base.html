@@ -41,6 +41,36 @@
     <script>
         const csrfToken = "{{ csrf_token }}";
         const locale = "{{ request.LANGUAGE_CODE|default:'uk' }}";
+        const localization = {
+            'en': {
+                'searchBtn': {
+                    'enter': 'Select an address',
+                    'found': 'Show',
+                    'notFound': 'No listings found'
+                },
+                'moreBtn': 'More',
+                'clearBtn': 'Clear all',
+                'sugesstions': {
+                    'noAddressFound': 'No address found',
+                    'city': 'City',
+                    'address': 'Address'
+                }
+            },
+            'uk': {
+                'searchBtn': {
+                    'enter': 'Виберіть адресу',
+                    'found': 'Показати',
+                    'notFound': 'Не знайдено оголошень'
+                },
+                'moreBtn': 'Ще',
+                'clearBtn': 'Очистити все',
+                'sugesstions': {
+                    'noAddressFound': 'Не знайдено адрес',
+                    'city': 'Місто',
+                    'address': 'Адреса'
+                }
+            }
+        }
     </script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script src="{% static 'js/predictions.js' %}" type="module"></script>

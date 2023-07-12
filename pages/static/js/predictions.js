@@ -78,7 +78,7 @@ export class Prediction {
         if (!this.predictions?.cities.length && !this.predictions?.streets.length) {
             const noResultsMessage = document.createElement('p');
             noResultsMessage.classList.add('no-results-message');
-            noResultsMessage.innerText = 'Не знайдено адрес...';
+            noResultsMessage.innerText = localization[locale].sugesstions.noAddressFound;
             this.suggestionWrapper.appendChild(noResultsMessage);
         }
     
@@ -90,7 +90,7 @@ export class Prediction {
     
             const addressTitle = document.createElement('p');
             addressTitle.classList.add('suggestion-category__title');
-            addressTitle.innerHTML = '<img src="/static/img/icon-marker.png" alt="маркер"><span>Адреса</span>';
+            addressTitle.innerHTML = `<img src="/static/img/icon-marker.png" alt="маркер"><span>${localization[locale].sugesstions.address}</span>`;
     
             const addressGroup = document.createElement('ul');
             addressGroup.classList.add('suggestion-category__group');
@@ -118,7 +118,7 @@ export class Prediction {
     
             const cityTitle = document.createElement('p');
             cityTitle.classList.add('suggestion-category__title');
-            cityTitle.innerHTML = '<img src="/static/img/icon-city.svg" alt="icon of city"><span>Місто</span>';
+            cityTitle.innerHTML = `<img src="/static/img/icon-city.svg" alt="icon of city"><span>${localization[locale].sugesstions.city}</span>`;
     
             const cityGroup = document.createElement('ul');
             cityGroup.classList.add('suggestion-category__group');
