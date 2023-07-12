@@ -10,8 +10,13 @@ languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
 
 languages = {'en': 'en', 'uk': 'uk'}
 
+
+translation_key = None
+translation_location = None
 try:
     config = SiteConfiguration.objects.get()
+    translation_key = config.azure_secret_key
+    translation_location = config.azure_location
 except:
     config = False
 
@@ -167,48 +172,13 @@ def get_listings_map_data(listings):
             })
         } for listing in listings]
     return coordinates
-
-
-def translate_old(text, from_lang=None, to_lang=None):
-    print(f'translating {text}')
-    api_key = config.translation_api_key
-    if not api_key and not text:
-        return text
-    url = 'https://api-b2b.backenster.com/b1/api/v3/translate'
-    payload = {
-        "platform": "api",
-        "from": from_lang,
-        "to": to_lang,
-        "data": text
-    }
-    if from_lang:
-        payload['from'] = from_lang
-    headers = {
-        "accept": "application/json",
-        "content-type": "application/json",
-        "Authorization": api_key
-    }
-    try:
-        response = requests.post(url, json=payload, headers=headers)
-        print(response.json())
-        response.raise_for_status()
-        translation = response.json()
-        print('-----------------')
-        print(translation)
-        return translation.get('result')
-    except requests.exceptions.RequestException as e:
-        print(f"Translation error: {e}")
-        print(f'Trying to translate {text}')
-        return text
     
 
 def translate(text, from_lang=None, to_lang=None):
     if not text:
         return text
-    key = '73569957c2394652a0f23afffd218e6c'
     endpoint = "https://api.cognitive.microsofttranslator.com"
 
-    location = 'westeurope'
     
     path = '/translate'
     constructed_url = endpoint + path
@@ -219,8 +189,8 @@ def translate(text, from_lang=None, to_lang=None):
     }
 
     headers = {
-        'Ocp-Apim-Subscription-Key': key,
-        'Ocp-Apim-Subscription-Region': location,
+        'Ocp-Apim-Subscription-Key': translation_key,
+        'Ocp-Apim-Subscription-Region': translation_location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }

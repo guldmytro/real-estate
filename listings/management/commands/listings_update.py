@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from props.models import SiteConfiguration
+from props.models import SiteConfiguration, Feed
 import requests
 import xml.etree.ElementTree as ET
 import json
@@ -12,14 +12,13 @@ from django.contrib.gis.geos import Point
 from slugify import slugify
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from django.utils.translation import activate, deactivate_all
 from listings.utils import translate, languages
+from listings.tasks import add_listing_image, delete_listing_image
 
 validate_url = URLValidator()
 
 
 config = SiteConfiguration.objects.get()
-CRM_API = config.crm_api
 GOOGLE_API_KEY = config.google_api_key
 
 
@@ -27,22 +26,30 @@ class Command(BaseCommand):
     help = 'Update listings from Feed API'
 
     def handle(self, *args, **options):
-        response = requests.get(CRM_API)
+        feeds = Feed.objects.all()
+        if feeds.count():
+            self.loop_feeds(feeds)
+    
+    def loop_feeds(self, feeds):
+        for feed in feeds:
+            url = feed.feed_url
+            response = requests.get(url)
 
-        # Bad request
-        if response.status_code != 200:
-            return False
+            # Bad request
+            if response.status_code != 200:
+                continue
 
-        # Everything is ok, parsing
-        xml_data = response.text
-        root = ET.fromstring(xml_data)
+            # Everything is ok, parsing
+            xml_data = response.text
+            root = ET.fromstring(xml_data)
 
-        items = []
-        for item in root:
-            items.append(self.parse_item(item))
-        with open('api-result.json', 'w', encoding='utf-8') as json_file:
-            json.dump(items, json_file, indent=4, ensure_ascii=False)
-        self.update_models(items)
+            items = []
+            for item in root:
+                items.append(self.parse_item(item))
+            with open('api-result.json', 'w', encoding='utf-8') as json_file:
+                json.dump(items, json_file, indent=4, ensure_ascii=False)
+
+            self.update_models(items)
 
     def handle_temp(self, *args, **options):
         with open('result.json', encoding='utf-8') as json_file:
@@ -209,117 +216,113 @@ class Command(BaseCommand):
 
     def update_models(self, items):
         for data in items:
-            # Create or update Category and RealtyType
-            category = self.get_category(data.get('category', False))
-            realty_type = self.get_realty_type(data.get('realty_type', False))
-            deal = self.get_deal(data.get('deal', False))
+            try: 
+                self.add_listing(data)
+            except: 
+                pass
 
-            # Create Listing object
-            listing, _ = Listing.objects.get_or_create(id=int(data['id']))
-            listing.status = 'active'
-            listing.set_current_language('uk')
-            listing.title = data['title']
-            listing.description = data.get('description', '')
-            listing.set_current_language('en')
-            listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
-            listing.description = translate(data.get('description', ''), to_lang=['en'])
-            listing.is_new_building = bool(int(data.get('is_new_building', '0')))
-            listing.area_total = int(data.get('area_total', '0'))
-            listing.area_living = int(data.get('area_living', '0'))
-            listing.area_kitchen = int(data.get('area_kitchen', '0'))
-            listing.room_count = int(data.get('room_count', '0'))
-            listing.floor = int(data.get('floor', '0'))
-            listing.total_floors = int(data.get('total_floors', '0'))
-            listing.price = int(data.get('price', '0'))
-            listing.category = category
-            listing.realty_type = realty_type
-            listing.deal = deal
+    def add_listing(self, data):
+        # Create or update Category and RealtyType
+        category = self.get_category(data.get('category', False))
+        realty_type = self.get_realty_type(data.get('realty_type', False))
+        deal = self.get_deal(data.get('deal', False))
 
-            lng = float(data['location']['map_lng'])
-            lat = float(data['location']['map_lat'])
+        # Create Listing object
+        listing, _ = Listing.objects.get_or_create(id=int(data['id']))
+        listing.status = 'active'
+        listing.set_current_language('uk')
+        listing.title = data['title']
+        listing.description = data.get('description', '')
+        listing.set_current_language('en')
+        listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
+        listing.description = translate(data.get('description', ''), to_lang=['en'])
+        listing.is_new_building = bool(int(data.get('is_new_building', '0')))
+        listing.area_total = int(data.get('area_total', '0'))
+        listing.area_living = int(data.get('area_living', '0'))
+        listing.area_kitchen = int(data.get('area_kitchen', '0'))
+        listing.room_count = int(data.get('room_count', '0'))
+        listing.floor = int(data.get('floor', '0'))
+        listing.total_floors = int(data.get('total_floors', '0'))
+        listing.price = int(data.get('price', '0'))
+        listing.category = category
+        listing.realty_type = realty_type
+        listing.deal = deal
 
-            need_update_address = str(lng) != str(listing.get_coordinates_lng()) or \
-                                  str(lat) != str(listing.get_coordinates_lat())
+        lng = float(data['location']['map_lng'])
+        lat = float(data['location']['map_lat'])
 
-            listing.coordinates = Point(lng, lat)
+        need_update_address = str(lng) != str(listing.get_coordinates_lng()) or \
+                                str(lat) != str(listing.get_coordinates_lat())
 
-            street = None
-            # Updating address
-            if listing.street is None or need_update_address:
-                address_dict = {
-                    'uk': self.fetch_geo_data(lng, lat, lang='uk'),
-                    'en': self.fetch_geo_data(lng, lat, lang='en')
-                    }
+        listing.coordinates = Point(lng, lat)
 
-                if address_dict['uk'] and address_dict['en']:
-                    street = self.create_listing_address(address_dict)
-                    listing.street_number = address_dict['uk']['street']['num']
-            if street:
-                listing.street = street
+        street = None
+        # Updating address
+        if listing.street is None or need_update_address:
+            address_dict = {
+                'uk': self.fetch_geo_data(lng, lat, lang='uk'),
+                'en': self.fetch_geo_data(lng, lat, lang='en')
+                }
 
-            manager = self.get_manager(data.get('user', False))
-            if manager:
-                listing.manager = manager
+            if address_dict['uk'] and address_dict['en']:
+                street = self.create_listing_address(address_dict)
+                listing.street_number = address_dict['uk']['street']['num']
+        if street:
+            listing.street = street
 
-            listing.save()
+        manager = self.get_manager(data.get('user', False))
+        if manager:
+            listing.manager = manager
 
-            # Create Images
-            for image_url in data['images']:
-                image = Image(image_url=image_url, listing=listing)
+        listing.save()
+
+        
+        # Create Images
+        for image_url in data['images']:
+            add_listing_image.delay(listing.id, image_url)
+
+        # Update images
+        for image in listing.images.all():
+            if image.image_url not in data['images']:
+                delete_listing_image.delay(image.id)
+
+        # Clear all kits
+        listing.kits.clear()
+        # Create Kits (Attributes)
+        for attribute_data in data['properties']:
+            if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
+                # get or create attribute
                 try:
-                    image.full_clean()
-                    image.save()
-                except:
+                    attribute = Attribute.objects.get(slug=attribute_data['id'])
+                except Attribute.DoesNotExist:
+                    attribute = Attribute()
+                    attribute.slug = attribute_data['id']
+                    attribute.set_current_language('uk')
+                    attribute.title = translate(attribute_data['label'], to_lang=languages['uk'])
+                    attribute.set_current_language('en')
+                    attribute.title = translate(attribute_data['label'], to_lang=languages['en'])
+                    attribute.save()
+                
+                try:
+                    kit = Kit.objects.get(attribute=attribute, untranslated_value=attribute_data['value'])
+                except Kit.DoesNotExist:
+                    kit = Kit()
+                    kit.untranslated_value = attribute_data['value']
+                    kit.set_current_language('uk')
+                    kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
+                    kit.set_current_language('en')
+                    kit.value = translate(attribute_data['value'], to_lang=languages['en'])
+                    kit.attribute = attribute
+                    kit.save()
+                kit.listing.add(listing)
+            elif attribute_data['id'] == 'property_71':
+                try:
+                    validate_url(attribute_data['value'])
+                    listing.video_url = attribute_data['value']
+                    listing.save()
+                except ValidationError:
                     pass
-
-            # Update images
-            for image in listing.images.all():
-                if image.image_url not in data['images']:
-                    image.delete()
-
-            # Clear all kits
-            listing.kits.clear()
-            # Create Kits (Attributes)
-            for attribute_data in data['properties']:
-                if attribute_data['id'] not in Attribute.BLACKLIST_ATTRIBUTES:
-                    # get or create attribute
-                    try:
-                        attribute = Attribute.objects.get(slug=attribute_data['id'])
-                    except Attribute.DoesNotExist:
-                        attribute = Attribute()
-                        attribute.slug = attribute_data['id']
-                        attribute.set_current_language('uk')
-                        attribute.title = translate(attribute_data['label'], to_lang=languages['uk'])
-                        attribute.set_current_language('en')
-                        attribute.title = translate(attribute_data['label'], to_lang=languages['en'])
-                        attribute.save()
-                    
-                    try:
-                        kit = Kit.objects.get(attribute=attribute, untranslated_value=attribute_data['value'])
-                    except Kit.DoesNotExist:
-                        kit = Kit()
-                        kit.untranslated_value = attribute_data['value']
-                        kit.set_current_language('uk')
-                        kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
-                        kit.set_current_language('en')
-                        kit.value = translate(attribute_data['value'], to_lang=languages['en'])
-                        kit.attribute = attribute
-                        kit.save()
-                    kit.listing.add(listing)
-                elif attribute_data['id'] == 'property_71':
-                    try:
-                        validate_url(attribute_data['value'])
-                        listing.video_url = attribute_data['value']
-                        listing.save()
-                    except ValidationError:
-                        pass
-
-            # Update listing status
-            listing_ids = Listing.objects.values_list('id', flat=True)
-            api_ids = {item['id'] for item in items}
-            missing_ids = listing_ids.exclude(id__in=api_ids)
-            Listing.objects.filter(id__in=missing_ids).update(status='archive')
-
+    
     def create_listing_address(self, address_dict):
         try: 
             country = Country.objects.get(
