@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load static %}
+{% load cache %}
 <li class="object-item"{% if next_page %} data-page="{{ next_page }}"{% endif %} data-id="{{ item.id }}">
     <div class="object-item-inner">
         <a href="{{ item.get_absolute_url }}" class="object-item__thumb">
@@ -13,11 +14,9 @@
             {% endif  %}
         </a>
         <div class="object-item__content">
-            {% for kit in item.kits.all %}
-                {% if kit.attribute.slug == 'property_18' %}
-                    <p class="object-item__fix">{{ kit.value|capfirst }}</p>
-                {% endif %}
-            {% endfor %}
+            {% if item.get_repair_value %}
+                <p class="object-item__fix">{{ item.get_repair_value|capfirst }}</p>
+            {% endif %}
             <div class="object-item__header">
                 <div class="object-item__price">
                     <strong>{{ item.formated_price }}$</strong>

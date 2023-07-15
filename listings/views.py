@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Listing, Attribute, City, Street, Kit
+from .models import Listing, City, Street, Kit
 from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
@@ -14,13 +14,17 @@ from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.core.cache import cache
+from urllib.parse import urlencode
 
 
 def listings_list(request):
     GET = modify_get(request.GET)
     search_form = SearchForm(GET)
+
     listings_list = Listing.objects.prefetch_related(
         Prefetch('images'),
+        Prefetch('kits__attribute'),
     ).all()
     crumbs = []
 
@@ -68,10 +72,8 @@ def listings_list(request):
     else:
         listings_list = Listing.objects.none()
     
-    # Parsing listing coordinates for GoogleMaps
-    coordinates = get_listings_map_data(listings_list)
-    
 
+    
     # Pagination
     paginator = Paginator(listings_list, 6)
     page_number = request.GET.get('page', 1)
@@ -79,6 +81,9 @@ def listings_list(request):
         listings = paginator.page(page_number)
     except EmptyPage:
         listings = paginator.page(paginator.num_pages)
+    
+    # Parsing listing coordinates for GoogleMaps
+    coordinates = get_listings_map_data(listings)
     
     context = {
         'listings': listings,
@@ -91,13 +96,22 @@ def listings_list(request):
 
 
 def listings_detail(request, id):
-    listing = get_object_or_404(
-        Listing.objects.prefetch_related(
-            Prefetch('images'),
-        ).select_related('manager').select_related('street'),
-        id=id,
-    )
-    kits = Kit.objects.filter(listing=listing).order_by()
+    lang = request.LANGUAGE_CODE
+    listing = cache.get(f'listing_{lang}_{id}')
+    if not listing:
+        listing = get_object_or_404(
+            Listing.objects.prefetch_related(
+                Prefetch('images'),
+            ).select_related('manager').select_related('street'),
+            id=id,
+        )
+        cache.set(f'listing_{lang}_{id}', listing)
+
+    kits = cache.get(f'listing_{lang}_{id}_kits')
+    if not kits:
+        kits = Kit.objects.select_related('attribute').filter(listing=listing).order_by()
+        cache.set(f'listing_{lang}_{id}_kits', kits)
+
     crumbs = []
 
     if listing.street:
@@ -107,23 +121,36 @@ def listings_detail(request, id):
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
 
-    listings_the_same_street_num = Listing.objects.prefetch_related(
-        Prefetch('images')
-    ).select_related('manager').filter(
-        street_number=listing.street_number, street=listing.street
-    ).exclude(id=listing.id)[:10]
+    listings_the_same_street_num = cache.get(f'listing_{lang}_{id}_related_street_num')
+    if not listings_the_same_street_num:
+        listings_the_same_street_num = Listing.objects.prefetch_related(
+            Prefetch('images')
+        ).select_related('manager').filter(
+            street_number=listing.street_number, street=listing.street
+        ).exclude(id=listing.id)[:10]
+        cache.set(f'listing_{lang}_{id}_related_street_num', listings_the_same_street_num)
 
-    listings_within_distance = Listing.objects.prefetch_related(
-        Prefetch('images')
-    ).select_related('manager').filter(
-        coordinates__distance_lte=(listing.coordinates, Distance(m=5000))
-    ).exclude(
-        street_number=listing.street_number, street=listing.street
-    )[:10]
+    listings_within_distance = cache.get(f'listing_{lang}_{id}_listings_within_distance')
+    if not listings_within_distance:
+        listings_within_distance = Listing.objects.prefetch_related(
+            Prefetch('images')
+        ).select_related('manager').filter(
+            coordinates__distance_lte=(listing.coordinates, Distance(m=5000))
+        ).exclude(
+            street_number=listing.street_number, street=listing.street
+        )[:10]
+        cache.set(f'listing_{lang}_{id}_listings_within_distance', listings_within_distance)
 
-    similar_listings = get_similar_listings(listing)
 
-    news = News.objects.all()[:8]
+    similar_listings = cache.get(f'listing_{lang}_{id}_similar_listings')
+    if not similar_listings:
+        similar_listings = get_similar_listings(listing)
+        cache.set(f'listing_{lang}_{id}_similar_listings', similar_listings)
+
+    news = cache.get(f'listing_{lang}_{id}_news')
+    if not news:
+        news = News.objects.all()[:8]
+        cache.set(f'listing_{lang}_{id}_news', news)
 
     crumbs.append(
         (listing.title, listing.get_absolute_url())

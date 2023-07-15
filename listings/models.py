@@ -114,7 +114,14 @@ class Listing(TranslatableModel):
         }
         query_string = "&".join([f"{key}={value}" for key, value in params.items()])
         return f"{base_url}?{query_string}"
-
+    
+    def get_repair_value(self):
+        try:
+            kit = Kit.objects.get(listing__id=self.pk, attribute__slug='property_18')
+            return kit.value
+        except Kit.DoesNotExist:
+            return False
+    
     def get_absolute_url(self):
         return reverse('listings:detail', kwargs={'id': self.pk})
 

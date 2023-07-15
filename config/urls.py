@@ -40,6 +40,7 @@ urlpatterns += i18n_patterns(
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('rosetta/', include('rosetta.urls')),
     path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),
     path('', include('pages.urls', namespace='pages')),
 )
 

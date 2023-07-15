@@ -8,7 +8,7 @@ import json
 
 def wishlist_archive(request):
     ids = list(filter(lambda id: id != '', request.COOKIES.get('wishlist', '').split(',')))
-    listings_list = Listing.active.prefetch_related('images').filter(id__in=ids)
+    listings_list = Listing.objects.prefetch_related('images').filter(id__in=ids)
     paginator = Paginator(listings_list, 8)
     page_number = request.GET.get('page', 1)
     try:
@@ -27,7 +27,7 @@ def wishlist_count(request):
         body = json.loads(request.body)
         wishlist = body.get('wishlist')
         ids = list(filter(lambda id: id != '', wishlist.split(',')))
-        cnt = Listing.active.filter(id__in=ids).count()
+        cnt = Listing.objects.filter(id__in=ids).count()
         if cnt > 9:
             cnt = '9+'
     except json.JSONDecodeError:

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'rosetta',
     'parler',
+    'debug_toolbar',
     # Local
     'profiles.apps.ProfilesConfig',
     'props.apps.PropsConfig',
@@ -68,6 +69,7 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 AUTH_USER_MODEL = 'profiles.AdvUser'
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -219,3 +221,14 @@ CKEDITOR_CONFIGS = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+        "LOCATION": "127.0.0.1:11211",
+    }
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
