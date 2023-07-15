@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 22:18+0300\n"
+"POT-Creation-Date: 2023-07-15 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,9 @@ msgid "Analytical reviews"
 msgstr ""
 
 #: analytics/models.py:10 discounts/models.py:11 documents/models.py:8
-#: listings/models.py:26 listings/models.py:123 listings/models.py:193
-#: news/models.py:10 vacantions/models.py:8 vacantions/models.py:26
+#: listings/models.py:28 listings/models.py:130 listings/models.py:147
+#: listings/models.py:162 listings/models.py:217 news/models.py:10
+#: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr ""
 
@@ -34,7 +35,7 @@ msgid "Text"
 msgstr ""
 
 #: analytics/models.py:13 discounts/models.py:15 documents/models.py:12
-#: listings/models.py:21 managers/models.py:77 news/models.py:13
+#: listings/models.py:22 managers/models.py:77 news/models.py:13
 #: vacantions/models.py:13
 msgid "Created"
 msgstr ""
@@ -48,11 +49,11 @@ msgstr ""
 msgid "Analytical review"
 msgstr ""
 
-#: config/settings.py:150
+#: config/settings.py:152
 msgid "English"
 msgstr ""
 
-#: config/settings.py:151 pages/templates/pages/course.html:66
+#: config/settings.py:153 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr ""
 
@@ -85,7 +86,7 @@ msgstr ""
 msgid "Documents"
 msgstr ""
 
-#: documents/models.py:11 listings/models.py:166
+#: documents/models.py:11 listings/models.py:189
 msgid "File"
 msgstr ""
 
@@ -217,8 +218,8 @@ msgid "By leaving feedback, you consent to the processing of personal data"
 msgstr ""
 
 #: listings/apps.py:8 listings/models.py:68
-#: listings/templates/listings/list.html:6 listings/views.py:58
-#: listings/views.py:102
+#: listings/templates/listings/list.html:6 listings/views.py:65
+#: listings/views.py:119
 msgid "Listings"
 msgstr ""
 
@@ -273,7 +274,7 @@ msgstr ""
 msgid "Price to:"
 msgstr ""
 
-#: listings/forms.py:59 listings/models.py:55 pages/forms.py:26
+#: listings/forms.py:59 listings/models.py:58 pages/forms.py:26
 msgid "Realty type"
 msgstr ""
 
@@ -366,156 +367,156 @@ msgstr ""
 msgid "Entrance:"
 msgstr ""
 
-#: listings/models.py:17
+#: listings/models.py:18
 msgid "Active"
 msgstr ""
 
-#: listings/models.py:18
+#: listings/models.py:19
 msgid "Archive"
 msgstr ""
 
-#: listings/models.py:20
+#: listings/models.py:21
 msgid "Status"
 msgstr ""
 
-#: listings/models.py:22
+#: listings/models.py:23
 msgid "Updated"
 msgstr ""
 
-#: listings/models.py:24 managers/models.py:28 managers/models.py:47
+#: listings/models.py:25 managers/models.py:28 managers/models.py:47
 #: managers/models.py:78 managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr ""
 
-#: listings/models.py:27 listings/templates/listings/item.html:14
+#: listings/models.py:29 listings/templates/listings/item.html:14
 #: listings/templates/listings/item.html:76 vacantions/models.py:10
 msgid "Description"
 msgstr ""
 
-#: listings/models.py:29
+#: listings/models.py:32
 msgid "Is new building"
 msgstr ""
 
-#: listings/models.py:32
+#: listings/models.py:35
 msgid "Total Area"
 msgstr ""
 
-#: listings/models.py:33
+#: listings/models.py:36
 msgid "Living Area"
 msgstr ""
 
-#: listings/models.py:34
+#: listings/models.py:37
 msgid "Kitchen Area"
 msgstr ""
 
-#: listings/models.py:37
+#: listings/models.py:40
 msgid "Room Count"
 msgstr ""
 
-#: listings/models.py:40 listings/templates/forms/search.html:92
+#: listings/models.py:43 listings/templates/forms/search.html:92
 #: listings/templates/listings/components/attributes.html:44
 msgid "Floor"
 msgstr ""
 
-#: listings/models.py:41
+#: listings/models.py:44
 msgid "Total Floors"
 msgstr ""
 
-#: listings/models.py:44 listings/templates/forms/search.html:61
+#: listings/models.py:47 listings/templates/forms/search.html:61
 #: listings/templates/listings/components/listing-map-info.html:17
 #: pages/templates/pages/course.html:56
 msgid "Price"
 msgstr ""
 
-#: listings/models.py:48 listings/models.py:255 listings/models.py:262
+#: listings/models.py:51 listings/models.py:279 listings/models.py:287
 msgid "Street"
 msgstr ""
 
-#: listings/models.py:50
+#: listings/models.py:53
 msgid "House Number"
 msgstr ""
 
-#: listings/models.py:54 listings/models.py:140
+#: listings/models.py:57 listings/models.py:155
 msgid "Category"
 msgstr ""
 
-#: listings/models.py:57 listings/models.py:160
+#: listings/models.py:60 listings/models.py:183
 msgid "Deal"
 msgstr ""
 
-#: listings/models.py:60 pages/models.py:142
+#: listings/models.py:63 pages/models.py:142
 msgid "Video"
 msgstr ""
 
-#: listings/models.py:67 listings/models.py:165 listings/models.py:205
+#: listings/models.py:67 listings/models.py:188 listings/models.py:230
 msgid "Listing"
 msgstr ""
 
-#: listings/models.py:124
+#: listings/models.py:131 listings/models.py:148 listings/models.py:163
 msgid "Menu label"
 msgstr ""
 
-#: listings/models.py:125 listings/models.py:194
+#: listings/models.py:132 listings/models.py:219
 msgid "Slug"
 msgstr ""
 
-#: listings/models.py:141
+#: listings/models.py:156
 msgid "Categories"
 msgstr ""
 
-#: listings/models.py:150
+#: listings/models.py:173
 msgid "Realty Type"
 msgstr ""
 
-#: listings/models.py:151
+#: listings/models.py:174
 msgid "Realty Types"
 msgstr ""
 
-#: listings/models.py:161
+#: listings/models.py:184
 msgid "Deals"
 msgstr ""
 
-#: listings/models.py:167 managers/models.py:17
+#: listings/models.py:190 managers/models.py:17
 msgid "Image url"
 msgstr ""
 
-#: listings/models.py:197 listings/models.py:207
+#: listings/models.py:222 listings/models.py:232
 msgid "Attribute"
 msgstr ""
 
-#: listings/models.py:198
+#: listings/models.py:223
 msgid "Attributes"
 msgstr ""
 
-#: listings/models.py:209
+#: listings/models.py:235
 msgid "Value"
 msgstr ""
 
-#: listings/models.py:219
+#: listings/models.py:241
 msgid "Kit"
 msgstr ""
 
-#: listings/models.py:220
+#: listings/models.py:242
 msgid "Kits"
 msgstr ""
 
-#: listings/models.py:227 listings/models.py:233 listings/models.py:239
+#: listings/models.py:250 listings/models.py:256 listings/models.py:264
 msgid "Country"
 msgstr ""
 
-#: listings/models.py:234
+#: listings/models.py:257
 msgid "Countries"
 msgstr ""
 
-#: listings/models.py:238 listings/models.py:248 listings/models.py:256
+#: listings/models.py:262 listings/models.py:273 listings/models.py:281
 msgid "City"
 msgstr ""
 
-#: listings/models.py:249
+#: listings/models.py:274
 msgid "Cities"
 msgstr ""
 
-#: listings/models.py:263
+#: listings/models.py:288
 msgid "Streets"
 msgstr ""
 
@@ -581,16 +582,16 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: listings/templates/listings/archive-item.html:7
+#: listings/templates/listings/archive-item.html:8
 msgid "Reviewed"
 msgstr ""
 
-#: listings/templates/listings/archive-item.html:24
+#: listings/templates/listings/archive-item.html:23
 #: listings/templates/listings/components/listing-map-info.html:22
 msgid "m²"
 msgstr ""
 
-#: listings/templates/listings/archive-item.html:33
+#: listings/templates/listings/archive-item.html:32
 #: managers/templates/managers/list.html:54
 msgid "Show phone"
 msgstr ""
@@ -836,7 +837,7 @@ msgid "About"
 msgstr ""
 
 #: managers/models.py:19 managers/templates/managers/detail.html:27
-#: pages/models.py:102 props/models.py:13
+#: pages/models.py:102 props/models.py:12
 msgid "Email"
 msgstr ""
 
@@ -2035,15 +2036,19 @@ msgid "API-key for Google Maps"
 msgstr ""
 
 #: props/models.py:10
-msgid "API-key for translating service"
+msgid "API-key for Azure Translation"
 msgstr ""
 
-#: props/models.py:12
-msgid "CRM-feed for parsing"
+#: props/models.py:11
+msgid "Location for Azure Translation"
 msgstr ""
 
-#: props/models.py:16 props/models.py:19
+#: props/models.py:15 props/models.py:18
 msgid "Site Configuration"
+msgstr ""
+
+#: props/models.py:22
+msgid "CRM-feed for parsing"
 msgstr ""
 
 #: vacantions/models.py:9

@@ -16,9 +16,9 @@
                     </div>
                 </label>
             {% endfor %}
-            <button type="button" class="search-header__btn">{% trans 'Sell' %}</button>
-            <button type="button" class="search-header__btn">{% trans 'Rent out' %}</button>
-            <button type="button" class="search-header__btn">{% trans 'Credit and mortgage' %}</button>
+            <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Sell' %}</a>
+            <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Rent out' %}</a>
+            <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Credit and mortgage' %}</a>
             <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Property valuation' %}</a>
         </div>
         <div class="search-filters">
