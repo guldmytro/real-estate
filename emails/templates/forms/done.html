@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load static %}
+
+<form class="form-add-review form send-form">
+    <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+        <span></span>
+        <span></span>
+    </button>
+    <img src="{% static 'img/icon-success.svg' %}" alt="успех" class="form__img" width="50" height="50">
+    <h2 class="form__title">
+        {% trans 'Thank you for your request' %}
+    </h2>
+    <p class="form__subtitle">{% trans 'Our manager will contact you as soon as possible' %}</p>
+</form>
+
+<style>
+    .form__img {
+        margin: 0 auto;
+        filter: var(--filter-accent);
+    }
+    .form__subtitle {
+        text-align: center;
+    }
+</style>

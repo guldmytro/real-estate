@@ -22,8 +22,11 @@
         </div>
     {% endif %}
     {% if listing_phone_form %}
-    <div id="popup-listing-check" class="popup-content">
-        {% include 'forms/listing-check.html' %}
-    </div>
+        <div id="popup-listing-check" class="popup-content">
+            {% include 'forms/listing-check.html' %}
+        </div>
     {% endif %}
+    <div id="popup-done" class="popup-content">
+        {% include 'forms/done.html' %}
+    </div>
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-15 12:35+0000\n"
+"POT-Creation-Date: 2023-07-15 13:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,8 +60,8 @@ msgstr ""
 #: discounts/apps.py:8 discounts/models.py:24
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
-#: pages/templates/sections/header.html:24
-#: pages/templates/sections/header.html:88
+#: pages/templates/sections/header.html:23
+#: pages/templates/sections/header.html:87
 msgid "Discounts"
 msgstr ""
 
@@ -183,6 +183,14 @@ msgstr ""
 
 #: emails/templates/forms/apply.html:26
 msgid "By sending your resume, you consent to the processing of personal data"
+msgstr ""
+
+#: emails/templates/forms/done.html:11
+msgid "Thank you for your request"
+msgstr ""
+
+#: emails/templates/forms/done.html:13
+msgid "Our manager will contact you as soon as possible"
 msgstr ""
 
 #: emails/templates/forms/listing-check.html:9
@@ -819,8 +827,8 @@ msgstr ""
 
 #: managers/apps.py:8 managers/models.py:29
 #: pages/templates/sections/footer.html:18
-#: pages/templates/sections/header.html:69
-#: pages/templates/sections/header.html:105
+#: pages/templates/sections/header.html:68
+#: pages/templates/sections/header.html:104
 msgid "Managers"
 msgstr ""
 
@@ -1005,8 +1013,8 @@ msgstr ""
 
 #: pages/models.py:67 pages/models.py:68 pages/templates/pages/abroad.html:7
 #: pages/templates/sections/footer.html:15
-#: pages/templates/sections/header.html:67
-#: pages/templates/sections/header.html:103
+#: pages/templates/sections/header.html:66
+#: pages/templates/sections/header.html:102
 msgid "Real estate abroad"
 msgstr ""
 
@@ -1093,8 +1101,8 @@ msgstr ""
 #: pages/models.py:125 pages/models.py:126
 #: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
-#: pages/templates/sections/header.html:73
-#: pages/templates/sections/header.html:109 pages/views.py:40
+#: pages/templates/sections/header.html:72
+#: pages/templates/sections/header.html:108 pages/views.py:40
 msgid "Contacts"
 msgstr ""
 
@@ -1921,8 +1929,8 @@ msgid "Prices"
 msgstr ""
 
 #: pages/templates/sections/footer.html:20
-#: pages/templates/sections/header.html:71
-#: pages/templates/sections/header.html:107
+#: pages/templates/sections/header.html:70
+#: pages/templates/sections/header.html:106
 #: pages/templates/sections/services.html:54
 msgid "Analytics"
 msgstr ""
@@ -1932,12 +1940,12 @@ msgid "Vacantions"
 msgstr ""
 
 #: pages/templates/sections/footer.html:27
-#: pages/templates/sections/header.html:20
-#: pages/templates/sections/header.html:84
+#: pages/templates/sections/header.html:19
+#: pages/templates/sections/header.html:83
 msgid "Our online course"
 msgstr ""
 
-#: pages/templates/sections/header.html:98
+#: pages/templates/sections/header.html:97
 msgid "New buildings"
 msgstr ""
 
