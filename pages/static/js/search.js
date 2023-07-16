@@ -191,9 +191,11 @@ class SearchForm {
     }
 
     updateActiveFilters() { 
+        console.log('fire')
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
+ 
             if (key === 'deal') {
                 filtersCount--;
                 continue;
@@ -217,7 +219,7 @@ class SearchForm {
                 }
             });
         });
-        this.activeFiltersContainer.style.display = filtersCount > 1 ||
+        this.activeFiltersContainer.style.display = filtersCount > 0 ||
                 (filtersCount === 1 && !this.activeFilters['deal']) ? 'flex' : 'none';
         filtersCount > 3 ? (this.addMoreBtn(filtersCount - 3), this.addClearBtn()) : null;
         this.getCount();
