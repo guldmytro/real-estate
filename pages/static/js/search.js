@@ -302,8 +302,12 @@ class SearchForm {
     }
 
     shortenNumber(number) {
-        const units = ['', 'K', 'M', 'B', 'T'];
-        const scales = ['', 'тис.', 'млн.', 'млрд.', 'трлн.'];
+        const units = {
+            'en': ['', 'K', 'M', 'B', 'T'],
+            'uk': ['', 'тис.', 'млн.', 'млрд.', 'трлн.']
+        }
+        
+        const scales = units[locale];
       
         if (number < 1000) {
             return number.toString();
@@ -354,7 +358,7 @@ class SearchForm {
 new SearchForm('#search-form');
 
 
-class MapSearch {
+class GoogleMapSearch {
     constructor(formId) {
         this.form = document.querySelector(formId);
         if (this.form) {
@@ -434,5 +438,96 @@ class MapSearch {
     }
 
 }
+
+
+class MapSearch {
+    constructor(formId) {
+        this.form = document.querySelector(formId);
+        if (this.form) {
+            this.locations = [];
+            this.activeFilters = {};
+            this.action = this.form.getAttribute('action');
+            this.prediction = new Prediction(this);
+            this.map = false;
+            this.markerClusterGroup = false;
+        }
+    }
+
+    async mapUpdate() {
+        try {
+            const res = await fetch(`${this.action}?${this.convertFormToQueryString()}`, { method: 'GET' })
+                .then(res => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    throw new Error('Bad request');
+                }).then(resJson => {
+                    if (resJson.success === true) {
+                        this.locations = resJson.coordicates;
+                        this.initMap();
+                    }
+                });
+        } catch (e) {
+            console.warn(e);
+        }
+    }
+
+    convertFormToQueryString() {
+        const formData = new FormData(this.form);
+        const queryString = new URLSearchParams(formData).toString();
+        return queryString;
+    }
+
+    initMap = () => {
+        this.form.classList.add('inited');
+        this.map = this.map || L.map('clustered-map').setView([0, 0], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(this.map);
+
+        const infoWindow = L.popup({
+            closeButton: true,
+            autoClose: false,
+            closeOnClick: false
+        });
+
+        const bounds = L.latLngBounds();
+        const markers = [];
+
+        // Удаление существующей группы маркеров
+        if (this.markerClusterGroup) {
+            this.map.removeLayer(this.markerClusterGroup);
+            this.markerClusterGroup.clearLayers();
+        }
+
+        this.locations.forEach((position, i) => {
+            const priceTag = L.divIcon({
+                className: 'price-tag larger-marker',
+                html: position?.price + ' $'
+            });
+
+            const marker = L.marker(position, {
+                icon: priceTag
+            });
+
+            bounds.extend(position);
+
+            marker.on('click', () => {
+                infoWindow.setContent(position.content);
+                infoWindow.setLatLng(marker.getLatLng());
+                infoWindow.openOn(this.map);
+            });
+
+            markers.push(marker);
+        });
+
+        this.map.fitBounds(bounds);
+        this.markerClusterGroup = L.markerClusterGroup();
+        this.markerClusterGroup.addLayers(markers);
+        this.map.addLayer(this.markerClusterGroup);
+    }
+}
+
 
 new MapSearch('#map-form');

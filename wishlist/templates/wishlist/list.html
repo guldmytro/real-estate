@@ -1,12 +1,13 @@
 {% extends 'layout/base.html' %}
+{% load i18n %}
 
-{% block title %}Список вибраних об'єктів нерухомості{% endblock %}
+{% block title %}{% trans 'Wishlist' %}{% endblock %}
 
 {% block content %}
     <main class="wishlist">
         <div class="container">
             <div class="section-header">
-                <h1 class="section-header__title animate animate_text"><span>Вибране</span></h1>
+                <h1 class="section-header__title animate animate_text"><span>{% trans 'Wishlist' %}</span></h1>
             </div>
             {% if listings %}
                 <ul class="analytics-group">
@@ -17,7 +18,7 @@
                 {% include 'pagination.html' with page=listings %}
             {% else %}
                 <p class="section-header__subtitle section-header__subtitle_strong">
-                    Ваш список вибраного пустий... Повернутись до <a href="{% url 'listings:list' %}">списку оголошень</a>
+                    {% trans 'No listings in your wishlist' %}
                 </p>
             {% endif %}
         </div>

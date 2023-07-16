@@ -9,7 +9,7 @@ from parler.forms import TranslatableModelForm
 class SearchManager(TranslatableModelForm):
     manager = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'select'}),
                                      empty_label=_("Full name"),
-                                     queryset=Manager.objects.language().order_by('translations__full_name'))
+                                     queryset=Manager.objects.language().order_by())
     
     class Meta:
         model = Manager

@@ -43,53 +43,56 @@
     </section>
 {% endblock %}
 
-{% block scripts %}
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+{% block scripts %} 
     <script>
-    async function initMap() {
-        const { Map } = await google.maps.importLibrary("maps");
-        const { Marker } = await google.maps.importLibrary("marker");
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-        const map = new Map(document.getElementById("clustered-map"), {
-            zoom: 15,
-            maxZoom: 19,
-            mapId: '315229cfc9e14eab',
-            mapTypeControl: false
-        });
-        const infoWindow = new google.maps.InfoWindow({
-            content: "",
-            disableAutoPan: false
-        });
-        const bounds = new google.maps.LatLngBounds();
+        function initMap() {
+            const map = L.map('clustered-map', {
+                scrollWheelZoom: true // Включаем масштабирование колесом мыши
+            }).setView([0, 0], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            const markers = [];
 
-        const markers = locations.map((position, i) => {
-            const priceTag = document.createElement("div");
-            priceTag.className = "price-tag";
-            priceTag.textContent = position?.price + ' $';
-
-            const advancedMarker = new AdvancedMarkerElement({
-                position,
-                content: priceTag
+            const infoWindow = L.popup({
+                closeButton: true,
+                autoClose: false,
+                closeOnClick: false
             });
 
-            bounds.extend(position);
+            const bounds = L.latLngBounds();
 
-            advancedMarker.addListener("click", () => {
-                infoWindow.setContent(position?.content);
-                infoWindow.open({
-                    anchor: advancedMarker,
-                    map,
+            locations.forEach((position, i) => {
+                const priceTag = L.divIcon({
+                    className: 'price-tag larger-marker',
+                    html: position.price + ' $'
                 });
+
+                const marker = L.marker(position, {
+                    icon: priceTag
+                });
+
+                bounds.extend(position);
+
+                marker.on('click', () => {
+                    infoWindow.setContent(position.content);
+                    infoWindow.setLatLng(marker.getLatLng());
+                    infoWindow.openOn(map);
+                });
+
+                markers.push(marker);
             });
-            return advancedMarker;
-        });
-        
-        map.fitBounds(bounds);
-        new markerClusterer.MarkerClusterer({ markers, map });
-    }
 
-    const locations = {{ coordinates|safe }};
+            map.fitBounds(bounds);
+            const markerClusterGroup = L.markerClusterGroup();
+            markerClusterGroup.addLayers(markers);
+            map.addLayer(markerClusterGroup);
+        }
 
-    initMap();
+        const locations = {{ coordinates|safe }};
+
+        initMap();
     </script>
 {% endblock %}
