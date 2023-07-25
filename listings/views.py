@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.core.cache import cache
 from urllib.parse import urlencode
+from django.conf import settings
 
 
 def listings_list(request):
@@ -105,19 +106,22 @@ def listings_detail(request, id):
             ).select_related('manager').select_related('street'),
             id=id,
         )
-        cache.set(f'listing_{lang}_{id}', listing)
+        cache.set(f'listing_{lang}_{id}', listing, settings.CACHE_TIME)
 
     kits = cache.get(f'listing_{lang}_{id}_kits')
     if not kits:
         kits = Kit.objects.select_related('attribute').filter(listing=listing).order_by()
-        cache.set(f'listing_{lang}_{id}_kits', kits)
+        cache.set(f'listing_{lang}_{id}_kits', kits, settings.CACHE_TIME)
 
     crumbs = []
 
     if listing.street:
-        crumbs.append(
-            (_('Listings') + f' {listing.street.city.title}', listing.street.city.get_absolute_url())
-        )
+        try:
+            crumbs.append(
+                (_('Listings') + f' {listing.street.city.title}', listing.street.city.get_absolute_url())
+            )
+        except:
+            pass
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
 
@@ -128,7 +132,7 @@ def listings_detail(request, id):
         ).select_related('manager').filter(
             street_number=listing.street_number, street=listing.street
         ).exclude(id=listing.id)[:10]
-        cache.set(f'listing_{lang}_{id}_related_street_num', listings_the_same_street_num)
+        cache.set(f'listing_{lang}_{id}_related_street_num', listings_the_same_street_num, settings.CACHE_TIME)
 
     listings_within_distance = cache.get(f'listing_{lang}_{id}_listings_within_distance')
     if not listings_within_distance:
@@ -139,18 +143,18 @@ def listings_detail(request, id):
         ).exclude(
             street_number=listing.street_number, street=listing.street
         )[:10]
-        cache.set(f'listing_{lang}_{id}_listings_within_distance', listings_within_distance)
+        cache.set(f'listing_{lang}_{id}_listings_within_distance', listings_within_distance, settings.CACHE_TIME)
 
 
     similar_listings = cache.get(f'listing_{lang}_{id}_similar_listings')
     if not similar_listings:
         similar_listings = get_similar_listings(listing)
-        cache.set(f'listing_{lang}_{id}_similar_listings', similar_listings)
+        cache.set(f'listing_{lang}_{id}_similar_listings', similar_listings, settings.CACHE_TIME)
 
     news = cache.get(f'listing_{lang}_{id}_news')
     if not news:
         news = News.objects.all()[:8]
-        cache.set(f'listing_{lang}_{id}_news', news)
+        cache.set(f'listing_{lang}_{id}_news', news, settings.CACHE_TIME)
 
     crumbs.append(
         (listing.title, listing.get_absolute_url())
@@ -204,9 +208,14 @@ def get_address_predictions(request):
 
     return JsonResponse({
         'status': 'ok',
-        'cities': [{'title': city.title, 'id': city.pk} for city in cities],
+        'cities': [{'title': city.title, 'id': city.pk,
+                    'related_region': {'title': city.region.title} \
+                        if hasattr(city, 'region') else None,} for city in cities],
         'streets': [{'title': street.title, 'id': street.pk, 
-                     'related_city': {'title': street.city.title, 'id': street.city.pk}} for street in streets],
+                     'related_city': {'title': street.city.title, 'id': street.city.pk},
+                     'related_region': {'title': street.city.region.title} \
+                          if hasattr(street.city, 'region') else None,} \
+                              for street in streets],
         })
 
 

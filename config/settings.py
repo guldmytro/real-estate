@@ -232,3 +232,5 @@ CACHES = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+CACHE_TIME = 3600

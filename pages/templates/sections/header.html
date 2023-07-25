@@ -23,7 +23,7 @@
                     <span class="link__text accent">{% trans 'Discounts' %}</span>
                 </a>
             </div>
-            <form class="header-lang" action="{% url 'set_language' %}" method="post">
+            <form class="header-lang" action="/" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
                 <div class="header-lang">

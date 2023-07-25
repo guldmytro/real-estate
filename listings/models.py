@@ -47,7 +47,7 @@ class Listing(TranslatableModel):
     price = models.PositiveIntegerField(verbose_name=_('Price'), blank=True, null=True)
 
     # Location
-    coordinates = models.PointField(default=Point(float(0), float(0)))
+    coordinates = models.PointField(default=Point(float(0), float(0)), blank=True, null=True)
     street = models.ForeignKey('Street', verbose_name=_('Street'), blank=True, null=True, on_delete=models.CASCADE,
                                related_name='listings')
     street_number = models.CharField(verbose_name=_('House Number'), blank=True, null=True, max_length=10)
@@ -87,7 +87,7 @@ class Listing(TranslatableModel):
         return False
 
     def delete(self, *args, **kwargs):
-        for image in self.images:
+        for image in self.images.all():
             image.delete()
         super().delete(*args, **kwargs)
 
@@ -98,9 +98,13 @@ class Listing(TranslatableModel):
         return str(self.coordinates.coords[0]).replace(",", ".") if self.coordinates else None
 
     def get_address_string(self):
-        return ', '.join(filter(lambda string: string != '' or string is not None,
+        try:
+            address = ', '.join(filter(lambda string: string != '' or string is not None,
                                 [self.street.title, self.street_number, self.street.city.title])
                          )
+            return address
+        except:
+            return ''
     
     def get_google_maps_link(self):
         if self.coordinates is None:
@@ -257,11 +261,25 @@ class Country(TranslatableModel):
         verbose_name_plural = _('Countries')
 
 
+class Region(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=100, verbose_name=_('Country'), unique=True)
+    )
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('Region')
+        verbose_name_plural = _('Regions')
+
+
 class City(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=255, verbose_name=_('City'))
     )
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name=_('Country'))
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name=_('Region'),
+                               blank=True, null=True)
 
     def __str__(self):
         return self.title

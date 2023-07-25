@@ -23,4 +23,8 @@ class Feed(models.Model):
 
     def __str__(self):
         return self.feed_url
+    
+    class Meta:
+        verbose_name = _('Feed')
+        verbose_name_plural = _('Feeds')
 

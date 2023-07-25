@@ -6,7 +6,7 @@ import json
 import re
 from django.utils.html import strip_tags
 from listings.models import Listing, Category, RealtyType, Deal, \
-    Image, Kit, Attribute, Country, City, Street
+    Image, Kit, Attribute, Country, City, Street, Region
 from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
 from slugify import slugify
@@ -52,8 +52,8 @@ class Command(BaseCommand):
 
             self.update_models(items)
 
-    def handle_temp(self, *args, **options):
-        with open('result.json', encoding='utf-8') as json_file:
+    def handle_d(self, *args, **options):
+        with open('api-result.json', encoding='utf-8') as json_file:
             items = json.load(json_file)
             json_file.close()
         self.update_models(items)
@@ -121,6 +121,14 @@ class Command(BaseCommand):
         )
         country_title = country['long_name'] if country else None
 
+        # Extract region
+        region = next(
+            (component for component in response_json['results'][0]['address_components'] if
+             'administrative_area_level_1' in component['types']),
+            None
+        )
+        region_title = region['long_name'] if region else None 
+
         # Extract city
         city = next(
             (component for component in response_json['results'][0]['address_components'] if
@@ -156,6 +164,9 @@ class Command(BaseCommand):
         return {
             'country': {
                 'title': country_title,
+            },
+            'region': {
+                'title': region_title,
             },
             'city': {
                 'title': city_title,
@@ -228,8 +239,11 @@ class Command(BaseCommand):
         realty_type = self.get_realty_type(data.get('realty_type', False))
         deal = self.get_deal(data.get('deal', False))
 
-        # Create Listing object
-        listing, _ = Listing.objects.get_or_create(id=int(data['id']))
+        # get or create listing
+        try:
+            listing = Listing.objects.get(id=int(data['id']))
+        except Listing.DoesNotExist:
+            listing = Listing(id=int(data['id']))
         listing.status = 'active'
         listing.set_current_language('uk')
         listing.title = data['title']
@@ -237,6 +251,7 @@ class Command(BaseCommand):
         listing.set_current_language('en')
         listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
         listing.description = translate(data.get('description', ''), to_lang=['en'])
+
         listing.is_new_building = bool(int(data.get('is_new_building', '0')))
         listing.area_total = int(data.get('area_total', '0'))
         listing.area_living = int(data.get('area_living', '0'))
@@ -267,7 +282,13 @@ class Command(BaseCommand):
 
             if address_dict['uk'] and address_dict['en']:
                 street = self.create_listing_address(address_dict)
-                listing.street_number = address_dict['uk']['street']['num']
+                if address_dict['uk']['street']['num']:
+                    listing.street_number = address_dict['uk']['street']['num']
+                else:
+                    try:
+                        listing.street_number = data['location'].get('house_num', '')
+                    except:
+                        pass
         if street:
             listing.street = street
 
@@ -345,10 +366,27 @@ class Command(BaseCommand):
         if not country:
             return None
         
+        region = None
+        if address_dict['uk']['region']['title'] and \
+            address_dict['en']['region']['title']:
+            try:
+                region = Region.objects.get(
+                    translations__language_code='uk',
+                    translations__title=address_dict['uk']['region']['title']
+                )
+            except Region.DoesNotExist:
+                region = Region()
+                region.set_current_language('uk')
+                region.title = address_dict['uk']['region']['title']
+                region.set_current_language('en')
+                region.title = address_dict['en']['region']['title']
+                region.save()
+        
         try: 
             city = City.objects.get(
                 translations__language_code='uk',
-                translations__title=address_dict['uk']['city']['title']
+                translations__title=address_dict['uk']['city']['title'],
+                region=region
                 )
         except City.DoesNotExist:
             city = City()
@@ -357,6 +395,8 @@ class Command(BaseCommand):
             city.set_current_language('en')
             city.title = address_dict['en']['city']['title']
             city.country = country
+            if region:
+                city.region = region
             city.save()
         
         if not city:

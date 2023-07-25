@@ -100,8 +100,8 @@ export class Prediction {
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'street');
-                addressItem.innerHTML = `${suggestion.title} <em data-type="street" data-id="${suggestion.id}">(${suggestion.related_city.title})</em>`;
-                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_city.title})`));
+                addressItem.innerHTML = `${suggestion.title} <em data-type="street" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
                 addressGroup.appendChild(addressItem);
             });
     
@@ -128,8 +128,8 @@ export class Prediction {
                 cityItem.classList.add('suggestion-category__item');
                 cityItem.setAttribute('data-id', suggestion.id);
                 cityItem.setAttribute('data-type', 'city');
-                cityItem.innerText = suggestion.title;
-                cityItem.addEventListener('click', (e) => this.fillSearchInput(e, suggestion.title));
+                cityItem.innerText = `${suggestion.title} (${suggestion.related_region.title})`;
+                cityItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_region.title})`));
                 cityGroup.appendChild(cityItem);
             });
     

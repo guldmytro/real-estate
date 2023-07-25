@@ -115,7 +115,11 @@ def filter_listings(cleaned_data, listings):
 
 
 def get_similar_listings(listing):
-    city = listing.street.city
+    city = None
+    try:
+        city = listing.street.city
+    except:
+        pass
     room_count = listing.room_count
 
     similar_listings = Listing.objects.filter(
@@ -151,10 +155,16 @@ def modify_get(GET):
     try:
         if city:
             city_obj = City.objects.get(id=city)
-            modified_get['address_input'] = city_obj.title
+            if city_obj.region:
+                modified_get['address_input'] = f'{city_obj.title} ({city_obj.region.title})'
+            else:
+                modified_get['address_input'] = city_obj.title
         elif street:
             street_obj = Street.objects.get(id=street)
-            modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title})'
+            try:
+                modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title}, {street_obj.city.region.title})'
+            except:
+                modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title})'
     except:
         pass
     return modified_get
