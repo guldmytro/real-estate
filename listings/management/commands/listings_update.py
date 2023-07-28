@@ -307,12 +307,18 @@ class Command(BaseCommand):
         
         # Create Images
         for image_url in data['images']:
-            add_listing_image.delay(listing.id, image_url)
+            image = Image(image_url=image_url, listing=listing)
+            try:
+                image.full_clean()
+                image.save()
+            except:
+                pass
+
 
         # Update images
         for image in listing.images.all():
             if image.image_url not in data['images']:
-                delete_listing_image.delay(image.id)
+                image.delete()
 
         # Clear all kits
         listing.kits.clear()
