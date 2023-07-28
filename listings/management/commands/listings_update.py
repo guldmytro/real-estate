@@ -47,8 +47,8 @@ class Command(BaseCommand):
             items = []
             for item in root:
                 items.append(self.parse_item(item))
-            with open('api-result.json', 'w', encoding='utf-8') as json_file:
-                json.dump(items, json_file, indent=4, ensure_ascii=False)
+            # with open('api-result.json', 'w', encoding='utf-8') as json_file:
+            #     json.dump(items, json_file, indent=4, ensure_ascii=False)
 
             self.update_models(items)
 
