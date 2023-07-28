@@ -232,3 +232,8 @@ INTERNAL_IPS = [
 ]
 
 CACHE_TIME = 3600
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
