@@ -200,8 +200,6 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-THUMBNAIL_BASEDIR = 'thumbnails'
-
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_JQUERY_URL = '//code.jquery.com/jquery-3.7.0.min.js'
 CKEDITOR_CONFIGS = {
