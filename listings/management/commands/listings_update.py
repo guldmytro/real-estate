@@ -241,6 +241,7 @@ class Command(BaseCommand):
         deal = self.get_deal(data.get('deal', False))
 
         # get or create listing
+        print(int(data['id']))
         try:
             listing = Listing.objects.get(id=int(data['id']))
         except Listing.DoesNotExist:
@@ -342,10 +343,22 @@ class Command(BaseCommand):
                 except Kit.DoesNotExist:
                     kit = Kit()
                     kit.untranslated_value = attribute_data['value']
-                    kit.set_current_language('uk')
-                    kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
-                    kit.set_current_language('en')
-                    kit.value = translate(attribute_data['value'], to_lang=languages['en'])
+
+                    if str(attribute_data['value']).lower() == 'есть':
+                        kit.set_current_language('uk')
+                        kit.value = 'Є'
+                        kit.set_current_language('en')
+                        kit.value = 'There is gas'
+                    elif str(attribute_data['value']).lower() == 'евроремонт':
+                        kit.set_current_language('uk')
+                        kit.value = 'Євроремонт'
+                        kit.set_current_language('en')
+                        kit.value = 'Renovation'
+                    else:
+                        kit.set_current_language('uk')
+                        kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
+                        kit.set_current_language('en')
+                        kit.value = translate(attribute_data['value'], to_lang=languages['en'])
                     kit.attribute = attribute
                     kit.save()
                 kit.listing.add(listing)

@@ -228,4 +228,5 @@ def clear_database():
     RealtyType.objects.all().delete()
     Category.objects.all().delete()
     Manager.objects.all().delete()
+    Kit.objects.all().delete()
 
