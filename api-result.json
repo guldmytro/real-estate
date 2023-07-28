@@ -485,9 +485,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-06-12T11:43:23+03:00",
         "updated_at": "2023-07-24T15:14:44+03:00"
@@ -593,9 +597,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-06-29T23:02:21+03:00",
         "updated_at": "2023-07-24T14:43:09+03:00"
@@ -1050,12 +1058,16 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T14:22:02+03:00",
-        "updated_at": "2023-07-24T14:41:33+03:00"
+        "updated_at": "2023-07-26T18:10:09+03:00"
     },
     {
         "id": "36",
@@ -1153,9 +1165,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T17:04:29+03:00",
         "updated_at": "2023-07-25T00:43:34+03:00"
@@ -1254,9 +1270,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T17:21:33+03:00",
         "updated_at": "2023-07-25T00:44:06+03:00"
@@ -1358,9 +1378,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T17:41:05+03:00",
         "updated_at": "2023-07-25T12:01:42+03:00"
@@ -1454,9 +1478,13 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T23:05:00+03:00",
         "updated_at": "2023-07-25T00:56:45+03:00"
@@ -1564,6 +1592,11 @@
                 "value": "разрешение на рекламу"
             },
             {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Ні"
+            },
+            {
                 "id": "property_83",
                 "label": "Нужен опекунский",
                 "value": "Ні"
@@ -1571,12 +1604,16 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-24T23:24:10+03:00",
-        "updated_at": "2023-07-24T23:54:25+03:00"
+        "updated_at": "2023-07-28T01:25:02+03:00"
     },
     {
         "id": "41",
@@ -1614,13 +1651,13 @@
         "room_count": "4",
         "price": "150000",
         "images": [
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/e5a9978c630c1f581e4a8c4ac95a1aaa.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/60874a6f1d575d4b9ace2b01abfa5c85.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/f4d99f0ca481ada031e425ec32e89d89.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/45394c7c7435bb3e21195e81822278a2.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/aa5627e1bc45270cf36e78b951cc7da6.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/58dcecac92aa43181466c462bfd357a0.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/58b39e1841cbbf5c9290cf826a9aabb0.jpg",
-            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/e5a9978c630c1f581e4a8c4ac95a1aaa.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/77ad6be39dc124c47e1768b08b4dd20d.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/a8be44f7573ed66e611301c17e672ba0.jpg",
             "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/5f6201d5139bc7dbb052351d11ea84be.jpg"
@@ -1674,16 +1711,20 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-25T00:24:01+03:00",
-        "updated_at": "2023-07-25T12:08:59+03:00"
+        "updated_at": "2023-07-26T18:10:50+03:00"
     },
     {
         "id": "42",
-        "status": "active",
+        "status": "closed",
         "is_new_building": "0",
         "article": "42",
         "title": "Продам 6 гаражей и 3 сарая. 232 м2. Салтовка, улица Самсоновская",
@@ -1730,11 +1771,379 @@
         ],
         "user": {
             "email": "toshazabyl13@gmail.com",
-            "name": "Мурашкін Антон",
+            "name": "Антон Мурашкин",
             "group": "отдел Ярового",
-            "phones": []
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
         },
         "created_at": "2023-07-25T00:32:02+03:00",
-        "updated_at": "2023-07-25T12:09:07+03:00"
+        "updated_at": "2023-07-26T18:14:42+03:00"
+    },
+    {
+        "id": "43",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "43",
+        "title": "Продажа гостинки по ул. Маршала Батитского. 5 минут Французский Бульвар",
+        "description": "Продается квартира недалеко от ТРЦ Французский Бульвар, в окружности дома прекрасно развита инфраструктура которая позволит добраться в любую точку города без всяких затруднений. В этом вам помогут остановки общественного транспорта трамвая, троллейбуса и автобуса, в 15 минутах от дома станция м. Турбоатом, так же можно легко добраться до станции м.Барабашова и в 10 минутах на трамвае м. Защитников Украины.\nТеперь что касается магазинов продуктового питания и других потребительских товаров. В радиусе 500 метров вы сможете обнаружить большое количество магазинов, а именно супермаркет Весна которую находиться как на улице Халтурина, так же и на улице Высочененко, фруктово-овощные и хлебо-булочные магазины, во Француском Бульваре находиться супер-маркет Сильпо. В 7 минутах ходьбы от дома есть школа, а рядом с домом находиться гаражный кооператив.\nНа территории дома вы сможете обнаружить, закрытую парковку для жильцов, детскую площадку и баскетбольное поле. За домом находиться речка, которая дает возможность выйти на природу и половить рыбу.\nГостинка находиться на первом этаже девяти этажного дома. В комплектацию входит вся мебель и кухонный уголок, техника по договоренности, в квартире предусмотрен мини балкон. Установлены счетчики на свет и воду и газ.\nТак же мы рассматриваем для себя не только продажу недвижимости, а еще и обмен на большую 2х комнатную квартиру с нашей доплатой. Если вас заинтересовало данное предложение набирайте по номеру указанному в объявлении и уточняйте детальную информацию.",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Московський",
+            "district": "Салтівка",
+            "street": "Маршала Батицкого",
+            "house_num": "20",
+            "map_lat": "49.9839252",
+            "map_lng": "36.303672479394",
+            "apartment": "23",
+            "landmark": "Район Французский Бульвара, параллельно улице Халтурина",
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Московский",
+            "district_ru": "Салтовка",
+            "street_ru": "Маршала Батицкого"
+        },
+        "total_floors": "9",
+        "floor": "1",
+        "area_total": "22.1",
+        "area_living": "15",
+        "area_kitchen": "5",
+        "room_count": "1",
+        "price": "15000",
+        "images": [
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/6a7b437927d28c0c0aec17abbec77859.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/5eae20d757d57f14b27c9a5ce50030c3.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/5144784dff758c0072ac6137b439d848.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/35a78961bb2a053a84d98b8c170b904a.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/5470548257628c19a4394876de48ba1d.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/ef490b1a855f33a9af85bace59c7e609.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/6f35df1ba9f300bfc10252d92c1eb203.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/e17db84e7c3c9899bc003a54a490182c.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/e655f718cefd72c00ae30c955e642621.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/fbc4509bdd1bf90fca579aaff98638ca.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/80e2f32fb2e12bb965f42262fd4a1170.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Есть"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "евроремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "гостинка"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Ні"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "27 Jul 2023"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "наш эксклюзив"
+            },
+            {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Так"
+            },
+            {
+                "id": "property_83",
+                "label": "Нужен опекунский",
+                "value": "Так"
+            }
+        ],
+        "user": {
+            "email": "toshazabyl13@gmail.com",
+            "name": "Антон Мурашкин",
+            "group": "отдел Ярового",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-07-27T11:37:33+03:00",
+        "updated_at": "2023-07-28T10:57:43+03:00"
+    },
+    {
+        "id": "44",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "44",
+        "title": "Продам гостинку на Академика Павлова",
+        "description": "Продам гостинку на Академика Павлова. Адрес: пер. Шевченковский 36.\nПлощадь 18м2",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Московський",
+            "district": "Салтівка",
+            "street": "Академика Павлова",
+            "house_num": "36",
+            "map_lat": "49.9876957",
+            "map_lng": "36.283169262821",
+            "apartment": "100",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Московский",
+            "district_ru": "Салтовка",
+            "street_ru": "Академика Павлова"
+        },
+        "total_floors": "7",
+        "floor": "3",
+        "area_total": "18",
+        "area_living": "8",
+        "area_kitchen": "5",
+        "room_count": "1",
+        "price": "16500",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/dc22beb7803b5767a5f58dce5aa341dc.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/e4d08dd1a98b884f09471b2d8193352a.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/d0161238ad06575f9703dc4d794c420d.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/05/6d3181b43d061a72cbba40a3a591d3f2.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_2",
+                "label": "Газ",
+                "value": "Нет"
+            },
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "евроремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "гостинка"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Ні"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "28 Jul 2023"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            },
+            {
+                "id": "property_82",
+                "label": "Нужна встречка",
+                "value": "Ні"
+            },
+            {
+                "id": "property_83",
+                "label": "Нужен опекунский",
+                "value": "Ні"
+            }
+        ],
+        "user": {
+            "email": "toshazabyl13@gmail.com",
+            "name": "Антон Мурашкин",
+            "group": "отдел Ярового",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-07-28T13:11:04+03:00",
+        "updated_at": "2023-07-28T13:37:21+03:00"
+    },
+    {
+        "id": "45",
+        "status": "active",
+        "is_new_building": "0",
+        "article": "45",
+        "title": "Продам будинок Піщана, смт. Мала Данилівка",
+        "description": "Що може бути краще за квартиру?\nПравильно, тільки свій будинок, що окремо стоїть\nУ с.Мала Данилівка, по вул.Піщана\nБудинок 75м ділянка 7 соток\nв будинку 2 спальні, зал, велика кухня, та вітальня\nЄ заїзд для авто, гараж, город, літня кухня та господарські будівлі\nУ будинку є вода, душова, газ, світло\nХороший, чистий, житловий стан\nБіля двору сосновий бір. На сьогоднішній день цей район активно забудовується елітними будинками.\nХороше розташування до зупинки мін 15\nта метро Олексіївська 30 хвилин пішки.\nТелефонуйте, записуйтесь на перегляд.\nПокази за домовленістю.",
+        "category": "Житлова нерухомість",
+        "realty_type": "Будинок",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "county": "Дергачівський район",
+            "city": "Мала Данилівка",
+            "street": "Щорса",
+            "house_num": "9",
+            "map_lat": "50.0567475",
+            "map_lng": "36.1645623",
+            "landmark": null,
+            "region_ru": "Харьковская область",
+            "county_ru": "Дергачевский район",
+            "city_ru": "Малая Даниловка"
+        },
+        "floor": "1",
+        "area_total": "75",
+        "area_living": "55",
+        "area_kitchen": "12",
+        "area_land": "7",
+        "room_count": "4",
+        "price": "34500",
+        "images": [
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2021/07/1faae3c753a89609a87b51dae61895f6.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/98622e46c77004b9082424b8d7bb2aa4.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/8789a561209c4a0c5fbf9034130adbbe.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/da1a69b6003f5b9c4dd652bb04b53166.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/b250d15d4d75ef569b80ba23faca5289.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/dfcd86943610437f6850b5ff0da09812.jpg",
+            "https://recrm21.s3.eu-west-1.amazonaws.com/2023/07/c1665bf44c79f13dd8467db85d8d5379.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "наш эксклюзив"
+            }
+        ],
+        "user": {
+            "email": "kolupaeva83@ukr.net",
+            "name": "Колупаева Людмила Ивановна",
+            "group": "отдел Колупаевой",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/99ce57ff298934d8039ed813308391be.jpg",
+            "phones": [
+                "0985584912"
+            ],
+            "properties": ""
+        },
+        "tags": "",
+        "created_at": "2023-07-28T13:28:28+03:00",
+        "updated_at": "2023-07-28T14:01:10+03:00"
+    },
+    {
+        "id": "46",
+        "status": "active",
+        "is_new_building": "1",
+        "article": "46",
+        "title": "Продам квартиру Шевченковский пер., 38, Киевский р-н, Харьков, Академика Павлова",
+        "description": "Продам одно комнатную квартиру, в выстроенном кирпичном новострое ЖК Воробьевы горы-8, переулок Шевченковский,38, станция метро Академика Павлова в пяти минутах пешком, сдача дома 1кв 2020 года. Востребованный молодежью район, состоящий только из новостроев, красивые облагороженные , охраняемые территории, места для авто,парк,магазин прямо возле комплекса.\nКвартира в строительном состоянии, не угловая, окна смотрят на ЖК Птичка от Жилстрой-1. Первый этаж по документам,но второй по факту, т.к. первый высокий цоколь этаж предусмотрен по проекту застройщика под коммерческую недвижимость. Отличное вложение в недвижимость как для себя так и под аренду. Все расходы по покупке заложены в общую стоимость квартиры и даже при этом условии, у нас цена ниже, чем у застройщика, т.к. срочная продажа. Образцы ремонта прилагаются.\nУспейте приобрети ликвидную недвижимость в этом году, по приятной цене.",
+        "category": "Житлова нерухомість",
+        "realty_type": "Квартира",
+        "deal": "Продаж",
+        "location": {
+            "country": "Україна",
+            "region": "Харківська область",
+            "city": "Харків",
+            "borough": "Київський",
+            "district": "Піски",
+            "street": "Шевченковский",
+            "house_num": "38",
+            "map_lat": "50.01145175",
+            "map_lng": "36.304103066766",
+            "landmark": null,
+            "metros": "",
+            "region_ru": "Харьковская область",
+            "city_ru": "Харьков",
+            "borough_ru": "Киевский",
+            "district_ru": "Пески",
+            "street_ru": "Шевченковский"
+        },
+        "total_floors": "12",
+        "floor": "2",
+        "area_total": "19",
+        "area_living": "14",
+        "area_kitchen": "3",
+        "room_count": "1",
+        "newbuilding_name": "ЖК Воробйові гори",
+        "price": "16500",
+        "images": [
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/ede3691e49b277242412d01998a1563d.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/7b949e9de454fd829bf9578c6ce3ac77.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/76c18a46245af03ef72e431b787baf31.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/fd822de96ebb8f71d13539c8c58086cb.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/acb0162ae1c52a7f762d4d55e773d646.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/b59aa977fffdd6e602558adccb6549b0.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/303822bf0c7c28038e2c4f606f0966dc.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/b49e290effc02729967732e02812d29a.jpg",
+            "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/estate-images/37e815a6214b6a42e2a61dd588313690.jpg"
+        ],
+        "properties": [
+            {
+                "id": "property_18",
+                "label": "Ремонт",
+                "value": "евроремонт"
+            },
+            {
+                "id": "property_20",
+                "label": "Планировка",
+                "value": "гостинка"
+            },
+            {
+                "id": "property_52",
+                "label": "Отопление",
+                "value": "централизованное"
+            },
+            {
+                "id": "property_54",
+                "label": "Без комиссии для покупателя",
+                "value": "Ні"
+            },
+            {
+                "id": "property_56",
+                "label": "Дата прозвона",
+                "value": "28 Jul 2023"
+            },
+            {
+                "id": "property_80",
+                "label": "Вид сотрудничества",
+                "value": "разрешение на рекламу"
+            }
+        ],
+        "user": {
+            "email": "toshazabyl13@gmail.com",
+            "name": "Антон Мурашкин",
+            "group": "отдел Ярового",
+            "image_url": "https://crm-08498194.s3.eu-west-1.amazonaws.com/kontrakt/user/f1109710221277559cbd24175fc85d71.png",
+            "phones": [
+                "0931775881"
+            ],
+            "properties": ""
+        },
+        "created_at": "2023-07-28T13:52:15+03:00",
+        "updated_at": "2023-07-28T14:21:32+03:00"
     }
 ]

@@ -254,9 +254,10 @@ class Command(BaseCommand):
         listing.description = translate(data.get('description', ''), to_lang=['en'])
 
         listing.is_new_building = bool(int(data.get('is_new_building', '0')))
-        listing.area_total = int(data.get('area_total', '0'))
-        listing.area_living = int(data.get('area_living', '0'))
-        listing.area_kitchen = int(data.get('area_kitchen', '0'))
+        
+        listing.area_total = int(round(float(data.get('area_total', '0'))))
+        listing.area_living = int(round(float(data.get('area_living', '0'))))
+        listing.area_kitchen = int(round(float(data.get('area_kitchen', '0'))))
         listing.room_count = int(data.get('room_count', '0'))
         listing.floor = int(data.get('floor', '0'))
         listing.total_floors = int(data.get('total_floors', '0'))
