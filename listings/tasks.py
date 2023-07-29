@@ -8,12 +8,15 @@ def add_listing_image(listing_id, image_url):
     except Listing.DoesNotExist:
         pass
     if listing:
-        image = Image(image_url=image_url, listing=listing)
         try:
-            image.full_clean()
-            image.save()
-        except:
-            pass
+            image = Image.objects.get(image_url=image_url, listing=listing)
+        except Image.DoesNotExist:
+            image = Image(image_url=image_url, listing=listing)
+            try:
+                image.full_clean()
+                image.save()
+            except:
+                pass
 
 
 @shared_task
