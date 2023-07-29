@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 
 
+
 class ActiveManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status='active')
@@ -88,7 +89,6 @@ class Listing(TranslatableModel):
 
     def delete(self, *args, **kwargs):
         for image in self.images.all():
-            image.delete_thumbnails()
             image.delete()
         super().delete(*args, **kwargs)
 

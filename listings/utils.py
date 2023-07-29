@@ -1,9 +1,13 @@
-from .models import Listing, Kit, City, Street, Country, RealtyType, Category
+from .models import Listing, Kit, City, Street, Country, RealtyType, Category, Image
 from managers.models import Manager
 from django.template.loader import render_to_string
 from django.db.models import Count
 import requests, uuid
 from props.models import SiteConfiguration
+from easy_thumbnails.files import get_thumbnailer
+import os
+import shutil
+from django.conf import settings
 
 
 languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
@@ -223,10 +227,22 @@ def translate(text, from_lang=None, to_lang=None):
 
 
 def clear_database():
+    Image.objects.all().delete()
     Listing.objects.all().delete()
     Country.objects.all().delete()
     RealtyType.objects.all().delete()
     Category.objects.all().delete()
     Manager.objects.all().delete()
     Kit.objects.all().delete()
+
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'listings')
+
+    if os.path.exists(folder_path):
+        try:
+            shutil.rmtree(folder_path)
+            print(f'Папка {folder_path} успішно видалена.')
+        except OSError as e:
+            print(f'Помилка при видаленні папки {folder_path}: {e}')
+    else:
+        print(f'Папки {folder_path} не існує.')
 
