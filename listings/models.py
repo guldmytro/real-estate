@@ -88,6 +88,7 @@ class Listing(TranslatableModel):
 
     def delete(self, *args, **kwargs):
         for image in self.images.all():
+            image.delete_thumbnails()
             image.delete()
         super().delete(*args, **kwargs)
 
