@@ -53,7 +53,7 @@
                                 </button>
                             </div>
                             <div class="object-box__controls">
-                                <button type="button" data-id="{{ listing.id }}" class="wishlist-link add-to-wishlist{% if in_wishlist %} added{% endif %}">
+                                <button type="button" data-id="{{ listing.id }}" class="wishlist-link add-to-wishlist">
                                     <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
                                 </button>
                                 {% include 'listings/components/social-share.html' %}
@@ -261,5 +261,15 @@
         }
     }
     localStorage.setItem('viewedListings', JSON.stringify(viewedListings));
+
+    (function() {
+        let wishlist = getCookie('wishlist');
+        if (wishlist) {
+            wishlist = wishlist.split(',');
+            if (wishlist.includes(listingId)) {
+                $(`.wishlist-link[data-id="${listingId}"]`).addClass('added');
+            }
+        }
+    })();
 </script>
 {% endblock %}

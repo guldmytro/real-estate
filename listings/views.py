@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .models import Listing, City, Street, Kit
@@ -17,6 +17,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.cache import cache
 from urllib.parse import urlencode
 from django.conf import settings
+from django.urls import reverse
 
 
 def listings_list(request):
@@ -37,6 +38,18 @@ def listings_list(request):
         street = cleaned_data.get('street')
         address = cleaned_data.get('address')
         crumb_title = False
+
+        if not city and not street:
+            try:
+                cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
+                cities_with_count = cities_with_count.order_by('-listing_count')
+                city = cities_with_count.first()
+                url = reverse('listings:list')
+                if city:
+                    return redirect(f'{url}?city={city.id}')
+            except:
+                pass
+            
         if city:
             try:
                 city = City.objects.get(id=city)
@@ -51,15 +64,7 @@ def listings_list(request):
             except: 
                 crumb_title = ''
         
-        if not city and not street:
-            try:
-                cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
-                cities_with_count = cities_with_count.order_by('-listing_count')
-                city = cities_with_count.first()
-                address = City.title
-                crumb_title = city.title
-            except:
-                pass
+
     
         if crumb_title:
             crumbs.append(

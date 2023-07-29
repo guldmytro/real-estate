@@ -191,7 +191,6 @@ class SearchForm {
     }
 
     updateActiveFilters() { 
-        console.log('fire')
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {

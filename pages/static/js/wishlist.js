@@ -50,6 +50,13 @@ $('.add-to-wishlist').on('click', async function() {
 		}
 		setCookie('wishlist', wishlistArray.join(','));
 	}
+	const wishlistCount = await getWishlistCount();
+	$('.wishlist-link__cnt').attr('data-count', wishlistCount || '');
+	$this.attr('disabled', false);
+});
+
+
+async function getWishlistCount() {
 	try {
 		const res = await fetch('/uk/wishlist/count/', {
 			'method': 'POST',
@@ -65,14 +72,16 @@ $('.add-to-wishlist').on('click', async function() {
 				throw new Error('Bad request');
 			}
 		});
-		$('.wishlist-link__cnt').attr('data-count', res?.cnt);
+		return res?.cnt;
 	} catch(e) {
 		console.warn(e);
 	}
+}
 
-	$this.attr('disabled', false);
-});
-
+(async function() {
+	const count = await getWishlistCount();
+	$('.wishlist-link__cnt').attr('data-count', count || '');
+})();
 
 $('.show-more-attributes__btn').on('click', function() {
 	$(this).closest('tr').remove();
