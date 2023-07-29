@@ -29,19 +29,14 @@ def delete_listing_image(image_id):
 
 @shared_task
 def add_manager_image(manager_id, image_url):
-    print(f'running add manager_image with {manager_id} and {image_url}')
     try:
         manager = Manager.objects.get(id=manager_id)
     except Manager.DoesNotExist:
-        print('Manager Does Not exist')
         pass
 
     if manager.image is None or image_url != manager.image_url:
-        print('image of existing manager is None or image_url not the same as manager.image_url')
         try:
             manager.image_url = image_url
             manager.save()
         except:
-            print('Error while trying to save manager')
             pass
-    print('other')
