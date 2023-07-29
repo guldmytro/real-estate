@@ -223,10 +223,11 @@ class Command(BaseCommand):
 
     def update_models(self, items):
         for data in items:
-            try: 
-                self.add_listing(data)
-            except: 
-                pass
+            self.add_listing(data)
+            # try: 
+            #     self.add_listing(data)
+            # except: 
+            #     pass
 
     def add_listing(self, data):
         # Create or update Category and RealtyType
