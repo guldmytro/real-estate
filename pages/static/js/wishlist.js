@@ -50,6 +50,7 @@ $('.add-to-wishlist').on('click', async function() {
 		}
 		setCookie('wishlist', wishlistArray.join(','));
 	}
+	console.log(getCookie('wishlist'));
 	try {
 		const res = await fetch('/uk/wishlist/count/', {
 			'method': 'POST',
