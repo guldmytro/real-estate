@@ -13,7 +13,7 @@ from slugify import slugify
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from listings.utils import translate, languages
-from listings.tasks import add_listing_image, delete_listing_image
+from listings.tasks import add_listing_image, delete_listing_image, add_manager_image
 from django.core.exceptions import ValidationError
 
 validate_url = URLValidator()
@@ -218,12 +218,7 @@ class Command(BaseCommand):
         if not image_url:
             return manager
 
-        if manager.image is None or image_url != manager.image_url:
-            try:
-                manager.image_url = image_url
-                manager.save()
-            except:
-                pass
+        add_manager_image.delay(manager.id, image_url)
         return manager
 
     def update_models(self, items):

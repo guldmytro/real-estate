@@ -1,5 +1,5 @@
 from celery import shared_task
-from listings.models import Image, Listing
+from listings.models import Image, Listing, Manager
 
 @shared_task
 def add_listing_image(listing_id, image_url):
@@ -25,3 +25,18 @@ def delete_listing_image(image_id):
         Image.objects.get(id=image_id).delete()
     except:
         pass
+
+
+@shared_task
+def add_manager_image(manager_id, image_url):
+    try:
+        manager = Manager.objects.get(id=manager_id)
+    except Manager.DoesNotExist:
+        pass
+
+    if manager.image is None or image_url != manager.image_url:
+        try:
+            manager.image_url = image_url
+            manager.save()
+        except:
+            pass
