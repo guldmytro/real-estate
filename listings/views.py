@@ -44,9 +44,11 @@ def listings_list(request):
                 cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
                 cities_with_count = cities_with_count.order_by('-listing_count')
                 city = cities_with_count.first()
-                url = reverse('listings:list')
                 if city:
-                    return redirect(f'{url}?city={city.id}')
+                    query_params = request.GET.copy()
+                    query_params['city'] = city.id
+                    url = request.path + '?' + query_params.urlencode()
+                    return redirect(url)
             except:
                 pass
             
