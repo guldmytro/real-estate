@@ -14,10 +14,6 @@ from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.core.cache import cache
-from urllib.parse import urlencode
-from django.conf import settings
-from django.urls import reverse
 
 
 def listings_list(request):
@@ -104,21 +100,14 @@ def listings_list(request):
 
 
 def listings_detail(request, id):
-    lang = request.LANGUAGE_CODE
-    listing = cache.get(f'listing_{lang}_{id}')
-    if not listing:
-        listing = get_object_or_404(
-            Listing.objects.prefetch_related(
-                Prefetch('images'),
-            ).select_related('manager').select_related('street'),
-            id=id,
-        )
-        cache.set(f'listing_{lang}_{id}', listing, settings.CACHE_TIME)
+    listing = get_object_or_404(
+        Listing.objects.prefetch_related(
+            Prefetch('images'),
+        ).select_related('manager').select_related('street'),
+        id=id,
+    )
 
-    kits = cache.get(f'listing_{lang}_{id}_kits')
-    if not kits:
-        kits = Kit.objects.select_related('attribute').filter(listing=listing).order_by()
-        cache.set(f'listing_{lang}_{id}_kits', kits, settings.CACHE_TIME)
+    kits = Kit.objects.select_related('attribute').filter(listing=listing).order_by()
 
     crumbs = []
 
@@ -132,36 +121,24 @@ def listings_detail(request, id):
 
     in_wishlist = str(id) in request.COOKIES.get('wishlist', '').split(',')
 
-    listings_the_same_street_num = cache.get(f'listing_{lang}_{id}_related_street_num')
-    if not listings_the_same_street_num:
-        listings_the_same_street_num = Listing.objects.prefetch_related(
-            Prefetch('images')
-        ).select_related('manager').filter(
-            street_number=listing.street_number, street=listing.street
-        ).exclude(id=listing.id)[:10]
-        cache.set(f'listing_{lang}_{id}_related_street_num', listings_the_same_street_num, settings.CACHE_TIME)
+    listings_the_same_street_num = Listing.objects.prefetch_related(
+        Prefetch('images')
+    ).select_related('manager').filter(
+        street_number=listing.street_number, street=listing.street
+    ).exclude(id=listing.id)[:10]
+    
+    listings_within_distance = Listing.objects.prefetch_related(
+        Prefetch('images')
+    ).select_related('manager').filter(
+        coordinates__distance_lte=(listing.coordinates, Distance(m=2000))
+    ).exclude(
+        street_number=listing.street_number, street=listing.street
+    )[:10]
+    
+    similar_listings = get_similar_listings(listing)
 
-    listings_within_distance = cache.get(f'listing_{lang}_{id}_listings_within_distance')
-    if not listings_within_distance:
-        listings_within_distance = Listing.objects.prefetch_related(
-            Prefetch('images')
-        ).select_related('manager').filter(
-            coordinates__distance_lte=(listing.coordinates, Distance(m=2000))
-        ).exclude(
-            street_number=listing.street_number, street=listing.street
-        )[:10]
-        cache.set(f'listing_{lang}_{id}_listings_within_distance', listings_within_distance, settings.CACHE_TIME)
-
-
-    similar_listings = cache.get(f'listing_{lang}_{id}_similar_listings')
-    if not similar_listings:
-        similar_listings = get_similar_listings(listing)
-        cache.set(f'listing_{lang}_{id}_similar_listings', similar_listings, settings.CACHE_TIME)
-
-    news = cache.get(f'listing_{lang}_{id}_news')
-    if not news:
-        news = News.objects.all()[:8]
-        cache.set(f'listing_{lang}_{id}_news', news, settings.CACHE_TIME)
+    news = News.objects.all()[:8]
+        
 
     crumbs.append(
         (listing.title, listing.get_absolute_url())
