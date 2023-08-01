@@ -17,6 +17,8 @@ from listings.tasks import add_listing_image, delete_listing_image, add_manager_
 from django.core.exceptions import ValidationError
 from listings.utils import convert_to_utc
 from django.utils import timezone
+from datetime import datetime
+import pytz
 
 validate_url = URLValidator()
 
@@ -32,7 +34,7 @@ class Command(BaseCommand):
         parser.add_argument('--update_date', dest='update_date', type=str)
 
     def handle(self, *args, **options):
-        self.update_date = options.get('update_date', '').lower() == 'yes'
+        self.update_date = options.get('update_date', '').lower() == 'yes' if options.get('update_date') is not None else False
         feeds = Feed.objects.all()
         if feeds.count():
             self.loop_feeds(feeds)
@@ -50,13 +52,17 @@ class Command(BaseCommand):
             xml_data = response.text
             root = ET.fromstring(xml_data)
 
-            items = []
+            self.items = []
             for item in root:
-                items.append(self.parse_item(item))
-            # with open('api-result.json', 'w', encoding='utf-8') as json_file:
-            #     json.dump(items, json_file, indent=4, ensure_ascii=False)
+                self.items.append(self.parse_item(item))
 
-            self.update_models(items)
+            today_utc = datetime.now(pytz.UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+            self.filtered_items = [
+                item for item in self.items
+                if ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date()) or
+                   ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date())
+            ]
+            self.update_models()
 
     def handle_d(self, *args, **options):
         with open('api-result.json', encoding='utf-8') as json_file:
@@ -224,10 +230,14 @@ class Command(BaseCommand):
         if not image_url:
             return manager
 
-        # add_manager_image.delay(manager.id, image_url)
+        add_manager_image.delay(manager.id, image_url)
         return manager
 
-    def update_models(self, items):
+    def update_models(self):
+        items = self.filtered_items
+        if self.update_date:
+            items = self.items
+
         for data in items:
             try: 
                 if self.update_date:
@@ -244,7 +254,7 @@ class Command(BaseCommand):
             listing.created = convert_to_utc(data.get('created_at', timezone.now()))
             listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
             listing.save()
-            print(listing.created)
+            print(f'New created date for listing {listing.id} is {listing.created}')
         except Listing.DoesNotExist:
             pass
 
@@ -264,11 +274,15 @@ class Command(BaseCommand):
         listing.created = convert_to_utc(data.get('created_at', timezone.now()))
         listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
         listing.set_current_language('uk')
+        same_title = listing.title == data['title']
+        same_description = listing.description == data['description']
         listing.title = data['title']
         listing.description = data.get('description', '')
         listing.set_current_language('en')
-        listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
-        listing.description = translate(data.get('description', ''), to_lang=['en'])
+        if not same_title:
+            listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
+        if not same_description:
+            listing.description = translate(data.get('description', ''), to_lang=['en'])
 
         listing.is_new_building = bool(int(data.get('is_new_building', '0')))
         
@@ -324,20 +338,20 @@ class Command(BaseCommand):
         
         # Create Images
         for image_url in data['images']:
-            image = Image(image_url=image_url, listing=listing)
-            try:
-                image.full_clean()
-                image.save()
-            except:
-                pass
-            # add_listing_image.delay(listing.id, image_url)
+            # image = Image(image_url=image_url, listing=listing)
+            # try:
+            #     image.full_clean()
+            #     image.save()
+            # except:
+            #     pass
+            add_listing_image.delay(listing.id, image_url)
 
 
         # Update images
         for image in listing.images.all():
             if image.image_url not in data['images']:
-                image.delete()
-                # delete_listing_image.delay(image.id)
+                # image.delete()
+                delete_listing_image.delay(image.id)
 
         # Clear all kits
         listing.kits.clear()

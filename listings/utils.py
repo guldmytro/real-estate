@@ -9,6 +9,18 @@ import shutil
 from django.conf import settings
 from dateutil.parser import parse
 import pytz
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+file_handler = logging.FileHandler('translation.log')
+file_handler.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
 
 
 languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
@@ -219,11 +231,14 @@ def translate(text, from_lang=None, to_lang=None):
         if not 'translations' in response:
             return text
         try:
-            return response['translations'][0].get('text', text)
+            translated_text = response['translations'][0].get('text', text)
+            logger.info(f"Translated '{text}' from {from_lang} to {to_lang}: {translated_text}")
+            return translated_text
         except:
+            logger.warning(f"Translation response format is not as expected: {response}")
             return text
     except requests.exceptions.RequestException as e:
-        print(f"Translation error with translating phrase {text}: {e}")
+        logger.error(f"Translation error with translating phrase '{text}': {e}")
         return text
 
 
