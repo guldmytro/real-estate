@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from props.models import SiteConfiguration, Feed
 import requests
 import xml.etree.ElementTree as ET
@@ -15,6 +15,8 @@ from django.core.exceptions import ValidationError
 from listings.utils import translate, languages
 from listings.tasks import add_listing_image, delete_listing_image, add_manager_image
 from django.core.exceptions import ValidationError
+from listings.utils import convert_to_utc
+from django.utils import timezone
 
 validate_url = URLValidator()
 
@@ -26,7 +28,11 @@ GOOGLE_API_KEY = config.google_api_key
 class Command(BaseCommand):
     help = 'Update listings from Feed API'
 
+    def add_arguments(self, parser):
+        parser.add_argument('--update_date', dest='update_date', type=str)
+
     def handle(self, *args, **options):
+        self.update_date = options.get('update_date', '').lower() == 'yes'
         feeds = Feed.objects.all()
         if feeds.count():
             self.loop_feeds(feeds)
@@ -218,16 +224,29 @@ class Command(BaseCommand):
         if not image_url:
             return manager
 
-        add_manager_image.delay(manager.id, image_url)
+        # add_manager_image.delay(manager.id, image_url)
         return manager
 
     def update_models(self, items):
         for data in items:
-            self.add_listing(data)
-            # try: 
-            #     self.add_listing(data)
-            # except: 
-            #     pass
+            try: 
+                if self.update_date:
+                    self.listings_update_date(data)
+                else:
+                    self.add_listing(data)
+            except: 
+                pass
+
+
+    def listings_update_date(self, data):
+        try:
+            listing = Listing.objects.get(id=int(data['id']))
+            listing.created = convert_to_utc(data.get('created_at', timezone.now()))
+            listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
+            listing.save()
+            print(listing.created)
+        except Listing.DoesNotExist:
+            pass
 
     def add_listing(self, data):
         # Create or update Category and RealtyType
@@ -242,6 +261,8 @@ class Command(BaseCommand):
         except Listing.DoesNotExist:
             listing = Listing(id=int(data['id']))
         listing.status = 'active'
+        listing.created = convert_to_utc(data.get('created_at', timezone.now()))
+        listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
         listing.set_current_language('uk')
         listing.title = data['title']
         listing.description = data.get('description', '')
@@ -303,20 +324,20 @@ class Command(BaseCommand):
         
         # Create Images
         for image_url in data['images']:
-            # image = Image(image_url=image_url, listing=listing)
-            # try:
-            #     image.full_clean()
-            #     image.save()
-            # except:
-            #     pass
-            add_listing_image.delay(listing.id, image_url)
+            image = Image(image_url=image_url, listing=listing)
+            try:
+                image.full_clean()
+                image.save()
+            except:
+                pass
+            # add_listing_image.delay(listing.id, image_url)
 
 
         # Update images
         for image in listing.images.all():
             if image.image_url not in data['images']:
-                # image.delete()
-                delete_listing_image.delay(image.id)
+                image.delete()
+                # delete_listing_image.delay(image.id)
 
         # Clear all kits
         listing.kits.clear()

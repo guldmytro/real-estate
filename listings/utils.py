@@ -4,10 +4,11 @@ from django.template.loader import render_to_string
 from django.db.models import Count
 import requests, uuid
 from props.models import SiteConfiguration
-from easy_thumbnails.files import get_thumbnailer
 import os
 import shutil
 from django.conf import settings
+from dateutil.parser import parse
+import pytz
 
 
 languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
@@ -246,3 +247,13 @@ def clear_database():
     else:
         print(f'Папки {folder_path} не існує.')
 
+
+def convert_to_utc(date_string):
+    local_time = parse(date_string)
+
+    if local_time.tzinfo is None:
+        local_time = local_time.replace(tzinfo=pytz.UTC)
+
+    utc_time = local_time.astimezone(pytz.UTC)
+
+    return utc_time

@@ -6,6 +6,7 @@ from django.urls import reverse
 from managers.models import Manager
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
+from django.utils import timezone
 
 
 
@@ -20,8 +21,9 @@ class Listing(TranslatableModel):
         ('archive', _('Archive')),
     ]
     status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='active', verbose_name=_('Status'))
-    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
+
+    created = models.DateTimeField(default=timezone.now, verbose_name=_('Created'))
+    updated = models.DateTimeField(default=timezone.now, verbose_name=_('Updated'))
 
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE, verbose_name=_('Manager'), blank=True, null=True)
     
