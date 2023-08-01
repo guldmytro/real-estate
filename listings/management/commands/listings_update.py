@@ -19,6 +19,18 @@ from listings.utils import convert_to_utc
 from django.utils import timezone
 from datetime import datetime
 import pytz
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+file_handler = logging.FileHandler('cron.log')
+file_handler.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
 
 validate_url = URLValidator()
 
@@ -36,6 +48,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.update_date = options.get('update_date', '').lower() == 'yes' if options.get('update_date') is not None else False
         feeds = Feed.objects.all()
+        logger.info('Started listings update')
         if feeds.count():
             self.loop_feeds(feeds)
     
@@ -56,12 +69,14 @@ class Command(BaseCommand):
             for item in root:
                 self.items.append(self.parse_item(item))
 
+            logger.info(f'Total items from CRM - {len(self.items)} item(s)')
             today_utc = datetime.now(pytz.UTC).replace(hour=0, minute=0, second=0, microsecond=0)
             self.filtered_items = [
                 item for item in self.items
                 if ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date()) or
                    ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date())
             ]
+            logger.info(f'Items for updating - {len(self.filtered_items)} item(s)')
             self.update_models()
 
     def handle_d(self, *args, **options):
@@ -241,12 +256,16 @@ class Command(BaseCommand):
         for data in items:
             try: 
                 if self.update_date:
+                    logger.info(f'Updating datetimefield for listing {data["id"]}')
                     self.listings_update_date(data)
                 else:
                     self.add_listing(data)
-            except: 
+                    logger.info(f'Updating listing {data["id"]}')
+                    
+            except Exception as e: 
+                logger.error(f'Error while working with listing {data["id"]}: {str(e)}')
                 pass
-
+        logger.info('Finished listings_update')
 
     def listings_update_date(self, data):
         try:
@@ -273,9 +292,17 @@ class Command(BaseCommand):
         listing.status = 'active'
         listing.created = convert_to_utc(data.get('created_at', timezone.now()))
         listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
+        same_title = False
+        same_description = False
         listing.set_current_language('uk')
-        same_title = listing.title == data['title']
-        same_description = listing.description == data['description']
+        try:
+            same_title = listing.title == data['title']
+        except:
+            pass
+        try:
+            same_description = listing.description == data['description']
+        except:
+            pass
         listing.title = data['title']
         listing.description = data.get('description', '')
         listing.set_current_language('en')
