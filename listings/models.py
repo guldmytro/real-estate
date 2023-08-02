@@ -249,7 +249,7 @@ class Kit(TranslatableModel):
         verbose_name_plural = _('Kits')
 
     def __str__(self):
-        return f'{self.value.capitalize()}'
+        return f'{self.attribute.title.capitalize()} - {self.value.capitalize()}'
 
 
 class Country(TranslatableModel):

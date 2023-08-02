@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-25 09:49+0000\n"
-"PO-Revision-Date: 2023-07-25 09:50+0000\n"
+"PO-Revision-Date: 2023-08-02 16:15+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -530,10 +530,9 @@ msgid "Region"
 msgstr "Область"
 
 #: listings/models.py:273
-#, fuzzy
 #| msgid "Register"
 msgid "Regions"
-msgstr "Зареєструватись"
+msgstr "Області"
 
 #: listings/models.py:278 listings/models.py:291 listings/models.py:299
 msgid "City"
@@ -1862,10 +1861,9 @@ msgid "Choose a specialist"
 msgstr "Виберіть фахівця"
 
 #: pages/templates/pages/reviews.html:26
-#, fuzzy
 #| msgid "Write your review"
 msgid "Write a review"
-msgstr "Напишіть ваш відгук"
+msgstr "Написати відгук"
 
 #: pages/templates/pages/seller.html:6
 msgid "To the seller"

@@ -7,7 +7,7 @@ from parler.admin import TranslatableAdmin
 
 class ImageInline(admin.StackedInline):
     model = Image
-
+    extra = 1
 
 @admin.register(RealtyType)
 class RealtyTypeAdmin(TranslatableAdmin):
@@ -30,31 +30,19 @@ class RegionAdmin(TranslatableAdmin):
 
 
 @admin.register(Attribute)
-class AttributeAdmin(admin.ModelAdmin):
+class AttributeAdmin(TranslatableAdmin):
     list_display = ('title',)
 
 
 class KitInline(admin.StackedInline):
     model = Listing.kits.through
-
-    readonly_fields = ['get_attribute_title']  # Add the custom method as a readonly field
-
-    def get_attribute_title(self, obj):
-        return obj.kit.attribute.title
-
-    get_attribute_title.short_description = 'Attribute'
-
-    def get_fields(self, request, obj=None):
-        fields = list(super().get_fields(request, obj))
-        if 'get_attribute_title' in fields:
-            fields.remove('get_attribute_title')
-            fields.insert(0, 'get_attribute_title')
-        return fields
+    extra = 1
 
 
 @admin.register(Kit)
-class KitAdmin(admin.ModelAdmin):
+class KitAdmin(TranslatableAdmin):
     inlines = [KitInline]
+    raw_id_fields = ['listing']
     exclude = ['listing']
 
 @admin.register(City)
