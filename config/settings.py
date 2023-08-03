@@ -78,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'config.middleware.NewUserLanguageMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -166,6 +167,8 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,
     }
 }
+
+PARLER_DEFAULT_LANGUAGE_CODE = 'uk'
 
 
 # Static files (CSS, JavaScript, Images)
