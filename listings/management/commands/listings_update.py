@@ -244,8 +244,8 @@ class Command(BaseCommand):
         image_url = user.get('image_url', False)
         if not image_url:
             return manager
-
         add_manager_image.delay(manager.id, image_url)
+        
         return manager
 
     def update_models(self):
@@ -287,6 +287,10 @@ class Command(BaseCommand):
         print(int(data['id']))
         try:
             listing = Listing.objects.get(id=int(data['id']))
+            if listing.created == convert_to_utc(data.get('created_at', timezone.now())) and \
+               listing.updated == convert_to_utc(data.get('updated_at', timezone.now())):
+                logger.info(f'Listing {data["id"]} is already updated')
+                return False
         except Listing.DoesNotExist:
             listing = Listing(id=int(data['id']))
         listing.status = 'active'
@@ -372,7 +376,6 @@ class Command(BaseCommand):
             # except:
             #     pass
             add_listing_image.delay(listing.id, image_url)
-
 
         # Update images
         for image in listing.images.all():

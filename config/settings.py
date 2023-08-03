@@ -230,7 +230,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-CACHE_TIME = 60 * 30
+CACHE_TIME = 60 * 5
 
 try:
     from .local_settings import *
