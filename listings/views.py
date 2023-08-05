@@ -14,9 +14,10 @@ from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.template.loader import render_to_string
 
 
-def listings_list(request):
+def listings_list(request):    
     GET = modify_get(request.GET)
     search_form = SearchForm(GET)
 
@@ -88,6 +89,14 @@ def listings_list(request):
     
     # Parsing listing coordinates for GoogleMaps
     coordinates = get_listings_map_data(listings)
+    
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({
+            'html': render_to_string('listings/list-ajax.html', {'listings': listings}),
+            'count': listings_list.count(),
+            'coordinates': coordinates
+        })
     
     context = {
         'listings': listings,

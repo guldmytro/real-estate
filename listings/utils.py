@@ -10,6 +10,10 @@ from django.conf import settings
 from dateutil.parser import parse
 import pytz
 import logging
+from decimal import Decimal
+from django.contrib.gis.geos import Polygon
+from django.contrib.gis.geos import Point
+from django.db.models import Q
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -61,6 +65,7 @@ def filter_listings(cleaned_data, listings):
     with_photo = cleaned_data.get('with_photo')
     with_video = cleaned_data.get('with_video')
     is_new_building = cleaned_data.get('is_new_building')
+    polygon = cleaned_data.get('polygon')
 
     if is_new_building:
         listings = listings.filter(is_new_building=True)
@@ -127,6 +132,12 @@ def filter_listings(cleaned_data, listings):
 
     if with_video:
         listings = listings.exclude(video_url__isnull=True)
+
+    if polygon:
+        polygon_coordinates = tuple(tuple(Decimal(coord) for coord in point.split(',')) for point in polygon.split(';'))
+        polygon_coordinates += (polygon_coordinates[0],)
+        polygon_obj = Polygon(polygon_coordinates)
+        listings = listings.filter(coordinates__within=polygon_obj)
         
     return listings
 

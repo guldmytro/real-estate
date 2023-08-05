@@ -205,6 +205,10 @@ class SearchForm(forms.Form):
         widget=forms.Select(attrs={'class': 'select', 'data-prefix': _('Entrance:')})
     )
 
+    # Polygon
+    polygon = forms.CharField(required=False,
+                              widget=forms.HiddenInput)
+
     class Meta:
         fields = '__all__'
 

@@ -13,7 +13,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
@@ -27,7 +28,8 @@
     {% include 'sections/footer.html' %}
     {% include 'sections/popup.html' %}
     <script src="{% static 'js/common.js' %}"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
         const csrfToken = "{{ csrf_token }}";
@@ -62,8 +64,30 @@
                 }
             }
         }
+        const locations = {% if coordinates %}{{ coordinates|safe }}{% else %}null{% endif %};
+        // viewed listings
+        function markViewedListings() {
+            let objectItems = document.querySelectorAll('.object-item');
+            let viewedListings = localStorage.getItem('viewedListings');
+            if (viewedListings) {
+                viewedListings = JSON.parse(viewedListings);
+            } else {
+                viewedListings = [];
+            }
+            objectItems.forEach(function(item) {
+                var itemId = item.getAttribute('data-id');
+
+                if (viewedListings.includes(itemId)) {
+                    item.classList.add('viewed');
+                }
+            });
+
+        }
+        markViewedListings();
     </script>
+
     <script src="{% static 'js/predictions.js' %}" type="module"></script>
+    <script src="{% static 'js/polygon-map.js' %}" type="module"></script>
     <script src="{% static 'js/search.js' %}" type="module"></script>
     <script src="{% static 'js/wishlist.js' %}"></script>
     <script src="{% static 'js/prefetch.js' %}"></script>

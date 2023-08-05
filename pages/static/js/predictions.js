@@ -172,7 +172,11 @@ export class Prediction {
             this.input.blur();
         }, 10);
         this.update();
-        this.searchForm?.mapUpdate();
+        try {
+            this.searchForm?.mapUpdate();
+        } catch(e) {
+            console.warn(e);
+        }
     }
 
     trimString(value) {

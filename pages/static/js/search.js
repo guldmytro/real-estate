@@ -1,9 +1,11 @@
+import { PolygonMap } from "./polygon-map.js";
 import { Prediction } from "./predictions.js";
 
 class SearchForm {
     
-    constructor(formId) {
+    constructor(formId, polygonMapId, locations) {
         this.form = document.querySelector(formId);
+        
         if (this.form) {
             this.submitButtons = this.form.querySelectorAll('[type="submit"]');
             this.resetButton = this.form.querySelector('[type="reset"]');
@@ -13,11 +15,14 @@ class SearchForm {
             this.radios = this.form.querySelectorAll('[type="radio"]');
             this.numbers = this.form.querySelectorAll('input[type="number"]');
             this.checkboxes = this.form.querySelectorAll('input[type="checkbox"]');
+            this.polygonMap = new PolygonMap(polygonMapId, locations, this);
+            this.coordinates = this.form.querySelector('#id_polygon');
             this.activeFilters = this.initFiltes();
             this.countUrl = this.form.getAttribute('data-count');
             this.listingsCount = parseInt(this.form.getAttribute('data-initial-count'), 10);
+            this.resultContainer = document.querySelector('.archive-objects .container');
             this.initEvents();
-            this.updateActiveFilters();
+            this.updateActiveFilters(true);
             this.update();
         }
     }
@@ -28,8 +33,6 @@ class SearchForm {
     }
     
     initEvents() {
-        this.form.addEventListener('change', () => {
-        });
         this.selects.forEach(select => {
             const name = select.getAttribute('name');
             select.addEventListener('change', (e) => {    
@@ -93,9 +96,22 @@ class SearchForm {
                 }
             });
         });
+        this.coordinates.addEventListener('change', (e) => {
+            const name = this.coordinates.getAttribute('name');
+            if (e.target.value) {
+                this.activeFilters[name] = {
+                    'name': name,
+                    'value': e.target.value,
+                    'label': ''
+                };
+            } else {
+                delete this.activeFilters[name];
+            }
+        });
         if (this.resetButton) {
             this.resetButton.addEventListener('click', this.resetForm);
         }
+        this.form.addEventListener('submit', this.sumbitHandler);
     }
 
     initFiltes() {
@@ -190,12 +206,12 @@ class SearchForm {
         }
     }
 
-    updateActiveFilters() { 
+    updateActiveFilters(firstUpadate=false) { 
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
  
-            if (key === 'deal') {
+            if (key === 'deal' || key === 'polygon') {
                 filtersCount--;
                 continue;
             }
@@ -219,9 +235,12 @@ class SearchForm {
             });
         });
         this.activeFiltersContainer.style.display = filtersCount > 0 ||
-                (filtersCount === 1 && !this.activeFilters['deal']) ? 'flex' : 'none';
+                (filtersCount === 1 && (!this.activeFilters['deal'] || !this.activeFilters['polygon'])) ? 'flex' : 'none';
         filtersCount > 3 ? (this.addMoreBtn(filtersCount - 3), this.addClearBtn()) : null;
-        this.getCount();
+        if (!firstUpadate) {
+            this.getCount();
+            this.getResult();
+        }
     }
 
     addMoreBtn(cnt) {
@@ -265,7 +284,32 @@ class SearchForm {
             console.warn(e);
         }
         this.form.classList.remove('disabled');
-        
+    }
+
+    async getResult() {
+        try {
+            this.form.classList.add('disabled');
+            const res = await fetch(`${this.form.getAttribute('action')}?${this.convertFormToQuerySring()}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error('Bad request');
+            });
+            this.listingsCount = res.count;
+            document.querySelector('.archive-objects__row .col:first-child').innerHTML = res.html;
+            markViewedListings();
+            this.polygonMap.updateLocations(res.coordinates);
+            this.update();
+        } catch(e) {
+            console.warn(e);
+        }
+        this.form.classList.remove('disabled');
     }
     
     convertFormToQuerySring() {
@@ -352,11 +396,19 @@ class SearchForm {
         const value = target.value;
         return this.formatElement(target, value);
     }
+
+    sumbitHandler = (e) => {
+        if (window.location.href.includes('/listings/')) {
+            e.preventDefault();
+            document.querySelector('.btn_search-close').click();
+            this.resultContainer.scrollIntoView();
+        }
+    }
     
 
 }
 
-new SearchForm('#search-form');
+new SearchForm('#search-form', 'clustered-map', locations !== undefined ? locations : null);
 
 
 class GoogleMapSearch {
@@ -481,7 +533,7 @@ class MapSearch {
 
     initMap = () => {
         this.form.classList.add('inited');
-        this.map = this.map || L.map('clustered-map').setView([0, 0], 15);
+        this.map = this.map || L.map('clustered-map-2').setView([0, 0], 15);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 19
@@ -505,7 +557,7 @@ class MapSearch {
         this.locations.forEach((position, i) => {
             const priceTag = L.divIcon({
                 className: 'price-tag larger-marker',
-                html: position?.price + ' $'
+                html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
             });
 
             const marker = L.marker(position, {
