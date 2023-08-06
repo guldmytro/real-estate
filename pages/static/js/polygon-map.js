@@ -148,6 +148,11 @@ export class PolygonMap {
         this.map.removeLayer(this.markerClusterGroup );
         this.markerClusterGroup.clearLayers();
         const newMarkers = [];
+        const infoWindow = L.popup({
+            closeButton: true,
+            autoClose: false,
+            closeOnClick: false
+        });
         if (this.locations) {
             // Создание новых маркеров на основе обновленных locations
             const bounds = L.latLngBounds();
@@ -187,8 +192,6 @@ export class PolygonMap {
                 this.map.fitBounds(this.drawnPolygon.getBounds());
             }
         }
-        
-
         // Добавление новых маркеров в markerClusterGroup
         this.markerClusterGroup.addLayers(newMarkers);
         this.map.addLayer(this.markerClusterGroup);
