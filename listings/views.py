@@ -93,7 +93,8 @@ def listings_list(request):
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         return JsonResponse({
-            'html': render_to_string('listings/list-ajax.html', {'listings': listings}),
+            'html': render_to_string('listings/list-ajax.html', {'request': request,
+                                                                 'listings': listings}),
             'count': listings_list.count(),
             'coordinates': coordinates
         })

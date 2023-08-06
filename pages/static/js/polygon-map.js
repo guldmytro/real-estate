@@ -54,9 +54,6 @@ export class PolygonMap {
             if (!this.drawnPolygon) {
                 const paddingValue = 0.00006; // Измените значение по своему усмотрению
 
-                // Вычисляем центр полигона
-                const center = bounds.getCenter();
-
                 // Вычисляем ширину и высоту карты
                 const mapWidth = this.map.getSize().x;
                 const mapHeight = this.map.getSize().y;
@@ -175,9 +172,6 @@ export class PolygonMap {
             });
             if (!this.drawnPolygon) {
                 const paddingValue = 0.00006; // Измените значение по своему усмотрению
-
-                // Вычисляем центр полигона
-                const center = bounds.getCenter();
 
                 // Вычисляем ширину и высоту карты
                 const mapWidth = this.map.getSize().x;
