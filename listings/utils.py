@@ -208,7 +208,7 @@ def get_listings_map_data(listings):
             'listing': listing, 
             'year': listing.kits.filter(attribute__slug='property_23')
             })
-        } for listing in listings]
+        } for listing in listings[:200]]
     return coordinates
     
 

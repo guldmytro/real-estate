@@ -12,6 +12,5 @@ urlpatterns = [
     path('get_address_predictions/', get_address_predictions, name='get_address_predictions'),
     path('get_listings_coordinates/', get_listings_coordinates, name='get_listings_coordinates'),
     path('<int:id>/', cache_page(settings.CACHE_TIME)(listings_detail), name='detail'),
-    # path('', cache_page(settings.CACHE_TIME)(listings_list), name='list'),
-    path('', listings_list, name='list'),
+    path('', cache_page(settings.CACHE_TIME)(listings_list), name='list'),
 ]

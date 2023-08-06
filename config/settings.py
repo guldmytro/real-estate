@@ -96,6 +96,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'listings.context_processors.real_types',
                 'pages.context_processors.contacts',
+                'pages.context_processors.static_version',
             ],
         },
     },
@@ -176,6 +177,7 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'uk'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = Path('static/')
+STATIC_VERSION = '1.0'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path('media/')
 

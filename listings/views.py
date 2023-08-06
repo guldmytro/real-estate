@@ -88,7 +88,7 @@ def listings_list(request):
         listings = paginator.page(paginator.num_pages)
     
     # Parsing listing coordinates for GoogleMaps
-    coordinates = get_listings_map_data(listings)
+    coordinates = get_listings_map_data(listings_list)
     
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':

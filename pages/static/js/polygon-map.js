@@ -13,8 +13,9 @@ export class PolygonMap {
 
     initMap = () => {
         this.map = L.map(this.polygonMap, {
-            scrollWheelZoom: true // Включаем масштабирование колесом мыши
-        }).setView([0, 0], 15);
+            scrollWheelZoom: true, // Включаем масштабирование колесом мыши
+            zoomControl: false,
+        }).setView([49.989183125556025, 36.23147763480256], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 19
@@ -51,7 +52,21 @@ export class PolygonMap {
                 markers.push(marker);
             });
             if (!this.drawnPolygon) {
-                this.map.fitBounds(bounds);
+                const paddingValue = 0.00006; // Измените значение по своему усмотрению
+
+                // Вычисляем центр полигона
+                const center = bounds.getCenter();
+
+                // Вычисляем ширину и высоту карты
+                const mapWidth = this.map.getSize().x;
+                const mapHeight = this.map.getSize().y;
+
+                // Вычисляем значение отступа в пикселях
+                const paddingX = mapWidth * paddingValue;
+                const paddingY = mapHeight * paddingValue;
+
+                // Масштабируем карту с учетом отступов
+                this.map.fitBounds(bounds.pad(paddingY, paddingX));
             }
         }
 
@@ -104,6 +119,7 @@ export class PolygonMap {
             });
         });
         this.map.on('draw:deleted', (e) => {
+            this.drawnPolygon = null;
             this.formatCoordinates([]);
         });
     }
@@ -134,27 +150,50 @@ export class PolygonMap {
         // Удаление текущих маркеров из markerClusterGroup
         this.map.removeLayer(this.markerClusterGroup );
         this.markerClusterGroup.clearLayers();
-
-        // Создание новых маркеров на основе обновленных locations
         const newMarkers = [];
-        this.locations.forEach((position, i) => {
-            const priceTag = L.divIcon({
-                className: 'price-tag larger-marker',
-                html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
-            });
+        if (this.locations) {
+            // Создание новых маркеров на основе обновленных locations
+            const bounds = L.latLngBounds();
+            this.locations.forEach((position, i) => {
+                const priceTag = L.divIcon({
+                    className: 'price-tag larger-marker',
+                    html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
+                });
 
-            const marker = L.marker(position, {
-                icon: priceTag
-            });
+                const marker = L.marker(position, {
+                    icon: priceTag
+                });
 
-            marker.on('click', () => {
-                infoWindow.setContent(position.content);
-                infoWindow.setLatLng(marker.getLatLng());
-                infoWindow.openOn(this.map);
-            });
+                bounds.extend(position);
+                marker.on('click', () => {
+                    infoWindow.setContent(position.content);
+                    infoWindow.setLatLng(marker.getLatLng());
+                    infoWindow.openOn(this.map);
+                });
 
-            newMarkers.push(marker);
-        });
+                newMarkers.push(marker);
+            });
+            if (!this.drawnPolygon) {
+                const paddingValue = 0.00006; // Измените значение по своему усмотрению
+
+                // Вычисляем центр полигона
+                const center = bounds.getCenter();
+
+                // Вычисляем ширину и высоту карты
+                const mapWidth = this.map.getSize().x;
+                const mapHeight = this.map.getSize().y;
+
+                // Вычисляем значение отступа в пикселях
+                const paddingX = mapWidth * paddingValue;
+                const paddingY = mapHeight * paddingValue;
+
+                // Масштабируем карту с учетом отступов
+                this.map.fitBounds(bounds.pad(paddingY, paddingX));
+            } else {
+                this.map.fitBounds(this.drawnPolygon.getBounds());
+            }
+        }
+        
 
         // Добавление новых маркеров в markerClusterGroup
         this.markerClusterGroup.addLayers(newMarkers);

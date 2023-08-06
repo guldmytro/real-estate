@@ -289,6 +289,7 @@ class SearchForm {
     async getResult() {
         try {
             this.form.classList.add('disabled');
+
             const res = await fetch(`${this.form.getAttribute('action')}?${this.convertFormToQuerySring()}`, {
                 method: 'GET',
                 headers: {
@@ -306,6 +307,10 @@ class SearchForm {
             markViewedListings();
             this.polygonMap.updateLocations(res.coordinates);
             this.update();
+
+            // Изменяем URL-адрес с использованием pushState
+            const newUrl = `${window.location.pathname}?${this.convertFormToQuerySring()}`;
+            window.history.pushState({}, '', newUrl);
         } catch(e) {
             console.warn(e);
         }

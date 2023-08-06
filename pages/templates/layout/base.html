@@ -15,7 +15,7 @@
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?ver={{ ver }}">
 </head>
 <body>
     <div class="content">
@@ -86,11 +86,11 @@
         markViewedListings();
     </script>
 
-    <script src="{% static 'js/predictions.js' %}" type="module"></script>
-    <script src="{% static 'js/polygon-map.js' %}" type="module"></script>
-    <script src="{% static 'js/search.js' %}" type="module"></script>
-    <script src="{% static 'js/wishlist.js' %}"></script>
-    <script src="{% static 'js/prefetch.js' %}"></script>
+    <script src="{% static 'js/predictions.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/polygon-map.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/search.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/wishlist.js' %}?ver={{ ver }}"></script>
+    <script src="{% static 'js/prefetch.js' %}?ver={{ ver }}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

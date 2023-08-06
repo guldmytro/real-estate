@@ -16,8 +16,8 @@
 {% block content %}
     <section class="archive-objects">
         <div class="container">
-            {% if listings %}
-                <div class="archive-objects__row">
+            
+            <div class="archive-objects__row">
                 <div class="col">
                     <div class="section-header">
                         <h1 class="section-header__title animate animate_text">
@@ -25,20 +25,21 @@
                             {{ title|wrap_words_in_span|safe }}
                         </h1>
                     </div>
-                    <ul class="objects-group">
-                        {% for item in listings %}
-                            {% include 'listings/archive-item.html' %}
-                        {% endfor %}
-                    </ul>
-                    {% include 'pagination.html' with page=listings %}
+                    {% if listings %}
+                        <ul class="objects-group">
+                            {% for item in listings %}
+                                {% include 'listings/archive-item.html' %}
+                            {% endfor %}
+                        </ul>
+                        {% include 'pagination.html' with page=listings %}
+                    {% else %}
+                        {% include 'sections/empty-result.html' %}
+                    {% endif %}
                 </div>
                 <div class="col">
                     <div id="clustered-map" style="width:100%;height:100vh;"></div>
                 </div>
             </div>
-            {% else %}
-                {% include 'sections/empty-result.html' %}
-            {% endif %}
         </div>
     </section>
 {% endblock %}
