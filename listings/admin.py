@@ -56,7 +56,7 @@ class StreetAdmin(TranslatableAdmin):
 
 
 @admin.register(Listing)
-class ListingAdmin(TranslatableAdmin):
+class ListingAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'created', 'updated')
     list_editable = ('status',)
     list_filter = ('status', 'manager', 'created', 'updated',)
