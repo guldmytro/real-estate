@@ -44,9 +44,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('--update_date', dest='update_date', type=str)
+        parser.add_argument('--all', dest='all', type=str)
 
     def handle(self, *args, **options):
         self.update_date = options.get('update_date', '').lower() == 'yes' if options.get('update_date') is not None else False
+        self.all = options.get('all', '').lower() == 'all' if options.get('all') is not None else False
         feeds = Feed.objects.all()
         logger.info('Started listings update')
         if feeds.count():
@@ -139,7 +141,8 @@ class Command(BaseCommand):
         return self.parse_geo_data(response_json)
     
     def parse_geo_data(self, response_json):
-
+        with open('log.json', 'w') as log_file:
+            json.dump(response_json, log_file, ensure_ascii=False, indent=4)
         # Extract country
         country = next(
             (component for component in response_json['results'][0]['address_components'] if
@@ -170,7 +173,24 @@ class Command(BaseCommand):
              'route' in component['types']),
             None
         )
-        street_title = street['long_name'] if street else None
+        if street is not None:
+            street_title = street['long_name'] if street else None
+        else:
+            street = next(
+                (component for component in response_json['results'] if
+                'route' in component['types']),
+                None
+            )
+            try:
+                street_deep = next(
+                    (component for component in street['address_components'] if
+                     'route' in component['types']),
+                     None
+                )
+                street_title = street_deep['long_name'] if street else None  
+            except:
+                street_title = None
+        
 
         # Extract street number
         street_num = None
@@ -187,7 +207,6 @@ class Command(BaseCommand):
                 None
             )
             street_num = street_num_dict.get('short_name', None) if street_num_dict else None
-
         return {
             'country': {
                 'title': country_title,
@@ -250,7 +269,7 @@ class Command(BaseCommand):
 
     def update_models(self):
         items = self.filtered_items
-        if self.update_date:
+        if self.update_date or self.all:
             items = self.items
 
         for data in items:
@@ -433,6 +452,8 @@ class Command(BaseCommand):
                     pass
     
     def create_listing_address(self, address_dict):
+        if address_dict['uk']['country']['title'] is None:
+            return None
         try: 
             country = Country.objects.get(
                 translations__language_code='uk',
@@ -447,6 +468,9 @@ class Command(BaseCommand):
             country.save()
         
         if not country:
+            return None
+        
+        if address_dict['uk']['region']['title'] is None:
             return None
         
         region = None
@@ -464,6 +488,9 @@ class Command(BaseCommand):
                 region.set_current_language('en')
                 region.title = address_dict['en']['region']['title']
                 region.save()
+        
+        if address_dict['uk']['city']['title'] is None:
+            return None
         
         try: 
             city = City.objects.get(
@@ -485,6 +512,8 @@ class Command(BaseCommand):
         if not city:
             return None
         
+        if address_dict['uk']['street']['title'] is None:
+            return None
         try: 
             street = Street.objects.get(
                 translations__language_code='uk',
@@ -498,6 +527,7 @@ class Command(BaseCommand):
             street.title = address_dict['en']['street']['title']
             street.city = city
             street.save()
+
         
         if not city:
             return None

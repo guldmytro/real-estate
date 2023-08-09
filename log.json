@@ -1,0 +1,955 @@
+{
+    "plus_code": {
+        "compound_code": "2687+96H Kharkiv, Kharkiv Oblast, Ukraine",
+        "global_code": "9G2R2687+96H"
+    },
+    "results": [
+        {
+            "address_components": [
+                {
+                    "long_name": "197",
+                    "short_name": "197",
+                    "types": [
+                        "street_number"
+                    ]
+                },
+                {
+                    "long_name": "Blyznyukivska Street",
+                    "short_name": "Blyznyukivska St",
+                    "types": [
+                        "route"
+                    ]
+                },
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka oblast",
+                    "short_name": "Kharkivs'ka oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Blyznyukivska St, 197, Kharkiv, Kharkivs'ka oblast, Ukraine, 61000",
+            "geometry": {
+                "location": {
+                    "lat": 50.0157941,
+                    "lng": 36.212717
+                },
+                "location_type": "ROOFTOP",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.0171430802915,
+                        "lng": 36.2140659802915
+                    },
+                    "southwest": {
+                        "lat": 50.0144451197085,
+                        "lng": 36.2113680197085
+                    }
+                }
+            },
+            "place_id": "ChIJRwcjSzyhJ0ERtoL0jZkYMwY",
+            "plus_code": {
+                "compound_code": "2687+83 Kharkiv, Kharkiv Oblast, Ukraine",
+                "global_code": "9G2R2687+83"
+            },
+            "types": [
+                "street_address"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "197",
+                    "short_name": "197",
+                    "types": [
+                        "street_number"
+                    ]
+                },
+                {
+                    "long_name": "Klochkivska Street",
+                    "short_name": "Klochkivska St",
+                    "types": [
+                        "route"
+                    ]
+                },
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka oblast",
+                    "short_name": "Kharkivs'ka oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Klochkivska St, 197, Kharkiv, Kharkivs'ka oblast, Ukraine, 61000",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.018836,
+                        "lng": 36.2129021
+                    },
+                    "southwest": {
+                        "lat": 50.015785,
+                        "lng": 36.212066
+                    }
+                },
+                "location": {
+                    "lat": 50.0173267,
+                    "lng": 36.2125202
+                },
+                "location_type": "ROOFTOP",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.018836,
+                        "lng": 36.2138330302915
+                    },
+                    "southwest": {
+                        "lat": 50.015785,
+                        "lng": 36.2111350697085
+                    }
+                }
+            },
+            "place_id": "ChIJGetAHzyhJ0ERCkEfD-AtnPE",
+            "types": [
+                "premise"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "191",
+                    "short_name": "191",
+                    "types": [
+                        "street_number"
+                    ]
+                },
+                {
+                    "long_name": "Klochkivska Street",
+                    "short_name": "Klochkivska St",
+                    "types": [
+                        "route"
+                    ]
+                },
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka oblast",
+                    "short_name": "Kharkivs'ka oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Klochkivska St, 191, Kharkiv, Kharkivs'ka oblast, Ukraine, 61000",
+            "geometry": {
+                "location": {
+                    "lat": 50.01554609999999,
+                    "lng": 36.2137416
+                },
+                "location_type": "ROOFTOP",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.01689508029149,
+                        "lng": 36.2150905802915
+                    },
+                    "southwest": {
+                        "lat": 50.01419711970849,
+                        "lng": 36.2123926197085
+                    }
+                }
+            },
+            "place_id": "ChIJwf096s2hJ0ER0PaTWAQxkd8",
+            "plus_code": {
+                "compound_code": "2687+6F Kharkiv, Kharkiv Oblast, Ukraine",
+                "global_code": "9G2R2687+6F"
+            },
+            "types": [
+                "establishment",
+                "food",
+                "point_of_interest",
+                "store"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "193",
+                    "short_name": "193",
+                    "types": [
+                        "street_number"
+                    ]
+                },
+                {
+                    "long_name": "Blyznyukivska Street",
+                    "short_name": "Blyznyukivska St",
+                    "types": [
+                        "route"
+                    ]
+                },
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka oblast",
+                    "short_name": "Kharkivs'ka oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Blyznyukivska St, 193, Kharkiv, Kharkivs'ka oblast, Ukraine, 61000",
+            "geometry": {
+                "location": {
+                    "lat": 50.01563489999999,
+                    "lng": 36.2132315
+                },
+                "location_type": "RANGE_INTERPOLATED",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.01698388029149,
+                        "lng": 36.2145804802915
+                    },
+                    "southwest": {
+                        "lat": 50.01428591970849,
+                        "lng": 36.2118825197085
+                    }
+                }
+            },
+            "place_id": "EkJCbHl6bnl1a2l2c2thIFN0LCAxOTMsIEtoYXJraXYsIEtoYXJraXZzJ2thIG9ibGFzdCwgVWtyYWluZSwgNjEwMDAiGxIZChQKEgn5TZJNPKEnQRE6kTQg1hoUuhDBAQ",
+            "types": [
+                "street_address"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "2687+96",
+                    "short_name": "2687+96",
+                    "types": [
+                        "plus_code"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                }
+            ],
+            "formatted_address": "2687+96 Kharkiv, Kharkiv Oblast, Ukraine",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.016,
+                        "lng": 36.213125
+                    },
+                    "southwest": {
+                        "lat": 50.01587500000001,
+                        "lng": 36.213
+                    }
+                },
+                "location": {
+                    "lat": 50.0159324,
+                    "lng": 36.2131016
+                },
+                "location_type": "GEOMETRIC_CENTER",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.0172864802915,
+                        "lng": 36.2144114802915
+                    },
+                    "southwest": {
+                        "lat": 50.0145885197085,
+                        "lng": 36.2117135197085
+                    }
+                }
+            },
+            "place_id": "GhIJMHmoEgoCSUAR1lzJ6UYbQkA",
+            "plus_code": {
+                "compound_code": "2687+96 Kharkiv, Kharkiv Oblast, Ukraine",
+                "global_code": "9G2R2687+96"
+            },
+            "types": [
+                "plus_code"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "193",
+                    "short_name": "193",
+                    "types": [
+                        "street_number"
+                    ]
+                },
+                {
+                    "long_name": "Blyznyukivska Street",
+                    "short_name": "Blyznyukivska St",
+                    "types": [
+                        "route"
+                    ]
+                },
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka oblast",
+                    "short_name": "Kharkivs'ka oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Blyznyukivska St, 193, Kharkiv, Kharkivs'ka oblast, Ukraine, 61000",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.01563489999999,
+                        "lng": 36.2132315
+                    },
+                    "southwest": {
+                        "lat": 50.0155903,
+                        "lng": 36.2125361
+                    }
+                },
+                "location": {
+                    "lat": 50.0156126,
+                    "lng": 36.2128838
+                },
+                "location_type": "GEOMETRIC_CENTER",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.01696158029149,
+                        "lng": 36.2142327802915
+                    },
+                    "southwest": {
+                        "lat": 50.01426361970849,
+                        "lng": 36.2115348197085
+                    }
+                }
+            },
+            "place_id": "ChIJZfqxTDyhJ0ERBlI19m6751k",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "Shevchenkivs'kyi District",
+                    "short_name": "Shevchenkivs'kyi District",
+                    "types": [
+                        "political",
+                        "sublocality",
+                        "sublocality_level_1"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Shevchenkivs'kyi District, Kharkiv, Kharkiv Oblast, Ukraine, 61000",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.0873171,
+                        "lng": 36.2753799
+                    },
+                    "southwest": {
+                        "lat": 49.987482,
+                        "lng": 36.1684219
+                    }
+                },
+                "location": {
+                    "lat": 50.0452226,
+                    "lng": 36.2208517
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.0873171,
+                        "lng": 36.2753799
+                    },
+                    "southwest": {
+                        "lat": 49.987482,
+                        "lng": 36.1684219
+                    }
+                }
+            },
+            "place_id": "ChIJ67kDFbSmJ0ERdmQlx0J2MaY",
+            "types": [
+                "political",
+                "sublocality",
+                "sublocality_level_1"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                }
+            ],
+            "formatted_address": "Kharkiv, Kharkiv Oblast, Ukraine, 61000",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.1023101,
+                        "lng": 36.4549291
+                    },
+                    "southwest": {
+                        "lat": 49.8720971,
+                        "lng": 36.0912851
+                    }
+                },
+                "location": {
+                    "lat": 49.9935,
+                    "lng": 36.230383
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.1023101,
+                        "lng": 36.4549291
+                    },
+                    "southwest": {
+                        "lat": 49.8720971,
+                        "lng": 36.0912851
+                    }
+                }
+            },
+            "place_id": "ChIJg8FVPZmgJ0ERKLOiaxR3zdg",
+            "types": [
+                "postal_code"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "61000",
+                    "short_name": "61000",
+                    "types": [
+                        "postal_code"
+                    ]
+                }
+            ],
+            "formatted_address": "Kharkivs'ka city council, Kharkiv Oblast, Ukraine, 61000",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.1023101,
+                        "lng": 36.4549291
+                    },
+                    "southwest": {
+                        "lat": 49.8720971,
+                        "lng": 36.0912851
+                    }
+                },
+                "location": {
+                    "lat": 49.9935,
+                    "lng": 36.230383
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.1023101,
+                        "lng": 36.4549291
+                    },
+                    "southwest": {
+                        "lat": 49.8720971,
+                        "lng": 36.0912851
+                    }
+                }
+            },
+            "place_id": "ChIJJW2OdJ-gJ0ER0sbjZlagetc",
+            "types": [
+                "administrative_area_level_3",
+                "political"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "Kharkiv",
+                    "short_name": "Kharkiv",
+                    "types": [
+                        "locality",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkivs'ka city council",
+                    "short_name": "Kharkivs'ka city council",
+                    "types": [
+                        "administrative_area_level_3",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                }
+            ],
+            "formatted_address": "Kharkiv, Kharkiv Oblast, Ukraine",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.1053867,
+                        "lng": 36.4558124
+                    },
+                    "southwest": {
+                        "lat": 49.883796,
+                        "lng": 36.115837
+                    }
+                },
+                "location": {
+                    "lat": 49.9935,
+                    "lng": 36.230383
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.1053867,
+                        "lng": 36.4558124
+                    },
+                    "southwest": {
+                        "lat": 49.883796,
+                        "lng": 36.115837
+                    }
+                }
+            },
+            "place_id": "ChIJiw-rY5-gJ0ERCr6kGmgYTC0",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "Kharkiv Oblast",
+                    "short_name": "Kharkiv Oblast",
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ]
+                },
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                }
+            ],
+            "formatted_address": "Kharkiv Oblast, Ukraine",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 50.45950999999999,
+                        "lng": 38.09530609999999
+                    },
+                    "southwest": {
+                        "lat": 48.531375,
+                        "lng": 34.8563339
+                    }
+                },
+                "location": {
+                    "lat": 49.9935,
+                    "lng": 36.230383
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 50.45950999999999,
+                        "lng": 38.09530609999999
+                    },
+                    "southwest": {
+                        "lat": 48.531375,
+                        "lng": 34.8563339
+                    }
+                }
+            },
+            "place_id": "ChIJAfZeLutYJ0ERoEH2iIQGAQE",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "address_components": [
+                {
+                    "long_name": "Ukraine",
+                    "short_name": "UA",
+                    "types": [
+                        "country",
+                        "political"
+                    ]
+                }
+            ],
+            "formatted_address": "Ukraine",
+            "geometry": {
+                "bounds": {
+                    "northeast": {
+                        "lat": 52.3793713,
+                        "lng": 40.2204802
+                    },
+                    "southwest": {
+                        "lat": 44.2924,
+                        "lng": 22.137159
+                    }
+                },
+                "location": {
+                    "lat": 48.379433,
+                    "lng": 31.1655799
+                },
+                "location_type": "APPROXIMATE",
+                "viewport": {
+                    "northeast": {
+                        "lat": 52.3793713,
+                        "lng": 40.2204802
+                    },
+                    "southwest": {
+                        "lat": 44.2924,
+                        "lng": 22.137159
+                    }
+                }
+            },
+            "place_id": "ChIJjw5wVMHZ0UAREED2iIQGAQA",
+            "types": [
+                "country",
+                "political"
+            ]
+        }
+    ],
+    "status": "OK"
+}

@@ -56,7 +56,7 @@ class StreetAdmin(TranslatableAdmin):
 
 
 @admin.register(Listing)
-class ListingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'created', 'updated')
+class ListingAdmin(LeafletGeoAdmin, TranslatableAdmin):
+    list_display = ('title', 'status', 'is_new_building', 'created', 'updated')
     list_editable = ('status',)
-    list_filter = ('status', 'manager', 'created', 'updated',)
+    list_filter = ('status', 'manager', 'is_new_building', 'created', 'updated',)
