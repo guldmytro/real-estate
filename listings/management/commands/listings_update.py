@@ -141,8 +141,6 @@ class Command(BaseCommand):
         return self.parse_geo_data(response_json)
     
     def parse_geo_data(self, response_json):
-        with open('log.json', 'w') as log_file:
-            json.dump(response_json, log_file, ensure_ascii=False, indent=4)
         # Extract country
         country = next(
             (component for component in response_json['results'][0]['address_components'] if
