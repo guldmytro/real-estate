@@ -60,4 +60,3 @@ class ListingAdmin(LeafletGeoAdmin, TranslatableAdmin):
     list_display = ('title', 'status', 'is_new_building', 'created', 'updated')
     list_editable = ('status',)
     list_filter = ('status', 'manager', 'is_new_building', 'created', 'updated',)
-    inlines = [ImageInline, KitInline]
