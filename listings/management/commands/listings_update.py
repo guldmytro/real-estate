@@ -76,7 +76,7 @@ class Command(BaseCommand):
             self.filtered_items = [
                 item for item in self.items
                 if ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date()) or
-                   ("created_at" in item and convert_to_utc(item["created_at"]).date() == today_utc.date())
+                   ("updated_at" in item and convert_to_utc(item["updated_at"]).date() == today_utc.date())
             ]
             logger.info(f'Items for updating - {len(self.filtered_items)} item(s)')
             self.update_models()
