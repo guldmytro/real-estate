@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <th>{% trans 'Floors' %}:</th>
-                        <td>{% firstof listing.floor '?' %} / {% firstof listing.floor '?' %}</td>
+                        <td>{% firstof listing.floor '?' %} / {% firstof listing.total_floors '?' %}</td>
                     </tr>
                     {% if year.count %}
                         <tr>
