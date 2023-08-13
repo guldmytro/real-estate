@@ -80,7 +80,7 @@ def listings_list(request):
 
     
     # Pagination
-    paginator = Paginator(listings_list, 6)
+    paginator = Paginator(listings_list, 24)
     page_number = request.GET.get('page', 1)
     try:
         listings = paginator.page(page_number)
@@ -227,3 +227,16 @@ def get_listings_coordinates(request):
             coordinates = get_listings_map_data(listings_list)
             return JsonResponse({'success': True, 'coordicates': coordinates})    
     return JsonResponse({'success': False})
+
+
+@require_POST
+def listing_detail_map(request, listing_id):
+    listing = get_object_or_404(Listing.objects.prefetch_related(
+        Prefetch('images'),
+        Prefetch('kits__attribute')
+    ), id=listing_id)
+    return JsonResponse({'html': render_to_string(
+        'listings/components/listing-map-info.html', {
+            'listing': listing,
+            'year': listing.kits.filter(attribute__slug='property_23')}
+    )})

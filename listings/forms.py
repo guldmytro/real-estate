@@ -30,7 +30,7 @@ class SearchForm(forms.Form):
                                     )
     city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     street = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
-    number_of_rooms = forms.ChoiceField(
+    number_of_rooms = forms.MultipleChoiceField(
         label=_('Rooms'),
         required=False,
         choices=(
@@ -39,7 +39,7 @@ class SearchForm(forms.Form):
             ('3', '3'),
             ('4+', '4+')
         ),
-        widget=forms.widgets.RadioSelect(attrs={'class': 'radio', 'data-prefix': _('Rooms:')})
+        widget=forms.widgets.CheckboxSelectMultiple(attrs={'class': 'radio', 'data-label': _('Rooms:')})
     )
     min_price = forms.IntegerField(
         label=_('Minimum price'),

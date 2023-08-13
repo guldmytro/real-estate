@@ -9,6 +9,8 @@ class SearchForm {
         if (this.form) {
             this.submitButtons = this.form.querySelectorAll('[type="submit"]');
             this.resetButton = this.form.querySelector('[type="reset"]');
+            this.additionalBtn = this.form.querySelector('.form-search__advanced-btn');
+            this.additionalFields = this.form.querySelector('.additional-fields');
             this.activeFiltersContainer = this.form.querySelector('.active-filters');
             this.prediction = new Prediction(this);
             this.selects = this.form.querySelectorAll('select');
@@ -85,15 +87,21 @@ class SearchForm {
             const name = checkbox.getAttribute('name');
             checkbox.addEventListener('change', (e) => {    
                 const label = `${checkbox.getAttribute('data-label') || ''}`;
-                if (e.target.checked) {
-                    this.activeFilters[name] = {
-                        'name': name,
-                        'value': e.target.value,
-                        'label': label
-                    };
-                } else {
+                if (!this.form.querySelectorAll(`[name="${name}"]:checked`).length) {
                     delete this.activeFilters[name];
+                    return;
                 }
+                const vals = []; 
+                this.checkboxes.forEach(chbx => {
+                    if (chbx.checked) {
+                        vals.push(chbx.value);
+                    }
+                });
+                this.activeFilters[name] = {
+                    'name': name,
+                    'value': vals,
+                    'label': label
+                };
             });
         });
         this.coordinates.addEventListener('change', (e) => {
@@ -112,6 +120,9 @@ class SearchForm {
             this.resetButton.addEventListener('click', this.resetForm);
         }
         this.form.addEventListener('submit', this.sumbitHandler);
+        if (this.additionalBtn) {
+            this.additionalBtn.addEventListener('click', this.additionalBtnHandler)
+        }
     }
 
     initFiltes() {
@@ -152,11 +163,14 @@ class SearchForm {
             }
         });
         this.checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                const name = checkbox.getAttribute('name');
-                const value = checkbox.value;
+            if (!checkbox.checked) return false;
+            const name = checkbox.getAttribute('name');
+            if (!filters[name]) {
                 const label = checkbox.getAttribute('data-label');
-                filters[name] = {name, value, label};
+                const value = [checkbox.value];
+                filters[name] = {name, value, label}
+            } else {
+                filters[name].value = [...filters[name].value, checkbox.value];
             }
         });
         const predictionName = this.prediction.cityInput.value 
@@ -187,9 +201,10 @@ class SearchForm {
                 if (input) {
                     const inputType = input.type;
                     if (inputType === 'radio' || inputType == 'checkbox') {
-                        const targetInput = this.form.querySelector(`[name="${prop}"][value="${target[prop].value}"]`);
-                        if (targetInput) targetInput.checked = false;
-                        if (input) input.checked = false;
+                        const targets = this.form.querySelectorAll(`[name="${prop}"]`);
+                        for (const target of targets) {
+                            target.checked = false;
+                        }
                     } else {
                         input.value = '';
                     }
@@ -206,7 +221,8 @@ class SearchForm {
         }
     }
 
-    updateActiveFilters(firstUpadate=false) { 
+    updateActiveFilters(firstUpadate=false) {
+        console.log('updateActiveFilters'); 
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
@@ -215,9 +231,13 @@ class SearchForm {
                 filtersCount--;
                 continue;
             }
+            let extraLabel = filter.label;
+            if (filter.name === 'number_of_rooms') {
+                extraLabel = `<small>${filter.label}</small> ${filter.value.join(', ')}`;
+            }
             const filterTag = `
             <div class="active-filters__item">
-                <span class="active-filters__label">${filter.label}</span>
+                <span class="active-filters__label">${extraLabel}</span>
                 <button type="button" data-name="${filter.name}" data-value="${filter.value}" class="active-filters__btn" aria-label="очистити фільтр"></button>
             </div>`;
             this.activeFiltersContainer.insertAdjacentHTML('beforeend', filterTag);
@@ -405,12 +425,18 @@ class SearchForm {
     sumbitHandler = (e) => {
         if (window.location.href.includes('/listings/')) {
             e.preventDefault();
-            document.querySelector('.btn_search-close').click();
-            this.resultContainer.scrollIntoView();
+            this.resultContainer.scrollIntoView();            
         }
     }
     
-
+    additionalBtnHandler = () => {
+        if (!this.additionalFields) return false;
+        this.additionalFields.classList.toggle('active');
+        setTimeout(() => {
+            if (!this.additionalFields.classList.contains('active')) return false;
+            this.additionalFields.scrollIntoView();
+        }, 300);
+    }
 }
 
 new SearchForm('#search-form', 'clustered-map', locations !== undefined ? locations : null);
@@ -562,7 +588,7 @@ class MapSearch {
         this.locations.forEach((position, i) => {
             const priceTag = L.divIcon({
                 className: 'price-tag larger-marker',
-                html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
+                html: '<div class="price-tag__content" data-id="' + position.id + '">' + position.price + ' $' + '</div>',
             });
 
             const marker = L.marker(position, {
@@ -571,8 +597,9 @@ class MapSearch {
 
             bounds.extend(position);
 
-            marker.on('click', () => {
-                infoWindow.setContent(position.content);
+            marker.on('click', async (e) => {
+                const listingContent = await this.getListingContent(e);
+                infoWindow.setContent(listingContent);
                 infoWindow.setLatLng(marker.getLatLng());
                 infoWindow.openOn(this.map);
             });
@@ -585,6 +612,33 @@ class MapSearch {
         this.markerClusterGroup.addLayers(markers);
         this.map.addLayer(this.markerClusterGroup);
     }
+
+    getListingContent = async (e) => {
+        const icon = e.target._icon;
+        if (!icon) {
+            return false;
+        }
+        const id = icon.querySelector('.price-tag__content').getAttribute('data-id');
+        const lang = document.querySelector('html').getAttribute('lang');
+        try {
+            const listingContent = await fetch(`/${lang}/listings/${id}/map/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error('Bad request');
+            });
+            return listingContent.html;
+        } catch(e) {
+            console.warn(e);
+        }
+        return false;
+    }
+    
 }
 
 

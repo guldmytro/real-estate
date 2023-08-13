@@ -66,23 +66,8 @@
                 </div>
             </label>
         </div>
-        <div class="submit-row">
-            <button type="submit" class="form-search__submit btn btn_primary">
-                <span class="text">{% trans 'Show' %}</span>
-                <span class="count">({{ count }})</span>
-            </button>
-            <button type="button" class="form-search__advanced-btn btn btn_invert">
-                <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
-                <span>{% trans 'Advanced search' %}</span>
-            </button>
-        </div>
-        <div class="active-filters"></div>
         <div class="additional-fields">
             <div class="additional-fields-inner">
-                <button type="button" class="btn_search-close">
-                    <span></span>
-                    <span></span>
-                </button>
                 <div class="additional-fields__section additional-section">
                     <div class="fieldset-group">
                         <legend class="fieldset-group__legend">{% trans 'Building' %}</legend>
@@ -180,15 +165,57 @@
                     </div>
                 </div>
                 {{ search_form.polygon }}
-                <footer class="additional-fields__footer">
-                    <button type="reset" class="btn btn_darken">
-                        <span>{% trans 'Reset' %}</span>
-                    </button>
-                    <button type="submit" class="btn btn_primary">
-                        <span class="text">{% trans 'Show' %}</span>
-                        <span class="count">({{ count }})</span></button>
-                </footer>
             </div>
         </div>
+        <div class="submit-row">
+            <button type="submit" class="form-search__submit btn btn_primary">
+                <span class="text">{% trans 'Show' %}</span>
+                <span class="count">({{ count }})</span>
+            </button>
+            <button type="button" class="form-search__advanced-btn btn btn_invert">
+                <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">
+                <span>{% trans 'Advanced search' %}</span>
+            </button>
+        </div>
+        <div class="active-filters"></div>
     </form>
+
+    <style>
+        .additional-fields {
+            padding: 0 var(--padding-horizontal);
+            position: static;
+            display: grid;
+            background-color: transparent;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+
+        .additional-fields.active {
+            grid-template-rows: 1fr;
+        }
+
+        .additional-fields-inner {
+            position: static;
+            top: unset;
+            left: unset;
+            transform: none;
+            padding: 0;
+            box-shadow: none;
+            overflow: hidden;
+            height: auto;
+            max-height: unset;
+            max-width: 100%;
+        }
+        .additional-section {
+            max-height: unset;
+            overflow-y: unset;
+        }
+        .radio-group [type="checkbox"] {
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            appearance: none;
+        }
+    </style>
 {% endif %}

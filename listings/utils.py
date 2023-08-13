@@ -79,10 +79,13 @@ def filter_listings(cleaned_data, listings):
         listings = listings.filter(street__city_id=city_id)
     
     if number_of_rooms:
-        if number_of_rooms == '4+':
-            listings = listings.filter(room_count__gte=4)
-        else:
-            listings = listings.filter(room_count=number_of_rooms)
+        q_rooms = Q()
+        if '4+' in number_of_rooms:
+            q_rooms |= Q(room_count__gte=4)
+            number_of_rooms.remove('4+')
+        if len(number_of_rooms):
+            q_rooms |= Q(room_count__in=number_of_rooms)
+        listings = listings.filter(q_rooms)
 
     if min_price and max_price:
         listings = listings.filter(price__gte=min_price, price__lte=max_price)
@@ -200,15 +203,11 @@ def modify_get(GET):
 
 def get_listings_map_data(listings):
     coordinates = [{
+        'id': listing.pk,
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
         'price': listing.formated_price(),
-        'content': render_to_string(
-        'listings/components/listing-map-info.html', {
-            'listing': listing, 
-            'year': listing.kits.filter(attribute__slug='property_23')
-            })
-        } for listing in listings[:200]]
+        } for listing in listings[:500]]
     return coordinates
     
 

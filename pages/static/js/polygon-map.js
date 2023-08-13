@@ -34,7 +34,7 @@ export class PolygonMap {
             this.locations.forEach((position, i) => {
                 const priceTag = L.divIcon({
                     className: 'price-tag larger-marker',
-                    html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
+                    html: '<div class="price-tag__content" data-id="' + position.id + '">' + position.price + ' $' + '</div>',
                 });
     
                 const marker = L.marker(position, {
@@ -43,12 +43,12 @@ export class PolygonMap {
     
                 bounds.extend(position);
     
-                marker.on('click', () => {
-                    infoWindow.setContent(position.content);
+                marker.on('click', async (e) => {
+                    const listingContent = await this.getListingContent(e);
+                    infoWindow.setContent(listingContent);
                     infoWindow.setLatLng(marker.getLatLng());
                     infoWindow.openOn(this.map);
                 });
-    
                 markers.push(marker);
             });
             if (!this.drawnPolygon) {
@@ -121,6 +121,32 @@ export class PolygonMap {
         });
     }
 
+    getListingContent = async (e) => {
+        const icon = e.target._icon;
+        if (!icon) {
+            return false;
+        }
+        const id = icon.querySelector('.price-tag__content').getAttribute('data-id');
+        const lang = document.querySelector('html').getAttribute('lang');
+        try {
+            const listingContent = await fetch(`/${lang}/listings/${id}/map/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw new Error('Bad request');
+            });
+            return listingContent.html;
+        } catch(e) {
+            console.warn(e);
+        }
+        return false;
+    }
+
     formatCoordinates = (coords) => {
         this.searchForm.coordinates.value = coords.map(coord => `${coord.lng},${coord.lat}`).join(';');
         const changeEvent = new Event('change', {
@@ -159,7 +185,7 @@ export class PolygonMap {
             this.locations.forEach((position, i) => {
                 const priceTag = L.divIcon({
                     className: 'price-tag larger-marker',
-                    html: '<div class="price-tag__content">' + position.price + ' $' + '</div>',
+                    html: '<div class="price-tag__content" data-id="' + position.id + '">' + position.price + ' $' + '</div>',
                 });
 
                 const marker = L.marker(position, {
@@ -167,8 +193,9 @@ export class PolygonMap {
                 });
 
                 bounds.extend(position);
-                marker.on('click', () => {
-                    infoWindow.setContent(position.content);
+                marker.on('click', async (e) => {
+                    const listingContent = await this.getListingContent(e);
+                    infoWindow.setContent(listingContent);
                     infoWindow.setLatLng(marker.getLatLng());
                     infoWindow.openOn(this.map);
                 });
