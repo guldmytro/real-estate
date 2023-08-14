@@ -1,66 +1,64 @@
 {% load i18n %}
 {% load listing_extras %}
 
-{% if kits %}
-    <div id="params" class="object-box">
-        <div class="object-box-header">
-            <h2 class="object-box-header__title animate animate_text">
-                {% trans 'Characteristics' as title %}
-                {{ title|wrap_words_in_span|safe }}
-            </h2>
-        </div>
-        <table class="object-box__table">
-            <tbody>
-                <tr>
-                    <th>{% trans 'Is new house' %}</th>
-                    <td>{% if listing.is_new_building %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
-                </tr>
-                {% if listing.area_total %}
-                <tr>
-                    <th>{% trans 'Total area' %}</th>
-                    <td>{{ listing.area_total }}м²</td>
-                </tr>
-                {% endif %}
-                {% if listing.area_living %}
-                <tr>
-                    <th>{% trans 'Living area' %}</th>
-                    <td>{{ listing.area_living }}м²</td>
-                </tr>
-                {% endif %}
-                {% if listing.area_kitchen %}
-                <tr>
-                    <th>{% trans 'Kitchen area' %}</th>
-                    <td>{{ listing.area_kitchen }}м²</td>
-                </tr>
-                {% endif %}
-                {% if listing.room_count %}
-                <tr>
-                    <th>{% trans 'Rooms count' %}</th>
-                    <td>{{ listing.room_count }}</td>
-                </tr>
-                {% endif %}
-                {% if listing.floor and listing.total_floors %}
-                <tr>
-                    <th>{% trans 'Floor' %}</th>
-                    <td>{{ listing.floor }} / {{ listing.total_floors }}</td>
-                </tr>
-                {% endif %}
-                {% for kit in kits.all %}
-                    <tr>
-                        <th>{{ kit.attribute.title }}</th>
-                        <td>{{ kit.value|capfirst }}</td>
-                    </tr>
-                    {% if kits.count > 15 and forloop.counter == 5 %}
-                        <tr class="show-more-attributes">
-                            <td>
-                                <button type="button" class="show-more-attributes__btn">
-                                    {% trans 'Show more' %}
-                                </button>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+<div id="params" class="object-box">
+    <div class="object-box-header">
+        <h2 class="object-box-header__title animate animate_text">
+            {% trans 'Characteristics' as title %}
+            {{ title|wrap_words_in_span|safe }}
+        </h2>
     </div>
-{% endif %}
+    <table class="object-box__table">
+        <tbody>
+            <tr>
+                <th>{% trans 'Is new house' %}</th>
+                <td>{% if listing.is_new_building %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
+            </tr>
+            {% if listing.area_total %}
+            <tr>
+                <th>{% trans 'Total area' %}</th>
+                <td>{{ listing.area_total }}м²</td>
+            </tr>
+            {% endif %}
+            {% if listing.area_living %}
+            <tr>
+                <th>{% trans 'Living area' %}</th>
+                <td>{{ listing.area_living }}м²</td>
+            </tr>
+            {% endif %}
+            {% if listing.area_kitchen %}
+            <tr>
+                <th>{% trans 'Kitchen area' %}</th>
+                <td>{{ listing.area_kitchen }}м²</td>
+            </tr>
+            {% endif %}
+            {% if listing.room_count %}
+            <tr>
+                <th>{% trans 'Rooms count' %}</th>
+                <td>{{ listing.room_count }}</td>
+            </tr>
+            {% endif %}
+            {% if listing.floor and listing.total_floors %}
+            <tr>
+                <th>{% trans 'Floor' %}</th>
+                <td>{{ listing.floor }} / {{ listing.total_floors }}</td>
+            </tr>
+            {% endif %}
+            {% for kit in kits.all %}
+                <tr>
+                    <th>{{ kit.attribute.title }}</th>
+                    <td>{{ kit.value|capfirst }}</td>
+                </tr>
+                {% if kits.count > 15 and forloop.counter == 5 %}
+                    <tr class="show-more-attributes">
+                        <td>
+                            <button type="button" class="show-more-attributes__btn">
+                                {% trans 'Show more' %}
+                            </button>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
