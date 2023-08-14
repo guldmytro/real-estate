@@ -70,15 +70,25 @@ class Command(BaseCommand):
 
     def parse_item(self, item):
         item_dict = {
-            'id': item.get('internal-id')
+            'id': item.get('internal-id'),
         }
+        for child in item:
+            if child.tag == 'status':
+                item_dict[child.tag] = child.text
         return item_dict
 
     
     def update_models(self):
         ids = [int(item.get('id')) for item in self.items]
+        closed_ids = [int(item.get('id')) for item in self.items if item.get('status') != 'active']
         try: 
             cnt, _ = Listing.objects.exclude(id__in=ids).delete()
+            logger.info(f'Successfuly deleted {cnt} item(s)')
+        except Exception as e:
+            logger.error(f'Error while trying to delete listings - {e}')
+        
+        try: 
+            cnt, _ = Listing.objects.filter(id__in=closed_ids).delete()
             logger.info(f'Successfuly deleted {cnt} item(s)')
         except Exception as e:
             logger.error(f'Error while trying to delete listings - {e}')
