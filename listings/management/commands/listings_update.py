@@ -275,10 +275,12 @@ class Command(BaseCommand):
                 if self.update_date:
                     logger.info(f'Updating datetimefield for listing {data["id"]}')
                     self.listings_update_date(data)
+                elif data['status'] != 'active':
+                    logger.info(f'Deleting listing {data["id"]}')
+                    self.delete_listing(data)
                 else:
                     self.add_listing(data)
                     logger.info(f'Updating listing {data["id"]}')
-                    
             except Exception as e: 
                 logger.error(f'Error while working with listing {data["id"]}: {str(e)}')
                 pass
@@ -290,7 +292,6 @@ class Command(BaseCommand):
             listing.created = convert_to_utc(data.get('created_at', timezone.now()))
             listing.updated = convert_to_utc(data.get('updated_at', timezone.now()))
             listing.save()
-            print(f'New created date for listing {listing.id} is {listing.created}')
         except Listing.DoesNotExist:
             pass
 
@@ -386,18 +387,11 @@ class Command(BaseCommand):
         
         # Create Images
         for image_url in data['images']:
-            # image = Image(image_url=image_url, listing=listing)
-            # try:
-            #     image.full_clean()
-            #     image.save()
-            # except:
-            #     pass
             add_listing_image.delay(listing.id, image_url)
 
         # Update images
         for image in listing.images.all():
             if image.image_url not in data['images']:
-                # image.delete()
                 delete_listing_image.delay(image.id)
 
         # Clear all kits
@@ -448,6 +442,15 @@ class Command(BaseCommand):
                     listing.save()
                 except ValidationError:
                     pass
+    
+    def delete_listing(self, data):
+        try:
+            listing = Listing.objects.get(id=int(data['id']))
+            listing.delete()
+            logger.info(f'Listing {int(data["id"])} deleted')
+        except Listing.DoesNotExist:
+            logger.error(f'Listing {int(data["id"])} does not exist')
+
     
     def create_listing_address(self, address_dict):
         if address_dict['uk']['country']['title'] is None:
