@@ -1,5 +1,6 @@
 from .models import Listing, Image, Country, City, Street, \
-      Kit, Attribute, RealtyType, Category, Region
+      Kit, Attribute, RealtyType, Category, Region, District, \
+      HouseComplex
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 from parler.admin import TranslatableAdmin
@@ -54,6 +55,13 @@ class CityAdmin(TranslatableAdmin):
 class StreetAdmin(TranslatableAdmin):
     list_display = ('title',)
 
+@admin.register(District)
+class DistrictAdmin(TranslatableAdmin):
+    list_display = ('title',)
+
+@admin.register(HouseComplex)
+class HouseComplexAdmin(TranslatableAdmin):
+    list_display = ('title',)
 
 @admin.register(Listing)
 class ListingAdmin(LeafletGeoAdmin, TranslatableAdmin):

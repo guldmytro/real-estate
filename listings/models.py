@@ -54,6 +54,10 @@ class Listing(TranslatableModel):
     street = models.ForeignKey('Street', verbose_name=_('Street'), blank=True, null=True, on_delete=models.CASCADE,
                                related_name='listings')
     street_number = models.CharField(verbose_name=_('House Number'), blank=True, null=True, max_length=10)
+    district = models.ForeignKey('District', verbose_name=_('District'), blank=True, null=True, on_delete=models.CASCADE,
+                                 related_name='listings')
+    house_complex = models.ForeignKey('HouseComplex', verbose_name=_('House complex'), blank=True, null=True, on_delete=models.CASCADE,
+                                      related_name='listings')
 
     # Category / type / deal
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
@@ -163,7 +167,6 @@ class Category(TranslatableModel):
         verbose_name_plural = _('Categories')
 
 
-
 class RealtyType(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=255, verbose_name=_('Title')),
@@ -266,7 +269,7 @@ class Country(TranslatableModel):
 
 class Region(TranslatableModel):
     translations = TranslatedFields(
-        title=models.CharField(max_length=100, verbose_name=_('Country'), unique=True)
+        title=models.CharField(max_length=100, verbose_name=_('Region'), unique=True)
     )
     def __str__(self):
         return f'{self.title}'
@@ -293,6 +296,34 @@ class City(TranslatableModel):
     class Meta:
         verbose_name = _('City')
         verbose_name_plural = _('Cities')
+
+
+class District(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=100, verbose_name=_('District'))
+    )
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=_('City'))
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('District')
+        verbose_name_plural = _('District')
+
+
+class HouseComplex(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=100, verbose_name=_('House Complex'))
+    )
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=_('City'))
+    
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('House Complex')
+        verbose_name_plural = _('House Complexes')
 
 
 class Street(TranslatableModel):

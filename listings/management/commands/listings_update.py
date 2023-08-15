@@ -6,7 +6,7 @@ import json
 import re
 from django.utils.html import strip_tags
 from listings.models import Listing, Category, RealtyType, Deal, \
-    Image, Kit, Attribute, Country, City, Street, Region
+    Kit, Attribute, Country, City, Street, Region, District, HouseComplex
 from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
 from slugify import slugify
@@ -373,6 +373,9 @@ class Command(BaseCommand):
                         pass
         if street:
             listing.street = street
+        
+        listing.district = self.get_listing_district(data['location'].get('district'), street)
+        listing.house_complex = self.get_listing_house_complex(data.get('newbuilding_name'), street)
 
         manager = self.get_manager(data.get('user', False))
         if manager:
@@ -534,6 +537,56 @@ class Command(BaseCommand):
             return None
 
         return street
+    
+    def get_listing_district(self, district, street):
+        if street is None or district is None:
+            return None
+        if street.city is None:
+            return None
+        
+        city = street.city
+        district_obj = None
+
+        try: 
+            district_obj = District.objects.get(
+                translations__language_code='uk',
+                translations__title=district
+                )
+        except District.DoesNotExist:
+            district_obj = District()
+            district_obj.set_current_language('uk')
+            district_obj.title = district
+            district_obj.set_current_language('en')
+            district_obj.title = translate(district, from_lang='uk', to_lang='en')
+            district_obj.city = city
+            district_obj.save()
+
+        return district_obj
+    
+    def get_listing_house_complex(self, house_complex, street):
+        if street is None or house_complex is None:
+            return None
+        if street.city is None:
+            return None
+        
+        city = street.city
+        house_complex_obj = None
+
+        try: 
+            house_complex_obj = HouseComplex.objects.get(
+                translations__language_code='uk',
+                translations__title=house_complex
+                )
+        except HouseComplex.DoesNotExist:
+            house_complex_obj = HouseComplex()
+            house_complex_obj.set_current_language('uk')
+            house_complex_obj.title = house_complex
+            house_complex_obj.set_current_language('en')
+            house_complex_obj.title = translate(house_complex, from_lang='uk', to_lang='en')
+            house_complex_obj.city = city
+            house_complex_obj.save()
+
+        return house_complex_obj
 
     def get_category(self, category):
         if not category:
