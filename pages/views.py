@@ -9,7 +9,9 @@ from django.urls import reverse_lazy
 from listings.forms import SearchForm, SearchFormSimplified
 from news.models import News
 from django.utils.translation import gettext_lazy as _
-
+from listings.utils import get_listings_map_data
+from listings.models import Listing, City
+from django.db.models import Count
 
 def about(request):
     feadback_form = FeadbackForm(request.POST)
@@ -113,12 +115,21 @@ def home(request):
     feadback_form = FeadbackForm(request.POST)
     news = News.objects.order_by('-created')[:10]
     reviews = Review.objects.select_related('manager').order_by('-rating')[:10]
+    
+    cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
+    cities_with_count = cities_with_count.order_by('-listing_count')
+    city = cities_with_count.first()
+    listings_list = Listing.objects.filter(street__city=city)[:400]
+
+    # Parsing listing coordinates for GoogleMaps
+    coordinates = get_listings_map_data(listings_list)
     context = {
         'search_form': search_form,
         'search_form_simplified': search_form_simplified,
         'feadback_form': feadback_form,
         'news': news,
         'reviews': reviews,
-        'page': page
+        'page': page,
+        'coordinates': coordinates,
     }
     return render(request, 'pages/home.html', context)

@@ -24,7 +24,7 @@ class SearchForm(forms.Form):
                                     widget=forms.widgets.TextInput(
                                         attrs={
                                            'class': 'input',
-                                           'placeholder': _('For example, Kharkiv'),
+                                           'placeholder': _('Housing complex, district, street or city'),
                                            'autocomplete': 'off'
                                         })
                                     )
@@ -57,6 +57,20 @@ class SearchForm(forms.Form):
         widget=forms.widgets.NumberInput(attrs={
             'class': 'input-price', 'placeholder': _('To'),
             'data-prefix': _('Price to:'), 'data-suffix': "$"})
+    )
+    min_area = forms.IntegerField(
+        label=_('Minimum area'),
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={
+            'class': 'input-price', 'placeholder': _('From'),
+            'data-prefix': _('Minimum area from:'), 'data-suffix': _('m²')})
+    )
+    max_area = forms.IntegerField(
+        label=_('Maximum area'),
+        required=False,
+        widget=forms.widgets.NumberInput(attrs={
+            'class': 'input-price', 'placeholder': _('To'),
+            'data-prefix': _('Maximum area to:'), 'data-suffix': _('m²')})
     )
     realty_type = forms.ModelChoiceField(
         label=_("Realty type"),

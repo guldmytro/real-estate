@@ -58,6 +58,9 @@ def filter_listings(cleaned_data, listings):
     windows = cleaned_data.get('windows')
     enter = cleaned_data.get('enter')
     outside_decorating = cleaned_data.get('outside_decorating')
+
+    min_area = cleaned_data.get('min_area')
+    max_area = cleaned_data.get('max_area')
     floor_from = cleaned_data.get('floor_from')
     floor_to = cleaned_data.get('floor_to')
     floors_from = cleaned_data.get('floors_from')
@@ -121,6 +124,12 @@ def filter_listings(cleaned_data, listings):
 
     if outside_decorating:
         listings = listings.filter(kits=outside_decorating)
+
+    if min_area:
+        listings = listings.filter(area_total__gte=min_area)
+        
+    if max_area:
+        listings = listings.filter(area_total__lte=max_area)
 
     if floor_from:
         listings = listings.filter(floor__gte=floor_from)

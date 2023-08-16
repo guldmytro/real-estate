@@ -315,8 +315,6 @@ class Command(BaseCommand):
         deal = self.get_deal(data.get('deal', False))
 
         # get or create listing
-        if int(data['id']) != 140:
-            return None
         print(int(data['id']))
         try:
             listing = Listing.objects.get(id=int(data['id']))
@@ -368,10 +366,7 @@ class Command(BaseCommand):
 
         lng = float(data['location']['map_lng'])
         lat = float(data['location']['map_lat'])
-
-        need_update_address = str(lng) != str(listing.get_coordinates_lng()) or \
-                                str(lat) != str(listing.get_coordinates_lat())
-
+        
         listing.coordinates = Point(lng, lat)
 
         street = None

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 10:32+0000\n"
+"POT-Creation-Date: 2023-08-16 14:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,8 +226,8 @@ msgid "By leaving feedback, you consent to the processing of personal data"
 msgstr ""
 
 #: listings/apps.py:8 listings/models.py:76
-#: listings/templates/listings/list.html:6 listings/views.py:70
-#: listings/views.py:127
+#: listings/templates/listings/list.html:6 listings/views.py:84
+#: listings/views.py:141
 msgid "Listings"
 msgstr ""
 
@@ -244,134 +244,156 @@ msgid "Address"
 msgstr ""
 
 #: listings/forms.py:27
-msgid "For example, Kharkiv"
+msgid "Housing complex, district, street or city"
 msgstr ""
 
-#: listings/forms.py:34
+#: listings/forms.py:37
 #: listings/templates/listings/components/listing-map-info.html:25
 msgid "Rooms"
 msgstr ""
 
-#: listings/forms.py:42
+#: listings/forms.py:45
 msgid "Rooms:"
 msgstr ""
 
-#: listings/forms.py:45
+#: listings/forms.py:48
 msgid "Minimum price"
 msgstr ""
 
-#: listings/forms.py:48 listings/forms.py:120 listings/forms.py:123
-#: listings/forms.py:134 listings/forms.py:137
+#: listings/forms.py:51 listings/forms.py:65 listings/forms.py:137
+#: listings/forms.py:140 listings/forms.py:151 listings/forms.py:154
 msgid "From"
 msgstr ""
 
-#: listings/forms.py:49
+#: listings/forms.py:52
 msgid "Price from:"
 msgstr ""
 
-#: listings/forms.py:52
+#: listings/forms.py:55
 msgid "Maximum price"
 msgstr ""
 
-#: listings/forms.py:55 listings/forms.py:127 listings/forms.py:130
-#: listings/forms.py:141 listings/forms.py:144
+#: listings/forms.py:58 listings/forms.py:72 listings/forms.py:144
+#: listings/forms.py:147 listings/forms.py:158 listings/forms.py:161
 msgid "To"
 msgstr ""
 
-#: listings/forms.py:56
+#: listings/forms.py:59
 msgid "Price to:"
 msgstr ""
 
-#: listings/forms.py:59 listings/models.py:66 pages/forms.py:26
+#: listings/forms.py:62
+msgid "Minimum area"
+msgstr ""
+
+#: listings/forms.py:66
+msgid "Minimum area from:"
+msgstr ""
+
+#: listings/forms.py:66 listings/forms.py:73
+#: listings/templates/listings/archive-item.html:23
+#: listings/templates/listings/components/listing-map-info.html:22
+msgid "m²"
+msgstr ""
+
+#: listings/forms.py:69
+msgid "Maximum area"
+msgstr ""
+
+#: listings/forms.py:73
+msgid "Maximum area to:"
+msgstr ""
+
+#: listings/forms.py:76 listings/models.py:66 pages/forms.py:26
 msgid "Realty type"
 msgstr ""
 
-#: listings/forms.py:62
+#: listings/forms.py:79
 msgid "Select a type"
 msgstr ""
 
-#: listings/forms.py:65 pages/forms.py:32
+#: listings/forms.py:82 pages/forms.py:32
 msgid "Realty type:"
 msgstr ""
 
-#: listings/forms.py:71 listings/forms.py:73
+#: listings/forms.py:88 listings/forms.py:90
 msgid "New building"
 msgstr ""
 
-#: listings/forms.py:108 listings/forms.py:110
+#: listings/forms.py:125 listings/forms.py:127
 msgid "With photo"
 msgstr ""
 
-#: listings/forms.py:113 listings/forms.py:115
+#: listings/forms.py:130 listings/forms.py:132
 msgid "With video"
 msgstr ""
 
-#: listings/forms.py:124
+#: listings/forms.py:141
 msgid "Floor from:"
 msgstr ""
 
-#: listings/forms.py:131
+#: listings/forms.py:148
 msgid "Floor to:"
 msgstr ""
 
-#: listings/forms.py:138
+#: listings/forms.py:155
 msgid "Floors in the house from:"
 msgstr ""
 
-#: listings/forms.py:145
+#: listings/forms.py:162
 msgid "Floors in the house to:"
 msgstr ""
 
-#: listings/forms.py:148
+#: listings/forms.py:165
 msgid "Repair"
 msgstr ""
 
-#: listings/forms.py:152 listings/forms.py:162 listings/forms.py:172
-#: listings/forms.py:182 listings/forms.py:192 listings/forms.py:203
+#: listings/forms.py:169 listings/forms.py:179 listings/forms.py:189
+#: listings/forms.py:199 listings/forms.py:209 listings/forms.py:220
 msgid "Select"
 msgstr ""
 
-#: listings/forms.py:154
+#: listings/forms.py:171
 msgid "Repair:"
 msgstr ""
 
-#: listings/forms.py:158
+#: listings/forms.py:175
 msgid "Layout"
 msgstr ""
 
-#: listings/forms.py:164
+#: listings/forms.py:181
 msgid "Layout:"
 msgstr ""
 
-#: listings/forms.py:168
+#: listings/forms.py:185
 msgid "Housing class"
 msgstr ""
 
-#: listings/forms.py:174
+#: listings/forms.py:191
 msgid "Housing class:"
 msgstr ""
 
-#: listings/forms.py:178
+#: listings/forms.py:195
 msgid "Roof of the house"
 msgstr ""
 
-#: listings/forms.py:184
+#: listings/forms.py:201
 msgid "Roof of the house:"
 msgstr ""
 
-#: listings/forms.py:188
+#: listings/forms.py:205
 msgid "Windows come out"
 msgstr ""
 
-#: listings/forms.py:194
+#: listings/forms.py:211
 msgid "Windows come out:"
 msgstr ""
 
-#: listings/forms.py:199
+#: listings/forms.py:216
 msgid "Entrance"
 msgstr ""
 
-#: listings/forms.py:205
+#: listings/forms.py:222
 msgid "Entrance:"
 msgstr ""
 
@@ -426,7 +448,7 @@ msgstr ""
 msgid "Room Count"
 msgstr ""
 
-#: listings/models.py:47 listings/templates/forms/search.html:77
+#: listings/models.py:47 listings/templates/forms/search.html:88
 #: listings/templates/listings/components/attributes.html:65
 msgid "Floor"
 msgstr ""
@@ -435,7 +457,7 @@ msgstr ""
 msgid "Total Floors"
 msgstr ""
 
-#: listings/models.py:51 listings/templates/forms/search.html:61
+#: listings/models.py:51 listings/templates/forms/search.html:63
 #: listings/templates/listings/components/listing-map-info.html:17
 #: pages/templates/pages/course.html:56
 msgid "Price"
@@ -597,37 +619,36 @@ msgstr ""
 msgid "Property valuation"
 msgstr ""
 
-#: listings/templates/forms/search.html:73
+#: listings/templates/forms/search.html:75
 msgid "Building"
 msgstr ""
 
-#: listings/templates/forms/search.html:86
+#: listings/templates/forms/search.html:79
+msgid "Area (m²)"
+msgstr ""
+
+#: listings/templates/forms/search.html:97
 msgid "Floors in the house"
 msgstr ""
 
-#: listings/templates/forms/search.html:141
+#: listings/templates/forms/search.html:152
 msgid "Court"
 msgstr ""
 
-#: listings/templates/forms/search.html:154
+#: listings/templates/forms/search.html:165
 msgid "Media"
 msgstr ""
 
-#: listings/templates/forms/search.html:172
+#: listings/templates/forms/search.html:183
 msgid "Show"
 msgstr ""
 
-#: listings/templates/forms/search.html:177
+#: listings/templates/forms/search.html:188
 msgid "Advanced search"
 msgstr ""
 
 #: listings/templates/listings/archive-item.html:8
 msgid "Reviewed"
-msgstr ""
-
-#: listings/templates/listings/archive-item.html:23
-#: listings/templates/listings/components/listing-map-info.html:22
-msgid "m²"
 msgstr ""
 
 #: listings/templates/listings/archive-item.html:32
@@ -1138,7 +1159,7 @@ msgstr ""
 #: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
 #: pages/templates/sections/header.html:72
-#: pages/templates/sections/header.html:108 pages/views.py:40
+#: pages/templates/sections/header.html:108 pages/views.py:42
 msgid "Contacts"
 msgstr ""
 
@@ -1528,7 +1549,7 @@ msgid "Find real estate"
 msgstr ""
 
 #: pages/templates/pages/pricing.html:6 pages/templates/pages/pricing.html:13
-#: pages/views.py:63
+#: pages/views.py:65
 msgid "Cost of services"
 msgstr ""
 

@@ -532,12 +532,13 @@ class MapSearch {
     constructor(formId) {
         this.form = document.querySelector(formId);
         if (this.form) {
-            this.locations = [];
+            this.locations = locations || [];
             this.activeFilters = {};
             this.action = this.form.getAttribute('action');
             this.prediction = new Prediction(this);
             this.map = false;
             this.markerClusterGroup = false;
+            if (this.locations) this.initMap();
         }
     }
 
