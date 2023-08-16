@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 10:01+0000\n"
-"PO-Revision-Date: 2023-08-16 10:02+0000\n"
+"POT-Creation-Date: 2023-08-16 10:32+0000\n"
+"PO-Revision-Date: 2023-08-16 10:33+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -410,6 +410,7 @@ msgid "Description"
 msgstr "Опис"
 
 #: listings/models.py:33
+#: listings/templates/listings/components/attributes.html:31
 msgid "Metros"
 msgstr "Метро"
 
@@ -434,7 +435,7 @@ msgid "Room Count"
 msgstr "Кількість кімнат"
 
 #: listings/models.py:47 listings/templates/forms/search.html:77
-#: listings/templates/listings/components/attributes.html:47
+#: listings/templates/listings/components/attributes.html:65
 msgid "Floor"
 msgstr "Поверх"
 
@@ -457,14 +458,15 @@ msgid "House Number"
 msgstr "Номер будинку"
 
 #: listings/models.py:58 listings/models.py:304 listings/models.py:312
+#: listings/templates/listings/components/attributes.html:19
 msgid "District"
 msgstr "Район"
 
 #: listings/models.py:60
-#, fuzzy
+#: listings/templates/listings/components/attributes.html:25
 #| msgid "House Number"
 msgid "House complex"
-msgstr "Номер будинку"
+msgstr "ЖК"
 
 #: listings/models.py:65 listings/models.py:167
 msgid "Category"
@@ -560,10 +562,9 @@ msgid "Districts"
 msgstr "Райони"
 
 #: listings/models.py:318 listings/models.py:326
-#, fuzzy
 #| msgid "House Number"
 msgid "House Complex"
-msgstr "Номер будинку"
+msgstr "ЖК"
 
 #: listings/models.py:327
 msgid "House Complexes"
@@ -653,35 +654,35 @@ msgstr "Характеристики"
 msgid "Article"
 msgstr "Артикул"
 
-#: listings/templates/listings/components/attributes.html:18
+#: listings/templates/listings/components/attributes.html:36
 msgid "Is new house"
 msgstr "Новий будинок"
 
-#: listings/templates/listings/components/attributes.html:19
+#: listings/templates/listings/components/attributes.html:37
 msgid "Yes"
 msgstr "Так"
 
-#: listings/templates/listings/components/attributes.html:19
+#: listings/templates/listings/components/attributes.html:37
 msgid "No"
 msgstr "Ні"
 
-#: listings/templates/listings/components/attributes.html:23
+#: listings/templates/listings/components/attributes.html:41
 msgid "Total area"
 msgstr "Загальна площа"
 
-#: listings/templates/listings/components/attributes.html:29
+#: listings/templates/listings/components/attributes.html:47
 msgid "Living area"
 msgstr "Житлова площа"
 
-#: listings/templates/listings/components/attributes.html:35
+#: listings/templates/listings/components/attributes.html:53
 msgid "Kitchen area"
 msgstr "Площа кухні"
 
-#: listings/templates/listings/components/attributes.html:41
+#: listings/templates/listings/components/attributes.html:59
 msgid "Rooms count"
 msgstr "Кількість кімнат"
 
-#: listings/templates/listings/components/attributes.html:60
+#: listings/templates/listings/components/attributes.html:78
 #: managers/templates/managers/detail.html:133
 #: managers/templates/managers/detail.html:148
 msgid "Show more"
