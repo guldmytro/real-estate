@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Listing, City, Street, Kit
+from .models import Listing, City, Street, Kit, District, HouseComplex
 from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
@@ -34,9 +34,11 @@ def listings_list(request):
         city = cleaned_data.get('city')
         street = cleaned_data.get('street')
         address = cleaned_data.get('address')
+        district = cleaned_data.get('district')
+        house_complex = cleaned_data.get('house_complex')
         crumb_title = False
 
-        if not city and not street:
+        if not city and not street and not district and not house_complex:
             try:
                 cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
                 cities_with_count = cities_with_count.order_by('-listing_count')
@@ -60,6 +62,18 @@ def listings_list(request):
                 street = Street.objects.get(id=street)
                 city = street.city
                 crumb_title = f'{street.title} ({city.title})'
+            except: 
+                crumb_title = ''
+        if district:
+            try:
+                district = District.objects.get(id=district)
+                crumb_title = district.title
+            except: 
+                crumb_title = ''
+        if house_complex:
+            try:
+                house_complex = HouseComplex.objects.get(id=house_complex)
+                crumb_title = house_complex.title
             except: 
                 crumb_title = ''
         
@@ -193,12 +207,26 @@ def get_address_predictions(request):
     cities = City.objects.annotate(
         cnt=Count('streets__listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
 
     streets = Street.objects.annotate(
         cnt=Count('listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:10]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+
+    districts = District.objects.annotate(
+        cnt=Count('listings'),
+        similarity=TrigramSimilarity('translations__title', search_query)
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+
+    for d in districts:
+        print(d.title)
+
+    house_compexes = HouseComplex.objects.annotate(
+        cnt=Count('listings'),
+        similarity=TrigramSimilarity('translations__title', search_query)
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+
 
     return JsonResponse({
         'status': 'ok',
@@ -210,7 +238,18 @@ def get_address_predictions(request):
                      'related_region': {'title': street.city.region.title} \
                           if hasattr(street.city, 'region') else None,} \
                               for street in streets],
+        'districts': [{'title': district.title, 'id': district.pk, 
+                     'related_city': {'title': district.city.title, 'id': district.city.pk},
+                     'related_region': {'title':district.city.region.title} \
+                          if hasattr(district.city, 'region') else None,} \
+                              for district in districts],
+        'house_complexes': [{'title': house_complex.title, 'id': house_complex.pk, 
+                     'related_city': {'title': house_complex.city.title, 'id': house_complex.city.pk},
+                     'related_region': {'title':house_complex.city.region.title} \
+                          if hasattr(house_complex.city, 'region') else None,} \
+                              for house_complex in house_compexes],
         })
+        
 
 
 def get_listings_coordinates(request):
@@ -219,8 +258,10 @@ def get_listings_coordinates(request):
         cd = search_form_simplified.cleaned_data
         city = cd['city']
         street = cd['street']
-        if city or street:
-            listings_list = Listing.objects.prefetch_related('images').all()
+        district = cd['district']
+        house_complex = cd['house_complex']
+        if city or street or district or house_complex:
+            listings_list = Listing.objects.all()
             listings_list = filter_listings(cd, listings_list)
             
             # Parsing listing coordinates for GoogleMaps

@@ -1,6 +1,5 @@
-from .models import Listing, Kit, City, Street, Country, RealtyType, Category, Image
+from .models import Listing, Kit, City, Street, Country, RealtyType, Category, Image, District, HouseComplex
 from managers.models import Manager
-from django.template.loader import render_to_string
 from django.db.models import Count
 import requests, uuid
 from props.models import SiteConfiguration
@@ -12,7 +11,6 @@ import pytz
 import logging
 from decimal import Decimal
 from django.contrib.gis.geos import Polygon
-from django.contrib.gis.geos import Point
 from django.db.models import Q
 
 logger = logging.getLogger(__name__)
@@ -46,6 +44,8 @@ def filter_listings(cleaned_data, listings):
     deal = cleaned_data.get('deal')
     city_id = cleaned_data.get('city')
     street_id = cleaned_data.get('street')
+    house_complex_id = cleaned_data.get('house_complex')
+    district_id = cleaned_data.get('district')
     number_of_rooms = cleaned_data.get('number_of_rooms')
     min_price = cleaned_data.get('min_price')
     max_price = cleaned_data.get('max_price')
@@ -75,6 +75,10 @@ def filter_listings(cleaned_data, listings):
 
     if street_id:
         listings = listings.filter(street_id=street_id)
+    elif district_id:
+        listings = listings.filter(district_id=district_id)
+    elif house_complex_id:
+        listings = listings.filter(house_complex_id=house_complex_id)
     elif city_id:
         listings = listings.filter(street__city_id=city_id)
     
@@ -183,6 +187,8 @@ def modify_get(GET):
     modified_get = GET.copy()
     city = modified_get.get('city')
     street = modified_get.get('street')
+    district = modified_get.get('district')
+    house_complex = modified_get.get('house_complex')
     try:
         if city:
             city_obj = City.objects.get(id=city)
@@ -196,6 +202,19 @@ def modify_get(GET):
                 modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title}, {street_obj.city.region.title})'
             except:
                 modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title})'
+        elif district:
+            district_obj = District.objects.get(id=street)
+            try:
+                modified_get['address_input'] = f'{district_obj.title} ({district_obj.city.title}, {district_obj.city.region.title})'
+            except:
+                modified_get['address_input'] = f'{district_obj.title} ({district_obj.city.title})'
+        elif house_complex:
+            house_complex_obj = District.objects.get(id=street)
+            try:
+                modified_get['address_input'] = f'{house_complex_obj.title} ({house_complex_obj.city.title}, {house_complex_obj.city.region.title})'
+            except:
+                modified_get['address_input'] = f'{house_complex_obj.title} ({house_complex_obj.city.title})'
+         
     except:
         pass
     return modified_get

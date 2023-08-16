@@ -31,7 +31,9 @@ class SearchForm {
 
     isFormDisabled() {
         return this.prediction.cityInput.value 
-               || this.prediction.streetInput.value ? false : true;
+               || this.prediction.streetInput.value
+               || this.prediction.houseComplexInput.value
+               || this.prediction.districtInput.value ? false : true;
     }
     
     initEvents() {
@@ -323,9 +325,11 @@ class SearchForm {
                 throw new Error('Bad request');
             });
             this.listingsCount = res.count;
-            document.querySelector('.archive-objects__row .col:first-child').innerHTML = res.html;
+            if (document.querySelector('.archive-objects__row .col:first-child')) {
+                document.querySelector('.archive-objects__row .col:first-child').innerHTML = res.html;
+            }
             markViewedListings();
-            this.polygonMap.updateLocations(res.coordinates);
+            this.polygonMap.polygonMap ? this.polygonMap.updateLocations(res.coordinates) : null;
             this.update();
 
             // Изменяем URL-адрес с использованием pushState

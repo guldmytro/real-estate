@@ -5,6 +5,8 @@ export class Prediction {
         this.inputWrapper = this.input.parentNode;
         this.cityInput = this.searchForm.form.querySelector('[name="city"]');
         this.streetInput = this.searchForm.form.querySelector('[name="street"]');
+        this.districtInput = this.searchForm.form.querySelector('[name="district"]');
+        this.houseComplexInput = this.searchForm.form.querySelector('[name="house_complex"]');
         this.suggestionWrapper = this.searchForm.form.querySelector('.suggestions-wrapper');
         this.searchPhrase = this?.input?.value;
         if (this.input) this.initEventsAndLibs();
@@ -75,13 +77,69 @@ export class Prediction {
     updatePredictions() {
         this.suggestionWrapper.innerHTML = ''; // Clear previous suggestions
 
-        if (!this.predictions?.cities.length && !this.predictions?.streets.length) {
+        if (!this.predictions?.cities.length && !this.predictions?.streets.length && !this.predictions?.house_complexes.length && !this.predictions?.districts.length) {
             const noResultsMessage = document.createElement('p');
             noResultsMessage.classList.add('no-results-message');
             noResultsMessage.innerText = localization[locale].sugesstions.noAddressFound;
             this.suggestionWrapper.appendChild(noResultsMessage);
         }
+
+        // Add HouseComplex suggestions
+        const houseComplexSuggestions = this.predictions?.house_complexes || [];
+        if (houseComplexSuggestions.length > 0) {
+            const addressCategory = document.createElement('div');
+            addressCategory.classList.add('suggestion-category');
     
+            const addressTitle = document.createElement('p');
+            addressTitle.classList.add('suggestion-category__title');
+            addressTitle.innerHTML = `<img src="/static/img/icon-house-complex.svg" alt="маркер"><span>${localization[locale].sugesstions.houseComplex}</span>`;
+    
+            const addressGroup = document.createElement('ul');
+            addressGroup.classList.add('suggestion-category__group');
+    
+            houseComplexSuggestions.forEach((suggestion) => {
+                const addressItem = document.createElement('li');
+                addressItem.classList.add('suggestion-category__item');
+                addressItem.setAttribute('data-id', suggestion.id);
+                addressItem.setAttribute('data-type', 'house_complex');
+                addressItem.innerHTML = `${suggestion.title} <em data-type="house_complex" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
+                addressGroup.appendChild(addressItem);
+            });
+            
+            addressCategory.appendChild(addressTitle);
+            addressCategory.appendChild(addressGroup);
+            this.suggestionWrapper.appendChild(addressCategory);
+        }
+    
+        // Add District suggestions
+        const districtSuggestions = this.predictions?.districts || [];
+        if (districtSuggestions.length > 0) {
+            const addressCategory = document.createElement('div');
+            addressCategory.classList.add('suggestion-category');
+    
+            const addressTitle = document.createElement('p');
+            addressTitle.classList.add('suggestion-category__title');
+            addressTitle.innerHTML = `<img src="/static/img/icon-district.svg" alt="маркер"><span>${localization[locale].sugesstions.district}</span>`;
+    
+            const addressGroup = document.createElement('ul');
+            addressGroup.classList.add('suggestion-category__group');
+    
+            districtSuggestions.forEach((suggestion) => {
+                const addressItem = document.createElement('li');
+                addressItem.classList.add('suggestion-category__item');
+                addressItem.setAttribute('data-id', suggestion.id);
+                addressItem.setAttribute('data-type', 'district');
+                addressItem.innerHTML = `${suggestion.title} <em data-type="district" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
+                addressGroup.appendChild(addressItem);
+            });
+            
+            addressCategory.appendChild(addressTitle);
+            addressCategory.appendChild(addressGroup);
+            this.suggestionWrapper.appendChild(addressCategory);
+        }
+
         // Add Address suggestions
         const addressSuggestions = this.predictions?.streets || [];
         if (addressSuggestions.length > 0) {
@@ -150,16 +208,34 @@ export class Prediction {
         
         let streetId = '';
         let cityId = '';
+        let houseComplexId = '';
+        let districtId = '';
         const dataType = e.target.getAttribute('data-type');
         if (dataType === 'street') {
             streetId = e.target.getAttribute('data-id');
             delete this.searchForm.activeFilters['city'];
-        } else {
-            cityId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['house_complex'];
+            delete this.searchForm.activeFilters['district'];
+        } else if (dataType === 'house_complex') {
+            houseComplexId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['city'];
             delete this.searchForm.activeFilters['street'];
+            delete this.searchForm.activeFilters['district'];
+        } else if (dataType === 'district') {
+            districtId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['city'];
+            delete this.searchForm.activeFilters['street'];
+            delete this.searchForm.activeFilters['house_complex'];
+        } else if (dataType === 'city') {
+            cityId = e.target.getAttribute('data-id');
+            delete this.searchForm.activeFilters['house_complex'];
+            delete this.searchForm.activeFilters['street'];
+            delete this.searchForm.activeFilters['district'];
         }
         this.streetInput.value = streetId;
         this.cityInput.value = cityId;
+        this.districtInput.value = districtId;
+        this.houseComplexInput.value = houseComplexId;
         this.searchForm.activeFilters[dataType] = {
             name: dataType,
             value: e.target.getAttribute('data-id'),
@@ -172,10 +248,8 @@ export class Prediction {
             this.input.blur();
         }, 10);
         this.update();
-        try {
-            this.searchForm?.mapUpdate();
-        } catch(e) {
-            console.warn(e);
+        if (this.searchForm.mapUpdate) {
+            this.searchForm.mapUpdate();
         }
     }
 

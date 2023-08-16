@@ -315,6 +315,8 @@ class Command(BaseCommand):
         deal = self.get_deal(data.get('deal', False))
 
         # get or create listing
+        if int(data['id']) != 140:
+            return None
         print(int(data['id']))
         try:
             listing = Listing.objects.get(id=int(data['id']))
@@ -374,12 +376,12 @@ class Command(BaseCommand):
 
         street = None
         # Updating address
-        if listing.street is None or need_update_address:
+        if listing.street is None:
             address_dict = {
                 'uk': self.fetch_geo_data(lng, lat, lang='uk'),
                 'en': self.fetch_geo_data(lng, lat, lang='en')
                 }
-
+            print(address_dict)
             if address_dict['uk'] and address_dict['en']:
                 street = self.create_listing_address(address_dict)
                 if address_dict['uk']['street']['num']:
@@ -539,7 +541,8 @@ class Command(BaseCommand):
         try: 
             street = Street.objects.get(
                 translations__language_code='uk',
-                translations__title=address_dict['uk']['street']['title']
+                translations__title=address_dict['uk']['street']['title'],
+                city=city
                 )
         except Street.DoesNotExist:
             street = Street()
@@ -568,7 +571,8 @@ class Command(BaseCommand):
         try: 
             district_obj = District.objects.get(
                 translations__language_code='uk',
-                translations__title=district
+                translations__title=district,
+                city=city
                 )
         except District.DoesNotExist:
             district_obj = District()
@@ -593,7 +597,8 @@ class Command(BaseCommand):
         try: 
             house_complex_obj = HouseComplex.objects.get(
                 translations__language_code='uk',
-                translations__title=house_complex
+                translations__title=house_complex,
+                city=city
                 )
         except HouseComplex.DoesNotExist:
             house_complex_obj = HouseComplex()

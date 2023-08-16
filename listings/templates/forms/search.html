@@ -32,6 +32,8 @@
                     </div>
                     {{ search_form.city }}
                     {{ search_form.street }}
+                    {{ search_form.district }}
+                    {{ search_form.house_complex }}
                     <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
                 </div>
             </label>
@@ -181,6 +183,10 @@
     </form>
 
     <style>
+        [name="address_input"] {
+            padding-right: 2rem;
+        }
+        
         .additional-fields {
             padding: 0 var(--padding-horizontal);
             position: static;
@@ -188,6 +194,7 @@
             background-color: transparent;
             grid-template-rows: 0fr;
             transition: grid-template-rows 0.3s ease;
+            z-index: unset;
         }
 
         .additional-fields.active {

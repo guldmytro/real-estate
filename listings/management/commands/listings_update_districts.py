@@ -116,7 +116,8 @@ class Command(BaseCommand):
         try: 
             district_obj = District.objects.get(
                 translations__language_code='uk',
-                translations__title=district
+                translations__title=district,
+                city=city
                 )
         except District.DoesNotExist:
             district_obj = District()
@@ -141,7 +142,8 @@ class Command(BaseCommand):
         try: 
             house_complex_obj = HouseComplex.objects.get(
                 translations__language_code='uk',
-                translations__title=house_complex
+                translations__title=house_complex,
+                city=city
                 )
         except HouseComplex.DoesNotExist:
             house_complex_obj = HouseComplex()

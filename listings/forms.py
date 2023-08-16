@@ -30,6 +30,9 @@ class SearchForm(forms.Form):
                                     )
     city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     street = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
+    district = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
+    house_complex = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
+    
     number_of_rooms = forms.MultipleChoiceField(
         label=_('Rooms'),
         required=False,
@@ -215,4 +218,4 @@ class SearchForm(forms.Form):
 
 class SearchFormSimplified(SearchForm):
     class Meta:
-        fields = ['address_input', 'city', 'street']
+        fields = ['address_input', 'city', 'street', 'district', 'house_complex']
