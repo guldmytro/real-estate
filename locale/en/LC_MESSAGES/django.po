@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-25 09:49+0000\n"
+"POT-Creation-Date: 2023-08-16 10:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,8 @@ msgid "Analytical reviews"
 msgstr ""
 
 #: analytics/models.py:10 discounts/models.py:11 documents/models.py:8
-#: listings/models.py:28 listings/models.py:134 listings/models.py:151
-#: listings/models.py:166 listings/models.py:221 news/models.py:10
+#: listings/models.py:31 listings/models.py:142 listings/models.py:159
+#: listings/models.py:173 listings/models.py:228 news/models.py:10
 #: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr ""
@@ -35,7 +35,7 @@ msgid "Text"
 msgstr ""
 
 #: analytics/models.py:13 discounts/models.py:15 documents/models.py:12
-#: listings/models.py:22 managers/models.py:77 news/models.py:13
+#: listings/models.py:25 managers/models.py:77 news/models.py:13
 #: vacantions/models.py:13
 msgid "Created"
 msgstr ""
@@ -49,11 +49,11 @@ msgstr ""
 msgid "Analytical review"
 msgstr ""
 
-#: config/settings.py:152
+#: config/settings.py:153
 msgid "English"
 msgstr ""
 
-#: config/settings.py:153 pages/templates/pages/course.html:66
+#: config/settings.py:154 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Documents"
 msgstr ""
 
-#: documents/models.py:11 listings/models.py:193
+#: documents/models.py:11 listings/models.py:200
 msgid "File"
 msgstr ""
 
@@ -146,9 +146,9 @@ msgstr ""
 #: emails/templates/forms/listing-check.html:18
 #: emails/templates/forms/listing-message.html:19
 #: emails/templates/forms/review.html:36
-#: listings/templates/listings/item.html:121
-#: listings/templates/listings/item.html:143
-#: listings/templates/listings/item.html:193
+#: listings/templates/listings/components/manager.html:32
+#: listings/templates/listings/item.html:122
+#: listings/templates/listings/item.html:144
 #: managers/templates/managers/detail.html:64
 #: pages/templates/pages/seller.html:44
 #: pages/templates/sections/feadback.html:22
@@ -159,9 +159,9 @@ msgstr ""
 #: emails/templates/forms/listing-check.html:19
 #: emails/templates/forms/listing-message.html:20
 #: emails/templates/forms/review.html:37
-#: listings/templates/listings/item.html:122
-#: listings/templates/listings/item.html:144
-#: listings/templates/listings/item.html:194
+#: listings/templates/listings/components/manager.html:33
+#: listings/templates/listings/item.html:123
+#: listings/templates/listings/item.html:145
 #: managers/templates/managers/detail.html:65
 #: pages/templates/pages/seller.html:45
 #: pages/templates/sections/feadback.html:23
@@ -172,9 +172,9 @@ msgstr ""
 #: emails/templates/forms/listing-check.html:20
 #: emails/templates/forms/listing-message.html:21
 #: emails/templates/forms/review.html:38
-#: listings/templates/listings/item.html:123
-#: listings/templates/listings/item.html:145
-#: listings/templates/listings/item.html:195
+#: listings/templates/listings/components/manager.html:34
+#: listings/templates/listings/item.html:124
+#: listings/templates/listings/item.html:146
 #: managers/templates/managers/detail.html:66
 #: pages/templates/pages/seller.html:46
 #: pages/templates/sections/feadback.html:24
@@ -225,9 +225,9 @@ msgstr ""
 msgid "By leaving feedback, you consent to the processing of personal data"
 msgstr ""
 
-#: listings/apps.py:8 listings/models.py:68
-#: listings/templates/listings/list.html:6 listings/views.py:66
-#: listings/views.py:121
+#: listings/apps.py:8 listings/models.py:76
+#: listings/templates/listings/list.html:6 listings/views.py:70
+#: listings/views.py:127
 msgid "Listings"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 msgid "Price to:"
 msgstr ""
 
-#: listings/forms.py:59 listings/models.py:58 pages/forms.py:26
+#: listings/forms.py:59 listings/models.py:66 pages/forms.py:26
 msgid "Realty type"
 msgstr ""
 
@@ -375,165 +375,189 @@ msgstr ""
 msgid "Entrance:"
 msgstr ""
 
-#: listings/models.py:18
+#: listings/models.py:20
 msgid "Active"
 msgstr ""
 
-#: listings/models.py:19
+#: listings/models.py:21
 msgid "Archive"
 msgstr ""
 
-#: listings/models.py:21
+#: listings/models.py:23
 msgid "Status"
 msgstr ""
 
-#: listings/models.py:23
+#: listings/models.py:26
 msgid "Updated"
 msgstr ""
 
-#: listings/models.py:25 managers/models.py:28 managers/models.py:47
+#: listings/models.py:28 managers/models.py:28 managers/models.py:47
 #: managers/models.py:78 managers/templates/managers/list.html:16
 msgid "Manager"
 msgstr ""
 
-#: listings/models.py:29 listings/templates/listings/item.html:14
+#: listings/models.py:32 listings/templates/listings/item.html:14
 #: listings/templates/listings/item.html:76 vacantions/models.py:10
 msgid "Description"
 msgstr ""
 
-#: listings/models.py:32
-msgid "Is new building"
-msgstr ""
-
-#: listings/models.py:35
-msgid "Total Area"
+#: listings/models.py:33
+msgid "Metros"
 msgstr ""
 
 #: listings/models.py:36
-msgid "Living Area"
+msgid "Is new building"
 msgstr ""
 
-#: listings/models.py:37
-msgid "Kitchen Area"
+#: listings/models.py:39
+msgid "Total Area"
 msgstr ""
 
 #: listings/models.py:40
-msgid "Room Count"
+msgid "Living Area"
 msgstr ""
 
-#: listings/models.py:43 listings/templates/forms/search.html:92
-#: listings/templates/listings/components/attributes.html:44
-msgid "Floor"
+#: listings/models.py:41
+msgid "Kitchen Area"
 msgstr ""
 
 #: listings/models.py:44
+msgid "Room Count"
+msgstr ""
+
+#: listings/models.py:47 listings/templates/forms/search.html:77
+#: listings/templates/listings/components/attributes.html:47
+msgid "Floor"
+msgstr ""
+
+#: listings/models.py:48
 msgid "Total Floors"
 msgstr ""
 
-#: listings/models.py:47 listings/templates/forms/search.html:61
+#: listings/models.py:51 listings/templates/forms/search.html:61
 #: listings/templates/listings/components/listing-map-info.html:17
 #: pages/templates/pages/course.html:56
 msgid "Price"
 msgstr ""
 
-#: listings/models.py:51 listings/models.py:297 listings/models.py:305
+#: listings/models.py:55 listings/models.py:332 listings/models.py:340
 msgid "Street"
 msgstr ""
 
-#: listings/models.py:53
+#: listings/models.py:57
 msgid "House Number"
 msgstr ""
 
-#: listings/models.py:57 listings/models.py:159
+#: listings/models.py:58 listings/models.py:304 listings/models.py:312
+msgid "District"
+msgstr ""
+
+#: listings/models.py:60
+msgid "House complex"
+msgstr ""
+
+#: listings/models.py:65 listings/models.py:167
 msgid "Category"
 msgstr ""
 
-#: listings/models.py:60 listings/models.py:187
+#: listings/models.py:68 listings/models.py:194
 msgid "Deal"
 msgstr ""
 
-#: listings/models.py:63 pages/models.py:142
+#: listings/models.py:71 pages/models.py:142
 msgid "Video"
 msgstr ""
 
-#: listings/models.py:67 listings/models.py:192 listings/models.py:234
+#: listings/models.py:75 listings/models.py:199 listings/models.py:241
 msgid "Listing"
 msgstr ""
 
-#: listings/models.py:135 listings/models.py:152 listings/models.py:167
+#: listings/models.py:143 listings/models.py:160 listings/models.py:174
 msgid "Menu label"
 msgstr ""
 
-#: listings/models.py:136 listings/models.py:223
+#: listings/models.py:144 listings/models.py:230
 msgid "Slug"
 msgstr ""
 
-#: listings/models.py:160
+#: listings/models.py:168
 msgid "Categories"
 msgstr ""
 
-#: listings/models.py:177
+#: listings/models.py:184
 msgid "Realty Type"
 msgstr ""
 
-#: listings/models.py:178
+#: listings/models.py:185
 msgid "Realty Types"
 msgstr ""
 
-#: listings/models.py:188
+#: listings/models.py:195
 msgid "Deals"
 msgstr ""
 
-#: listings/models.py:194 managers/models.py:17
+#: listings/models.py:201 managers/models.py:17
 msgid "Image url"
 msgstr ""
 
-#: listings/models.py:226 listings/models.py:236
+#: listings/models.py:233 listings/models.py:243
 msgid "Attribute"
 msgstr ""
 
-#: listings/models.py:227
+#: listings/models.py:234
 msgid "Attributes"
 msgstr ""
 
-#: listings/models.py:239
+#: listings/models.py:246
 msgid "Value"
 msgstr ""
 
-#: listings/models.py:245
+#: listings/models.py:252
 msgid "Kit"
 msgstr ""
 
-#: listings/models.py:246
+#: listings/models.py:253
 msgid "Kits"
 msgstr ""
 
-#: listings/models.py:254 listings/models.py:260 listings/models.py:266
-#: listings/models.py:280
+#: listings/models.py:261 listings/models.py:267 listings/models.py:287
 msgid "Country"
 msgstr ""
 
-#: listings/models.py:261
+#: listings/models.py:268
 msgid "Countries"
 msgstr ""
 
-#: listings/models.py:272 listings/models.py:281
+#: listings/models.py:273 listings/models.py:279 listings/models.py:288
 msgid "Region"
 msgstr ""
 
-#: listings/models.py:273
+#: listings/models.py:280
 msgid "Regions"
 msgstr ""
 
-#: listings/models.py:278 listings/models.py:291 listings/models.py:299
+#: listings/models.py:285 listings/models.py:298 listings/models.py:306
+#: listings/models.py:320 listings/models.py:334
 msgid "City"
 msgstr ""
 
-#: listings/models.py:292
+#: listings/models.py:299
 msgid "Cities"
 msgstr ""
 
-#: listings/models.py:306
+#: listings/models.py:313
+msgid "Districts"
+msgstr ""
+
+#: listings/models.py:318 listings/models.py:326
+msgid "House Complex"
+msgstr ""
+
+#: listings/models.py:327
+msgid "House Complexes"
+msgstr ""
+
+#: listings/models.py:341
 msgid "Streets"
 msgstr ""
 
@@ -570,33 +594,28 @@ msgstr ""
 msgid "Property valuation"
 msgstr ""
 
-#: listings/templates/forms/search.html:71
-#: listings/templates/forms/search.html:187
-msgid "Show"
-msgstr ""
-
-#: listings/templates/forms/search.html:76
-msgid "Advanced search"
-msgstr ""
-
-#: listings/templates/forms/search.html:88
+#: listings/templates/forms/search.html:73
 msgid "Building"
 msgstr ""
 
-#: listings/templates/forms/search.html:101
+#: listings/templates/forms/search.html:86
 msgid "Floors in the house"
 msgstr ""
 
-#: listings/templates/forms/search.html:156
+#: listings/templates/forms/search.html:141
 msgid "Court"
 msgstr ""
 
-#: listings/templates/forms/search.html:169
+#: listings/templates/forms/search.html:154
 msgid "Media"
 msgstr ""
 
-#: listings/templates/forms/search.html:184
-msgid "Reset"
+#: listings/templates/forms/search.html:172
+msgid "Show"
+msgstr ""
+
+#: listings/templates/forms/search.html:177
+msgid "Advanced search"
 msgstr ""
 
 #: listings/templates/listings/archive-item.html:8
@@ -613,40 +632,44 @@ msgstr ""
 msgid "Show phone"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:8
+#: listings/templates/listings/components/attributes.html:7
 #: listings/templates/listings/item.html:15
 msgid "Characteristics"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:15
+#: listings/templates/listings/components/attributes.html:14
+msgid "Article"
+msgstr ""
+
+#: listings/templates/listings/components/attributes.html:18
 msgid "Is new house"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:16
+#: listings/templates/listings/components/attributes.html:19
 msgid "Yes"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:16
+#: listings/templates/listings/components/attributes.html:19
 msgid "No"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:20
+#: listings/templates/listings/components/attributes.html:23
 msgid "Total area"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:26
+#: listings/templates/listings/components/attributes.html:29
 msgid "Living area"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:32
+#: listings/templates/listings/components/attributes.html:35
 msgid "Kitchen area"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:38
+#: listings/templates/listings/components/attributes.html:41
 msgid "Rooms count"
 msgstr ""
 
-#: listings/templates/listings/components/attributes.html:57
+#: listings/templates/listings/components/attributes.html:60
 #: managers/templates/managers/detail.html:133
 #: managers/templates/managers/detail.html:148
 msgid "Show more"
@@ -678,9 +701,29 @@ msgid "Year of construction"
 msgstr ""
 
 #: listings/templates/listings/components/listing-map-info.html:41
-#: listings/templates/listings/item.html:158
+#: listings/templates/listings/item.html:159
 #: pages/templates/pages/abroad.html:48
 msgid "More details"
+msgstr ""
+
+#: listings/templates/listings/components/manager.html:18
+#: managers/templates/managers/detail.html:22
+#: managers/templates/managers/list.html:51
+#: managers/templates/reviews/item.html:29
+msgid "Real estate specialist"
+msgstr ""
+
+#: listings/templates/listings/components/manager.html:25
+msgid "or leave the number and we will call you back within 2 minutes"
+msgstr ""
+
+#: listings/templates/listings/components/manager.html:31
+#: managers/templates/managers/detail.html:63
+msgid "Call me back"
+msgstr ""
+
+#: listings/templates/listings/components/manager.html:38
+msgid "Write to a specialist"
 msgstr ""
 
 #: listings/templates/listings/components/news.html:8 news/apps.py:8
@@ -736,92 +779,73 @@ msgstr ""
 msgid "On the map"
 msgstr ""
 
-#: listings/templates/listings/item.html:89
+#: listings/templates/listings/item.html:90
 msgid "Inspect the property before you buy"
 msgstr ""
 
-#: listings/templates/listings/item.html:92
+#: listings/templates/listings/item.html:93
 msgid "Get a legal due diligence on your property to minimize your risks"
 msgstr ""
 
-#: listings/templates/listings/item.html:96
+#: listings/templates/listings/item.html:97
 msgid "Number of owners"
 msgstr ""
 
-#: listings/templates/listings/item.html:97
+#: listings/templates/listings/item.html:98
 msgid "The presence of encumbrances"
 msgstr ""
 
-#: listings/templates/listings/item.html:98
+#: listings/templates/listings/item.html:99
 msgid "Is there a mortgage?"
 msgstr ""
 
-#: listings/templates/listings/item.html:99
+#: listings/templates/listings/item.html:100
 msgid "Years of property ownership"
 msgstr ""
 
-#: listings/templates/listings/item.html:102
+#: listings/templates/listings/item.html:103
 msgid "Check the property"
 msgstr ""
 
-#: listings/templates/listings/item.html:107
-#: listings/templates/listings/item.html:120
+#: listings/templates/listings/item.html:108
+#: listings/templates/listings/item.html:121
 msgid "Sign up for viewing"
 msgstr ""
 
-#: listings/templates/listings/item.html:110
+#: listings/templates/listings/item.html:111
 msgid ""
 "A real estate specialist will contact you, confirm the selected viewing "
 "time, arrange a visit to the offer and give you a tour."
 msgstr ""
 
-#: listings/templates/listings/item.html:131
+#: listings/templates/listings/item.html:132
 msgid "Calculate the mortgage"
 msgstr ""
 
-#: listings/templates/listings/item.html:134
+#: listings/templates/listings/item.html:135
 #, python-format
 msgid "We can calculate a mortgage with no down payment, just specify 0%%."
 msgstr ""
 
-#: listings/templates/listings/item.html:142
+#: listings/templates/listings/item.html:143
 #: pages/templates/sections/feadback.html:21
 msgid "Get a consultation"
 msgstr ""
 
-#: listings/templates/listings/item.html:153
+#: listings/templates/listings/item.html:154
 #: pages/templates/pages/course.html:280
 #: pages/templates/pages/guarantees.html:12
 #: pages/templates/sections/services.html:42
 msgid "Agreement security guarantee"
 msgstr ""
 
-#: listings/templates/listings/item.html:156
+#: listings/templates/listings/item.html:157
 msgid ""
 "You are under reliable protection - in case of disputed situations, we bear "
 "all costs."
 msgstr ""
 
-#: listings/templates/listings/item.html:179
-#: managers/templates/managers/detail.html:22
-#: managers/templates/managers/list.html:51
-#: managers/templates/reviews/item.html:29
-msgid "Real estate specialist"
-msgstr ""
-
-#: listings/templates/listings/item.html:186
-msgid "or leave the number and we will call you back within 2 minutes"
-msgstr ""
-
-#: listings/templates/listings/item.html:192
-#: managers/templates/managers/detail.html:63
-msgid "Call me back"
-msgstr ""
-
-#: listings/templates/listings/item.html:199
-msgid "Write to a specialist"
-msgstr ""
-
+#: listings/templates/listings/list-ajax.html:11
 #: listings/templates/listings/list.html:24
 msgid "Real estate search results"
 msgstr ""

@@ -67,12 +67,15 @@ class Command(BaseCommand):
                 for location_child in child:
                     if location_child.tag == 'metros':
                         metros = []
+                        metro_names = []
                         for metro in location_child:
                             if metro.tag == 'metro':
-                                metros.append({
-                                    'name': self.clear_string(metro.text),
-                                    'distance': int(metro.get('value'))
-                                })
+                                if self.clear_string(metro.text) not in metro_names:
+                                    metros.append({
+                                        'name': self.clear_string(metro.text),
+                                        'distance': int(metro.get('value'))
+                                    })
+                                    metro_names.append(self.clear_string(metro.text))
                         location[location_child.tag] = metros
                     else: location[location_child.tag] = self.clear_string(location_child.text)
                 item_dict[child.tag] = location

@@ -11,6 +11,16 @@
     <table class="object-box__table">
         <tbody>
             <tr>
+                <th>{% trans 'Article' %}</th>
+                <td>{{ listing.id }}</td>
+            </tr>
+            {% if listing.metros %}
+                <tr>
+                    <th>{% trans 'Metros' %}</th>
+                    <td>{{ listing.metros|linebreaks }}</td>
+                </tr>
+            {% endif %}
+            <tr>
                 <th>{% trans 'Is new house' %}</th>
                 <td>{% if listing.is_new_building %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</td>
             </tr>
