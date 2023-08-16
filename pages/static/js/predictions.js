@@ -260,9 +260,13 @@ export class Prediction {
     resetFields() {
         this.cityInput.value = '';
         this.streetInput.value = '';
+        this.districtInput.value = '';
+        this.houseComplexInput.value = '';
         try {
             delete this.searchForm.activeFilters['city'];
             delete this.searchForm.activeFilters['street'];
+            delete this.searchForm.activeFilters['district'];
+            delete this.searchForm.activeFilters['house_complex'];
         } catch(e) {
             console.warn(e);
         }

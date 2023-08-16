@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 14:37+0000\n"
+"POT-Creation-Date: 2023-08-16 15:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -606,7 +606,7 @@ msgid "Sell"
 msgstr ""
 
 #: listings/templates/forms/search.html:20
-#: pages/templates/pages/pricing.html:141
+#: pages/templates/pages/pricing.html:83
 msgid "Rent out"
 msgstr ""
 
@@ -883,7 +883,6 @@ msgid "Please try other search options"
 msgstr ""
 
 #: managers/apps.py:8 managers/models.py:29
-#: pages/templates/sections/footer.html:18
 #: pages/templates/sections/header.html:68
 #: pages/templates/sections/header.html:104
 msgid "Managers"
@@ -976,6 +975,7 @@ msgid "Search"
 msgstr ""
 
 #: managers/templates/managers/list.html:34 managers/views.py:80
+#: pages/templates/sections/footer.html:18
 msgid "Real estate specialists"
 msgstr ""
 
@@ -1584,223 +1584,204 @@ msgstr ""
 msgid "50%% of the rental price"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:75 pages/templates/pages/pricing.html:142
+#: pages/templates/pages/pricing.html:84
 msgid "Tariffs:"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:82 pages/templates/pages/pricing.html:147
+#: pages/templates/pages/pricing.html:89
 #, python-format
 msgid "Base 0%%"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:86 pages/templates/pages/pricing.html:149
+#: pages/templates/pages/pricing.html:91
 msgid "Adding to the company's website"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:89 pages/templates/pages/pricing.html:150
+#: pages/templates/pages/pricing.html:92
 msgid "Professional photography of the apartment"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:95 pages/templates/pages/pricing.html:154
+#: pages/templates/pages/pricing.html:96
 #, python-format
 msgid "Minimum 20%%"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:99 pages/templates/pages/pricing.html:156
+#: pages/templates/pages/pricing.html:98
 msgid "Reception of keys from the owner"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:102
-#: pages/templates/pages/pricing.html:157
+#: pages/templates/pages/pricing.html:99
 msgid "Conducting screenings without your participation"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:108
-#: pages/templates/pages/pricing.html:161
+#: pages/templates/pages/pricing.html:103
 #, python-format
 msgid "Econom 30%%"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:111
-#: pages/templates/pages/pricing.html:119
-#: pages/templates/pages/pricing.html:163
-#: pages/templates/pages/pricing.html:171
+#: pages/templates/pages/pricing.html:105
+#: pages/templates/pages/pricing.html:113
 msgid "Advertising on 7 sites"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:112
-#: pages/templates/pages/pricing.html:120
-#: pages/templates/pages/pricing.html:164
-#: pages/templates/pages/pricing.html:172
+#: pages/templates/pages/pricing.html:106
+#: pages/templates/pages/pricing.html:114
 msgid "Guarantee of legal protection (call to the hotline)"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:113
-#: pages/templates/pages/pricing.html:165
+#: pages/templates/pages/pricing.html:107
 msgid "Financial guarantee for 3 months **"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:117
-#: pages/templates/pages/pricing.html:169
+#: pages/templates/pages/pricing.html:111
 msgid "Standard"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:121
-#: pages/templates/pages/pricing.html:173
+#: pages/templates/pages/pricing.html:115
 msgid "Financial guarantee for 3 months**"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:122
-msgid "Financial guarantee for 6 months**"
+#: pages/templates/pages/pricing.html:116
+msgid "Financial guarantee for months**"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:123
-#: pages/templates/pages/pricing.html:175
+#: pages/templates/pages/pricing.html:117
 msgid "Guarantee of legal protection (guarantee certificate)*"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:124
-#: pages/templates/pages/pricing.html:176
+#: pages/templates/pages/pricing.html:118
 msgid "Application of additional (paid) statuses on advertising platforms"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:125
-#: pages/templates/pages/pricing.html:177
+#: pages/templates/pages/pricing.html:119
 msgid "Providing analytics based on interest in your apartment"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:126
-#: pages/templates/pages/pricing.html:178
+#: pages/templates/pages/pricing.html:120
 msgid "Verification of the employer by the Economic Security Service***"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:127
-#: pages/templates/pages/pricing.html:179
+#: pages/templates/pages/pricing.html:121
 msgid ""
 "Reception of the apartment after vacating by the tenant and provision of a "
 "photo and video report (2 times during the term of the contract)"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:128
-#: pages/templates/pages/pricing.html:180
+#: pages/templates/pages/pricing.html:122
 msgid "Production of a video overview of the apartment"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:174
-msgid "Financial guarantee for months**"
-msgstr ""
-
-#: pages/templates/pages/pricing.html:193
+#: pages/templates/pages/pricing.html:135
 msgid "What is included in the price of services"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:196
+#: pages/templates/pages/pricing.html:138
 msgid "when buying a lease:"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:198
+#: pages/templates/pages/pricing.html:140
 msgid ""
 "Consultation on the real estate market in the region (price and demand "
 "dynamics)"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:199
-#: pages/templates/pages/pricing.html:222
+#: pages/templates/pages/pricing.html:141
+#: pages/templates/pages/pricing.html:164
 msgid ""
 "Assistance in the preparation and execution of documents for the agreement"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:200
+#: pages/templates/pages/pricing.html:142
 msgid "Security guarantee certificate"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:201
+#: pages/templates/pages/pricing.html:143
 msgid ""
 "Negotiations with owners (including regarding the sale), expert evaluation "
 "of real estate"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:202
+#: pages/templates/pages/pricing.html:144
 msgid ""
 "Selection of real estate options taking into account all wishes and needs"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:203
+#: pages/templates/pages/pricing.html:145
 msgid "Organization and inspection of apartments"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:204
+#: pages/templates/pages/pricing.html:146
 msgid "Transfer to the facilities (by arrangement)"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:205
+#: pages/templates/pages/pricing.html:147
 msgid "Organization and implementation of the deposit"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:206
+#: pages/templates/pages/pricing.html:148
 msgid "Escort to the notary, bank"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:207
+#: pages/templates/pages/pricing.html:149
 msgid "Full legal support"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:208
+#: pages/templates/pages/pricing.html:150
 msgid "Services of a mortgage broker"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:217
+#: pages/templates/pages/pricing.html:159
 msgid "When selling"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:220
+#: pages/templates/pages/pricing.html:162
 msgid "When selling:"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:223
+#: pages/templates/pages/pricing.html:165
 msgid ""
 "Providing reports to the seller about the work performed by the specialist"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:224
+#: pages/templates/pages/pricing.html:166
 msgid "Formation of the object's page on the company's website"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:225
+#: pages/templates/pages/pricing.html:167
 msgid "Search for buyers, organization of showings"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:226
+#: pages/templates/pages/pricing.html:168
 msgid "Help in removing burdens"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:227
+#: pages/templates/pages/pricing.html:169
 msgid "Escort to the notary, to the bank"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:228
+#: pages/templates/pages/pricing.html:170
 msgid "Statistics of object views and calls"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:229
+#: pages/templates/pages/pricing.html:171
 msgid "Advertising promotion of the object on various platforms"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:230
+#: pages/templates/pages/pricing.html:172
 msgid "Full legal support (lawyer, auditor, economic security service)"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:231
+#: pages/templates/pages/pricing.html:173
 msgid "Market analysis and setting an objective price for the object"
 msgstr ""
 
-#: pages/templates/pages/pricing.html:240
+#: pages/templates/pages/pricing.html:182
 msgid ""
 "The terms of the legal protection guarantee are specified in the Guarantee "
 "Certificate."
 msgstr ""
 
-#: pages/templates/pages/pricing.html:241
+#: pages/templates/pages/pricing.html:183
 msgid ""
 "The Contractor is obliged to search for another tenant in the event that the "
 "tenant is connected to the Object within 3/6/ months (depending on the "
@@ -1808,7 +1789,7 @@ msgid ""
 "rental agreement."
 msgstr ""
 
-#: pages/templates/pages/pricing.html:242
+#: pages/templates/pages/pricing.html:184
 msgid ""
 "The service is provided by checking the tenant on the following services: "
 "Unified Register of Debtors, Court Register"
@@ -2001,7 +1982,15 @@ msgstr ""
 msgid "Vacantions"
 msgstr ""
 
-#: pages/templates/sections/footer.html:27
+#: pages/templates/sections/footer.html:24
+msgid "Login CRM"
+msgstr ""
+
+#: pages/templates/sections/footer.html:25
+msgid "Learning Portal"
+msgstr ""
+
+#: pages/templates/sections/footer.html:29
 #: pages/templates/sections/header.html:19
 #: pages/templates/sections/header.html:83
 msgid "Our online course"

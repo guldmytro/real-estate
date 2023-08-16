@@ -249,7 +249,7 @@ class SearchForm {
             button.addEventListener('click', () => {
                 const name = button.dataset.name;
                 delete this.activeFilters[name];
-                if (name === 'city' || name === 'street') {
+                if (name === 'city' || name === 'street' || name === 'district' || name === 'house_complex') {
                     this.form.querySelector('[name="address_input"]').value = '';
                     this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('valid')
                     this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('invalid');
@@ -352,6 +352,9 @@ class SearchForm {
         this.activeFilters = new Proxy({}, this.activeFiltersHandler());
         [...this.selects, ...this.numbers].forEach(input => input.value = '');
         [...this.radios, ...this.checkboxes].forEach(element => element.checked = false);
+        this.prediction.resetFields();
+        this.prediction.input.value = '';
+        this.prediction.input.parentNode.classList.remove('valid')
         this.updateActiveFilters();
     }
 
