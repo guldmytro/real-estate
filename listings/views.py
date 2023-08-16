@@ -219,9 +219,6 @@ def get_address_predictions(request):
         similarity=TrigramSimilarity('translations__title', search_query)
     ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
 
-    for d in districts:
-        print(d.title)
-
     house_compexes = HouseComplex.objects.annotate(
         cnt=Count('listings'),
         similarity=TrigramSimilarity('translations__title', search_query)

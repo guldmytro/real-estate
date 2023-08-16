@@ -376,7 +376,6 @@ class Command(BaseCommand):
                 'uk': self.fetch_geo_data(lng, lat, lang='uk'),
                 'en': self.fetch_geo_data(lng, lat, lang='en')
                 }
-            print(address_dict)
             if address_dict['uk'] and address_dict['en']:
                 street = self.create_listing_address(address_dict)
                 if address_dict['uk']['street']['num']:
