@@ -14,6 +14,18 @@
                 <th>{% trans 'Article' %}</th>
                 <td>{{ listing.id }}</td>
             </tr>
+            {% if listing.district %}
+                <tr>
+                    <th>{% trans 'District' %}</th>
+                    <td>{{ listing.district.title }}</td>
+                </tr>
+            {% endif %}
+            {% if listing.house_complex %}
+                <tr>
+                    <th>{% trans 'House complex' %}</th>
+                    <td>{{ listing.house_complex.title }}</td>
+                </tr>
+            {% endif %}
             {% if listing.metros %}
                 <tr>
                     <th>{% trans 'Metros' %}</th>
