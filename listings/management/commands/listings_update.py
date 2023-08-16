@@ -95,7 +95,17 @@ class Command(BaseCommand):
             if child.tag == 'location':
                 location = {}
                 for location_child in child:
-                    location[location_child.tag] = self.clear_string(location_child.text)
+                    if location_child.tag == 'metros':
+                        metros = []
+                        for metro in location_child:
+                            if metro.tag == 'metro':
+                                metros.append({
+                                    'name': self.clear_string(metro.text),
+                                    'distance': int(metro.get('value'))
+                                })
+                        location[location_child.tag] = metros
+                    else:
+                        location[location_child.tag] = self.clear_string(location_child.text)
                 item_dict[child.tag] = location
             elif child.tag == 'images':
                 images = []
@@ -332,6 +342,11 @@ class Command(BaseCommand):
             listing.title = translate(data['title'], from_lang=languages['uk'], to_lang=languages['en'])
         if not same_description:
             listing.description = translate(data.get('description', ''), to_lang=['en'])
+
+        listing.set_current_language('uk')
+        listing.metros = self.get_formatted_metros(data['location'].get('metros'))
+        listing.set_current_language('en')
+        listing.metros = translate(self.get_formatted_metros(data['location'].get('metros')))
 
         listing.is_new_building = bool(int(data.get('is_new_building', '0')))
         
@@ -627,3 +642,28 @@ class Command(BaseCommand):
             deal, _ = Deal.objects.get_or_create(slug=slugify(deal, allow_unicode=False), defaults={'title': deal})
             return deal
         return None
+    
+
+    def get_formatted_metros(self, metros):
+        if metros == '' or metros is None:
+            return ''
+        formatted_strings = []
+        for metro in sorted(metros, key=lambda x: x['distance']):
+            distance_f = self.format_distance(metro['distance'])
+            if distance_f is None:
+                continue
+            formatted_string = f"{metro['name']} ({distance_f})\n"
+            formatted_strings.append(formatted_string)
+        return "".join(formatted_strings).rstrip("\n")
+    
+
+    def format_distance(self, distance):
+        dist = 0
+        try: 
+            dist = int(distance)
+            if dist < 100:
+                return f'{dist}м'
+            rounded_dist = round(dist/1000, 1)
+            return f'{rounded_dist}км'
+        except:
+            return None

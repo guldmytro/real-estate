@@ -1,24 +1,10 @@
-from django.core.management.base import BaseCommand, CommandParser
+from django.core.management.base import BaseCommand
 from props.models import SiteConfiguration, Feed
 import requests
 import xml.etree.ElementTree as ET
-import json
-import re
-from django.utils.html import strip_tags
-from listings.models import Listing, Category, RealtyType, Deal, \
-    Image, Kit, Attribute, Country, City, Street, Region
-from managers.models import Manager, Phone
-from django.contrib.gis.geos import Point
-from slugify import slugify
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
-from listings.utils import translate, languages
-from listings.tasks import add_listing_image, delete_listing_image, add_manager_image
-from django.core.exceptions import ValidationError
-from listings.utils import convert_to_utc
-from django.utils import timezone
-from datetime import datetime
-import pytz
+from listings.models import Listing
+
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -32,7 +18,6 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(file_handler)
 
-validate_url = URLValidator()
 
 
 config = SiteConfiguration.objects.get()

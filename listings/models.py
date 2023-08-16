@@ -29,7 +29,8 @@ class Listing(TranslatableModel):
     
     translations = TranslatedFields(
         title=models.CharField(max_length=255, verbose_name=_('Title'), default=''),
-        description=models.TextField(verbose_name=_('Description'), blank=True, null=True)
+        description=models.TextField(verbose_name=_('Description'), blank=True, null=True),
+        metros=models.TextField(verbose_name=_('Metros'), blank=True, null=True)
     )
 
     is_new_building = models.BooleanField(verbose_name=_('Is new building'), default=False)
@@ -309,7 +310,7 @@ class District(TranslatableModel):
 
     class Meta:
         verbose_name = _('District')
-        verbose_name_plural = _('District')
+        verbose_name_plural = _('Districts')
 
 
 class HouseComplex(TranslatableModel):
