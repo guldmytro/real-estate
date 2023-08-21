@@ -69,6 +69,7 @@
                         {% endif %}
                     </div>
                 </div>
+                {% include 'listings/components/manager.html' %}
                 {% if listing.description %}
                     <div class="object-box">
                         <div class="object-box-header">
@@ -82,7 +83,6 @@
                         </div>
                     </div>
                 {% endif %}
-                {% include 'listings/components/manager.html' %}
                 {% include 'listings/components/attributes.html' %}
                 <div id="check" class="object-box">
                     <div class="object-box-header">

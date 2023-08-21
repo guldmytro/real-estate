@@ -13,8 +13,8 @@ export class PolygonMap {
 
     initMap = () => {
         this.map = L.map(this.polygonMap, {
-            scrollWheelZoom: true, // Включаем масштабирование колесом мыши
-            zoomControl: false,
+            scrollWheelZoom: false,
+            zoomControl: true,
         }).setView([49.989183125556025, 36.23147763480256], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
