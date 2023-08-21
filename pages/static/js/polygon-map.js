@@ -15,6 +15,7 @@ export class PolygonMap {
         this.map = L.map(this.polygonMap, {
             scrollWheelZoom: false,
             zoomControl: true,
+            dragging: !L.Browser.mobile, tap: !L.Browser.mobile
         }).setView([49.989183125556025, 36.23147763480256], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
