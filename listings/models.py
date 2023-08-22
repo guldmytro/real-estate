@@ -20,6 +20,10 @@ class Listing(TranslatableModel):
         ('active', _('Active')),
         ('archive', _('Archive')),
     ]
+    CURRENCY_CHOICES = [
+        ('$', 'USD ($)'),
+        ('₴', 'UAH (₴)')
+    ]
     status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='active', verbose_name=_('Status'))
 
     created = models.DateTimeField(default=timezone.now, verbose_name=_('Created'))
@@ -49,6 +53,7 @@ class Listing(TranslatableModel):
 
     # Price
     price = models.PositiveIntegerField(verbose_name=_('Price'), blank=True, null=True)
+    currency = models.CharField(max_length=1, default='$', choices=CURRENCY_CHOICES)
 
     # Location
     coordinates = models.PointField(default=Point(float(0), float(0)), blank=True, null=True)
@@ -80,7 +85,7 @@ class Listing(TranslatableModel):
 
     def price_per_square(self):
         if self.price and self.area_total:
-            return round(self.price / self.area_total)
+            return str(round(self.price / self.area_total)) + self.currency
         return False
 
     def formated_price(self):
@@ -91,7 +96,7 @@ class Listing(TranslatableModel):
                 if i > 0 and i % 3 == 0:
                     result = " " + result
                 result = digit + result
-            return result
+            return f'{result}{self.currency}'
         return False
 
     def delete(self, *args, **kwargs):

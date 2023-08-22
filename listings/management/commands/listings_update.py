@@ -136,6 +136,9 @@ class Command(BaseCommand):
                     else:
                         user_data[user_elem.tag] = self.clear_string(user_elem.text)
                 item_dict[child.tag] = user_data
+            elif child.tag == 'price':
+                item_dict[child.tag] = self.clear_string(child.text)
+                item_dict['currency'] = self.clear_string(child.get('currency'))
             else:
                 item_dict[child.tag] = self.clear_string(child.text)
         return item_dict
@@ -360,6 +363,11 @@ class Command(BaseCommand):
         listing.floor = int(data.get('floor', '0'))
         listing.total_floors = int(data.get('total_floors', '0'))
         listing.price = int(data.get('price', '0'))
+        api_currency = data.get('currency')
+        if api_currency == 'UAH':
+            listing.currency = '₴'
+        elif api_currency == 'USD':
+            listing.currency = '$'
         listing.category = category
         listing.realty_type = realty_type
         listing.deal = deal

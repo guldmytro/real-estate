@@ -7,6 +7,7 @@ from .forms import SearchForm
 from django.contrib.postgres.search import TrigramSimilarity
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Count
 
 POSTS_PER_PAGE = 8
 
@@ -17,7 +18,7 @@ def managers_detail(request, id):
         return managers_detail_pagination(request, id)
     
     feadback_form = FeadbackForm(request.POST)
-    manager = get_object_or_404(Manager.objects.prefetch_related('phones'), id=id)
+    manager = get_object_or_404(Manager.objects.prefetch_related('phones').annotate(listings_count=Count('listing')), id=id, listings_count__gte=1)
     review_form = ReviewForm(initial={'manager': manager})
     listings_list = Listing.objects.order_by('-created').filter(manager=manager)
     listings_count = listings_list.count()
@@ -63,7 +64,7 @@ def managers_detail_pagination(request, id):
 
 def managers_list(request):
     search_form = SearchForm(request.GET)
-    managers_list = Manager.objects.prefetch_related('phones').all()
+    managers_list = Manager.objects.prefetch_related('phones').annotate(listings_count=Count('listing')).filter(listings_count__gte=1).order_by('pk')
     if search_form.is_valid():
         cd = search_form.cleaned_data
         managers_list = managers_list.annotate(

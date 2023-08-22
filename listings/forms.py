@@ -49,14 +49,14 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.widgets.NumberInput(attrs={
             'class': 'input-price', 'placeholder': _('From'),
-            'data-prefix': _('Price from:'), 'data-suffix': "$"})
+            'data-prefix': _('Price from:'), 'data-suffix': ""})
     )
     max_price = forms.IntegerField(
         label=_('Maximum price'),
         required=False,
         widget=forms.widgets.NumberInput(attrs={
             'class': 'input-price', 'placeholder': _('To'),
-            'data-prefix': _('Price to:'), 'data-suffix': "$"})
+            'data-prefix': _('Price to:'), 'data-suffix': ""})
     )
     min_area = forms.IntegerField(
         label=_('Minimum area'),

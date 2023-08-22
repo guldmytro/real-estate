@@ -19,8 +19,8 @@
             {% endif %}
             <div class="object-item__header">
                 <div class="object-item__price">
-                    <strong>{{ item.formated_price }}$</strong>
-                    <span>{{ item.price_per_square }}$/{% trans 'm²' %}</span>
+                    <strong>{{ item.formated_price }}</strong>
+                    <span>{{ item.price_per_square }}/{% trans 'm²' %}</span>
                 </div>
                 <h2 class="object-item__title line line_2" title="{{ item.title }}">
                     <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
