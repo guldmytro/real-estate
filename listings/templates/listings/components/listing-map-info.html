@@ -15,19 +15,19 @@
                 <tbody>
                     <tr>
                         <th>{% trans 'Price' %}:</th>
-                        <td>{% firstof listing.formated_price '?' %} ($)</td>
+                        <td>{% firstof listing.formated_price '?' %}</td>
                     </tr>
                     <tr>
                         <th>{% trans 'Area (total / living / kitchen)' %}:</th>
-                        <td>{% firstof listing.area_total '?' %} / {% firstof listing.area_living '?' %} / {% firstof listing.area_kitchen '?' %} ({% trans 'm²' %})</td>
+                        <td>{% firstof listing.area_total '-' %} / {% firstof listing.area_living '-' %} / {% firstof listing.area_kitchen '-' %} ({% trans 'm²' %})</td>
                     </tr>
                     <tr>
                         <th>{% trans 'Rooms' %}:</th>
-                        <td>{% firstof listing.room_count '?' %}</td>
+                        <td>{% firstof listing.room_count '-' %}</td>
                     </tr>
                     <tr>
                         <th>{% trans 'Floors' %}:</th>
-                        <td>{% firstof listing.floor '?' %} / {% firstof listing.total_floors '?' %}</td>
+                        <td>{% firstof listing.floor '-' %} / {% firstof listing.total_floors '-' %}</td>
                     </tr>
                     {% if year.count %}
                         <tr>

@@ -596,7 +596,7 @@ class MapSearch {
         this.locations.forEach((position, i) => {
             const priceTag = L.divIcon({
                 className: 'price-tag larger-marker',
-                html: '<div class="price-tag__content" data-id="' + position.id + '">' + position.price + ' $' + '</div>',
+                html: '<div class="price-tag__content" data-id="' + position.id + '">' + position.price + '</div>',
             });
 
             const marker = L.marker(position, {
