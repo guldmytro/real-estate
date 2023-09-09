@@ -386,18 +386,16 @@ class Command(BaseCommand):
                 }
             if address_dict['uk'] and address_dict['en']:
                 street = self.create_listing_address(address_dict)
-                if address_dict['uk']['street']['num']:
-                    listing.street_number = address_dict['uk']['street']['num']
-                else:
-                    try:
-                        listing.street_number = data['location'].get('house_num', '')
-                    except:
-                        pass
+                try:
+                    listing.street_number = data['location'].get('house_num', '')
+                except:
+                    pass
+                    
         if street:
             listing.street = street
         
-        listing.district = self.get_listing_district(data['location'].get('district'), street)
-        listing.house_complex = self.get_listing_house_complex(data.get('newbuilding_name'), street)
+        listing.district = self.get_listing_district(data['location'].get('district'), listing.street)
+        listing.house_complex = self.get_listing_house_complex(data.get('newbuilding_name'), listing.street)
 
         manager = self.get_manager(data.get('user', False))
         if manager:
