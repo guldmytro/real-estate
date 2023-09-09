@@ -106,12 +106,14 @@ def listings_list(request):
     
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return JsonResponse({
+        res = JsonResponse({
             'html': render_to_string('listings/list-ajax.html', {'request': request,
                                                                  'listings': listings}),
             'count': listings_list.count(),
             'coordinates': coordinates
         })
+        res['Cache-Control'] = 'no-store'
+        return res
     
     context = {
         'listings': listings,

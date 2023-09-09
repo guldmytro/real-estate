@@ -379,17 +379,16 @@ class Command(BaseCommand):
 
         street = None
         # Updating address
-        if listing.street is None:
-            address_dict = {
-                'uk': self.fetch_geo_data(lng, lat, lang='uk'),
-                'en': self.fetch_geo_data(lng, lat, lang='en')
-                }
-            if address_dict['uk'] and address_dict['en']:
-                street = self.create_listing_address(address_dict)
-                try:
-                    listing.street_number = data['location'].get('house_num', '')
-                except:
-                    pass
+        address_dict = {
+            'uk': self.fetch_geo_data(lng, lat, lang='uk'),
+            'en': self.fetch_geo_data(lng, lat, lang='en')
+            }
+        if address_dict['uk'] and address_dict['en']:
+            street = self.create_listing_address(address_dict)
+            try:
+                listing.street_number = data['location'].get('house_num', '')
+            except:
+                pass
                     
         if street:
             listing.street = street

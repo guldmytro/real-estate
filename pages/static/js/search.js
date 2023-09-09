@@ -25,7 +25,7 @@ class SearchForm {
             this.resultContainer = document.querySelector('.archive-objects .container');
             this.initEvents();
             this.updateActiveFilters(true);
-            this.update();
+            // this.update();
         }
     }
 
@@ -223,8 +223,7 @@ class SearchForm {
         }
     }
 
-    updateActiveFilters(firstUpadate=false) {
-        console.log('updateActiveFilters'); 
+    updateActiveFilters(firstUpadate=false) { 
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
         for (const [key, filter] of Object.entries(this.activeFilters)) {
@@ -259,8 +258,9 @@ class SearchForm {
         this.activeFiltersContainer.style.display = filtersCount > 0 ||
                 (filtersCount === 1 && (!this.activeFilters['deal'] || !this.activeFilters['polygon'])) ? 'flex' : 'none';
         filtersCount > 3 ? (this.addMoreBtn(filtersCount - 3), this.addClearBtn()) : null;
+        
+        this.getCount();
         if (!firstUpadate) {
-            this.getCount();
             this.getResult();
         }
     }
