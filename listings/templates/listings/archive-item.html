@@ -32,7 +32,7 @@
                 <button type="button" class="btn btn_invert btn_bordered show-phones">{% trans 'Show phone' %}</button>
                 <ul class="employees-item__phones">
                     {% for phone in item.manager.phones.all %}
-                        <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
+                        <li><a href="tel:{{ phone.clean_phone }}">{{ phone }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

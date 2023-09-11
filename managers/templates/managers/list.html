@@ -55,7 +55,7 @@
                         </button>
                         <ul class="employees-item__phones">
                             {% for phone in manager.phones.all %}
-                                <li><a href="tel:+{{ phone.clean_phone }}">{{ phone }}</a></li>
+                                <li><a href="tel:{{ phone.clean_phone }}">{{ phone }}</a></li>
                             {% endfor %}
                         </ul>
                         <a href="{{ manager.get_absolute_url }}" class="employees-item__link">{% trans 'More about the specialist' %}</a>
