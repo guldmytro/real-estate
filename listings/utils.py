@@ -164,28 +164,30 @@ def get_similar_listings(listing):
         city = listing.street.city
     except:
         pass
-    room_count = listing.room_count
 
     similar_listings = Listing.objects.filter(
         street__city=city,
-        room_count=room_count,
+        room_count=listing.room_count,
+        deal=listing.deal,
+        realty_type=listing.realty_type,
+        price__gte=listing.price - 10000,
+        price__lte=listing.price + 10000
     ).exclude(id=listing.id)
 
+    # try: 
+    #     kit = Kit.objects.get(attribute__slug='property_23', listing=listing)
+    #     year_built = int(kit.value)
 
-    try: 
-        kit = Kit.objects.get(attribute__slug='property_23', listing=listing)
-        year_built = int(kit.value)
+    #     min_year_built = year_built - 3
+    #     max_year_built = year_built + 3
 
-        min_year_built = year_built - 3
-        max_year_built = year_built + 3
-
-        similar_listings = similar_listings.filter(
-            kits__attribute__slug='property_23',
-            kits__translations__value__gte=str(min_year_built),
-            kits__translations__value__lte=str(max_year_built),
-        )
-    except Kit.DoesNotExist:
-        pass
+    #     similar_listings = similar_listings.filter(
+    #         kits__attribute__slug='property_23',
+    #         kits__translations__value__gte=str(min_year_built),
+    #         kits__translations__value__lte=str(max_year_built),
+    #     )
+    # except Kit.DoesNotExist:
+    #     pass
 
     similar_listings = similar_listings[:10]
 

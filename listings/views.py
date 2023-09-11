@@ -156,7 +156,9 @@ def listings_detail(request, id):
     listings_within_distance = Listing.objects.prefetch_related(
         Prefetch('images')
     ).select_related('manager').filter(
-        coordinates__distance_lte=(listing.coordinates, Distance(m=2000))
+        coordinates__distance_lte=(listing.coordinates, Distance(m=2000)),
+        deal=listing.deal,
+        room_count=listing.room_count,
     ).exclude(
         street_number=listing.street_number, street=listing.street
     )[:10]
