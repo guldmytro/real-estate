@@ -174,7 +174,7 @@ def listing_quick_message(request, id):
                 to.append(listing.manager.email)
 
             subject = 'Нове повідомлення з сайту'
-            sent = send_mail(subject, '', '', [to], html_message=message)
+            sent = send_mail(subject, '', '', to, html_message=message)
             if sent == 1:
                 return JsonResponse({'status': 'ok'})
 
@@ -203,7 +203,7 @@ def listing_message(request, id):
                 to.append(listing.manager.email)
                 
             subject = 'Нове повідомлення з сайту'
-            sent = send_mail(subject, '', '', [to], html_message=message)
+            sent = send_mail(subject, '', '', to, html_message=message)
             if sent == 1:
                 return JsonResponse({'status': 'ok'})
 
@@ -234,7 +234,7 @@ def listing_visit(request, id):
                 to.append(listing.manager.email)
                 
             subject = 'Нове повідомлення з сайту'
-            sent = send_mail(subject, '', '', [to], html_message=message)
+            sent = send_mail(subject, '', '', to, html_message=message)
             if sent == 1:
                 return JsonResponse({'status': 'ok'})
 
@@ -263,7 +263,7 @@ def listing_credit(request, id):
                 to.append(listing.manager.email)
                 
             subject = 'Нове повідомлення з сайту'
-            sent = send_mail(subject, '', '', [to], html_message=message)
+            sent = send_mail(subject, '', '', to, html_message=message)
             if sent == 1:
                 return JsonResponse({'status': 'ok'})
 
@@ -292,7 +292,7 @@ def listing_check(request, id):
                 to.append(listing.manager.email)
                 
             subject = 'Нове повідомлення з сайту'
-            sent = send_mail(subject, '', '', [to], html_message=message)
+            sent = send_mail(subject, '', '', to, html_message=message)
             if sent == 1:
                 return JsonResponse({'status': 'ok'})
 
