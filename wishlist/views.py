@@ -26,6 +26,8 @@ def wishlist_count(request):
     try:
         body = json.loads(request.body)
         wishlist = body.get('wishlist')
+        if wishlist is None:
+            return JsonResponse({'cnt': 0})
         ids = list(filter(lambda id: id != '', wishlist.split(',')))
         cnt = Listing.objects.filter(id__in=ids).count()
         if cnt > 9:
