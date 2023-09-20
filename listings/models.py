@@ -178,9 +178,10 @@ class RealtyType(TranslatableModel):
         title=models.CharField(max_length=255, verbose_name=_('Title')),
         menu_label=models.CharField(max_length=300, verbose_name=_('Menu label'), blank=True, null=True)
     )
+    slug = models.SlugField(max_length=255, verbose_name=_('Slug'), unique=False)
 
     def get_absolute_url(self):
-        return f"{reverse('listings:list')}?realty_type={self.id}"
+        return reverse('listings:by_type', args=[self.slug])
     
     def __str__(self) -> str:
         return self.title

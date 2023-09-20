@@ -3,7 +3,19 @@
 {% load static %}
 {% load listing_extras %}
 
-{% block title %}{% trans 'Listings' %}{% endblock %}
+{% block title %}
+    {% if realty_type %}
+        {% firstof realty_type.menu_label realty_type.title 'Listings' %}
+    {% elif realty_deal %}
+        {% if realty_deal.title == 'Продаж' %}
+            {% trans 'Buy' %}
+        {% else %}
+            {% trans 'Rent' %}
+        {% endif %}
+    {% else %}
+        {% trans 'Listings' %}
+    {% endif %}
+{% endblock %}
 
 {% block extra_main %}
     <div class="archive-search-form">
@@ -21,6 +33,7 @@
                 <div class="col">
                     <div class="section-header">
                         <h1 class="section-header__title animate animate_text">
+                            
                             {% trans 'Real estate search results' as title %}
                             {{ title|wrap_words_in_span|safe }}
                         </h1>

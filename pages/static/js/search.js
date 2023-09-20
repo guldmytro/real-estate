@@ -289,6 +289,7 @@ class SearchForm {
     }
 
     async getCount() {
+        console.log('getCount');
         try {
             this.form.classList.add('disabled');
             const res = await fetch(`${this.countUrl}?${this.convertFormToQuerySring()}`, {method: 'GET'})
@@ -359,6 +360,7 @@ class SearchForm {
     }
 
     update() {
+        console.log('update');
         this.form.querySelectorAll('[type="submit"]').forEach(button => {
             const countTag = button.querySelector('.count');
             const textTag = button.querySelector('.text');

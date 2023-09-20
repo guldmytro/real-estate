@@ -2,19 +2,40 @@
 {% load static %}
 
 {% if search_form %}
-    <form id="search-form" data-initial-count="{{ count }}" action="{% url 'listings:list' %}" data-count="{% url 'listings:get_listings_count' %}" method="get" class="form__main-search form-search">
+    <form id="search-form" data-initial-count="{{ count }}" 
+        action="{% if realty_type %}{{ realty_type.get_absolute_url }}{% elif realty_deal %}{{ request.path }}{% else %}{% url 'listings:list' %}{% endif %}" 
+        data-count="{% if realty_type %}{{ realty_type.get_absolute_url }}count/{% elif realty_deal %}{{ request.path }}count/{% else %}{% url 'listings:get_listings_count' %}{% endif %}" 
+        method="get" class="form__main-search form-search">
         <div class="search-header">
             {% for choice in search_form.deal %}
-                <label class="deal-type">
-                    {{ choice.tag }}
-                    <div class="search-header__btn">
+                {% if realty_type %}
+                    <label class="deal-type">
+                        {{ choice.tag }}
+                        <div class="search-header__btn">
+                            {% if choice.choice_label == 'Продаж' %}
+                                {% trans 'Buy' %}
+                            {% else %}
+                                {% trans 'Rent' %}
+                            {% endif %}
+                        </div>
+                    </label>
+                {% else %}
+                    <a href="{% if choice.choice_label == 'Продаж' %}{% url 'listings:by_deal' 'buy' %}{% else %}{% url 'listings:by_deal' 'rent' %}{% endif %}" 
+                    {% if choice.choice_label == 'Продаж' and '/buy/' in request.path %}
+                        class="search-header__btn selected"
+                    {% elif choice.choice_label == 'Оренда' and '/rent/' in request.path %}
+                        class="search-header__btn selected"
+                    {% else %}
+                        class="search-header__btn"
+                    {% endif %}
+                    >
                         {% if choice.choice_label == 'Продаж' %}
                             {% trans 'Buy' %}
                         {% else %}
                             {% trans 'Rent' %}
                         {% endif %}
-                    </div>
-                </label>
+                    </a>
+                {% endif %}
             {% endfor %}
             <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Sell' %}</a>
             <a href="{% url 'pages:seller' %}" class="search-header__btn">{% trans 'Rent out' %}</a>
@@ -37,14 +58,16 @@
                     <div id="address_suggestions-wrapper" class="suggestions-wrapper"></div>
                 </div>
             </label>
-            <label class="search-filters__item filter-item">
-                <span class="filter-item__label">
-                    {{ search_form.realty_type.label }}
-                </span>
-                <div class="select-wrapper">
-                    {{ search_form.realty_type }}
-                </div>
-            </label>
+            {% if not realty_type %}
+                <label class="search-filters__item filter-item">
+                    <span class="filter-item__label">
+                        {{ search_form.realty_type.label }}
+                    </span>
+                    <div class="select-wrapper">
+                        {{ search_form.realty_type }}
+                    </div>
+                </label>
+            {% endif %}
             <div class="search-filters__item filter-item">
                 <span class="filter-item__label">
                     {{ search_form.number_of_rooms.label }}
@@ -141,11 +164,13 @@
                                     {{ search_form.windows }}
                                 </div>
                             </label>
-                            <br>
-                            <label class="checkbox-item" style="width:100%;margin-top:0.5em;">
-                                {{ search_form.is_new_building }}
-                                <span>{{ search_form.is_new_building.label }}</span>
-                            </label>
+                            {% if realty_type and realty_type.slug == 'new' %}
+                            {% else %}
+                                <label class="checkbox-item" style="width:100%;margin-top:0.5em;">
+                                    {{ search_form.is_new_building }}
+                                    <span>{{ search_form.is_new_building.label }}</span>
+                                </label>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="fieldset-group">
@@ -190,10 +215,4 @@
         </div>
         <div class="active-filters"></div>
     </form>
-    <style>
-        .active-filters__label {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-    </style>
 {% endif %}

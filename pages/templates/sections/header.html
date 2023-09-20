@@ -58,10 +58,11 @@
                         <img src="{% static 'img/icon-logo.png' %}" alt="контракт нерухомість" class="logo__img" width="2146" height="549">
                     </a>
                     <nav class="mobile-nav">
-                        <a class="mobile-nav__link{% if request.GET.is_new_building == 'on' %} active{% endif %}" href="{% url 'listings:list' %}?is_new_building=on">Новобудови</a>
+                        <a class="mobile-nav__link{% if request.GET.is_new_building == 'on' or '/new/' in request.path %} active{% endif %}" href="{% url 'listings:list' %}?is_new_building=on">Новобудови</a>
                         {% for item in real_types %}
-                            <a class="mobile-nav__link{% if request.GET.realty_type|stringformat:'s' == item.id|stringformat:'s' %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
+                            <a class="mobile-nav__link{% if request.path == item.get_absolute_url %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
                         {% endfor %}
+                        
                         {% url 'pages:abroad_properties' as url %}
                         <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>
                         {% url 'managers:list' as url %}
@@ -94,9 +95,9 @@
     <div class="header-bottom">
         <div class="container">
             <nav class="header-nav">
-                <a class="header-nav__link{% if request.GET.is_new_building == 'on' %} active{% endif %}" href="{% url 'listings:list' %}?is_new_building=on">{% trans 'New buildings' %}</a>
+                <a class="header-nav__link{% if request.GET.is_new_building == 'on' or '/new/' in request.path %} active{% endif %}" href="/{{ LANGUAGE_CODE }}/listings/by-type/new/">{% trans 'New buildings' %}</a>
                 {% for item in real_types %}
-                    <a class="header-nav__link{% if request.GET.realty_type|stringformat:'s' == item.id|stringformat:'s' %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
+                    <a class="header-nav__link{% if request.path == item.get_absolute_url %} active{% endif %}" href="{{ item.get_absolute_url }}">{{ item.menu_label }}</a>
                 {% endfor %}
                 {% url 'pages:abroad_properties' as url %}
                 <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>

@@ -1,6 +1,6 @@
 from .models import Listing, Image, Country, City, Street, \
       Kit, Attribute, RealtyType, Category, Region, District, \
-      HouseComplex
+      HouseComplex, Deal
 from django.contrib.gis import admin
 from leaflet.admin import LeafletGeoAdmin
 from parler.admin import TranslatableAdmin
@@ -12,8 +12,8 @@ class ImageInline(admin.StackedInline):
 
 @admin.register(RealtyType)
 class RealtyTypeAdmin(TranslatableAdmin):
-    list_display = ('title', 'menu_label')
-
+    list_display = ('title', 'menu_label', 'slug')
+    list_editable = ('slug',)
 
 @admin.register(Category)
 class CategoryAdmin(TranslatableAdmin):

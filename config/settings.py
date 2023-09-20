@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'rosetta',
     'parler',
-    'debug_toolbar',
+    # 'debug_toolbar',
     # Local
     'profiles.apps.ProfilesConfig',
     'props.apps.PropsConfig',
@@ -177,7 +177,7 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'uk'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = Path('static/')
-STATIC_VERSION = '1.32'
+STATIC_VERSION = '1.33'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path('media/')
 
@@ -231,9 +231,9 @@ CACHES = {
     }
 }
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
 
 CACHE_TIME = 60 * 5
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Listing, City, Street, Kit, District, HouseComplex
+from .models import Listing, City, Street, Kit, District, HouseComplex, RealtyType, Deal
 from django.db.models import Prefetch, Count
 from django.contrib.gis.measure import Distance
 from news.models import News
@@ -17,7 +17,9 @@ from django.utils.translation import gettext_lazy as _
 from django.template.loader import render_to_string
 
 
-def listings_list(request):    
+def listings_list(request, realty_type=None, realty_deal=None): 
+    r_type = None
+    r_deal = None
     GET = modify_get(request.GET)
     search_form = SearchForm(GET)
 
@@ -25,6 +27,22 @@ def listings_list(request):
         Prefetch('images'),
         Prefetch('kits__attribute'),
     ).all()
+    if realty_type:
+        if realty_type == 'new':
+            listings_list = listings_list.filter(is_new_building=True)
+            r_type = {}
+            r_type['menu_label'] = _('New buildings')
+            r_type['slug'] = 'new'
+        else:
+            r_type = get_object_or_404(RealtyType, slug=realty_type)  
+            listings_list = listings_list.filter(realty_type=r_type)
+    if realty_deal:
+        if realty_deal == 'buy':
+            r_deal = get_object_or_404(Deal, title='Продаж')
+        elif realty_deal == 'rent':
+            r_deal = get_object_or_404(Deal, title='Оренда')
+        listings_list = listings_list.filter(deal=r_deal)
+
     crumbs = []
 
     # Filtering
@@ -94,7 +112,7 @@ def listings_list(request):
 
     
     # Pagination
-    paginator = Paginator(listings_list, 24)
+    paginator = Paginator(listings_list, 20)
     page_number = request.GET.get('page', 1)
     try:
         listings = paginator.page(page_number)
@@ -121,6 +139,8 @@ def listings_list(request):
         'coordinates': coordinates,
         'search_form': search_form,
         'crumbs': crumbs,
+        'realty_type': r_type,
+        'realty_deal': r_deal
     }
     return render(request, 'listings/list.html', context)
 
@@ -194,9 +214,21 @@ def listings_detail(request, id):
     return render(request, 'listings/item.html', context)
 
 
-def get_listings_count(request):
+def get_listings_count(request, realty_type=None, realty_deal=None):
     search_form = SearchForm(request.GET)
     listings_list = Listing.objects.prefetch_related('images').all()
+    
+    if realty_type:
+        r_type = get_object_or_404(RealtyType, slug=realty_type)
+        listings_list = listings_list.filter(realty_type=r_type)
+    
+    if realty_deal:
+        if realty_deal == 'buy':
+            r_deal = get_object_or_404(Deal, title='Продаж')
+        elif realty_deal == 'rent':
+            r_deal = get_object_or_404(Deal, title='Оренда')
+        listings_list = listings_list.filter(deal=r_deal)
+
     if search_form.is_valid():
         cleaned_data = search_form.cleaned_data
         listings_list = filter_listings(cleaned_data, listings_list)
