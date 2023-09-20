@@ -32,6 +32,6 @@ def wishlist_count(request):
             cnt = '9+'
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
-    except:
-        return JsonResponse({'error': 'Server error'}, status=500)
+    except Exception as e:
+        return JsonResponse({'error': f'Server error: {e}'}, status=500)
     return JsonResponse({'cnt': cnt})

@@ -219,8 +219,11 @@ def get_listings_count(request, realty_type=None, realty_deal=None):
     listings_list = Listing.objects.prefetch_related('images').all()
     
     if realty_type:
-        r_type = get_object_or_404(RealtyType, slug=realty_type)
-        listings_list = listings_list.filter(realty_type=r_type)
+        if realty_type == 'new':
+            listings_list = listings_list.filter(is_new_building=True)
+        else:
+            r_type = get_object_or_404(RealtyType, slug=realty_type)
+            listings_list = listings_list.filter(realty_type=r_type)
     
     if realty_deal:
         if realty_deal == 'buy':
