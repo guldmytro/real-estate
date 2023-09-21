@@ -13,9 +13,9 @@ export class PolygonMap {
 
     initMap = () => {
         this.map = L.map(this.polygonMap, {
-            scrollWheelZoom: false,
+            /*scrollWheelZoom: false,*/
             zoomControl: true,
-            dragging: !L.Browser.mobile, tap: !L.Browser.mobile
+            /*dragging: !L.Browser.mobile, tap: !L.Browser.mobile*/
         }).setView([49.989183125556025, 36.23147763480256], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
@@ -53,7 +53,7 @@ export class PolygonMap {
                 markers.push(marker);
             });
             if (!this.drawnPolygon) {
-                const paddingValue = 0.00006; // Измените значение по своему усмотрению
+                const paddingValue = 0.00012; // Измените значение по своему усмотрению
 
                 // Вычисляем ширину и высоту карты
                 const mapWidth = this.map.getSize().x;

@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load listing_extras %}
+{% load static %}
 
 {% if search_form_simplified %}
     <section class="map">
@@ -28,6 +29,6 @@
                 </label>
             </form>
         </div>
-        <div id="clustered-map-2" style="width:100%;height:100%;"></div>
+        <div id="clustered-map-2" style="width:calc(100%);height:100%;"></div>
     </section>
 {% endif %}

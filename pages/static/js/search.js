@@ -572,7 +572,7 @@ class MapSearch {
 
     initMap = () => {
         this.form.classList.add('inited');
-        this.map = this.map || L.map('clustered-map-2', {scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: !L.Browser.mobile}).setView([0, 0], 15);
+        this.map = this.map || L.map('clustered-map-2', {/*scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: !L.Browser.mobile*/}).setView([0, 0], 15);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 19
@@ -582,6 +582,9 @@ class MapSearch {
             closeButton: true,
             autoClose: false,
             closeOnClick: false
+        });
+        infoWindow.on('remove', () => {
+            this.form.style.display = 'flex';
         });
 
         const bounds = L.latLngBounds();
@@ -610,8 +613,8 @@ class MapSearch {
                 infoWindow.setContent(listingContent);
                 infoWindow.setLatLng(marker.getLatLng());
                 infoWindow.openOn(this.map);
+                this.form.style.display = 'none';
             });
-
             markers.push(marker);
         });
 
