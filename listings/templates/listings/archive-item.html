@@ -28,13 +28,24 @@
             </div>
             <hr>
             <p class="object-item__address line line_2">{{ item.get_address_string }}</p>
+            
             {% if hide_phones == None %}
-                <button type="button" class="btn btn_invert btn_bordered show-phones">{% trans 'Show phone' %}</button>
-                <ul class="employees-item__phones">
-                    {% for phone in item.manager.phones.all %}
-                        <li><a href="tel:{{ phone.clean_phone }}">{{ phone }}</a></li>
-                    {% endfor %}
-                </ul>
+                {% with manager=item.manager %}
+                    <a class="object-item__manager" href="{{ manager.get_absolute_url }}">
+                        {% if manager.image %}
+                            <img src="{{ manager.image|thumbnail_url:'small' }}" alt="{{ manager.full_name }}" loading="lazy" width="200" height="200">
+                        {% else %}
+                            <img src="{% static 'img/icon-user.svg' %}" alt="{{ manager.full_name }}" loading="lazy">
+                        {% endif %}
+                        <span>{{ manager.full_name }}</span>
+                    </a>
+                    <button type="button" class="btn btn_invert btn_bordered show-phones">{% trans 'Show phone' %}</button>
+                    <ul class="employees-item__phones">
+                        {% for phone in manager.phones.all %}
+                            <li><a href="tel:{{ phone.clean_phone }}">{{ phone }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endwith %}
             {% endif %}
         </div>
     </div>

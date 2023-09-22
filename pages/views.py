@@ -74,7 +74,7 @@ def pricing(request):
 def reviews(request):
     search_manager_form = SearchManager()
     review_form = ReviewForm()
-    reviews_list = Review.objects.select_related('manager').all()
+    reviews_list = Review.objects.select_related('manager').all().order_by('-created')
     paginator = Paginator(reviews_list, 8)
     page_number = request.GET.get('page', 1)
     try:
@@ -89,6 +89,7 @@ def reviews(request):
     return render(request, 'pages/reviews.html', context)
 
 
+
 def seller(request):
     seller_form = SellerForm(initial={'phone': '+380'})
 
@@ -100,7 +101,7 @@ def seller(request):
 
 def guarantees(request):
     feadback_form = FeadbackForm(request.POST)
-    reviews = Review.objects.select_related('manager').order_by('-rating')[:10]
+    reviews = Review.objects.select_related('manager').order_by('-rating', '-created')[:10]
     context = {
         'feadback_form': feadback_form,
         'reviews': reviews
@@ -114,7 +115,7 @@ def home(request):
     search_form_simplified = SearchFormSimplified()
     feadback_form = FeadbackForm(request.POST)
     news = News.objects.order_by('-created')[:10]
-    reviews = Review.objects.select_related('manager').order_by('-rating')[:10]
+    reviews = Review.objects.select_related('manager').order_by('-rating', '-created')[:10]
     
     cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
     cities_with_count = cities_with_count.order_by('-listing_count')
