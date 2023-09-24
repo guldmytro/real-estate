@@ -79,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'config.middleware.NewUserLanguageMiddleware',
+    'config.middleware.NewUserCityMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -95,6 +96,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'listings.context_processors.real_types',
+                'listings.context_processors.cities',
                 'pages.context_processors.contacts',
                 'pages.context_processors.static_version',
             ],

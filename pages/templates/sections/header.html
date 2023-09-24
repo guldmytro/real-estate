@@ -23,6 +23,12 @@
                     <span class="link__text accent">{% trans 'Discounts' %}</span>
                 </a>
             </div>
+            {% if current_city %}
+                <button type="button" class="btn btn_location open-popup" data-popup="popup-city">
+                    <img src="{% static 'img/icon-marker.png' %}" class="btn__img" alt="маркер" width="48" height="64">
+                    <span class="btn__text">{{ current_city.title }}</span>
+                </button>
+            {% endif %}
             <form class="header-lang" action="/" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -86,6 +92,26 @@
                         <a href="{% url 'discounts:list' %}" class="link">
                             <img src="{% static 'img/icon-percent.png' %}" alt="відсотки" class="link__img accent" width="32" height="32">
                             <span class="link__text accent">{% trans 'Discounts' %}</span>
+                        </a>
+                    </div>
+                    <div class="mobile-controls">
+                        <form class="header-lang header-lang_mobile" action="/" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language" id="lang">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                        {{ language.code }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                        <a href="{% url 'wishlist:archive' %}" class="wishlist-link wishlist-link_mobile" title="Перейти у вибране" aria-label="Перейти у вибране">
+                            <img src="{% static 'img/icon-heart.png' %}" class="wishlist-link__img accent" alt="серце" width="64" height="56">
+                            <span data-count="" class="wishlist-link__cnt"></span>
                         </a>
                     </div>
                 </div>

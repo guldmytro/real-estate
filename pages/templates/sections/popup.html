@@ -29,4 +29,22 @@
     <div id="popup-done" class="popup-content">
         {% include 'forms/done.html' %}
     </div>
+    <div id="popup-city" class="popup-content">
+        <button type="button" aria-label="закрити вікно" class="btn_close close-popup">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="cities">
+            {% for letter, city_list in cities_obj.items %}
+                <div class="cities-group">
+                    <div class="cities__letter">{{ letter }}</div>
+                    {% for city in city_list %}
+                        <div class="city-item">
+                            <a href="{% url 'pages:set-city' city.pk %}" class="city-item__link">{{ city.title }} ({{ city.cnt }})</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>

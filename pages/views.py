@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from listings.utils import get_listings_map_data
 from listings.models import Listing, City
 from django.db.models import Count
+from django.shortcuts import redirect
 
 def about(request):
     feadback_form = FeadbackForm(request.POST)
@@ -107,6 +108,11 @@ def guarantees(request):
         'reviews': reviews
     }
     return render(request, 'pages/guarantees.html', context)
+
+
+def set_city(request, pk):
+    request.session['current_city'] = pk
+    return redirect('pages:home')
 
 
 def home(request):
