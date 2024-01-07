@@ -24,7 +24,7 @@
                 </a>
             </div>
             {% if current_city %}
-                <button type="button" class="btn btn_location open-popup" data-popup="popup-city">
+                <button type="button" class="btn btn_location open-popup" data-popup="popup-city" title="{{ current_city.title }}">
                     <img src="{% static 'img/icon-marker.png' %}" class="btn__img" alt="маркер" width="48" height="64">
                     <span class="btn__text">{{ current_city.title }}</span>
                 </button>

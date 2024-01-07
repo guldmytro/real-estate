@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% get_solo 'props.SiteConfiguration' as site_config %}
-    <title>{% block title %}{% trans 'Home' %}{% endblock %} - {% if request.LANGUAGE_CODE == 'en' %}{{ site_config.site_name_en }}{% else %}{{ site_config.site_name_uk }}{% endif %}</title>
+    <title>{% block title %}{% trans 'Home' %}{% endblock %} - {% if request.LANGUAGE_CODE == 'en' %}{{ site_config.site_name_en }}{% elif request.LANGUAGE_CODE == 'ru' %}{{ site_config.site_name_ru }}{% else %}{{ site_config.site_name_uk }}{% endif %}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">

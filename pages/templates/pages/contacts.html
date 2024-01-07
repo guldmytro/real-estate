@@ -38,6 +38,8 @@
                         <li class="contact-value">
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <span>{{ page.office_1 }}</span>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <span>{{ page.office_1_ru }}</span>
                             {% else %}
                                 <span>{{ page.office_1_uk }}</span>
                             {% endif %}
@@ -64,6 +66,8 @@
                         <li class="contact-value">
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <span>{{ page.office_2 }}</span>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <span>{{ page.office_2_ru }}</span>
                             {% else %}
                                 <span>{{ page.office_2_uk }}</span>
                             {% endif %}
@@ -79,6 +83,8 @@
                         <li class="contact-value">
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <span>{{ page.schedule }}</span>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <span>{{ page.schedule_ru }}</span>
                             {% else %}
                                 <span>{{ page.schedule_uk }}</span>
                             {% endif %}
@@ -94,6 +100,8 @@
                         <li class="contact-value">
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <span>{{ page.office_3 }}</span>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <span>{{ page.office_3_ru }}</span>
                             {% else %}
                                 <span>{{ page.office_3_uk }}</span>
                             {% endif %}

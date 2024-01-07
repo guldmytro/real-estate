@@ -9,57 +9,58 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-07 12:26+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2024-01-07 12:24+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: analytics/apps.py:8 analytics/models.py:22 analytics/views.py:13
 #: analytics/views.py:19 analytics/views.py:32
 msgid "Analytical reviews"
-msgstr ""
+msgstr "Аналитические обзоры"
 
 #: analytics/models.py:10 discounts/models.py:11 documents/models.py:8
 #: listings/models.py:35 listings/models.py:147 listings/models.py:164
 #: listings/models.py:178 listings/models.py:234 news/models.py:10
 #: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: analytics/models.py:11 discounts/models.py:12 news/models.py:11
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: analytics/models.py:13 discounts/models.py:15 documents/models.py:12
 #: listings/models.py:29 managers/models.py:77 news/models.py:13
 #: vacantions/models.py:13
 msgid "Created"
-msgstr ""
+msgstr "Создано"
 
 #: analytics/models.py:14 discounts/models.py:16 managers/models.py:16
 #: news/models.py:14
 msgid "Image"
-msgstr ""
+msgstr "Картинка"
 
 #: analytics/models.py:21
 msgid "Analytical review"
-msgstr ""
+msgstr "Аналитический обзор"
 
 #: config/settings.py:155
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: config/settings.py:156 pages/templates/pages/course.html:66
 msgid "Ukrainian"
-msgstr ""
+msgstr "Украинский"
 
 #: config/settings.py:157
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: discounts/apps.py:8 discounts/models.py:24
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
@@ -67,15 +68,15 @@ msgstr ""
 #: pages/templates/sections/header.html:23
 #: pages/templates/sections/header.html:94
 msgid "Discounts"
-msgstr ""
+msgstr "Акции"
 
 #: discounts/models.py:13
 msgid "Short description"
-msgstr ""
+msgstr "Краткое описание"
 
 #: discounts/models.py:23
 msgid "Discount"
-msgstr ""
+msgstr "Скидка"
 
 #: discounts/templates/nothing-found.html:3
 msgid ""
@@ -83,68 +84,72 @@ msgid ""
 "        No entries yet... Return to <a href=\"/\">home</a>\n"
 "    "
 msgstr ""
+"\n"
+"Записей пока нет... Вернуться на <a href=\"/\">домой</a>"
 
 #: documents/apps.py:8 documents/models.py:17
 #: documents/templates/documents/list.html:6 documents/views.py:18
 #: pages/templates/sections/footer.html:21
 msgid "Documents"
-msgstr ""
+msgstr "Документы"
 
 #: documents/models.py:11 listings/models.py:206
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: documents/models.py:16
 msgid "Document"
-msgstr ""
+msgstr "Документ"
 
 #: documents/templates/documents/list.html:13
 msgid "Useful documents"
-msgstr ""
+msgstr "Полезные документы"
 
 #: documents/templates/documents/list.html:17
 msgid ""
 "We decided to create a page and combine all useful documents in one place"
 msgstr ""
+"Мы решили создать страницу и объединить все полезные документы в одном "
+"месте."
 
 #: documents/templates/documents/list.html:26 managers/models.py:76
 #: managers/models.py:85
 msgid "Review"
-msgstr ""
+msgstr "Отзыв"
 
 #: emails/forms.py:10 emails/forms.py:35
 msgid "Your name:*"
-msgstr ""
+msgstr "Ваше имя:*"
 
 #: emails/forms.py:15 emails/forms.py:42 emails/forms.py:56
 msgid "Phone:*"
-msgstr ""
+msgstr "Телефон:*"
 
 #: emails/forms.py:25
 msgid "Resume"
-msgstr ""
+msgstr "Резюме"
 
 #: emails/forms.py:39
 msgid "Write your review"
-msgstr ""
+msgstr "Напишите ваш отзыв"
 
 #: emails/forms.py:67
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: emails/templates/forms/apply.html:8
 msgid "Leave your contact details and attach a file with your resume"
-msgstr ""
+msgstr "Оставьте свои контактные данные и прикрепите файл с вашим резюме"
 
 #: emails/templates/forms/apply.html:18
 #: emails/templates/forms/listing-check.html:15
 #: emails/templates/forms/listing-message.html:16
 msgid "Enter a phone number so we can contact you"
-msgstr ""
+msgstr "Введите номер телефона, чтобы мы могли связаться с вами."
 
 #: emails/templates/forms/apply.html:21
 msgid "Send resume"
-msgstr ""
+msgstr "Отправить резюме"
 
 #: emails/templates/forms/apply.html:22
 #: emails/templates/forms/listing-check.html:18
@@ -157,7 +162,7 @@ msgstr ""
 #: pages/templates/pages/seller.html:44
 #: pages/templates/sections/feadback.html:22
 msgid "Sending..."
-msgstr ""
+msgstr "Отправка..."
 
 #: emails/templates/forms/apply.html:23
 #: emails/templates/forms/listing-check.html:19
@@ -170,7 +175,7 @@ msgstr ""
 #: pages/templates/pages/seller.html:45
 #: pages/templates/sections/feadback.html:23
 msgid "Sent!"
-msgstr ""
+msgstr "Отправлено!"
 
 #: emails/templates/forms/apply.html:24
 #: emails/templates/forms/listing-check.html:20
@@ -183,1133 +188,1156 @@ msgstr ""
 #: pages/templates/pages/seller.html:46
 #: pages/templates/sections/feadback.html:24
 msgid "Error sending..."
-msgstr ""
+msgstr "Ошибка отправки..."
 
 #: emails/templates/forms/apply.html:26
 msgid "By sending your resume, you consent to the processing of personal data"
 msgstr ""
+"Отправляя ваше резюме, вы соглашаетесь на обработку ваших персональных "
+"данных"
 
 #: emails/templates/forms/done.html:11
 msgid "Thank you for your request"
-msgstr ""
+msgstr "Спасибо за Ваше обращение"
 
 #: emails/templates/forms/done.html:13
 msgid "Our manager will contact you as soon as possible"
-msgstr ""
+msgstr "Наш менеджер свяжется с Вами в кратчайшие сроки"
 
 #: emails/templates/forms/listing-check.html:9
 msgid "Leave your contact details to our manager"
-msgstr ""
+msgstr "Оставьте свои контактные данные для нашего менеджера"
 
 #: emails/templates/forms/listing-check.html:17
 #: emails/templates/forms/listing-message.html:18
 #: emails/templates/forms/review.html:35
 msgid "Send"
-msgstr ""
+msgstr "Отправить"
 
 #: emails/templates/forms/listing-message.html:9
 msgid "Leave your contact details and message to our manager"
-msgstr ""
+msgstr "Оставьте свои контактные данные и сообщения для нашего менеджера"
 
 #: emails/templates/forms/review.html:9
 msgid "Leave a review about the specialist"
-msgstr ""
+msgstr "Оставьте отзыв о специалисте"
 
 #: emails/templates/forms/review.html:14
 msgid "Rate the quality of the work"
-msgstr ""
+msgstr "Оцените качество работы"
 
 #: emails/templates/forms/review.html:31
 msgid ""
 "Enter a phone number so that we can contact you to confirm feedback in case "
 "of negative feedback or leave your feedback by calling +38 (050) 100-86-96"
 msgstr ""
+"Укажите номер телефона, чтобы мы могли связаться с вами для подтверждения "
+"обратной связи в случае отрицательного отклика или оставить свой отзыв, "
+"позвонив по телефону +38 (050) 100-86-96"
 
 #: emails/templates/forms/review.html:40
 msgid "By leaving feedback, you consent to the processing of personal data"
 msgstr ""
+"Отправляя отзыв, вы соглашаетесь на обработку своих персональных данных"
 
 #: listings/apps.py:8 listings/models.py:81
 #: listings/templates/listings/list.html:16 listings/views.py:109
 #: listings/views.py:170
 msgid "Listings"
-msgstr ""
+msgstr "Объявления"
 
 #: listings/forms.py:18
 msgid "Type of agreement"
-msgstr ""
+msgstr "Тип договора"
 
 #: listings/forms.py:21
 msgid "Type of agreement:"
-msgstr ""
+msgstr "Тип договора:"
 
 #: listings/forms.py:23
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: listings/forms.py:27
 msgid "Housing complex, district, street"
-msgstr ""
+msgstr "ЖК, район, улица"
 
 #: listings/forms.py:37
 #: listings/templates/listings/components/listing-map-info.html:25
 msgid "Rooms"
-msgstr ""
+msgstr "Комнатность"
 
 #: listings/forms.py:45
 msgid "Rooms:"
-msgstr ""
+msgstr "Комнатность:"
 
 #: listings/forms.py:48
 msgid "Minimum price"
-msgstr ""
+msgstr "Минимальная цена"
 
 #: listings/forms.py:51 listings/forms.py:65 listings/forms.py:137
 #: listings/forms.py:140 listings/forms.py:151 listings/forms.py:154
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: listings/forms.py:52
 msgid "Price from:"
-msgstr ""
+msgstr "Цена от:"
 
 #: listings/forms.py:55
 msgid "Maximum price"
-msgstr ""
+msgstr "Максимальная цена"
 
 #: listings/forms.py:58 listings/forms.py:72 listings/forms.py:144
 #: listings/forms.py:147 listings/forms.py:158 listings/forms.py:161
 msgid "To"
-msgstr ""
+msgstr "До"
 
 #: listings/forms.py:59
 msgid "Price to:"
-msgstr ""
+msgstr "Цена до:"
 
 #: listings/forms.py:62
 msgid "Minimum area"
-msgstr ""
+msgstr "Минимальная площадь"
 
 #: listings/forms.py:66
 msgid "Minimum area from:"
-msgstr ""
+msgstr "Минимальная площадь от:"
 
 #: listings/forms.py:66 listings/forms.py:73
 #: listings/templates/listings/archive-item.html:23
 #: listings/templates/listings/components/listing-map-info.html:22
 msgid "m²"
-msgstr ""
+msgstr "м²"
 
 #: listings/forms.py:69
 msgid "Maximum area"
-msgstr ""
+msgstr "Максимальная площадь"
 
 #: listings/forms.py:73
 msgid "Maximum area to:"
-msgstr ""
+msgstr "Максимальна площа до:"
 
 #: listings/forms.py:76 listings/models.py:71 pages/forms.py:26
 msgid "Realty type"
-msgstr ""
+msgstr "Тип недвижимости"
 
 #: listings/forms.py:79
 msgid "Select a type"
-msgstr ""
+msgstr "Выберите тип"
 
 #: listings/forms.py:82 pages/forms.py:32
 msgid "Realty type:"
-msgstr ""
+msgstr "Тип недвижимости:"
 
 #: listings/forms.py:88 listings/forms.py:90
 msgid "New building"
-msgstr ""
+msgstr "Новостройка"
 
 #: listings/forms.py:125 listings/forms.py:127
 msgid "With photo"
-msgstr ""
+msgstr "С фото"
 
 #: listings/forms.py:130 listings/forms.py:132
 msgid "With video"
-msgstr ""
+msgstr "С видео"
 
 #: listings/forms.py:141
 msgid "Floor from:"
-msgstr ""
+msgstr "Этаж от:"
 
 #: listings/forms.py:148
 msgid "Floor to:"
-msgstr ""
+msgstr "Этаж до:"
 
 #: listings/forms.py:155
 msgid "Floors in the house from:"
-msgstr ""
+msgstr "Этажей в доме от:"
 
 #: listings/forms.py:162
 msgid "Floors in the house to:"
-msgstr ""
+msgstr "Этажей в доме до:"
 
 #: listings/forms.py:165
 msgid "Repair"
-msgstr ""
+msgstr "Ремонт"
 
 #: listings/forms.py:169 listings/forms.py:179 listings/forms.py:189
 #: listings/forms.py:199 listings/forms.py:209 listings/forms.py:220
 msgid "Select"
-msgstr ""
+msgstr "Выбрать"
 
 #: listings/forms.py:171
 msgid "Repair:"
-msgstr ""
+msgstr "Ремонт:"
 
 #: listings/forms.py:175
 msgid "Layout"
-msgstr ""
+msgstr "Планировка"
 
 #: listings/forms.py:181
 msgid "Layout:"
-msgstr ""
+msgstr "Планировка:"
 
 #: listings/forms.py:185
 msgid "Housing class"
-msgstr ""
+msgstr "Класс дома"
 
 #: listings/forms.py:191
 msgid "Housing class:"
-msgstr ""
+msgstr "Класс дома:"
 
 #: listings/forms.py:195
 msgid "Roof of the house"
-msgstr ""
+msgstr "Перекрытие дома"
 
 #: listings/forms.py:201
 msgid "Roof of the house:"
-msgstr ""
+msgstr "Перекрытие дома:"
 
 #: listings/forms.py:205
 msgid "Windows come out"
-msgstr ""
+msgstr "Окна выходят"
 
 #: listings/forms.py:211
 msgid "Windows come out:"
-msgstr ""
+msgstr "Окна выходят:"
 
 #: listings/forms.py:216
 msgid "Entrance"
-msgstr ""
+msgstr "Вход/подъезд"
 
 #: listings/forms.py:222
 msgid "Entrance:"
-msgstr ""
+msgstr "Вход/подъезд:"
 
 #: listings/models.py:20
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: listings/models.py:21
 msgid "Archive"
-msgstr ""
+msgstr "Архивный"
 
 #: listings/models.py:27
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: listings/models.py:30
 msgid "Updated"
-msgstr ""
+msgstr "Обновлено"
 
 #: listings/models.py:32 managers/models.py:28 managers/models.py:47
 #: managers/models.py:78 managers/templates/managers/list.html:16
 msgid "Manager"
-msgstr ""
+msgstr "Менеджер"
 
 #: listings/models.py:36 listings/templates/listings/item.html:14
 #: listings/templates/listings/item.html:77 vacantions/models.py:10
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: listings/models.py:37
 #: listings/templates/listings/components/attributes.html:31
 msgid "Metros"
-msgstr ""
+msgstr "Метро"
 
 #: listings/models.py:40
 msgid "Is new building"
-msgstr ""
+msgstr "Новый дом"
 
 #: listings/models.py:43
 msgid "Total Area"
-msgstr ""
+msgstr "Общая площадь"
 
 #: listings/models.py:44
 msgid "Living Area"
-msgstr ""
+msgstr "Жилая площадь"
 
 #: listings/models.py:45
 msgid "Kitchen Area"
-msgstr ""
+msgstr "Площадь кухни"
 
 #: listings/models.py:48
 msgid "Room Count"
-msgstr ""
+msgstr "Количество комнат"
 
 #: listings/models.py:51 listings/templates/forms/search.html:110
 #: listings/templates/listings/components/attributes.html:65
 msgid "Floor"
-msgstr ""
+msgstr "Этаж"
 
 #: listings/models.py:52
 msgid "Total Floors"
-msgstr ""
+msgstr "Общее количество этажей"
 
 #: listings/models.py:55 listings/templates/forms/search.html:85
 #: listings/templates/listings/components/listing-map-info.html:17
 #: pages/templates/pages/course.html:56
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: listings/models.py:60 listings/models.py:338 listings/models.py:346
 msgid "Street"
-msgstr ""
+msgstr "Улица"
 
 #: listings/models.py:62
 msgid "House Number"
-msgstr ""
+msgstr "Номер дома"
 
 #: listings/models.py:63 listings/models.py:310 listings/models.py:318
 #: listings/templates/listings/components/attributes.html:19
 msgid "District"
-msgstr ""
+msgstr "Район"
 
 #: listings/models.py:65
 #: listings/templates/listings/components/attributes.html:25
 msgid "House complex"
-msgstr ""
+msgstr "ЖК"
 
 #: listings/models.py:70 listings/models.py:172
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: listings/models.py:73 listings/models.py:200
 msgid "Deal"
-msgstr ""
+msgstr "Сделка"
 
 #: listings/models.py:76 pages/models.py:142
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 #: listings/models.py:80 listings/models.py:205 listings/models.py:247
 msgid "Listing"
-msgstr ""
+msgstr "Объявления"
 
 #: listings/models.py:148 listings/models.py:165 listings/models.py:179
 msgid "Menu label"
-msgstr ""
+msgstr "Заголовок меню"
 
 #: listings/models.py:149 listings/models.py:181 listings/models.py:236
 msgid "Slug"
-msgstr ""
+msgstr "Слаг"
 
 #: listings/models.py:173
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: listings/models.py:190
 msgid "Realty Type"
-msgstr ""
+msgstr "Тип недвижимости"
 
 #: listings/models.py:191
 msgid "Realty Types"
-msgstr ""
+msgstr "Типы недвижимости"
 
 #: listings/models.py:201
 msgid "Deals"
-msgstr ""
+msgstr "Сделки"
 
 #: listings/models.py:207 managers/models.py:17
 msgid "Image url"
-msgstr ""
+msgstr "Адрес картинки"
 
 #: listings/models.py:239 listings/models.py:249
 msgid "Attribute"
-msgstr ""
+msgstr "Атрибут"
 
 #: listings/models.py:240
 msgid "Attributes"
-msgstr ""
+msgstr "Атрибуты"
 
 #: listings/models.py:252
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 #: listings/models.py:258
 msgid "Kit"
-msgstr ""
+msgstr "Набор"
 
 #: listings/models.py:259
 msgid "Kits"
-msgstr ""
+msgstr "Наборы"
 
 #: listings/models.py:267 listings/models.py:273 listings/models.py:293
 msgid "Country"
-msgstr ""
+msgstr "Страна"
 
 #: listings/models.py:274
 msgid "Countries"
-msgstr ""
+msgstr "Страны"
 
 #: listings/models.py:279 listings/models.py:285 listings/models.py:294
 msgid "Region"
-msgstr ""
+msgstr "Область"
 
 #: listings/models.py:286
 msgid "Regions"
-msgstr ""
+msgstr "Области"
 
 #: listings/models.py:291 listings/models.py:304 listings/models.py:312
 #: listings/models.py:326 listings/models.py:340
 msgid "City"
-msgstr ""
+msgstr "Город"
 
 #: listings/models.py:305
 msgid "Cities"
-msgstr ""
+msgstr "Города"
 
 #: listings/models.py:319
 msgid "Districts"
-msgstr ""
+msgstr "Районы"
 
 #: listings/models.py:324 listings/models.py:332
 msgid "House Complex"
-msgstr ""
+msgstr "Жилой Комплекс"
 
 #: listings/models.py:333
 msgid "House Complexes"
-msgstr ""
+msgstr "Жилые Комплексы"
 
 #: listings/models.py:347
 msgid "Streets"
-msgstr ""
+msgstr "Улицы"
 
 #: listings/templates/forms/additional_fields.html:4
 msgid "Popular"
-msgstr ""
+msgstr "Популярные"
 
 #: listings/templates/forms/search.html:16
 #: listings/templates/forms/search.html:33
 #: listings/templates/listings/list.html:11
 #: pages/templates/pages/pricing.html:23
 msgid "Buy"
-msgstr ""
+msgstr "Купить"
 
 #: listings/templates/forms/search.html:18
 #: listings/templates/forms/search.html:35
 #: listings/templates/listings/list.html:13
 #: pages/templates/pages/pricing.html:69
 msgid "Rent"
-msgstr ""
+msgstr "Арендовать"
 
 #: listings/templates/forms/search.html:40
 #: pages/templates/pages/pricing.html:46
 msgid "Sell"
-msgstr ""
+msgstr "Продать"
 
 #: listings/templates/forms/search.html:41
 #: pages/templates/pages/pricing.html:83
 msgid "Rent out"
-msgstr ""
+msgstr "Сдать в аренду"
 
 #: listings/templates/forms/search.html:42
 msgid "Credit and mortgage"
-msgstr ""
+msgstr "Кредит и ипотека"
 
 #: listings/templates/forms/search.html:43
 #: pages/templates/sections/footer.html:13
 msgid "Property valuation"
-msgstr ""
+msgstr "Оценка"
 
 #: listings/templates/forms/search.html:97
 msgid "Building"
-msgstr ""
+msgstr "Дом"
 
 #: listings/templates/forms/search.html:101
 msgid "Area (m²)"
-msgstr ""
+msgstr "Площадь (м²)"
 
 #: listings/templates/forms/search.html:119
 msgid "Floors in the house"
-msgstr ""
+msgstr "Этажей в доме"
 
 #: listings/templates/forms/search.html:176
 msgid "Court"
-msgstr ""
+msgstr "Двор"
 
 #: listings/templates/forms/search.html:189
 msgid "Media"
-msgstr ""
+msgstr "Медиа"
 
 #: listings/templates/forms/search.html:207
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: listings/templates/forms/search.html:212
 msgid "Advanced search"
-msgstr ""
+msgstr "Расширенный поиск"
 
 #: listings/templates/listings/archive-item.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Просмотрено"
 
 #: listings/templates/listings/archive-item.html:42
 #: managers/templates/managers/list.html:54
 msgid "Show phone"
-msgstr ""
+msgstr "Показать телефон"
 
 #: listings/templates/listings/components/attributes.html:7
 #: listings/templates/listings/item.html:15
 msgid "Characteristics"
-msgstr ""
+msgstr "Характеристики"
 
 #: listings/templates/listings/components/attributes.html:14
 msgid "Article"
-msgstr ""
+msgstr "Артикул"
 
 #: listings/templates/listings/components/attributes.html:36
 msgid "Is new house"
-msgstr ""
+msgstr "Новый дом"
 
 #: listings/templates/listings/components/attributes.html:37
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: listings/templates/listings/components/attributes.html:37
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: listings/templates/listings/components/attributes.html:41
 msgid "Total area"
-msgstr ""
+msgstr "Общая площадь"
 
 #: listings/templates/listings/components/attributes.html:47
 msgid "Living area"
-msgstr ""
+msgstr "Жилая площадь"
 
 #: listings/templates/listings/components/attributes.html:53
 msgid "Kitchen area"
-msgstr ""
+msgstr "Площадь кухни"
 
 #: listings/templates/listings/components/attributes.html:59
 msgid "Rooms count"
-msgstr ""
+msgstr "Количество комнат"
 
 #: listings/templates/listings/components/attributes.html:78
 #: managers/templates/managers/detail.html:133
 #: managers/templates/managers/detail.html:148
 msgid "Show more"
-msgstr ""
+msgstr "Показать больше"
 
 #: listings/templates/listings/components/directions.html:9
 #: listings/templates/listings/item.html:19
 msgid "Time to go"
-msgstr ""
+msgstr "Время на дорогу"
 
 #: listings/templates/listings/components/directions.html:12
 msgid "Find out the time to work, school or kindergarten"
-msgstr ""
+msgstr "Узнайте время для работы, школы или детского сада"
 
 #: listings/templates/listings/components/directions.html:15
 msgid "Build a route"
-msgstr ""
+msgstr "Построить маршрут"
 
 #: listings/templates/listings/components/listing-map-info.html:21
 msgid "Area (total / living / kitchen)"
-msgstr ""
+msgstr "Площадь (общая / жилая / кухня)"
 
 #: listings/templates/listings/components/listing-map-info.html:29
 msgid "Floors"
-msgstr ""
+msgstr "Этажей"
 
 #: listings/templates/listings/components/listing-map-info.html:34
 msgid "Year of construction"
-msgstr ""
+msgstr "Год строительства"
 
 #: listings/templates/listings/components/listing-map-info.html:41
 #: listings/templates/listings/item.html:159
 #: pages/templates/pages/abroad.html:48
 msgid "More details"
-msgstr ""
+msgstr "Подробнее"
 
 #: listings/templates/listings/components/manager.html:18
 #: managers/templates/managers/detail.html:22
 #: managers/templates/managers/list.html:51
 #: managers/templates/reviews/item.html:29
 msgid "Real estate specialist"
-msgstr ""
+msgstr "Специалист по недвижимости"
 
 #: listings/templates/listings/components/manager.html:25
 msgid "or leave the number and we will call you back within 2 minutes"
-msgstr ""
+msgstr "или оставьте номер, и мы вам перезвоним в течение 2 минут"
 
 #: listings/templates/listings/components/manager.html:31
 #: managers/templates/managers/detail.html:63
 msgid "Call me back"
-msgstr ""
+msgstr "Перезвоните мне"
 
 #: listings/templates/listings/components/manager.html:38
 msgid "Write to a specialist"
-msgstr ""
+msgstr "Написать специалисту"
 
 #: listings/templates/listings/components/news.html:8 news/apps.py:8
 #: news/models.py:21 news/models.py:22 news/views.py:13 news/views.py:20
 #: news/views.py:33 pages/templates/sections/footer.html:16
 #: pages/templates/sections/news.html:9
 msgid "News"
-msgstr ""
+msgstr "Новости"
 
 #: listings/templates/listings/components/related_listings.html:8
 msgid "You may be interested"
-msgstr ""
+msgstr "Вас может заинтересовать"
 
 #: listings/templates/listings/components/related_listings.html:14
 msgid "In this house"
-msgstr ""
+msgstr "В одному будинку"
 
 #: listings/templates/listings/components/related_listings.html:21
 msgid "Similar in location"
-msgstr ""
+msgstr "Похожие по местонахождению"
 
 #: listings/templates/listings/components/similar_listings.html:8
 msgid "The cost of similar apartments in the city"
-msgstr ""
+msgstr "Стоимость аналогичных объектов по городу"
 
 #: listings/templates/listings/components/similar_listings.html:12
 msgid ""
 "Similar apartments are selected according to similar parameters: roominess, "
 "number of floors, wall material, repair, year"
 msgstr ""
+"Аналогичные квартиры подбираются по подобным параметрам: комнатность, "
+"этажность, материал стен, ремонт, год."
 
 #: listings/templates/listings/item.html:13
 msgid "Gallery"
-msgstr ""
+msgstr "Галерея"
 
 #: listings/templates/listings/item.html:16
 msgid "Real estate inspection"
-msgstr ""
+msgstr "Проверка недвижимости"
 
 #: listings/templates/listings/item.html:17
 msgid "Reserve"
-msgstr ""
+msgstr "Забронировать"
 
 #: listings/templates/listings/item.html:18
 msgid "Mortgage"
-msgstr ""
+msgstr "Ипотека"
 
 #: listings/templates/listings/item.html:40
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: listings/templates/listings/item.html:52
 msgid "On the map"
-msgstr ""
+msgstr "На карте"
 
 #: listings/templates/listings/item.html:90
 msgid "Inspect the property before you buy"
-msgstr ""
+msgstr "Проверьте недвижимость перед покупкой"
 
 #: listings/templates/listings/item.html:93
 msgid "Get a legal due diligence on your property to minimize your risks"
-msgstr ""
+msgstr "Получите юридическую проверку недвижимости для минимизации рисков"
 
 #: listings/templates/listings/item.html:97
 msgid "Number of owners"
-msgstr ""
+msgstr "Количество владельцев"
 
 #: listings/templates/listings/item.html:98
 msgid "The presence of encumbrances"
-msgstr ""
+msgstr "Наличие обременений"
 
 #: listings/templates/listings/item.html:99
 msgid "Is there a mortgage?"
-msgstr ""
+msgstr "Есть ли ипотека"
 
 #: listings/templates/listings/item.html:100
 msgid "Years of property ownership"
-msgstr ""
+msgstr "Годы владения недвижимостью"
 
 #: listings/templates/listings/item.html:103
 msgid "Check the property"
-msgstr ""
+msgstr "Проверить недвижимость"
 
 #: listings/templates/listings/item.html:108
 #: listings/templates/listings/item.html:121
 msgid "Sign up for viewing"
-msgstr ""
+msgstr "Записаться на просмотр"
 
 #: listings/templates/listings/item.html:111
 msgid ""
 "A real estate specialist will contact you, confirm the selected viewing "
 "time, arrange a visit to the offer and give you a tour."
 msgstr ""
+"С вами свяжется специалист по недвижимости, подтвердит выбранное время "
+"просмотра, организует посещение предложения и проведет экскурсию."
 
 #: listings/templates/listings/item.html:132
 msgid "Calculate the mortgage"
-msgstr ""
+msgstr "Рассчитать ипотеку"
 
 #: listings/templates/listings/item.html:135
 #, python-format
 msgid "We can calculate a mortgage with no down payment, just specify 0%%."
 msgstr ""
+"Можем рассчитать ипотеку без первоначального взноса, просто укажите 0%."
 
 #: listings/templates/listings/item.html:143
 #: pages/templates/sections/feadback.html:21
 msgid "Get a consultation"
-msgstr ""
+msgstr "Получить консультацию"
 
 #: listings/templates/listings/item.html:154
 #: pages/templates/pages/course.html:280
 #: pages/templates/pages/guarantees.html:12
 #: pages/templates/sections/services.html:42
 msgid "Agreement security guarantee"
-msgstr ""
+msgstr "Гарантии безопасности соглашения"
 
 #: listings/templates/listings/item.html:157
 msgid ""
 "You are under reliable protection - in case of disputed situations, we bear "
 "all costs."
 msgstr ""
+"Вы под надежной защитой – в случае спорных ситуаций берем все расходы на "
+"себя."
 
 #: listings/templates/listings/list-ajax.html:11
 #: listings/templates/listings/list.html:37
 msgid "Real estate search results"
-msgstr ""
+msgstr "Результаты поиска недвижимости"
 
 #: listings/templates/sections/empty-result.html:6
 msgid "Sorry, I couldn't find anything according to your criteria"
-msgstr ""
+msgstr "Извините, мы не смогли ничего найти по вашим критериям"
 
 #: listings/templates/sections/empty-result.html:7
 msgid "Please try other search options"
-msgstr ""
+msgstr "Попробуйте, пожалуйста, другие параметры поиска"
 
 #: listings/views.py:41 pages/templates/sections/header.html:124
 msgid "New buildings"
-msgstr ""
+msgstr "Новостройки"
 
 #: managers/apps.py:8 managers/models.py:29
 #: pages/templates/sections/header.html:75
 #: pages/templates/sections/header.html:131
 msgid "Managers"
-msgstr ""
+msgstr "Менеджеры"
 
 #: managers/forms.py:8
 msgid "Enter the last name of the specialist"
-msgstr ""
+msgstr "Введите фамилию, имя специалиста"
 
 #: managers/models.py:13
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: managers/models.py:14
 msgid "About"
-msgstr ""
+msgstr "О нас"
 
 #: managers/models.py:19 managers/templates/managers/detail.html:27
 #: pages/models.py:102 props/models.py:12
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: managers/models.py:21 managers/templates/managers/detail.html:102
 msgid "Experience"
-msgstr ""
+msgstr "Опыт работы"
 
 #: managers/models.py:22
 msgid "Has Car?"
-msgstr ""
+msgstr "Есть машина?"
 
 #: managers/models.py:46 managers/models.py:58
 #: managers/templates/managers/detail.html:39
 #: managers/templates/managers/detail.html:41
 #: pages/templates/pages/seller.html:35
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: managers/models.py:59
 msgid "Phones"
-msgstr ""
+msgstr "Телефоны"
 
 #: managers/models.py:74
 msgid "Rating"
-msgstr ""
+msgstr "Рейтинг"
 
 #: managers/models.py:75
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: managers/models.py:86 managers/templates/managers/detail.html:82
-#: pages/templates/pages/reviews.html:6 pages/templates/sections/footer.html:19
+#: pages/templates/pages/reviews.html:6
+#: pages/templates/sections/footer.html:19
 msgid "Reviews"
-msgstr ""
+msgstr "Отзывы"
 
 #: managers/templates/managers/detail.html:51
 msgid "Leave a review"
-msgstr ""
+msgstr "Оставить отзыв"
 
 #: managers/templates/managers/detail.html:57
 msgid "Leave your phone number and we will call you back in 5 minutes"
-msgstr ""
+msgstr "Оставьте ваш номер телефона и мы перезвоним через 5 мин."
 
 #: managers/templates/managers/detail.html:69
 msgid ""
 "By submitting an application, you agree to the processing of personal data"
-msgstr ""
+msgstr "Отправляя заявку, вы соглашаетесь на обработку персональных данных"
 
 #: managers/templates/managers/detail.html:79
 msgid "About me"
-msgstr ""
+msgstr "Обо мне"
 
 #: managers/templates/managers/detail.html:86
 msgid "My offers"
-msgstr ""
+msgstr "Мои предложения"
 
 #: managers/templates/managers/detail.html:114
 msgid "Car"
-msgstr ""
+msgstr "Машина"
 
 #: managers/templates/managers/detail.html:115
 msgid "In stock"
-msgstr ""
+msgstr "В наличии"
 
 #: managers/templates/managers/list.html:7
 msgid "Our managers"
-msgstr ""
+msgstr "Наши менеджеры"
 
 #: managers/templates/managers/list.html:22
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: managers/templates/managers/list.html:34 managers/views.py:81
 #: pages/templates/sections/footer.html:18
 msgid "Real estate specialists"
-msgstr ""
+msgstr "Специалисты по недвижимости"
 
 #: managers/templates/managers/list.html:61
 msgid "More about the specialist"
-msgstr ""
+msgstr "Больше о специалисте"
 
 #: news/templates/news/archive-item.html:11
 msgid "Read"
-msgstr ""
+msgstr "Читать"
 
 #: pages/apps.py:8
 msgid "Pages"
-msgstr ""
+msgstr "Страницы"
 
 #: pages/forms.py:11
 msgid "Full name"
-msgstr ""
+msgstr "Фамилия Имя Отчество"
 
 #: pages/forms.py:29
 msgid "Select type"
-msgstr ""
+msgstr "Выберите тип"
 
 #: pages/models.py:9
 msgid "Title 1 of the section (English)"
-msgstr ""
+msgstr "Заголовок 1 секции (на английском)"
 
 #: pages/models.py:10
 msgid "Title 1 of the section (Ukrainian)"
-msgstr ""
+msgstr "Заголовок 1 секции (на украинском)"
 
 #: pages/models.py:11
 msgid "Description 1 of the section (English)"
-msgstr ""
+msgstr "Описание 1 секции (на английском)"
 
 #: pages/models.py:12
 msgid "Description 1 of the section (Ukrainian)"
-msgstr ""
+msgstr "Описание 1 секции (на украинском)"
 
 #: pages/models.py:14
 msgid "Title 2 of the section (English)"
-msgstr ""
+msgstr "Заголовок 2 секции (на английском)"
 
 #: pages/models.py:15
 msgid "Title 2 of the section (Ukrainian)"
-msgstr ""
+msgstr "Заголовок 2 секции (на украинском)"
 
 #: pages/models.py:16
 msgid "Description 2 of the section (English)"
-msgstr ""
+msgstr "Описание 2 секции (на английском)"
 
 #: pages/models.py:17
 msgid "Description 2 of the section (Ukrainian)"
-msgstr ""
+msgstr "Описание 2 секции (на украинском)"
 
 #: pages/models.py:26 pages/models.py:27 pages/models.py:36
 #: pages/templates/pages/about.html:5 pages/templates/sections/footer.html:11
 msgid "About us"
-msgstr ""
+msgstr "О нас"
 
-#: pages/models.py:37 pages/models.py:55 pages/models.py:74 pages/models.py:156
+#: pages/models.py:37 pages/models.py:55 pages/models.py:74
+#: pages/models.py:156
 msgid "Title (English)"
-msgstr ""
+msgstr "Заголовок (на английском)"
 
-#: pages/models.py:38 pages/models.py:56 pages/models.py:75 pages/models.py:157
+#: pages/models.py:38 pages/models.py:56 pages/models.py:75
+#: pages/models.py:157
 msgid "Title (Ukrainian)"
-msgstr ""
+msgstr "Заголовок (на украинском)"
 
 #: pages/models.py:39 pages/models.py:57 pages/models.py:76
 msgid "Description (English)"
-msgstr ""
+msgstr "Описание (на английском)"
 
 #: pages/models.py:40 pages/models.py:58 pages/models.py:77
 msgid "Description (Ukrainian)"
-msgstr ""
+msgstr "Описание (на украинском)"
 
 #: pages/models.py:41
 msgid "Column size"
-msgstr ""
+msgstr "Размер колонок"
 
 #: pages/models.py:43 pages/models.py:87
 msgid "Order"
-msgstr ""
+msgstr "Порядок"
 
 #: pages/models.py:50
 msgid "About us detail"
-msgstr ""
+msgstr "О нас деталь"
 
 #: pages/models.py:51
 msgid "About us details"
-msgstr ""
+msgstr "О нас детали"
 
 #: pages/models.py:67 pages/models.py:68 pages/templates/pages/abroad.html:7
 #: pages/templates/sections/footer.html:15
 #: pages/templates/sections/header.html:73
 #: pages/templates/sections/header.html:129
 msgid "Real estate abroad"
-msgstr ""
+msgstr "Недвижимость за границей"
 
 #: pages/models.py:73
 msgid "Bg title"
-msgstr ""
+msgstr "Заголовок на фоне"
 
 #: pages/models.py:78
 msgid "Link"
-msgstr ""
+msgstr "Ссылка"
 
 #: pages/models.py:81
 msgid "Background image"
-msgstr ""
+msgstr "Фоновая картинка"
 
 #: pages/models.py:83
 msgid "Photo 1"
-msgstr ""
+msgstr "Фото 1"
 
 #: pages/models.py:85
 msgid "Photo 2"
-msgstr ""
+msgstr "Фото 2"
 
 #: pages/models.py:94 pages/models.py:95
 msgid "Real estate element"
-msgstr ""
+msgstr "Элемент недвижимость"
 
 #: pages/models.py:99
 msgid "Phone 1"
-msgstr ""
+msgstr "Телефон 1"
 
 #: pages/models.py:100
 msgid "Phone 2"
-msgstr ""
+msgstr "Телефон 2"
 
 #: pages/models.py:104
 msgid "Schedule (English)"
-msgstr ""
+msgstr "График работы (на английском)"
 
 #: pages/models.py:105
 msgid "Schedule (Ukrainian)"
-msgstr ""
+msgstr "График работы (на украинском)"
 
 #: pages/models.py:107
 msgid "Office 1 (English)"
-msgstr ""
+msgstr "Офис 1 (на английском)"
 
 #: pages/models.py:108
 msgid "Office 1 (Ukrainian)"
-msgstr ""
+msgstr "Офіс 1 (українською)"
 
 #: pages/models.py:110
 msgid "Office 2 (English)"
-msgstr ""
+msgstr "Офис 2 (на английском)"
 
 #: pages/models.py:111
 msgid "Office 2 (Ukrainian)"
-msgstr ""
+msgstr "Офис 2 (на украинском)"
 
 #: pages/models.py:113
 msgid "Office 3 (English)"
-msgstr ""
+msgstr "Офис 3 (на английском)"
 
 #: pages/models.py:114
 msgid "Office 3 (Ukrainian)"
-msgstr ""
+msgstr "Офис 3 (на украинском)"
 
 #: pages/models.py:116
 msgid "Telegram"
-msgstr ""
+msgstr "Телеграмм"
 
 #: pages/models.py:117
 msgid "Viber"
-msgstr ""
+msgstr "Вайбер"
 
 #: pages/models.py:118
 msgid "Instagram"
-msgstr ""
+msgstr "Инстаграмм"
 
 #: pages/models.py:119
 msgid "Facebook"
-msgstr ""
+msgstr "Фейсбук"
 
 #: pages/models.py:125 pages/models.py:126
-#: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
+#: pages/templates/pages/contacts.html:6
+#: pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
 #: pages/templates/sections/header.html:79
 #: pages/templates/sections/header.html:135 pages/views.py:43
 msgid "Contacts"
-msgstr ""
+msgstr "Контакты"
 
 #: pages/models.py:130
 msgid "Register link"
-msgstr ""
+msgstr "Ссылка регистрации"
 
 #: pages/models.py:131
 msgid "Auth link"
-msgstr ""
+msgstr "Ссылка авторизации"
 
 #: pages/models.py:137 pages/models.py:138 pages/templates/pages/course.html:6
 msgid "Course"
-msgstr ""
+msgstr "Курс"
 
 #: pages/models.py:144
 msgid "Poster"
-msgstr ""
+msgstr "Постер"
 
 #: pages/models.py:151 pages/models.py:152 vacantions/apps.py:8
 #: vacantions/models.py:21 vacantions/templates/vacantions/page.html:7
 #: vacantions/views.py:12
 msgid "Vacancies"
-msgstr ""
+msgstr "Вакансии"
 
 #: pages/models.py:158
 msgid "About us section (English)"
-msgstr ""
+msgstr "О нас секция (на английском)"
 
 #: pages/models.py:159
 msgid "About us section (Ukrainian)"
-msgstr ""
+msgstr "О нас секция (на украинском)"
 
 #: pages/models.py:165 pages/models.py:166 pages/templates/layout/base.html:11
 #: pages/templates/pages/home.html:6
 #: pages/templates/sections/breadcrumbs.html:7
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: pages/templates/pages/contacts.html:21
 msgid "Call us"
-msgstr ""
+msgstr "Звоните нам"
 
 #: pages/templates/pages/contacts.html:35
 msgid "Office No. 1"
-msgstr ""
+msgstr "Офис №1"
 
 #: pages/templates/pages/contacts.html:50
 msgid "Write to us"
-msgstr ""
+msgstr "Пишите нам"
 
 #: pages/templates/pages/contacts.html:61
 msgid "Office No. 2"
-msgstr ""
+msgstr "Офис №2"
 
 #: pages/templates/pages/contacts.html:76
 msgid "Work schedule"
-msgstr ""
+msgstr "График работы"
 
 #: pages/templates/pages/contacts.html:91
 msgid "Office No. 3"
-msgstr ""
+msgstr "Офис №3"
 
 #: pages/templates/pages/course.html:12
 msgid "Pro_real_estate"
-msgstr ""
+msgstr "Про_недвижимость"
 
 #: pages/templates/pages/course.html:14
 msgid "FREE"
-msgstr ""
+msgstr "БЕСПЛАТНО"
 
 #: pages/templates/pages/course.html:16
 msgid "ONLINE-COURSE"
-msgstr ""
+msgstr "ОНЛАЙН-КУРС"
 
 #: pages/templates/pages/course.html:18
 msgid "For those who want to learn more about the real estate market"
-msgstr ""
+msgstr "Для тех, кто хочет узнать больше о рынке недвижимости"
 
 #: pages/templates/pages/course.html:22 pages/templates/pages/course.html:152
 #: pages/templates/pages/course.html:192 pages/templates/pages/course.html:259
 msgid "Register"
-msgstr ""
+msgstr "Регистрация"
 
 #: pages/templates/pages/course.html:25 pages/templates/pages/course.html:155
 #: pages/templates/pages/course.html:195 pages/templates/pages/course.html:262
 msgid "Log in"
-msgstr ""
+msgstr "Авторизироваться"
 
 #: pages/templates/pages/course.html:38
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: pages/templates/pages/course.html:39
 msgid "Immediately after registration"
-msgstr ""
+msgstr "Сразу после регистрации"
 
 #: pages/templates/pages/course.html:47
 msgid "Place"
-msgstr ""
+msgstr "Место"
 
 #: pages/templates/pages/course.html:48
 msgid "The course is held online"
-msgstr ""
+msgstr "Курс проходит онлайн"
 
 #: pages/templates/pages/course.html:57
 msgid "Free"
-msgstr ""
+msgstr "Бесплатно"
 
 #: pages/templates/pages/course.html:65
 msgid "language"
-msgstr ""
+msgstr "язык"
 
 #: pages/templates/pages/course.html:78
 msgid "PRO_real_estate"
-msgstr ""
+msgstr "PRO_Недвижимость"
 
 #: pages/templates/pages/course.html:81
 msgid ""
 "If you want to learn and develop, then we have something to talk about. We "
 "hope that the knowledge gained during the course will help you to better "
-"understand the real estate market, conclude safe deals, invest profitably or "
-"find an interesting job that will bring you income and satisfaction."
+"understand the real estate market, conclude safe deals, invest profitably or"
+" find an interesting job that will bring you income and satisfaction."
 msgstr ""
+"Если вы хотите учиться и развиваться, то нам есть о чем поговорить. Мы "
+"надеемся, что знания, полученные на курсе, помогут Вам больше разобраться в "
+"рынке недвижимости, заключать безопасные сделки, выгодно инвестировать или "
+"найти интересную работу, приносимую доход и удовольствие."
 
 #: pages/templates/pages/course.html:82
 msgid "Further cooperation and interaction"
-msgstr ""
+msgstr "Дальнейшее сотрудничество и взаимодействие"
 
 #: pages/templates/pages/course.html:83
 msgid ""
 "In the process and after completing the course, you will have the "
 "opportunity to continue interaction with the company in various directions."
 msgstr ""
+"В процессе и после прохождения курса у Вас будет возможность продолжить "
+"взаимодействие с компанией по разным направлениям."
 
 #: pages/templates/pages/course.html:84
 msgid "About the course"
-msgstr ""
+msgstr "О курсе"
 
 #: pages/templates/pages/course.html:85
 msgid ""
@@ -1317,90 +1345,104 @@ msgid ""
 "topics that you need to pay attention to in order not to get lost in the "
 "real estate market."
 msgstr ""
+"В курсе PRO_недвижимость мы рассказываем о базовых принципах и основных "
+"темах, на которые нужно обратить внимание, чтобы не растеряться на рынке "
+"недвижимости."
 
 #: pages/templates/pages/course.html:98
 msgid "Who is this course suitable for?"
-msgstr ""
+msgstr "Для кого этот курс?"
 
 #: pages/templates/pages/course.html:108
 msgid "For those who plan to buy or sell real estate"
-msgstr ""
+msgstr "Тем, кто планирует купить или продать недвижимость"
 
 #: pages/templates/pages/course.html:109
 msgid ""
 "Get acquainted with the principles of functioning of the real estate market "
 "and conducting safe transactions."
 msgstr ""
+"Ознакомьтесь с принципами функционирования рынка недвижимости и проведение "
+"безопасных сделок."
 
 #: pages/templates/pages/course.html:117
 msgid "For those interested in investing in real estate"
-msgstr ""
+msgstr "Тем, кто интересуется инвестициями в недвижимость"
 
 #: pages/templates/pages/course.html:118
 msgid "Familiarize yourself with cases of profit in the real estate market."
-msgstr ""
+msgstr "Ознакомьтесь с кейсами по извлечению прибыли на рынке недвижимости."
 
 #: pages/templates/pages/course.html:126
 msgid "Those who are looking for interesting and profitable work"
-msgstr ""
+msgstr "Тем, кто ищет интересную и прибыльную работу"
 
 #: pages/templates/pages/course.html:127
 msgid ""
 "Get acquainted with the realtor profession, corporate culture and the "
 "benefits of working with \"Contract-Real Estate\"."
 msgstr ""
+"Ознакомьтесь с профессией риэлтор, корпоративной культурой и преимуществами "
+"работы с Контракт-Недвижимость."
 
 #: pages/templates/pages/course.html:135
 msgid "For those who are interested in foreign real estate"
-msgstr ""
+msgstr "Тем, кого интересует зарубежная недвижимость"
 
 #: pages/templates/pages/course.html:136
 msgid ""
 "Get acquainted with the prices and features of real estate transactions in "
 "the UAE (Dubai), Turkey, Georgia and Northern Cyprus."
 msgstr ""
+"Ознакомьтесь с ценами и особенностями совершения сделок на недвижимость в "
+"ОАЭ(Дубай), Турции, Грузии и Северном Кипре."
 
 #: pages/templates/pages/course.html:144
 msgid "Entrepreneurs looking for business opportunities"
-msgstr ""
+msgstr "Предпринимателям, которые ищут возможности для создания бизнеса"
 
 #: pages/templates/pages/course.html:145
 msgid ""
 "Get acquainted with the possibilities of building a business in the real "
 "estate market."
 msgstr ""
+"Ознакомьтесь с возможностями построения бизнеса на рынке недвижимости."
 
 #: pages/templates/pages/course.html:165
 msgid "The main directions of the course"
-msgstr ""
+msgstr "Основные направления курса"
 
 #: pages/templates/pages/course.html:175
 msgid "Purchase of real estate in Ukraine"
-msgstr ""
+msgstr "Покупка недвижимости в Украине"
 
 #: pages/templates/pages/course.html:176
 msgid ""
 "We help clients sell or buy real estate in Kharkiv, Kyiv, Dnipro, Odesa and "
 "Lviv."
 msgstr ""
+"Помогаем клиентам продать или купить недвижимость в Харькове, Киеве, Днепре,"
+" Одессе и Львове."
 
 #: pages/templates/pages/course.html:184
 msgid "Purchase of real estate abroad"
-msgstr ""
+msgstr "Покупка недвижимости за границей"
 
 #: pages/templates/pages/course.html:185
 msgid ""
 "We help clients invest in real estate in the UAE (Dubai), Turkey, Georgia "
 "and Northern Cyprus."
 msgstr ""
+"Помогаем клиентам с инвестированием в недвижимость в ОАЭ(Дубай), Турции, "
+"Грузии и Северном Кипре."
 
 #: pages/templates/pages/course.html:205
 msgid "What will be on the course:"
-msgstr ""
+msgstr "Что будет на курсе:"
 
 #: pages/templates/pages/course.html:212
 msgid "10 sections of training"
-msgstr ""
+msgstr "10 разделов обучения"
 
 #: pages/templates/pages/course.html:213
 msgid ""
@@ -1409,31 +1451,39 @@ msgid ""
 "and divided into topics, which you can take immediately after registration "
 "and at any time convenient for you."
 msgstr ""
+"Курс состоит из теоретического материала, видеороликов и тестов. Курс "
+"рассчитан на 60 минут. Он-лайн уроки четко структурированы и разбиты по "
+"темам, которые вы сможете пройти сразу после регистрации и в любое удобное "
+"для Вас время."
 
 #: pages/templates/pages/course.html:217
 msgid "Section about the realtor profession and about the company"
-msgstr ""
+msgstr "Раздел о профессии риэлтор и компании"
 
 #: pages/templates/pages/course.html:218
 msgid ""
 "You will learn about the peculiarities of the work of a realtor and get "
-"acquainted with the history, traditions and values of the company \"Contract-"
-"Real Estate\"."
+"acquainted with the history, traditions and values of the company "
+"\"Contract-Real Estate\"."
 msgstr ""
+"Вы узнаете особенности работы риэлтора и познакомиться с историей, "
+"традициями и ценностями компании Контракт-Недвижимость."
 
 #: pages/templates/pages/course.html:222
 msgid "Section on security when making transactions"
-msgstr ""
+msgstr "Раздел о безопасности при совершении сделок"
 
 #: pages/templates/pages/course.html:223
 msgid ""
 "You will learn about the main types of fraudulent schemes on the market and "
 "how to avoid risky situations when making transactions."
 msgstr ""
+"Вы узнаете основные виды мошеннических схем на рынке и как избежать рисковых"
+" ситуаций при совершении сделок."
 
 #: pages/templates/pages/course.html:227
 msgid "The company's work standards section for job applicants"
-msgstr ""
+msgstr "Раздел о стандартах работы компании для претендентов на вакансию"
 
 #: pages/templates/pages/course.html:228
 msgid ""
@@ -1441,411 +1491,448 @@ msgid ""
 "Estate\" for clients, benefits of working in the company, career growth "
 "opportunities and with regulations and rules of corporate ethics."
 msgstr ""
+"Познакомитесь с уникальными торговыми предложениями компании Контракт-"
+"Недвижимость для клиентов, преимуществами работы в компании, возможностями "
+"карьерного роста и с регламентами и правилами корпоративной этики."
 
 #: pages/templates/pages/course.html:232
 msgid "Section on company services for customers"
-msgstr ""
+msgstr "Раздел об услугах компании для клиентов"
 
 #: pages/templates/pages/course.html:233
 msgid ""
-"Learn about the main mistakes that owners make. Get acquainted with the list "
-"of services that the company provides to clients. Learn how to correctly "
+"Learn about the main mistakes that owners make. Get acquainted with the list"
+" of services that the company provides to clients. Learn how to correctly "
 "evaluate an apartment for sale. You will receive instructions, checklists "
 "and useful links that can help you when making deals in the real estate "
 "market. You will find information on real estate taxation when making "
 "transactions."
 msgstr ""
+"Узнайте об основных ошибках, которые совершают владельцы. Узнаете, как "
+"правильно оценить квартиру для продажи. Получите инструкции, чек-листы и "
+"полезные ссылки, которые могут помочь при совершении сделок на рынке "
+"недвижимости. Найдете информацию по налогообложению недвижимости при "
+"совершении сделок."
 
 #: pages/templates/pages/course.html:237
 msgid "Section on investments in foreign real estate"
-msgstr ""
+msgstr "Раздел по инвестициям в зарубежную недвижимость"
 
 #: pages/templates/pages/course.html:238
 msgid ""
 "Familiarize yourself with the market, purchase features and basic rules for "
 "transactions in Dubai, Turkey, Georgia and Northern Cyprus."
 msgstr ""
+"Ознайомитесь з ринком, особливостями придбання та основними правилами "
+"здійснення угод в Дубай, Турції, Грузії та Сєвєрному Кіпрі."
 
 #: pages/templates/pages/course.html:242
 msgid "Section for entrepreneurs"
-msgstr ""
+msgstr "Розділ для підприємців"
 
 #: pages/templates/pages/course.html:243
 msgid ""
 "Here you will find information on how to build a partnership or your own "
 "real estate business."
 msgstr ""
+"Здесь вы найдете информацию о том, как выстроить партнерский или собственный"
+" бизнес в сфере недвижимости."
 
 #: pages/templates/pages/course.html:247
 msgid "Section on investing in real estate"
-msgstr ""
+msgstr "Раздел по инвестированию в недвижимость"
 
 #: pages/templates/pages/course.html:248
 msgid "Familiarize yourself with the main cases of investing in real estate."
-msgstr ""
+msgstr "Ознакомьтесь с основными кейсами инвестирования в недвижимость."
 
 #: pages/templates/pages/course.html:252
 msgid "About directions for further training and interaction with the company"
-msgstr ""
+msgstr "О направлениях дальнейшего обучения и взаимодействия с компанией"
 
 #: pages/templates/pages/course.html:253
 msgid ""
 "Get acquainted with a possible plan of action after completing the course."
-msgstr ""
+msgstr "Ознакомьтесь с возможным планом действий после завершения курса."
 
 #: pages/templates/pages/course.html:273
 msgid "Details about us"
-msgstr ""
+msgstr "Подробнее о нас"
 
 #: pages/templates/pages/course.html:284
 msgid "A large base of real estate"
-msgstr ""
+msgstr "Большая база недвижимости"
 
 #: pages/templates/pages/course.html:288
 msgid "Legal support"
-msgstr ""
+msgstr "Юридическое сопровождение"
 
 #: pages/templates/pages/course.html:292
 msgid "Mortgage service"
-msgstr ""
+msgstr "Ипотечный сервис"
 
 #: pages/templates/pages/guarantees.html:5
 #: pages/templates/sections/footer.html:12
 msgid "Guarantees"
-msgstr ""
+msgstr "Гарантия"
 
 #: pages/templates/pages/guarantees.html:16
 msgid "Buy real estate risk-free"
-msgstr ""
+msgstr "Покупайте недвижимость без риска"
 
 #: pages/templates/pages/guarantees.html:19
 msgid "In case of disputed situations, we bear all costs"
-msgstr ""
+msgstr "В случае возникновения спорных ситуаций берем все расходы на себя"
 
 #: pages/templates/pages/guarantees.html:28
 msgid "How we protect customers"
-msgstr ""
+msgstr "Как мы защищаем клиентов"
 
 #: pages/templates/pages/guarantees.html:35
 msgid "Verification of the object and parties to the agreement"
-msgstr ""
+msgstr "Проверка объекта и сторон сделки"
 
 #: pages/templates/pages/guarantees.html:38
 msgid ""
 "At the entrance, we check all real estate documentation to reduce the "
 "likelihood of any risks during the transaction"
 msgstr ""
+"На входе мы проверяем всю документацию на недвижимость, чтобы снизить "
+"вероятность каких-либо рисков при оформлении сделки."
 
 #: pages/templates/pages/guarantees.html:43
 msgid "Safe calculations"
-msgstr ""
+msgstr "Безопасные расчеты"
 
 #: pages/templates/pages/guarantees.html:46
 msgid ""
 "The very process of signing the agreement takes place strictly according to "
 "the developed regulations with the use of secure calculations"
 msgstr ""
+"Сам процесс оформления сделки происходит строго по разработанным регламентам"
+" с использованием безопасных расчетов"
 
 #: pages/templates/pages/guarantees.html:51
 msgid "Legal protection"
-msgstr ""
+msgstr "Юридическая защита"
 
 #: pages/templates/pages/guarantees.html:54
 msgid ""
 "After signing the agreement, we protect the client's interests free of "
 "charge in case of any disputes"
 msgstr ""
+"После оформления сделки, мы бесплатно для клиента защищаем его интересы в "
+"случае возникновения любых споров."
 
 #: pages/templates/pages/home.html:12
 msgid "Find real estate"
-msgstr ""
+msgstr "Найти недвижимость"
 
 #: pages/templates/pages/pricing.html:6 pages/templates/pages/pricing.html:13
 #: pages/views.py:66
 msgid "Cost of services"
-msgstr ""
+msgstr "Стоимость услуг"
 
 #: pages/templates/pages/pricing.html:26
 #, python-format
 msgid "5%% of the market value of the object"
-msgstr ""
+msgstr "5% от рыночной стоимости объекта"
 
 #: pages/templates/pages/pricing.html:29 pages/templates/pages/pricing.html:52
 msgid "Discounts from the company in this block:"
-msgstr ""
+msgstr "Знижки від компанії в цьому блоці:"
 
 #: pages/templates/pages/pricing.html:34 pages/templates/pages/pricing.html:57
 #, python-format
 msgid ""
-"By selling an old apartment and buying a new one together with Contract Real "
-"Estate, you receive a 5%% discount on the company's services when you "
+"By selling an old apartment and buying a new one together with Contract Real"
+" Estate, you receive a 5%% discount on the company's services when you "
 "contact the company again. Sale / Purchase during the year for yourself or "
 "first-line relatives, you get a 5%% discount on the company's services. For "
 "the military and armed forces, a discount of 5%%."
 msgstr ""
+"При продаже старой квартиры и покупке новой вместе с компанией «Контракт "
+"Недвижимость» Вы получаете скидку на услуги компании 5% При повторном "
+"обращении в компанию. Продажа / Покупка в течение года на себя или "
+"родственников первой линии, Вы получаете 5%-ную скидку на услуги компании. "
+"Для военных и ВСУ скидка от 5%."
 
 #: pages/templates/pages/pricing.html:49
 #, python-format
 msgid ""
-"0-5%% The cost of the company's services depends on the type of real estate, "
-"the value and readiness of the object for the deal"
+"0-5%% The cost of the company's services depends on the type of real estate,"
+" the value and readiness of the object for the deal"
 msgstr ""
+"0-5% Стоимость услуг компании зависит от типа недвижимости, стоимости и "
+"готовности объекта к сделке"
 
 #: pages/templates/pages/pricing.html:72
 #, python-format
 msgid "50%% of the rental price"
-msgstr ""
+msgstr "50% стоимости аренды"
 
 #: pages/templates/pages/pricing.html:84
 msgid "Tariffs:"
-msgstr ""
+msgstr "Тарифы:"
 
 #: pages/templates/pages/pricing.html:89
 #, python-format
 msgid "Base 0%%"
-msgstr ""
+msgstr "Базовый 0%"
 
 #: pages/templates/pages/pricing.html:91
 msgid "Adding to the company's website"
-msgstr ""
+msgstr "Добавление на сайт компании"
 
 #: pages/templates/pages/pricing.html:92
 msgid "Professional photography of the apartment"
-msgstr ""
+msgstr "Профессиональная фотография квартиры"
 
 #: pages/templates/pages/pricing.html:96
 #, python-format
 msgid "Minimum 20%%"
-msgstr ""
+msgstr "Минимум 20%"
 
 #: pages/templates/pages/pricing.html:98
 msgid "Reception of keys from the owner"
-msgstr ""
+msgstr "Прием ключей у владельца"
 
 #: pages/templates/pages/pricing.html:99
 msgid "Conducting screenings without your participation"
-msgstr ""
+msgstr "Проведение показов без вашего участия"
 
 #: pages/templates/pages/pricing.html:103
 #, python-format
 msgid "Econom 30%%"
-msgstr ""
+msgstr "Эконом 30%"
 
 #: pages/templates/pages/pricing.html:105
 #: pages/templates/pages/pricing.html:113
 msgid "Advertising on 7 sites"
-msgstr ""
+msgstr "Реклама на 7 площадках"
 
 #: pages/templates/pages/pricing.html:106
 #: pages/templates/pages/pricing.html:114
 msgid "Guarantee of legal protection (call to the hotline)"
-msgstr ""
+msgstr "Гарантия юридической защиты (звонок на горячую линию)"
 
 #: pages/templates/pages/pricing.html:107
 msgid "Financial guarantee for 3 months **"
-msgstr ""
+msgstr "Финансовая гарантия на 3 месяца**"
 
 #: pages/templates/pages/pricing.html:111
 msgid "Standard"
-msgstr ""
+msgstr "Стандарт"
 
 #: pages/templates/pages/pricing.html:115
 msgid "Financial guarantee for 3 months**"
-msgstr ""
+msgstr "Финансовая гарантия на 3 месяца **"
 
 #: pages/templates/pages/pricing.html:116
 msgid "Financial guarantee for months**"
-msgstr ""
+msgstr "Финансовая гарантия на 6 месяцев**"
 
 #: pages/templates/pages/pricing.html:117
 msgid "Guarantee of legal protection (guarantee certificate)*"
-msgstr ""
+msgstr "Гарантия юридической защиты (гарантийный сертификат)*"
 
 #: pages/templates/pages/pricing.html:118
 msgid "Application of additional (paid) statuses on advertising platforms"
-msgstr ""
+msgstr "Применение дополнительных (платных) статусов на рекламных площадках"
 
 #: pages/templates/pages/pricing.html:119
 msgid "Providing analytics based on interest in your apartment"
-msgstr ""
+msgstr "Предоставление аналитики по заинтересованности вашей квартирой"
 
 #: pages/templates/pages/pricing.html:120
 msgid "Verification of the employer by the Economic Security Service***"
-msgstr ""
+msgstr "Проверка нанимателя службой экономической безопасности***"
 
 #: pages/templates/pages/pricing.html:121
 msgid ""
 "Reception of the apartment after vacating by the tenant and provision of a "
 "photo and video report (2 times during the term of the contract)"
 msgstr ""
+"Прием квартиры после увольнения нанимателем и предоставление фото-, "
+"видеоотчета (2 раза за время действия договора)"
 
 #: pages/templates/pages/pricing.html:122
 msgid "Production of a video overview of the apartment"
-msgstr ""
+msgstr "Изготовление видео-обзора квартиры"
 
 #: pages/templates/pages/pricing.html:135
 msgid "What is included in the price of services"
-msgstr ""
+msgstr "Что входить в стоимость услуг"
 
 #: pages/templates/pages/pricing.html:138
 msgid "when buying a lease:"
-msgstr ""
+msgstr "при покупке аренды:"
 
 #: pages/templates/pages/pricing.html:140
 msgid ""
 "Consultation on the real estate market in the region (price and demand "
 "dynamics)"
-msgstr ""
+msgstr "Консультация по рынку недвижимости в регионе (динамика цен и спроса)"
 
 #: pages/templates/pages/pricing.html:141
 #: pages/templates/pages/pricing.html:164
 msgid ""
 "Assistance in the preparation and execution of documents for the agreement"
-msgstr ""
+msgstr "Помощь в подготовке и оформлении документов для сделки"
 
 #: pages/templates/pages/pricing.html:142
 msgid "Security guarantee certificate"
-msgstr ""
+msgstr "Гарантийный сертификат безопасности"
 
 #: pages/templates/pages/pricing.html:143
 msgid ""
 "Negotiations with owners (including regarding the sale), expert evaluation "
 "of real estate"
 msgstr ""
+"Переговоры с собственниками (в том числе по торгу), экспертная оценка "
+"недвижимости"
 
 #: pages/templates/pages/pricing.html:144
 msgid ""
 "Selection of real estate options taking into account all wishes and needs"
-msgstr ""
+msgstr "Подбор вариантов недвижимости с учетом всех пожеланий и потребностей"
 
 #: pages/templates/pages/pricing.html:145
 msgid "Organization and inspection of apartments"
-msgstr ""
+msgstr "Организация и проведение просмотров квартир"
 
 #: pages/templates/pages/pricing.html:146
 msgid "Transfer to the facilities (by arrangement)"
-msgstr ""
+msgstr "Трансфер к объектам (по договоренности)"
 
 #: pages/templates/pages/pricing.html:147
 msgid "Organization and implementation of the deposit"
-msgstr ""
+msgstr "Организация и проведение задатка"
 
 #: pages/templates/pages/pricing.html:148
 msgid "Escort to the notary, bank"
-msgstr ""
+msgstr "Сопровождение к нотариусу, банк"
 
 #: pages/templates/pages/pricing.html:149
 msgid "Full legal support"
-msgstr ""
+msgstr "Полное юридическое сопровождение"
 
 #: pages/templates/pages/pricing.html:150
 msgid "Services of a mortgage broker"
-msgstr ""
+msgstr "Услуги ипотечного брокера"
 
 #: pages/templates/pages/pricing.html:159
 msgid "When selling"
-msgstr ""
+msgstr "При продаже"
 
 #: pages/templates/pages/pricing.html:162
 msgid "When selling:"
-msgstr ""
+msgstr "При продаже:"
 
 #: pages/templates/pages/pricing.html:165
 msgid ""
 "Providing reports to the seller about the work performed by the specialist"
-msgstr ""
+msgstr "Предоставление отчетов продавцу о проделанной специалистом работе"
 
 #: pages/templates/pages/pricing.html:166
 msgid "Formation of the object's page on the company's website"
-msgstr ""
+msgstr "Формирование страницы объекта на сайте компании"
 
 #: pages/templates/pages/pricing.html:167
 msgid "Search for buyers, organization of showings"
-msgstr ""
+msgstr "Поиск покупателей, организация показов"
 
 #: pages/templates/pages/pricing.html:168
 msgid "Help in removing burdens"
-msgstr ""
+msgstr "Помощь в снятии обременений"
 
 #: pages/templates/pages/pricing.html:169
 msgid "Escort to the notary, to the bank"
-msgstr ""
+msgstr "Сопровождение к нотариусу, к банку"
 
 #: pages/templates/pages/pricing.html:170
 msgid "Statistics of object views and calls"
-msgstr ""
+msgstr "Статистика просмотров объекта и звонков"
 
 #: pages/templates/pages/pricing.html:171
 msgid "Advertising promotion of the object on various platforms"
-msgstr ""
+msgstr "Рекламное продвижение объекта на разных площадках"
 
 #: pages/templates/pages/pricing.html:172
 msgid "Full legal support (lawyer, auditor, economic security service)"
 msgstr ""
+"Полное юридическое сопровождение (юрист, аудитор, служба экономической "
+"безопасности)"
 
 #: pages/templates/pages/pricing.html:173
 msgid "Market analysis and setting an objective price for the object"
-msgstr ""
+msgstr "Аналитика рынка и установление объективной цены на объект"
 
 #: pages/templates/pages/pricing.html:182
 msgid ""
 "The terms of the legal protection guarantee are specified in the Guarantee "
 "Certificate."
 msgstr ""
+"Условия гарантии юридической защиты указаны в гарантийном сертификате."
 
 #: pages/templates/pages/pricing.html:183
 msgid ""
-"The Contractor is obliged to search for another tenant in the event that the "
-"tenant is connected to the Object within 3/6/ months (depending on the "
+"The Contractor is obliged to search for another tenant in the event that the"
+" tenant is connected to the Object within 3/6/ months (depending on the "
 "selected package of Services) from the moment of concluding the Object "
 "rental agreement."
 msgstr ""
+"Исполнитель обязан выполнить поиск другого нанимателя при соединении "
+"нанимателя с Объекта в течение 3/6/ месяцев (в зависимости от выбранного "
+"пакета Услуг) с момента заключения договора найма Объекта."
 
 #: pages/templates/pages/pricing.html:184
 msgid ""
 "The service is provided by checking the tenant on the following services: "
 "Unified Register of Debtors, Court Register"
 msgstr ""
+"Услуга предоставляется путем проверки нанимателя на следующих сервисах: "
+"Единый реестр должников, Судебный реестр"
 
 #: pages/templates/pages/reviews.html:13
 msgid "Reviews about the company's specialists"
-msgstr ""
+msgstr "Отзывы о специалистах компании"
 
 #: pages/templates/pages/reviews.html:20
 msgid "Choose a specialist"
-msgstr ""
+msgstr "Выберите специалиста"
 
 #: pages/templates/pages/reviews.html:26
 msgid "Write a review"
-msgstr ""
+msgstr "Написать отзыв"
 
 #: pages/templates/pages/seller.html:6
 msgid "To the seller"
-msgstr ""
+msgstr "Продавцу"
 
 #: pages/templates/pages/seller.html:15
 msgid "We will help sell real estate quickly and profitably"
-msgstr ""
+msgstr "Поможем продать недвижимость быстро и выгодно"
 
 #: pages/templates/pages/seller.html:19
 msgid "Leave a request and we will call you back"
-msgstr ""
+msgstr "Оставьте заявку и мы перезвоним"
 
 #: pages/templates/pages/seller.html:27
 msgid "Object type"
-msgstr ""
+msgstr "Тип объекта"
 
 #: pages/templates/pages/seller.html:43
 msgid "Get a free consultation"
-msgstr ""
+msgstr "Получить бесплатную консультацию"
 
 #: pages/templates/pages/seller.html:59
 msgid "How it works?"
-msgstr ""
+msgstr "Как это работает?"
 
 #: pages/templates/pages/seller.html:65
 msgid "Placing an ad"
-msgstr ""
+msgstr "Размещение объявления"
 
 #: pages/templates/pages/seller.html:68 pages/templates/pages/seller.html:76
 #: pages/templates/pages/seller.html:83 pages/templates/pages/seller.html:89
@@ -1853,38 +1940,46 @@ msgid ""
 "Post an ad about your property and within 2 hours buyers will see it on the "
 "site. Or just leave your phone and we'll do the rest."
 msgstr ""
+"Разместите объявление о своей недвижимости, и за 2 часа покупатели увидят "
+"его на сайте. Или просто оставьте свой телефон и мы все сделаем."
 
 #: pages/templates/pages/seller.html:73
 msgid "Preparation for sale"
-msgstr ""
+msgstr "Подготовка к продаже"
 
 #: pages/templates/pages/seller.html:81
 msgid "Search for buyers"
-msgstr ""
+msgstr "Поиск покупателей"
 
 #: pages/templates/pages/seller.html:87 pages/templates/pages/seller.html:109
 msgid "Conclusion of the agreement"
-msgstr ""
+msgstr "Заключение сделки"
 
 #: pages/templates/pages/seller.html:101
 msgid "Start selling now"
-msgstr ""
+msgstr "Начните продавать сейчас"
 
 #: pages/templates/pages/seller.html:102
 msgid ""
-"Post a real estate for rent ad or just leave your phone number and we'll help"
+"Post a real estate for rent ad or just leave your phone number and we'll "
+"help"
 msgstr ""
+"Разместите объявление о сдаче недвижимости или просто оставьте свой телефон "
+"и мы поможем."
 
 #: pages/templates/pages/seller.html:105
 msgid "Search for tenants"
-msgstr ""
+msgstr "Поиск арендаторов"
 
 #: pages/templates/pages/seller.html:106
 msgid ""
 "Tenants will see your ad on our website and in the bot, and if you order "
-"additional services, we will place your ad on 7 more sites. We will find you "
-"reliable tenants and organize apartment showings."
+"additional services, we will place your ad on 7 more sites. We will find you"
+" reliable tenants and organize apartment showings."
 msgstr ""
+"Ваше объявление увидят арендаторы на нашем сайте и в боте, а при заказе "
+"дополнительных услуг разместим объявление еще на 7 площадках. Найдем вам "
+"надежных арендаторов и организуем показы квартир."
 
 #: pages/templates/pages/seller.html:110
 msgid ""
@@ -1892,444 +1987,472 @@ msgid ""
 "tenant via video call, help you conclude an agreement and make an online "
 "payment."
 msgstr ""
+"Оформите сделку лично или дистанционно. Познакомим с арендатором по видео "
+"связи, поможем заключить сделку и произвести оплату онлайн."
 
 #: pages/templates/pages/seller.html:113
 msgid "Preparation for submission"
-msgstr ""
+msgstr "Подготовка к сдаче"
 
 #: pages/templates/pages/seller.html:114
 msgid ""
-"Order cleaning or clean it yourself.<br> Photography of the real estate as a "
-"gift!<br> A real estate specialist will come, take a photo and upload it to "
-"the ad.<br> We will help you prepare and complete the documents for the "
+"Order cleaning or clean it yourself.<br> Photography of the real estate as a"
+" gift!<br> A real estate specialist will come, take a photo and upload it to"
+" the ad.<br> We will help you prepare and complete the documents for the "
 "deal. <br> Use trust management, and we will monitor the condition of the "
-"apartment while you are gone.<br> Sign a paid contract and we will rent your "
-"apartment faster."
+"apartment while you are gone.<br> Sign a paid contract and we will rent your"
+" apartment faster."
 msgstr ""
+"Закажите клининг или уберитесь сами.<br> Фотосъемка недвижимости в "
+"подарок!<br> Специалист по недвижимости приедет, сделает фото и загрузит к "
+"объявлению.<br> Поможем в подготовке и оформлении документов для сделки. "
+"<br> Воспользуйтесь доверительным управлением, и мы проследим состояние "
+"квартиры, пока вас нет. Подпишите платный договор, и мы сдадим вашу квартиру"
+" быстрее."
 
 #: pages/templates/pages/seller.html:124
 msgid "4 reasons to evaluate real estate right now"
-msgstr ""
+msgstr "4 причины оценить недвижимость прямо сейчас"
 
 #: pages/templates/pages/seller.html:131
 msgid "Only real prices"
-msgstr ""
+msgstr "Только реальные цены"
 
 #: pages/templates/pages/seller.html:132
 msgid ""
 "We know not only the price at which offers are placed, but also the real "
 "selling price. Therefore, our estimate is closer to reality."
 msgstr ""
+"Мы знаем не только, по какой цене размещаются предложения, но и реальную "
+"цену продаж. Поэтому наша оценка ближе к реальности."
 
 #: pages/templates/pages/seller.html:136
 msgid "We do not ask for money or phone"
-msgstr ""
+msgstr "Мы не просим денег и телефона"
 
 #: pages/templates/pages/seller.html:137
 msgid ""
 "Information about the market value is available to anyone just like that: "
 "you don't have to pay for it or leave your phone if you don't want to."
 msgstr ""
+"Информация о рыночной стоимости доступна любому просто так: за нее не нужно "
+"платить или оставлять телефон, если не хочется."
 
 #: pages/templates/pages/seller.html:141
 msgid "Let's show similar offers"
-msgstr ""
+msgstr "Покажем похожие предложения"
 
 #: pages/templates/pages/seller.html:142
 msgid ""
 "No need to waste time searching for similar offers on other sites, we'll "
 "show you offers that compete with yours right now."
 msgstr ""
+"Не нужно тратить время на поиск похожих предложений на других сайтах, мы "
+"покажем предложения, конкурирующие с вашим прямо сейчас."
 
 #: pages/templates/pages/seller.html:146
 msgid "It's simple and convenient"
-msgstr ""
+msgstr "Это просто и удобно"
 
 #: pages/templates/pages/seller.html:147
 msgid ""
 "You do not need to enter a lot of information, it is enough to fill in 5 "
 "fields."
 msgstr ""
+"Вам не нужно указывать много информации, достаточно заполнить 5 полей."
 
 #: pages/templates/sections/feadback.html:10
 msgid "Free consultation"
-msgstr ""
+msgstr "Бесплатная консультация"
 
 #: pages/templates/sections/feadback.html:13
 msgid "Fill out the form and our manager will contact you"
-msgstr ""
+msgstr "Заполните форму и с вашей свяжется наш менеджер"
 
 #: pages/templates/sections/features.html:9
 msgid "Why is it better with us?"
-msgstr ""
+msgstr "Почему с нами лучше?"
 
 #: pages/templates/sections/features.html:18
 msgid "We carefully select the database of real estate objects"
-msgstr ""
+msgstr "Тщательно отбираем базу объектов"
 
 #: pages/templates/sections/features.html:24
 msgid "Legal protection of the agreement"
-msgstr ""
+msgstr "Юридическая защита сделки"
 
 #: pages/templates/sections/features.html:30
 msgid "All consultations and services of the company are free of charge"
-msgstr ""
+msgstr "Все консультации и сервисы компании бесплатны"
 
 #: pages/templates/sections/features.html:36
 msgid "We save your time"
-msgstr ""
+msgstr "Экономим ваше время"
 
 #: pages/templates/sections/footer.html:14
 msgid "Prices"
-msgstr ""
+msgstr "Цены"
 
 #: pages/templates/sections/footer.html:20
 #: pages/templates/sections/header.html:77
 #: pages/templates/sections/header.html:133
 #: pages/templates/sections/services.html:54
 msgid "Analytics"
-msgstr ""
+msgstr "Аналитические обзоры"
 
 #: pages/templates/sections/footer.html:22
 msgid "Vacantions"
-msgstr ""
+msgstr "Вакансии"
 
 #: pages/templates/sections/footer.html:24
 msgid "Login CRM"
-msgstr ""
+msgstr "Вход в CRM"
 
 #: pages/templates/sections/footer.html:25
 msgid "Learning Portal"
-msgstr ""
+msgstr "Учебный портал"
 
 #: pages/templates/sections/footer.html:29
 #: pages/templates/sections/header.html:19
 #: pages/templates/sections/header.html:90
 msgid "Our online course"
-msgstr ""
+msgstr "Наш онлайн курс"
 
 #: pages/templates/sections/map.html:11
 msgid "Search on the map!"
-msgstr ""
+msgstr "Поиск на карте!"
 
 #: pages/templates/sections/map.html:15
 msgid "Enter the address of the object"
-msgstr ""
+msgstr "Введите адрес объекта"
 
 #: pages/templates/sections/reviews.html:11
 msgid "What clients say about us:"
-msgstr ""
+msgstr "Что говорят о нас клиенты:"
 
 #: pages/templates/sections/reviews.html:15
 msgid ""
 "Our team has 400 qualified employees. We carefully select and train each "
 "real estate professional, and after the deal, clients rate their work."
 msgstr ""
+"В нашей команде 400 квалифицированных сотрудников. Мы тщательно отбираем и "
+"обучаем каждого специалиста по недвижимости, а после сделки клиенты "
+"оценивают их работу."
 
 #: pages/templates/sections/reviews.html:20
 msgid "All specialists"
-msgstr ""
+msgstr "Все специалисты"
 
 #: pages/templates/sections/services.html:9
 msgid "Services"
-msgstr ""
+msgstr "Сервисы"
 
 #: pages/templates/sections/services.html:18
 msgid "Submission of ads online"
-msgstr ""
+msgstr "Подача объявлений онлайн"
 
 #: pages/templates/sections/services.html:24
 msgid "Assessment of market value"
-msgstr ""
+msgstr "Оцінка ринкової вартості"
 
 #: pages/templates/sections/services.html:30
 msgid "Assistance in mortgage registration"
-msgstr ""
+msgstr "Помощь в оформлении ипотеки"
 
 #: pages/templates/sections/services.html:36
 msgid "Legal support of the agreement"
-msgstr ""
+msgstr "Юридическое сопровождение сделки"
 
 #: pages/templates/sections/services.html:48
 msgid "Online signing of contracts"
-msgstr ""
+msgstr "Онлайн подписание договоров"
 
 #: pages/templates/sections/stats.html:8
 msgid "Numbers speak better than words"
-msgstr ""
+msgstr "Цифры говорят лучше слов"
 
 #: pages/templates/sections/stats.html:18
 msgid "We sell objects for a year"
-msgstr ""
+msgstr "Продаем объекты за год"
 
 #: pages/templates/sections/stats.html:26
 msgid "Lease agreements have been drawn up"
-msgstr ""
+msgstr "Оформили арендные соглашения"
 
 #: pages/templates/sections/stats.html:34
 msgid "Years we have been working on the market"
-msgstr ""
+msgstr "Лет работаем на рынке"
 
 #: pages/templates/sections/stats.html:42
 msgid "Reviews of satisfied customers"
-msgstr ""
+msgstr "Отзывов удовлетворенных клиентов"
 
 #: profiles/apps.py:7
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
 #: profiles/models.py:6
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: profiles/models.py:7
 msgid "Profiles"
-msgstr ""
+msgstr "Профили"
 
 #: props/apps.py:7
 msgid "Site Settings"
-msgstr ""
+msgstr "Настройка сайта"
 
 #: props/models.py:7
 msgid "Site name (English)"
-msgstr ""
+msgstr "Название сайта (на английском)"
 
 #: props/models.py:8
 msgid "Site name (Ukraininan)"
-msgstr ""
+msgstr "Название сайта (на украинском)"
 
 #: props/models.py:9
 msgid "API-key for Google Maps"
-msgstr ""
+msgstr "АПИ-ключ для Google-карт"
 
 #: props/models.py:10
 msgid "API-key for Azure Translation"
-msgstr ""
+msgstr "API-ключ для Azure перестройки"
 
 #: props/models.py:11
 msgid "Location for Azure Translation"
-msgstr ""
+msgstr "Локация для Azure перевода"
 
 #: props/models.py:15 props/models.py:18
 msgid "Site Configuration"
-msgstr ""
+msgstr "Настройка сайта"
 
 #: props/models.py:22
 msgid "CRM-feed for parsing"
-msgstr ""
+msgstr "СРМ-фид для парсинга"
 
 #: props/models.py:28
 msgid "Feed"
-msgstr ""
+msgstr "СРМ-Фід"
 
 #: props/models.py:29
 msgid "Feeds"
-msgstr ""
+msgstr "СРМ-фиды"
 
 #: vacantions/models.py:9
 msgid "Salary"
-msgstr ""
+msgstr "Зарплата"
 
 #: vacantions/models.py:12 vacantions/models.py:33
 msgid "Department"
-msgstr ""
+msgstr "Отдел"
 
 #: vacantions/models.py:20
 msgid "Vacancy"
-msgstr ""
+msgstr "Вакансия"
 
 #: vacantions/models.py:34
 msgid "Departments"
-msgstr ""
+msgstr "Отделы"
 
 #: vacantions/templates/vacantions/list.html:6
 msgid "List of vacancies"
-msgstr ""
+msgstr "Список вакансий"
 
 #: vacantions/templates/vacantions/list.html:34
 msgid "Leave a resume"
-msgstr ""
+msgstr "Оставить резюме"
 
 #: vacantions/templates/vacantions/list.html:43
 msgid "Fresh vacancies will be published on this page"
-msgstr ""
+msgstr "На данной странице будут публиковаться свежие вакансии"
 
 #: vacantions/templates/vacantions/list.html:46
 msgid "Return to the home page"
-msgstr ""
+msgstr "Вернуться на главную"
 
 #: vacantions/templates/vacantions/page.html:15
 msgid "We are looking for agents to join our team"
-msgstr ""
+msgstr "Мы ищем агентов в нашу команду"
 
 #: vacantions/templates/vacantions/page.html:19
 msgid "Choose what suits you"
-msgstr ""
+msgstr "Выбирайте то, что подходит именно вам"
 
 #: vacantions/templates/vacantions/page.html:23
 msgid "See vacancies"
-msgstr ""
+msgstr "Посмотреть вакансии"
 
 #: vacantions/templates/vacantions/page.html:24
 msgid "Details about the company"
-msgstr ""
+msgstr "Подробно о компании"
 
 #: vacantions/templates/vacantions/page.html:32
 msgid "To work for us is:"
-msgstr ""
+msgstr "Работать у нас это:"
 
 #: vacantions/templates/vacantions/page.html:40
 msgid "Technologies and tools"
-msgstr ""
+msgstr "Технологии и инструменты"
 
 #: vacantions/templates/vacantions/page.html:43
 msgid "Own convenient IT services: CRM, Learning portal, bots"
-msgstr ""
+msgstr "Собственные удобные IT-сервисы: CRM, Учебный портал, боты"
 
 #: vacantions/templates/vacantions/page.html:49
 msgid "Career growth"
-msgstr ""
+msgstr "Карьерный рост"
 
 #: vacantions/templates/vacantions/page.html:52
 msgid "We create an open and accessible environment for career growth"
-msgstr ""
+msgstr "Мы создаем открытую и доступную среду для карьерного роста"
 
 #: vacantions/templates/vacantions/page.html:58
 msgid "Continuous development"
-msgstr ""
+msgstr "Постоянное развитие"
 
 #: vacantions/templates/vacantions/page.html:61
 msgid ""
 "You will be able to complete free real estate training from scratch. "
 "Experienced mentor and support at all stages"
 msgstr ""
+"Вы сможете пройти бесплатное обучение профессии недвижимости с нуля. Опытный"
+" ментор и поддержка на всех этапах"
 
 #: vacantions/templates/vacantions/page.html:67
 msgid "Unlimited income"
-msgstr ""
+msgstr "Доход без потолка"
 
 #: vacantions/templates/vacantions/page.html:70
 msgid ""
 "The company provides a complete package of tools for your results and "
 "earnings"
 msgstr ""
+"Компания предоставляет полный пакет инструментов для вашего результата и "
+"заработка"
 
 #: vacantions/templates/vacantions/page.html:80
 msgid "We need people who share our values"
-msgstr ""
+msgstr "Нам нужны люди, разделяющие наши ценности"
 
 #: vacantions/templates/vacantions/page.html:88
 msgid "Customer orientation"
-msgstr ""
+msgstr "Клиентоориентированность"
 
 #: vacantions/templates/vacantions/page.html:90
 msgid "everything starts with the customer's need"
-msgstr ""
+msgstr "все начинается с потребности клиента"
 
 #: vacantions/templates/vacantions/page.html:93
 msgid "Team spirit"
-msgstr ""
+msgstr "Командный дух"
 
 #: vacantions/templates/vacantions/page.html:94
 msgid "we believe in our team"
-msgstr ""
+msgstr "мы верим в свою команду"
 
 #: vacantions/templates/vacantions/page.html:97
 msgid "Responsibility"
-msgstr ""
+msgstr "Ответственность"
 
 #: vacantions/templates/vacantions/page.html:98
 msgid "we are responsible for the results of our work"
-msgstr ""
+msgstr "мы ответственны за результаты нашей работы"
 
 #: vacantions/templates/vacantions/page.html:101
 msgid "Trust"
-msgstr ""
+msgstr "Доверие"
 
 #: vacantions/templates/vacantions/page.html:102
 msgid "the first necessary condition of great undertakings"
-msgstr ""
+msgstr "первое необходимое условие больших начинаний"
 
 #: vacantions/templates/vacantions/page.html:105
 msgid "Strive for results"
-msgstr ""
+msgstr "Стремление к результату"
 
 #: vacantions/templates/vacantions/page.html:106
 msgid "the result starts with me"
-msgstr ""
+msgstr "результат начинается с меня"
 
 #: vacantions/templates/vacantions/page.html:109
 msgid "Honesty"
-msgstr ""
+msgstr "Честность"
 
 #: vacantions/templates/vacantions/page.html:110
 msgid "the basis of success in business"
-msgstr ""
+msgstr "основа успеха в бизнесе"
 
 #: vacantions/templates/vacantions/page.html:113
 msgid "Success"
-msgstr ""
+msgstr "Успех"
 
 #: vacantions/templates/vacantions/page.html:114
 msgid "it is the sum of small achievements repeated every day"
-msgstr ""
+msgstr "это сумма маленьких достижений, повторяющихся каждый день"
 
 #: vacantions/templates/vacantions/page.html:117
 msgid "Development"
-msgstr ""
+msgstr "Развитие"
 
 #: vacantions/templates/vacantions/page.html:118
 msgid "it is the result of planning and focused effort"
-msgstr ""
+msgstr "это результат планирования и целенаправленные усилия"
 
 #: vacantions/templates/vacantions/page.html:121
 msgid "Family"
-msgstr ""
+msgstr "Семья"
 
 #: vacantions/templates/vacantions/page.html:122
 msgid ""
 "it is our inspiration to reach great heights and our support when we make "
 "mistakes"
 msgstr ""
+"это наше вдохновение для достижения больших высот, и наша опора когда мы "
+"совершаем ошибки"
 
 #: vacantions/templates/vacantions/page.html:125
 msgid "Kindness"
-msgstr ""
+msgstr "Доброта"
 
 #: vacantions/templates/vacantions/page.html:126
 msgid ""
 "it is invisible when you possess it, and it gives success in any business"
-msgstr ""
+msgstr "она незаметна, когда владеешь ею, и она преуспевает в любом деле"
 
 #: vacantions/templates/vacantions/page.html:129
 msgid "Happiness"
-msgstr ""
+msgstr "Счастье"
 
 #: vacantions/templates/vacantions/page.html:130
 msgid ""
 "it's when you go to work with joy in the morning, and come home with joy in "
 "the evening"
 msgstr ""
+"это когда утром с радостью идешь на работу, а вечером с радостью "
+"возвращаешься домой"
 
 #: vacantions/templates/vacantions/page.html:133
 msgid "Joy"
-msgstr ""
+msgstr "Радость"
 
 #: vacantions/templates/vacantions/page.html:134
 msgid ""
 "this is a great blessing, to have the opportunity to give it to others is "
 "the greatest happiness"
 msgstr ""
+"это великое благо, обладать возможностью дарить ее другим – величайшее "
+"счастье"
 
 #: vacantions/views.py:13
 msgid "List"
-msgstr ""
+msgstr "Список"
 
 #: wishlist/templates/wishlist/list.html:4
 #: wishlist/templates/wishlist/list.html:10
 msgid "Wishlist"
-msgstr ""
+msgstr "Избранное"
 
 #: wishlist/templates/wishlist/list.html:21
 msgid "No listings in your wishlist"
-msgstr ""
+msgstr "В вашем списке избранного нет объявлений"

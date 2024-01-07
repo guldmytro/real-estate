@@ -13,6 +13,9 @@
                 {% if request.LANGUAGE_CODE == 'en' %}
                     <h1 class="section-header__title animate animate_text">{{ page.title|wrap_words_in_span|safe }}</h1>
                     <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description }}</p>
+                {% elif request.LANGUAGE_CODE == 'ru' %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title_ru|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description_ru }}</p>
                 {% else %}
                     <h1 class="section-header__title animate animate_text">{{ page.title_uk|wrap_words_in_span|safe }}</h1>
                     <p class="section-header__subtitle section-header__subtitle_strong">{{ page.description_uk }}</p>
@@ -39,6 +42,9 @@
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <h2 class="section-header__title animate animate_text">{{ item.title|wrap_words_in_span|safe }}</h2>
                                 <p class="section-header__subtitle">{{ item.description }}</p>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <h2 class="section-header__title animate animate_text">{{ item.title_ru|wrap_words_in_span|safe }}</h2>
+                                <p class="section-header__subtitle">{{ item.description_ru }}</p>
                             {% else %}
                                 <h2 class="section-header__title animate animate_text">{{ item.title_uk|wrap_words_in_span|safe }}</h2>
                                 <p class="section-header__subtitle">{{ item.description_uk }}</p>

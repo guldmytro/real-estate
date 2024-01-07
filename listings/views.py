@@ -15,9 +15,11 @@ from emails.forms import ListingPhoneForm, ListingMessageForm, \
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.template.loader import render_to_string
+from .utils import get_current_city
 
 
 def listings_list(request, realty_type=None, realty_deal=None): 
+    current_city = get_current_city(request)
     r_type = None
     r_deal = None
     GET = modify_get(request.GET)
@@ -27,6 +29,11 @@ def listings_list(request, realty_type=None, realty_deal=None):
         Prefetch('images'),
         Prefetch('kits__attribute'),
     ).all()
+
+
+    if current_city is not None:
+        listings_list = listings_list.filter(street__city=current_city)
+
     if realty_type:
         if realty_type == 'new':
             listings_list = listings_list.filter(is_new_building=True)
@@ -56,18 +63,18 @@ def listings_list(request, realty_type=None, realty_deal=None):
         house_complex = cleaned_data.get('house_complex')
         crumb_title = False
 
-        if not city and not street and not district and not house_complex:
-            try:
-                cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
-                cities_with_count = cities_with_count.order_by('-listing_count')
-                city = cities_with_count.first()
-                if city:
-                    query_params = request.GET.copy()
-                    query_params['city'] = city.id
-                    url = request.path + '?' + query_params.urlencode()
-                    return redirect(url)
-            except:
-                pass
+        # if not city and not street and not district and not house_complex:
+        #     try:
+        #         cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
+        #         cities_with_count = cities_with_count.order_by('-listing_count')
+        #         city = cities_with_count.first()
+        #         if city:
+        #             query_params = request.GET.copy()
+        #             query_params['city'] = city.id
+        #             url = request.path + '?' + query_params.urlencode()
+        #             return redirect(url)
+        #     except:
+        #         pass
             
         if city:
             try:
@@ -217,6 +224,9 @@ def listings_detail(request, id):
 def get_listings_count(request, realty_type=None, realty_deal=None):
     search_form = SearchForm(request.GET)
     listings_list = Listing.objects.prefetch_related('images').all()
+    current_city = get_current_city(request)
+    if current_city is not None:
+        listings_list = listings_list.filter(street__city=current_city)
     
     if realty_type:
         if realty_type == 'new':
@@ -240,29 +250,34 @@ def get_listings_count(request, realty_type=None, realty_deal=None):
 
 @require_POST
 def get_address_predictions(request):
+    current_city = get_current_city(request)
     body_data = json.loads(request.body)
     search_query = body_data.get('search_query', '')
 
     cities = City.objects.annotate(
         cnt=Count('streets__listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')
 
     streets = Street.objects.annotate(
         cnt=Count('listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')
 
     districts = District.objects.annotate(
         cnt=Count('listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')
 
     house_compexes = HouseComplex.objects.annotate(
         cnt=Count('listings'),
         similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')[:20]
+    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')
 
+    if current_city is not None:
+        streets = streets.filter(city=current_city)
+        districts = districts.filter(city=current_city)
+        house_compexes = house_compexes.filter(city=current_city)
 
     return JsonResponse({
         'status': 'ok',

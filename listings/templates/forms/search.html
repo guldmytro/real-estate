@@ -45,13 +45,12 @@
         <div class="search-filters">
             <label class="search-filters__item filter-item filter-item_grow">
                 <span class="filter-item__label">
-                    {{ search_form.address_input.label }}*
+                    {{ search_form.address_input.label }}
                 </span>
                 <div class="suggestions">
                     <div class="input-wrapper input-wrapper__search">
                         {{ search_form.address_input }}
                     </div>
-                    {{ search_form.city }}
                     {{ search_form.street }}
                     {{ search_form.district }}
                     {{ search_form.house_complex }}
@@ -206,7 +205,7 @@
         <div class="submit-row">
             <button type="submit" class="form-search__submit btn btn_primary">
                 <span class="text">{% trans 'Show' %}</span>
-                <span class="count">({{ count }})</span>
+                <span class="count">({% firstof count global_count %})</span>
             </button>
             <button type="button" class="form-search__advanced-btn btn btn_invert">
                 <img class="btn__img" src="{% static 'img/icon-search.png' %}" alt="пошук" width="64" height="64">

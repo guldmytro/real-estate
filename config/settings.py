@@ -154,6 +154,7 @@ USE_TZ = True
 LANGUAGES = [
     ('en', _('English')),
     ('uk', _('Ukrainian')),
+    ('ru', _('Russian')),
 ]
 
 LOCALE_PATHS = [
@@ -164,6 +165,7 @@ PARLER_LANGUAGES = {
     None: (
         {'code': 'en'},
         {'code': 'uk'},
+        {'code': 'ru'},
     ),
     'default': {
         'fallback': 'uk',
@@ -243,3 +245,5 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+# django-admin makemessages --all --ignore=venv

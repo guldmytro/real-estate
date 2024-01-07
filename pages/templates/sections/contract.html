@@ -19,6 +19,24 @@
             </div>
         </section>
     {% endif %}
+{% elif request.LANGUAGE_CODE == 'ru'  %}
+    {% if page.title_ru and page.about_ru %}
+    <section class="contract">
+        <div class="container">
+            <div class="contract-row">
+                <div class="section-header">
+                    <h2 class="section-header__title animate animate_text">
+                        {{ page.title_ru|wrap_words_in_span|safe }}
+                    </h2>
+                    <div class="post__content">
+                        {{ page.about_ru|safe }}
+                    </div>
+                </div>
+                <img src="{% static 'img/bg-puzzle.png' %}" alt="будинки">
+            </div>
+        </div>
+    </section>
+    {% endif %}
 {% else %}
     {% if page.title_uk and page.about_uk %}
     <section class="contract">

@@ -204,27 +204,27 @@ def modify_get(GET):
         if city:
             city_obj = City.objects.get(id=city)
             if city_obj.region:
-                modified_get['address_input'] = f'{city_obj.title} ({city_obj.region.title})'
+                modified_get['address_input'] = f'{city_obj.title}'
             else:
                 modified_get['address_input'] = city_obj.title
         elif street:
             street_obj = Street.objects.get(id=street)
             try:
-                modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title}, {street_obj.city.region.title})'
+                modified_get['address_input'] = f'{street_obj.title}'
             except:
-                modified_get['address_input'] = f'{street_obj.title} ({street_obj.city.title})'
+                modified_get['address_input'] = f'{street_obj.title}'
         elif district:
             district_obj = District.objects.get(id=street)
             try:
-                modified_get['address_input'] = f'{district_obj.title} ({district_obj.city.title}, {district_obj.city.region.title})'
+                modified_get['address_input'] = f'{district_obj.title}'
             except:
-                modified_get['address_input'] = f'{district_obj.title} ({district_obj.city.title})'
+                modified_get['address_input'] = f'{district_obj.title}'
         elif house_complex:
             house_complex_obj = District.objects.get(id=street)
             try:
-                modified_get['address_input'] = f'{house_complex_obj.title} ({house_complex_obj.city.title}, {house_complex_obj.city.region.title})'
+                modified_get['address_input'] = f'{house_complex_obj.title}'
             except:
-                modified_get['address_input'] = f'{house_complex_obj.title} ({house_complex_obj.city.title})'
+                modified_get['address_input'] = f'{house_complex_obj.title}'
          
     except:
         pass
@@ -312,3 +312,14 @@ def convert_to_utc(date_string):
     utc_time = local_time.astimezone(pytz.UTC)
 
     return utc_time
+
+
+def get_current_city(request):
+    city_id = request.session.get('current_city', False)
+    if not city_id:
+        return None
+    try:
+        city = City.objects.get(pk=city_id)
+        return city
+    except City.DoesNotExist:
+        return None

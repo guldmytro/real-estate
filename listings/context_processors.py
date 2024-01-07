@@ -24,11 +24,14 @@ def cities(request):
         .order_by('translations__title')
     current_city_pk = request.session.get('current_city', False)
     current_city = None
+    global_count = None
     if current_city_pk:
         try: 
             current_city = City.objects.get(pk=current_city_pk)
         except City.DoesNotExist:
             pass
+    if current_city:
+        global_count = Listing.objects.filter(street__city=current_city, status='active').count()
 
     cities_obj = {}
     for city in cities_qs:
@@ -37,4 +40,5 @@ def cities(request):
             cities_obj[first_letter] = []
         cities_obj[first_letter].append(city)
     return {'cities_obj': cities_obj,
-            'current_city': current_city}
+            'current_city': current_city,
+            'global_count': global_count}

@@ -30,10 +30,11 @@ class SearchForm {
     }
 
     isFormDisabled() {
-        return this.prediction.cityInput.value 
-               || this.prediction.streetInput.value
-               || this.prediction.houseComplexInput.value
-               || this.prediction.districtInput.value ? false : true;
+        return false;
+        // return this.prediction.cityInput.value 
+        //        || this.prediction.streetInput.value
+        //        || this.prediction.houseComplexInput.value
+        //        || this.prediction.districtInput.value ? false : true;
     }
     
     initEvents() {
@@ -175,9 +176,7 @@ class SearchForm {
                 filters[name].value = [...filters[name].value, checkbox.value];
             }
         });
-        const predictionName = this.prediction.cityInput.value 
-                               ? this.prediction.cityInput.getAttribute('name') 
-                               : this.prediction.streetInput.getAttribute('name');
+        const predictionName = this.prediction.streetInput.getAttribute('name');
         const predictionValue = this.prediction.input.value;
         if (predictionValue) {
             filters[predictionName] = {

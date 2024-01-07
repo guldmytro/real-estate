@@ -24,11 +24,11 @@ class SearchForm(forms.Form):
                                     widget=forms.widgets.TextInput(
                                         attrs={
                                            'class': 'input',
-                                           'placeholder': _('Housing complex, district, street or city'),
+                                           'placeholder': _('Housing complex, district, street'),
                                            'autocomplete': 'off'
                                         })
                                     )
-    city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
+    # city = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     street = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     district = forms.CharField(required=False, widget=forms.widgets.HiddenInput)
     house_complex = forms.CharField(required=False, widget=forms.widgets.HiddenInput)

@@ -6,7 +6,7 @@ from .models import SiteConfiguration, Feed
 @admin.register(SiteConfiguration)
 class SiteConfigurationAdmin(SingletonModelAdmin):
     fields = (
-        ('site_name_en', 'site_name_uk'),
+        ('site_name_en', 'site_name_uk', 'site_name_ru'),
         ('google_api_key'),
         ('azure_secret_key', 'azure_location'),
         ('email'),

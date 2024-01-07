@@ -11,6 +11,9 @@
                 {% if request.LANGUAGE_CODE == 'en' %}
                     <h1 class="section-header__title animate animate_text">{{ page.title_1|wrap_words_in_span|safe }}</h1>
                     <p class="section-header__subtitle">{{ page.description_1|linebreaks }}</p>
+                {% elif request.LANGUAGE_CODE == 'ru' %}
+                    <h1 class="section-header__title animate animate_text">{{ page.title_1_ru|wrap_words_in_span|safe }}</h1>
+                    <p class="section-header__subtitle">{{ page.description_1_ru|linebreaks }}</p>
                 {% else %}
                     <h1 class="section-header__title animate animate_text">{{ page.title_1_uk|wrap_words_in_span|safe }}</h1>
                     <p class="section-header__subtitle">{{ page.description_1_uk|linebreaks }}</p>
@@ -25,6 +28,9 @@
                     {% if request.LANGUAGE_CODE == 'en' %}
                         <h2 class="section-header__title animate animate_text">{{ page.title_2|wrap_words_in_span|safe }}</h2>
                         <p class="section-header__subtitle">{{ page.description_2|linebreaks }}</p>
+                    {% elif request.LANGUAGE_CODE == 'ru' %}
+                        <h2 class="section-header__title animate animate_text">{{ page.title_2_ru|wrap_words_in_span|safe }}</h2>
+                        <p class="section-header__subtitle">{{ page.description_2_ru|linebreaks }}</p>
                     {% else %}
                         <h2 class="section-header__title animate animate_text">{{ page.title_2_uk|wrap_words_in_span|safe }}</h2>
                         <p class="section-header__subtitle">{{ page.description_2_uk|linebreaks }}</p>
@@ -42,6 +48,9 @@
                             {% if request.LANGUAGE_CODE == 'en' %}
                                 <h2 class="about-item__title">{{ item.title }}</h2>
                                 <div class="about-item__content">{{ item.description }}</div>
+                            {% elif request.LANGUAGE_CODE == 'ru' %}
+                                <h2 class="about-item__title">{{ item.title_ru }}</h2>
+                                <div class="about-item__content">{{ item.description_ru }}</div>
                             {% else %}
                                 <h2 class="about-item__title">{{ item.title_uk }}</h2>
                                 <div class="about-item__content">{{ item.description_uk }}</div>

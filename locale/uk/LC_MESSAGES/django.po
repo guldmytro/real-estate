@@ -8,18 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 08:33+0000\n"
-"PO-Revision-Date: 2023-08-16 15:18+0000\n"
+"POT-Creation-Date: 2024-01-07 12:26+0200\n"
+"PO-Revision-Date: 2024-01-07 12:21+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: analytics/apps.py:8 analytics/models.py:22 analytics/views.py:13
@@ -53,19 +50,23 @@ msgstr "Картинка"
 msgid "Analytical review"
 msgstr "Аналітичний огляд"
 
-#: config/settings.py:153
+#: config/settings.py:155
 msgid "English"
 msgstr "Англійська"
 
-#: config/settings.py:154 pages/templates/pages/course.html:66
+#: config/settings.py:156 pages/templates/pages/course.html:66
 msgid "Ukrainian"
 msgstr "Українська"
+
+#: config/settings.py:157
+msgid "Russian"
+msgstr "Російська"
 
 #: discounts/apps.py:8 discounts/models.py:24
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
 #: pages/templates/sections/header.html:23
-#: pages/templates/sections/header.html:88
+#: pages/templates/sections/header.html:94
 msgid "Discounts"
 msgstr "Акції"
 
@@ -237,8 +238,8 @@ msgstr ""
 "Надсилаючи відгук, ви погоджуютесь на обробку своїх персональних данних"
 
 #: listings/apps.py:8 listings/models.py:81
-#: listings/templates/listings/list.html:16 listings/views.py:102
-#: listings/views.py:163
+#: listings/templates/listings/list.html:16 listings/views.py:109
+#: listings/views.py:170
 msgid "Listings"
 msgstr "Оголошення"
 
@@ -255,8 +256,8 @@ msgid "Address"
 msgstr "Адреса"
 
 #: listings/forms.py:27
-msgid "Housing complex, district, street or city"
-msgstr "ЖК, район, вулиця або населений пункт"
+msgid "Housing complex, district, street"
+msgstr "ЖК, район, вулиця"
 
 #: listings/forms.py:37
 #: listings/templates/listings/components/listing-map-info.html:25
@@ -459,7 +460,7 @@ msgstr "Площа кухні"
 msgid "Room Count"
 msgstr "Кількість кімнат"
 
-#: listings/models.py:51 listings/templates/forms/search.html:111
+#: listings/models.py:51 listings/templates/forms/search.html:110
 #: listings/templates/listings/components/attributes.html:65
 msgid "Floor"
 msgstr "Поверх"
@@ -468,7 +469,7 @@ msgstr "Поверх"
 msgid "Total Floors"
 msgstr "Загальна кількість поверхів"
 
-#: listings/models.py:55 listings/templates/forms/search.html:86
+#: listings/models.py:55 listings/templates/forms/search.html:85
 #: listings/templates/listings/components/listing-map-info.html:17
 #: pages/templates/pages/course.html:56
 msgid "Price"
@@ -634,31 +635,31 @@ msgstr "Кредит та іпотека"
 msgid "Property valuation"
 msgstr "Оцінка"
 
-#: listings/templates/forms/search.html:98
+#: listings/templates/forms/search.html:97
 msgid "Building"
 msgstr "Будинок"
 
-#: listings/templates/forms/search.html:102
+#: listings/templates/forms/search.html:101
 msgid "Area (m²)"
 msgstr "Площа (м²)"
 
-#: listings/templates/forms/search.html:120
+#: listings/templates/forms/search.html:119
 msgid "Floors in the house"
 msgstr "Поверхів у домі"
 
-#: listings/templates/forms/search.html:177
+#: listings/templates/forms/search.html:176
 msgid "Court"
 msgstr "Двір"
 
-#: listings/templates/forms/search.html:190
+#: listings/templates/forms/search.html:189
 msgid "Media"
 msgstr "Медіа"
 
-#: listings/templates/forms/search.html:208
+#: listings/templates/forms/search.html:207
 msgid "Show"
 msgstr "Показати"
 
-#: listings/templates/forms/search.html:213
+#: listings/templates/forms/search.html:212
 msgid "Advanced search"
 msgstr "Розширений пошук"
 
@@ -666,7 +667,7 @@ msgstr "Розширений пошук"
 msgid "Reviewed"
 msgstr "Переглянуто"
 
-#: listings/templates/listings/archive-item.html:32
+#: listings/templates/listings/archive-item.html:42
 #: managers/templates/managers/list.html:54
 msgid "Show phone"
 msgstr "Показати телефон"
@@ -903,13 +904,13 @@ msgstr "Вибачте, ми не змогли нічого знайти по в
 msgid "Please try other search options"
 msgstr "Спробуйте, будь ласка, інші параметри пошуку"
 
-#: listings/views.py:34 pages/templates/sections/header.html:98
+#: listings/views.py:41 pages/templates/sections/header.html:124
 msgid "New buildings"
 msgstr "Новобудови"
 
 #: managers/apps.py:8 managers/models.py:29
-#: pages/templates/sections/header.html:69
-#: pages/templates/sections/header.html:105
+#: pages/templates/sections/header.html:75
+#: pages/templates/sections/header.html:131
 msgid "Managers"
 msgstr "Менеджери"
 
@@ -958,7 +959,8 @@ msgid "Author"
 msgstr "Автор"
 
 #: managers/models.py:86 managers/templates/managers/detail.html:82
-#: pages/templates/pages/reviews.html:6 pages/templates/sections/footer.html:19
+#: pages/templates/pages/reviews.html:6
+#: pages/templates/sections/footer.html:19
 msgid "Reviews"
 msgstr "Відгуки"
 
@@ -1061,11 +1063,13 @@ msgstr "Опис 2 секції (українською)"
 msgid "About us"
 msgstr "Про нас"
 
-#: pages/models.py:37 pages/models.py:55 pages/models.py:74 pages/models.py:156
+#: pages/models.py:37 pages/models.py:55 pages/models.py:74
+#: pages/models.py:156
 msgid "Title (English)"
 msgstr "Заголовок (англійською)"
 
-#: pages/models.py:38 pages/models.py:56 pages/models.py:75 pages/models.py:157
+#: pages/models.py:38 pages/models.py:56 pages/models.py:75
+#: pages/models.py:157
 msgid "Title (Ukrainian)"
 msgstr "Заголовок (українською)"
 
@@ -1095,8 +1099,8 @@ msgstr "Про нас деталі"
 
 #: pages/models.py:67 pages/models.py:68 pages/templates/pages/abroad.html:7
 #: pages/templates/sections/footer.html:15
-#: pages/templates/sections/header.html:67
-#: pages/templates/sections/header.html:103
+#: pages/templates/sections/header.html:73
+#: pages/templates/sections/header.html:129
 msgid "Real estate abroad"
 msgstr "Нерухомість закордоном"
 
@@ -1181,10 +1185,11 @@ msgid "Facebook"
 msgstr "Фейсбук"
 
 #: pages/models.py:125 pages/models.py:126
-#: pages/templates/pages/contacts.html:6 pages/templates/pages/contacts.html:13
+#: pages/templates/pages/contacts.html:6
+#: pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
-#: pages/templates/sections/header.html:73
-#: pages/templates/sections/header.html:109 pages/views.py:42
+#: pages/templates/sections/header.html:79
+#: pages/templates/sections/header.html:135 pages/views.py:43
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -1306,13 +1311,13 @@ msgstr "PRO_Нерухомість"
 msgid ""
 "If you want to learn and develop, then we have something to talk about. We "
 "hope that the knowledge gained during the course will help you to better "
-"understand the real estate market, conclude safe deals, invest profitably or "
-"find an interesting job that will bring you income and satisfaction."
+"understand the real estate market, conclude safe deals, invest profitably or"
+" find an interesting job that will bring you income and satisfaction."
 msgstr ""
 "Якщо ви хочете вчитися та розвиватися, то нам є про що поговорити. Ми "
-"сподіваємося, що знання, отриманы на курсі допоможуть Вам більше розібратись "
-"в ринку нерухомості, заключати безпечні угоди, вигідно інвестувати чи знайти "
-"цікаву роботу, яка приноситеме дохід та задоволення."
+"сподіваємося, що знання, отриманы на курсі допоможуть Вам більше розібратись"
+" в ринку нерухомості, заключати безпечні угоди, вигідно інвестувати чи "
+"знайти цікаву роботу, яка приноситеме дохід та задоволення."
 
 #: pages/templates/pages/course.html:82
 msgid "Further cooperation and interaction"
@@ -1336,8 +1341,8 @@ msgid ""
 "topics that you need to pay attention to in order not to get lost in the "
 "real estate market."
 msgstr ""
-"В курсі PRO_нерухомість ми розповідаємо про базові принципи та основні теми, "
-"на які треба звернути увагу, щоб не розгубитися на ринку нерухомості."
+"В курсі PRO_нерухомість ми розповідаємо про базові принципи та основні теми,"
+" на які треба звернути увагу, щоб не розгубитися на ринку нерухомості."
 
 #: pages/templates/pages/course.html:98
 msgid "Who is this course suitable for?"
@@ -1452,8 +1457,8 @@ msgstr "Розділ про професію ріелтор та про комп
 #: pages/templates/pages/course.html:218
 msgid ""
 "You will learn about the peculiarities of the work of a realtor and get "
-"acquainted with the history, traditions and values of the company \"Contract-"
-"Real Estate\"."
+"acquainted with the history, traditions and values of the company "
+"\"Contract-Real Estate\"."
 msgstr ""
 "Ви дізнаєтесь про особливості роботи ріелтора і познайомитися з історією, "
 "традиціями та цінностями компанії Контракт-Нерухомість."
@@ -1490,8 +1495,8 @@ msgstr "Розділ про послуги компанії для клієнт�
 
 #: pages/templates/pages/course.html:233
 msgid ""
-"Learn about the main mistakes that owners make. Get acquainted with the list "
-"of services that the company provides to clients. Learn how to correctly "
+"Learn about the main mistakes that owners make. Get acquainted with the list"
+" of services that the company provides to clients. Learn how to correctly "
 "evaluate an apartment for sale. You will receive instructions, checklists "
 "and useful links that can help you when making deals in the real estate "
 "market. You will find information on real estate taxation when making "
@@ -1598,8 +1603,8 @@ msgid ""
 "The very process of signing the agreement takes place strictly according to "
 "the developed regulations with the use of secure calculations"
 msgstr ""
-"Сам процес оформлення угоди відбувається строго за розробленими регламентами "
-"з використанням безпечних розрахунків"
+"Сам процес оформлення угоди відбувається строго за розробленими регламентами"
+" з використанням безпечних розрахунків"
 
 #: pages/templates/pages/guarantees.html:51
 msgid "Legal protection"
@@ -1618,7 +1623,7 @@ msgid "Find real estate"
 msgstr "Знайти нерухомість"
 
 #: pages/templates/pages/pricing.html:6 pages/templates/pages/pricing.html:13
-#: pages/views.py:65
+#: pages/views.py:66
 msgid "Cost of services"
 msgstr "Вартість послуг"
 
@@ -1634,23 +1639,23 @@ msgstr "Знижки від компанії в цьому блоці:"
 #: pages/templates/pages/pricing.html:34 pages/templates/pages/pricing.html:57
 #, python-format
 msgid ""
-"By selling an old apartment and buying a new one together with Contract Real "
-"Estate, you receive a 5%% discount on the company's services when you "
+"By selling an old apartment and buying a new one together with Contract Real"
+" Estate, you receive a 5%% discount on the company's services when you "
 "contact the company again. Sale / Purchase during the year for yourself or "
 "first-line relatives, you get a 5%% discount on the company's services. For "
 "the military and armed forces, a discount of 5%%."
 msgstr ""
 "Здійснюючи продаж старої квартири та купівлю нової разом з компанією "
 "«Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При "
-"повторному зверненні до компанії. Продаж / Покупка протягом року на себе або "
-"родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
+"повторному зверненні до компанії. Продаж / Покупка протягом року на себе або"
+" родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
 "військових та ЗСУ знижка від 5%."
 
 #: pages/templates/pages/pricing.html:49
 #, python-format
 msgid ""
-"0-5%% The cost of the company's services depends on the type of real estate, "
-"the value and readiness of the object for the deal"
+"0-5%% The cost of the company's services depends on the type of real estate,"
+" the value and readiness of the object for the deal"
 msgstr ""
 "0-5% Вартість послуг компанії залежить від типу нерухомості, вартості та "
 "готовності об'єкта до угоди"
@@ -1849,7 +1854,8 @@ msgstr "Рекламне просування об'єкту на різних м
 
 #: pages/templates/pages/pricing.html:172
 msgid "Full legal support (lawyer, auditor, economic security service)"
-msgstr "Повний юридичний супровід (юрист, аудитор, служба економічної безпеки)"
+msgstr ""
+"Повний юридичний супровід (юрист, аудитор, служба економічної безпеки)"
 
 #: pages/templates/pages/pricing.html:173
 msgid "Market analysis and setting an objective price for the object"
@@ -1863,8 +1869,8 @@ msgstr "Умови гарантії юридичного захисту вказ
 
 #: pages/templates/pages/pricing.html:183
 msgid ""
-"The Contractor is obliged to search for another tenant in the event that the "
-"tenant is connected to the Object within 3/6/ months (depending on the "
+"The Contractor is obliged to search for another tenant in the event that the"
+" tenant is connected to the Object within 3/6/ months (depending on the "
 "selected package of Services) from the moment of concluding the Object "
 "rental agreement."
 msgstr ""
@@ -1926,8 +1932,8 @@ msgid ""
 "Post an ad about your property and within 2 hours buyers will see it on the "
 "site. Or just leave your phone and we'll do the rest."
 msgstr ""
-"Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його "
-"на сайті. Або просто залиште свій телефон, і ми все зробимо."
+"Додайте оголошення про свою нерухомість, і за 2 години покупці побачать його"
+" на сайті. Або просто залиште свій телефон, і ми все зробимо."
 
 #: pages/templates/pages/seller.html:73
 msgid "Preparation for sale"
@@ -1947,7 +1953,8 @@ msgstr "Почніть продавати зараз"
 
 #: pages/templates/pages/seller.html:102
 msgid ""
-"Post a real estate for rent ad or just leave your phone number and we'll help"
+"Post a real estate for rent ad or just leave your phone number and we'll "
+"help"
 msgstr ""
 "Додайте оголошення про здачу нерухомості або просто залиште свій телефон і "
 "ми допоможемо."
@@ -1959,8 +1966,8 @@ msgstr "Пошук орендарів"
 #: pages/templates/pages/seller.html:106
 msgid ""
 "Tenants will see your ad on our website and in the bot, and if you order "
-"additional services, we will place your ad on 7 more sites. We will find you "
-"reliable tenants and organize apartment showings."
+"additional services, we will place your ad on 7 more sites. We will find you"
+" reliable tenants and organize apartment showings."
 msgstr ""
 "Ваше оголошення побачать орендарі на нашому сайті та в боті, а при "
 "замовленні додаткових послуг розмістимо оголошення ще на 7 майданчиках. "
@@ -1981,18 +1988,19 @@ msgstr "Підготовка до здачі"
 
 #: pages/templates/pages/seller.html:114
 msgid ""
-"Order cleaning or clean it yourself.<br> Photography of the real estate as a "
-"gift!<br> A real estate specialist will come, take a photo and upload it to "
-"the ad.<br> We will help you prepare and complete the documents for the "
+"Order cleaning or clean it yourself.<br> Photography of the real estate as a"
+" gift!<br> A real estate specialist will come, take a photo and upload it to"
+" the ad.<br> We will help you prepare and complete the documents for the "
 "deal. <br> Use trust management, and we will monitor the condition of the "
-"apartment while you are gone.<br> Sign a paid contract and we will rent your "
-"apartment faster."
+"apartment while you are gone.<br> Sign a paid contract and we will rent your"
+" apartment faster."
 msgstr ""
-"Замовте клінінг або приберіться самі.<br> Фотозйомка нерухомості у подарунок!"
-"<br> Фахівець з нерухомості приїде, зробить фото та завантажить до "
-"оголошення.<br> Допоможемо у підготовці та оформленні документів для угоди. "
-"<br> Скористайтеся довірчим управлінням, і ми простежимо стан квартири, поки "
-"вас немає.<br> Підпишіть платний договір, і ми здамо вашу квартиру швидше."
+"Замовте клінінг або приберіться самі.<br> Фотозйомка нерухомості у "
+"подарунок!<br> Фахівець з нерухомості приїде, зробить фото та завантажить до"
+" оголошення.<br> Допоможемо у підготовці та оформленні документів для угоди."
+" <br> Скористайтеся довірчим управлінням, і ми простежимо стан квартири, "
+"поки вас немає.<br> Підпишіть платний договір, і ми здамо вашу квартиру "
+"швидше."
 
 #: pages/templates/pages/seller.html:124
 msgid "4 reasons to evaluate real estate right now"
@@ -2042,7 +2050,8 @@ msgstr "Це просто і зручно"
 msgid ""
 "You do not need to enter a lot of information, it is enough to fill in 5 "
 "fields."
-msgstr "Вам не потрібно вказувати багато інформації, досить заповнити 5 полів."
+msgstr ""
+"Вам не потрібно вказувати багато інформації, досить заповнити 5 полів."
 
 #: pages/templates/sections/feadback.html:10
 msgid "Free consultation"
@@ -2077,8 +2086,8 @@ msgid "Prices"
 msgstr "Ціни"
 
 #: pages/templates/sections/footer.html:20
-#: pages/templates/sections/header.html:71
-#: pages/templates/sections/header.html:107
+#: pages/templates/sections/header.html:77
+#: pages/templates/sections/header.html:133
 #: pages/templates/sections/services.html:54
 msgid "Analytics"
 msgstr "Аналітичні огляди"
@@ -2097,15 +2106,15 @@ msgstr "Навчальний портал"
 
 #: pages/templates/sections/footer.html:29
 #: pages/templates/sections/header.html:19
-#: pages/templates/sections/header.html:84
+#: pages/templates/sections/header.html:90
 msgid "Our online course"
 msgstr "Наш онлайн курс"
 
-#: pages/templates/sections/map.html:10
+#: pages/templates/sections/map.html:11
 msgid "Search on the map!"
 msgstr "Пошук на мапі!"
 
-#: pages/templates/sections/map.html:14
+#: pages/templates/sections/map.html:15
 msgid "Enter the address of the object"
 msgstr "Введіть адресу об'єкта"
 
@@ -2118,8 +2127,8 @@ msgid ""
 "Our team has 400 qualified employees. We carefully select and train each "
 "real estate professional, and after the deal, clients rate their work."
 msgstr ""
-"В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та "
-"навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють "
+"В нашій команді 400 кваліфікованих співробітників. Ми ретельно відбираємо та"
+" навчаємо кожного спеціаліста з нерухомості, а після угоди клієнти оцінюють "
 "їхню роботу."
 
 #: pages/templates/sections/reviews.html:20
@@ -2400,7 +2409,8 @@ msgstr "Доброта"
 #: vacantions/templates/vacantions/page.html:126
 msgid ""
 "it is invisible when you possess it, and it gives success in any business"
-msgstr "вона непомітна, коли володієш нею, і вона дає успіх у будь-якій справі"
+msgstr ""
+"вона непомітна, коли володієш нею, і вона дає успіх у будь-якій справі"
 
 #: vacantions/templates/vacantions/page.html:129
 msgid "Happiness"
@@ -2439,116 +2449,94 @@ msgid "No listings in your wishlist"
 msgstr "У вашому списку вибраного немає оголошень"
 
 #, fuzzy
-#~| msgid "Search for buyers"
 #~ msgid "Search files"
 #~ msgstr "Пошук покупців"
 
 #, fuzzy
-#~| msgid "Image"
 #~ msgid "Images in: "
 #~ msgstr "Картинка"
 
 #, fuzzy
-#~| msgid "Image"
 #~ msgid "Embed Image"
 #~ msgstr "Картинка"
 
 #, fuzzy
-#~| msgid "Get a free consultation"
 #~ msgid "Repeat for confirmation"
 #~ msgstr "Отримати безкоштовну консультацію"
 
 #, fuzzy
-#~| msgid "Profile"
 #~ msgid "file"
 #~ msgstr "Профіль"
 
 #, fuzzy
-#~| msgid "Message"
 #~ msgid "Messages"
 #~ msgstr "Повідомлення"
 
 #, fuzzy
-#~| msgid "Description"
 #~ msgid "Duration"
 #~ msgstr "Опис"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "Email address"
 #~ msgstr "Адреса"
 
 #, fuzzy
-#~| msgid "File"
 #~ msgid "File path"
 #~ msgstr "Файл"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IPv4 address"
 #~ msgstr "Адреса"
 
 #, fuzzy
-#~| msgid "Address"
 #~ msgid "IP address"
 #~ msgstr "Адреса"
 
 #, fuzzy
-#~| msgid "Status"
 #~ msgid "Sat"
 #~ msgstr "Статус"
 
 #, fuzzy
-#~| msgid "Search"
 #~ msgid "March"
 #~ msgstr "Пошук"
 
 #, fuzzy
-#~| msgid "Map"
 #~ msgid "May"
 #~ msgstr "Карта"
 
 #, fuzzy
-#~| msgid "House Number"
 #~ msgid "November"
 #~ msgstr "Номер будинку"
 
 #, fuzzy
-#~| msgid "Car"
 #~ msgid "mar"
 #~ msgstr "Машина"
 
 #, fuzzy
-#~| msgid "Map"
 #~ msgid "apr"
 #~ msgstr "Карта"
 
 #, fuzzy
-#~| msgid "Search"
 #~ msgctxt "abbrev. month"
 #~ msgid "March"
 #~ msgstr "Пошук"
 
 #, fuzzy
-#~| msgid "Map"
 #~ msgctxt "abbrev. month"
 #~ msgid "May"
 #~ msgstr "Карта"
 
 #, fuzzy
-#~| msgid "Search"
 #~ msgctxt "alt. month"
 #~ msgid "March"
 #~ msgstr "Пошук"
 
 #, fuzzy
-#~| msgid "Map"
 #~ msgctxt "alt. month"
 #~ msgid "May"
 #~ msgstr "Карта"
 
 #, fuzzy
-#~| msgid "House Number"
 #~ msgctxt "alt. month"
 #~ msgid "November"
 #~ msgstr "Номер будинку"
@@ -2579,13 +2567,13 @@ msgstr "У вашому списку вибраного немає оголош�
 
 #, python-format
 #~ msgid ""
-#~ "By selling an old apartment and buying a new one together with Contract "
-#~ "Real Estate, you receive a 5%% discount on the company"
+#~ "By selling an old apartment and buying a new one together with Contract Real"
+#~ " Estate, you receive a 5%% discount on the company"
 #~ msgstr ""
 #~ "Здійснюючи продаж старої квартири та купівлю нової разом з компанією "
 #~ "«Контракт Нерухомість», Ви отримуєте знижку на послуги компанії 5% При "
-#~ "повторному зверненні до компанії. Продаж / Покупка протягом року на себе "
-#~ "або родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
+#~ "повторному зверненні до компанії. Продаж / Покупка протягом року на себе або"
+#~ " родичів першої лінії, Ви отримуєте 5% знижку на послуги компанії. Для "
 #~ "військових та ЗСУ знижка від 5%."
 
 #~ msgid "ukrainian"
@@ -2601,8 +2589,7 @@ msgstr "У вашому списку вибраного немає оголош�
 
 #~ msgid ""
 #~ "\n"
-#~ "                    Поки що немає записів... Повернутись на <a href=\"/"
-#~ "\">головну</a>\n"
+#~ "                    Поки що немає записів... Повернутись на <a href=\"/\">головну</a>\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"

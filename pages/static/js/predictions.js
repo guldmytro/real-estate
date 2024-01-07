@@ -3,7 +3,6 @@ export class Prediction {
         this.searchForm = searchForm;
         this.input = this.searchForm.form.querySelector('[name="address_input"]');
         this.inputWrapper = this.input.parentNode;
-        this.cityInput = this.searchForm.form.querySelector('[name="city"]');
         this.streetInput = this.searchForm.form.querySelector('[name="street"]');
         this.districtInput = this.searchForm.form.querySelector('[name="district"]');
         this.houseComplexInput = this.searchForm.form.querySelector('[name="house_complex"]');
@@ -102,8 +101,8 @@ export class Prediction {
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'house_complex');
-                addressItem.innerHTML = `${suggestion.title} <em data-type="house_complex" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
-                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
+                addressItem.innerHTML = `${suggestion.title}`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
             });
             
@@ -130,8 +129,8 @@ export class Prediction {
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'district');
-                addressItem.innerHTML = `${suggestion.title} <em data-type="district" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
-                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
+                addressItem.innerHTML = `${suggestion.title}`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
             });
             
@@ -158,8 +157,8 @@ export class Prediction {
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'street');
-                addressItem.innerHTML = `${suggestion.title} <em data-type="street" data-id="${suggestion.id}">(${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})</em>`;
-                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${[suggestion.related_city.title, suggestion.related_region.title].join(', ')})`));
+                addressItem.innerHTML = `${suggestion.title}`;
+                addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
             });
     
@@ -169,32 +168,32 @@ export class Prediction {
         }
     
         // Add City suggestions
-        const citySuggestions = this.predictions?.cities || [];
-        if (citySuggestions.length > 0) {
-            const cityCategory = document.createElement('div');
-            cityCategory.classList.add('suggestion-category');
+        // const citySuggestions = this.predictions?.cities || [];
+        // if (citySuggestions.length > 0) {
+        //     const cityCategory = document.createElement('div');
+        //     cityCategory.classList.add('suggestion-category');
     
-            const cityTitle = document.createElement('p');
-            cityTitle.classList.add('suggestion-category__title');
-            cityTitle.innerHTML = `<img src="/static/img/icon-city.svg" alt="icon of city"><span>${localization[locale].sugesstions.city}</span>`;
+        //     const cityTitle = document.createElement('p');
+        //     cityTitle.classList.add('suggestion-category__title');
+        //     cityTitle.innerHTML = `<img src="/static/img/icon-city.svg" alt="icon of city"><span>${localization[locale].sugesstions.city}</span>`;
     
-            const cityGroup = document.createElement('ul');
-            cityGroup.classList.add('suggestion-category__group');
+        //     const cityGroup = document.createElement('ul');
+        //     cityGroup.classList.add('suggestion-category__group');
     
-            citySuggestions.forEach((suggestion) => {
-                const cityItem = document.createElement('li');
-                cityItem.classList.add('suggestion-category__item');
-                cityItem.setAttribute('data-id', suggestion.id);
-                cityItem.setAttribute('data-type', 'city');
-                cityItem.innerText = `${suggestion.title} (${suggestion.related_region.title})`;
-                cityItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_region.title})`));
-                cityGroup.appendChild(cityItem);
-            });
+        //     citySuggestions.forEach((suggestion) => {
+        //         const cityItem = document.createElement('li');
+        //         cityItem.classList.add('suggestion-category__item');
+        //         cityItem.setAttribute('data-id', suggestion.id);
+        //         cityItem.setAttribute('data-type', 'city');
+        //         cityItem.innerText = `${suggestion.title} (${suggestion.related_region.title})`;
+        //         cityItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_region.title})`));
+        //         cityGroup.appendChild(cityItem);
+        //     });
     
-            cityCategory.appendChild(cityTitle);
-            cityCategory.appendChild(cityGroup);
-            this.suggestionWrapper.appendChild(cityCategory);
-        }
+        //     cityCategory.appendChild(cityTitle);
+        //     cityCategory.appendChild(cityGroup);
+        //     this.suggestionWrapper.appendChild(cityCategory);
+        // }
     
         this.showPredictions = true;
         this.update();
@@ -226,14 +225,8 @@ export class Prediction {
             delete this.searchForm.activeFilters['city'];
             delete this.searchForm.activeFilters['street'];
             delete this.searchForm.activeFilters['house_complex'];
-        } else if (dataType === 'city') {
-            cityId = e.target.getAttribute('data-id');
-            delete this.searchForm.activeFilters['house_complex'];
-            delete this.searchForm.activeFilters['street'];
-            delete this.searchForm.activeFilters['district'];
         }
         this.streetInput.value = streetId;
-        this.cityInput.value = cityId;
         this.districtInput.value = districtId;
         this.houseComplexInput.value = houseComplexId;
         this.searchForm.activeFilters[dataType] = {
@@ -258,7 +251,6 @@ export class Prediction {
     }
 
     resetFields() {
-        this.cityInput.value = '';
         this.streetInput.value = '';
         this.districtInput.value = '';
         this.houseComplexInput.value = '';
