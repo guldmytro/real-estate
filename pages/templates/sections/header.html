@@ -72,7 +72,7 @@
                         {% url 'pages:abroad_properties' as url %}
                         <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>
                         {% url 'managers:list' as url %}
-                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Managers' %}</a>
+                        <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Partners' %}</a>
                         {% url 'analytics:list' as url %}
                         <a class="mobile-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Analytics' %}</a>
                         {% url 'pages:contacts' as url %}
@@ -128,7 +128,7 @@
                 {% url 'pages:abroad_properties' as url %}
                 <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Real estate abroad' %}</a>
                 {% url 'managers:list' as url %}
-                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Managers' %}</a>
+                <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Partners' %}</a>
                 {% url 'analytics:list' as url %}
                 <a class="header-nav__link{% if request.path == url %} active{% endif %}" href="{{ url }}">{% trans 'Analytics' %}</a>
                 {% url 'pages:contacts' as url %}

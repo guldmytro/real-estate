@@ -260,6 +260,11 @@ class Command(BaseCommand):
         if not manager:
             return False
         
+        # Updating Image (if it needs)
+        image_url = user.get('image_url', False)
+        if image_url:
+            add_manager_image.delay(manager.id, image_url)
+
         
         phones = user.get('phones', [])
         for phone in phones:
@@ -273,11 +278,7 @@ class Command(BaseCommand):
             if phone.phone not in phones:
                 phone.delete()
 
-        # Updating Image (if it needs)
-        image_url = user.get('image_url', False)
-        if not image_url:
-            return manager
-        add_manager_image.delay(manager.id, image_url)
+ 
         
         return manager
 

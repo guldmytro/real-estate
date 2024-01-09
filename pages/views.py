@@ -13,6 +13,7 @@ from listings.utils import get_listings_map_data
 from listings.models import Listing, City
 from django.db.models import Count
 from django.shortcuts import redirect
+from listings.utils import get_current_city
 
 def about(request):
     feadback_form = FeadbackForm(request.POST)
@@ -125,8 +126,8 @@ def home(request):
     
     cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
     cities_with_count = cities_with_count.order_by('-listing_count')
-    city = cities_with_count.first()
-    listings_list = Listing.objects.filter(street__city=city)[:400]
+    city = get_current_city(request)
+    listings_list = Listing.objects.filter(street__city=city)
 
     # Parsing listing coordinates for GoogleMaps
     coordinates = get_listings_map_data(listings_list)

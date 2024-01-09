@@ -307,11 +307,10 @@ def get_listings_coordinates(request):
     search_form_simplified = SearchFormSimplified(request.GET)
     if search_form_simplified.is_valid():
         cd = search_form_simplified.cleaned_data
-        city = cd['city']
         street = cd['street']
         district = cd['district']
         house_complex = cd['house_complex']
-        if city or street or district or house_complex:
+        if street or district or house_complex:
             listings_list = Listing.objects.all()
             listings_list = filter_listings(cd, listings_list)
             
