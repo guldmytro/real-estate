@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage
 from .forms import SearchForm, SearchFormSimplified
 from django.contrib.postgres.search import TrigramSimilarity
 import json
-from .utils import filter_listings, get_similar_listings, modify_get, get_listings_map_data
+from .utils import filter_listings, get_similar_listings, modify_get, get_listings_map_data, get_addresses_dict
 from emails.forms import ListingPhoneForm, ListingMessageForm, \
     ListingVisitForm
 from django.urls import reverse_lazy
@@ -30,7 +30,7 @@ def listings_list(request, realty_type=None, realty_deal=None):
         Prefetch('kits__attribute'),
     ).all()
 
-
+    
     if current_city is not None:
         listings_list = listings_list.filter(street__city=current_city)
 
@@ -55,26 +55,13 @@ def listings_list(request, realty_type=None, realty_deal=None):
     # Filtering
     if search_form.is_valid():
         cleaned_data = search_form.cleaned_data
-        
+        addresses_dict = get_addresses_dict(cleaned_data)
         city = cleaned_data.get('city')
         street = cleaned_data.get('street')
         address = cleaned_data.get('address')
         district = cleaned_data.get('district')
         house_complex = cleaned_data.get('house_complex')
         crumb_title = False
-
-        # if not city and not street and not district and not house_complex:
-        #     try:
-        #         cities_with_count = City.objects.annotate(listing_count=Count('streets__listings'))
-        #         cities_with_count = cities_with_count.order_by('-listing_count')
-        #         city = cities_with_count.first()
-        #         if city:
-        #             query_params = request.GET.copy()
-        #             query_params['city'] = city.id
-        #             url = request.path + '?' + query_params.urlencode()
-        #             return redirect(url)
-        #     except:
-        #         pass
             
         if city:
             try:
@@ -147,7 +134,8 @@ def listings_list(request, realty_type=None, realty_deal=None):
         'search_form': search_form,
         'crumbs': crumbs,
         'realty_type': r_type,
-        'realty_deal': r_deal
+        'realty_deal': r_deal,
+        'addresses_dict': addresses_dict
     }
     return render(request, 'listings/list.html', context)
 

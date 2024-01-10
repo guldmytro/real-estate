@@ -42,10 +42,19 @@ except:
 
 def filter_listings(cleaned_data, listings):
     deal = cleaned_data.get('deal')
-    city_id = cleaned_data.get('city')
-    street_id = cleaned_data.get('street')
-    house_complex_id = cleaned_data.get('house_complex')
-    district_id = cleaned_data.get('district')
+    
+    street_ids = None
+    if cleaned_data.get('street'):
+        street_ids = [int(id) for id in cleaned_data.get('street').split(',')]
+    
+    house_complex_ids = None
+    if cleaned_data.get('house_complex'):
+        house_complex_ids = [int(id) for id in cleaned_data.get('house_complex').split(',')]
+
+    district_ids = None
+    if cleaned_data.get('district'):
+        district_ids = [int(id) for id in cleaned_data.get('district').split(',')]
+
     number_of_rooms = cleaned_data.get('number_of_rooms')
     min_price = cleaned_data.get('min_price')
     max_price = cleaned_data.get('max_price')
@@ -76,15 +85,21 @@ def filter_listings(cleaned_data, listings):
     if deal:
         listings = listings.filter(deal=deal)
 
-    if street_id:
-        listings = listings.filter(street_id=street_id)
-    elif district_id:
-        listings = listings.filter(district_id=district_id)
-    elif house_complex_id:
-        listings = listings.filter(house_complex_id=house_complex_id)
-    elif city_id:
-        listings = listings.filter(street__city_id=city_id)
+    loc_q = Q()
+
+    if street_ids:
+        loc_q |= Q(street_id__in=street_ids)
     
+    if district_ids:
+        loc_q |= Q(district_id__in=district_ids)
+
+    if house_complex_ids:
+        loc_q |= Q(house_complex_id__in=house_complex_ids)
+
+    listings = listings.filter(loc_q)
+        
+    
+
     if number_of_rooms:
         q_rooms = Q()
         if '4+' in number_of_rooms:
@@ -174,21 +189,6 @@ def get_similar_listings(listing):
         price__lte=listing.price + 10000
     ).exclude(id=listing.id)
 
-    # try: 
-    #     kit = Kit.objects.get(attribute__slug='property_23', listing=listing)
-    #     year_built = int(kit.value)
-
-    #     min_year_built = year_built - 3
-    #     max_year_built = year_built + 3
-
-    #     similar_listings = similar_listings.filter(
-    #         kits__attribute__slug='property_23',
-    #         kits__translations__value__gte=str(min_year_built),
-    #         kits__translations__value__lte=str(max_year_built),
-    #     )
-    # except Kit.DoesNotExist:
-    #     pass
-
     similar_listings = similar_listings[:10]
 
     return similar_listings
@@ -196,38 +196,7 @@ def get_similar_listings(listing):
 
 def modify_get(GET):
     modified_get = GET.copy()
-    city = modified_get.get('city')
-    street = modified_get.get('street')
-    district = modified_get.get('district')
-    house_complex = modified_get.get('house_complex')
-    try:
-        if city:
-            city_obj = City.objects.get(id=city)
-            if city_obj.region:
-                modified_get['address_input'] = f'{city_obj.title}'
-            else:
-                modified_get['address_input'] = city_obj.title
-        elif street:
-            street_obj = Street.objects.get(id=street)
-            try:
-                modified_get['address_input'] = f'{street_obj.title}'
-            except:
-                modified_get['address_input'] = f'{street_obj.title}'
-        elif district:
-            district_obj = District.objects.get(id=street)
-            try:
-                modified_get['address_input'] = f'{district_obj.title}'
-            except:
-                modified_get['address_input'] = f'{district_obj.title}'
-        elif house_complex:
-            house_complex_obj = District.objects.get(id=street)
-            try:
-                modified_get['address_input'] = f'{house_complex_obj.title}'
-            except:
-                modified_get['address_input'] = f'{house_complex_obj.title}'
-         
-    except:
-        pass
+    modified_get['address_input'] = ''
     return modified_get
 
 
@@ -323,3 +292,42 @@ def get_current_city(request):
         return city
     except City.DoesNotExist:
         return None
+    
+
+def get_addresses_dict(cd):
+    street = cd.get('street')
+    district = cd.get('district')
+    house_complex = cd.get('house_complex')
+    result = []
+
+    if street:
+        street_ids = [int(id) for id in street.split(',')]
+        for street in Street.objects.filter(id__in=street_ids):
+            result.append({
+                'value': street.id,
+                'name': 'street',
+                'label': street.title
+            })
+    
+
+    if district:
+        district_ids = [int(id) for id in district.split(',')]
+        for disrict in District.objects.filter(id__in=district_ids):
+            result.append({
+                'value': disrict.id,
+                'name': 'disrict',
+                'label': disrict.title
+            })
+
+
+    if house_complex:
+        house_complex_ids = [int(id) for id in house_complex.split(',')]
+        for house_complex in HouseComplex.objects.filter(id__in=house_complex_ids):
+            result.append({
+                'value': house_complex.id,
+                'name': 'house_complex',
+                'label': house_complex.title
+            })
+
+    return result
+    

@@ -21,9 +21,9 @@ export class Prediction {
 
     handleInput(value) {
         clearTimeout(this.debounceTimer);
-        this.inputWrapper.classList.remove('valid');
-        this.inputWrapper.classList.add('invalid');
-        this.resetFields();
+        // this.inputWrapper.classList.remove('valid');
+        // this.inputWrapper.classList.add('invalid');
+        // this.resetFields();
         this.searchForm.update ? this.searchForm.update() : null;
 
         this.debounceTimer = setTimeout(() => {
@@ -95,12 +95,20 @@ export class Prediction {
     
             const addressGroup = document.createElement('ul');
             addressGroup.classList.add('suggestion-category__group');
-    
+            let activeHouseComplexes = [];
+            if (Array.isArray(this.searchForm.activeFilters.locations)) {
+                activeHouseComplexes = this.searchForm.activeFilters.locations.filter(location => location.name === 'house_complex')
+                .map(location => parseInt(location.value));
+            }
             houseComplexSuggestions.forEach((suggestion) => {
                 const addressItem = document.createElement('li');
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'house_complex');
+                if (activeHouseComplexes.includes(parseInt(suggestion.id))) {
+                    addressItem.style.opacity = 0.5;
+                    addressItem.style.pointerEvents = 'none';
+                }
                 addressItem.innerHTML = `${suggestion.title}`;
                 addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
@@ -123,12 +131,22 @@ export class Prediction {
     
             const addressGroup = document.createElement('ul');
             addressGroup.classList.add('suggestion-category__group');
+
+            let activeDistricts = [];
+            if (Array.isArray(this.searchForm.activeFilters.locations)) {
+                activeDistricts = this.searchForm.activeFilters.locations.filter(location => location.name === 'district')
+                .map(location => parseInt(location.value));
+            }
     
             districtSuggestions.forEach((suggestion) => {
                 const addressItem = document.createElement('li');
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'district');
+                if (activeDistricts.includes(parseInt(suggestion.id))) {
+                    addressItem.style.opacity = 0.5;
+                    addressItem.style.pointerEvents = 'none';
+                }
                 addressItem.innerHTML = `${suggestion.title}`;
                 addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
@@ -151,12 +169,22 @@ export class Prediction {
     
             const addressGroup = document.createElement('ul');
             addressGroup.classList.add('suggestion-category__group');
+
+            let activeStreets = [];
+            if (Array.isArray(this.searchForm.activeFilters.locations)) {
+                activeStreets = this.searchForm.activeFilters.locations.filter(location => location.name === 'street')
+                .map(location => parseInt(location.value));
+            }
     
             addressSuggestions.forEach((suggestion) => {
                 const addressItem = document.createElement('li');
                 addressItem.classList.add('suggestion-category__item');
                 addressItem.setAttribute('data-id', suggestion.id);
                 addressItem.setAttribute('data-type', 'street');
+                if (activeStreets.includes(parseInt(suggestion.id))) {
+                    addressItem.style.opacity = 0.5;
+                    addressItem.style.pointerEvents = 'none';
+                }
                 addressItem.innerHTML = `${suggestion.title}`;
                 addressItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title}`));
                 addressGroup.appendChild(addressItem);
@@ -166,77 +194,47 @@ export class Prediction {
             addressCategory.appendChild(addressGroup);
             this.suggestionWrapper.appendChild(addressCategory);
         }
-    
-        // Add City suggestions
-        // const citySuggestions = this.predictions?.cities || [];
-        // if (citySuggestions.length > 0) {
-        //     const cityCategory = document.createElement('div');
-        //     cityCategory.classList.add('suggestion-category');
-    
-        //     const cityTitle = document.createElement('p');
-        //     cityTitle.classList.add('suggestion-category__title');
-        //     cityTitle.innerHTML = `<img src="/static/img/icon-city.svg" alt="icon of city"><span>${localization[locale].sugesstions.city}</span>`;
-    
-        //     const cityGroup = document.createElement('ul');
-        //     cityGroup.classList.add('suggestion-category__group');
-    
-        //     citySuggestions.forEach((suggestion) => {
-        //         const cityItem = document.createElement('li');
-        //         cityItem.classList.add('suggestion-category__item');
-        //         cityItem.setAttribute('data-id', suggestion.id);
-        //         cityItem.setAttribute('data-type', 'city');
-        //         cityItem.innerText = `${suggestion.title} (${suggestion.related_region.title})`;
-        //         cityItem.addEventListener('click', (e) => this.fillSearchInput(e, `${suggestion.title} (${suggestion.related_region.title})`));
-        //         cityGroup.appendChild(cityItem);
-        //     });
-    
-        //     cityCategory.appendChild(cityTitle);
-        //     cityCategory.appendChild(cityGroup);
-        //     this.suggestionWrapper.appendChild(cityCategory);
-        // }
-    
+
         this.showPredictions = true;
         this.update();
     }
 
     fillSearchInput(e, value) {
         if (this.input) {
-            this.input.value = this.trimString(value);
+            this.input.value = '';
         }
         this.showPredictions = false;
         
         let streetId = '';
-        let cityId = '';
         let houseComplexId = '';
         let districtId = '';
         const dataType = e.target.getAttribute('data-type');
         if (dataType === 'street') {
             streetId = e.target.getAttribute('data-id');
-            delete this.searchForm.activeFilters['city'];
-            delete this.searchForm.activeFilters['house_complex'];
-            delete this.searchForm.activeFilters['district'];
         } else if (dataType === 'house_complex') {
             houseComplexId = e.target.getAttribute('data-id');
-            delete this.searchForm.activeFilters['city'];
-            delete this.searchForm.activeFilters['street'];
-            delete this.searchForm.activeFilters['district'];
         } else if (dataType === 'district') {
             districtId = e.target.getAttribute('data-id');
-            delete this.searchForm.activeFilters['city'];
-            delete this.searchForm.activeFilters['street'];
-            delete this.searchForm.activeFilters['house_complex'];
         }
-        this.streetInput.value = streetId;
-        this.districtInput.value = districtId;
-        this.houseComplexInput.value = houseComplexId;
-        this.searchForm.activeFilters[dataType] = {
-            name: dataType,
-            value: e.target.getAttribute('data-id'),
-            label: this.trimString(value)
-        };
+        let newLocations = [];
+        if (this.searchForm.single) {
+            newLocations = [{
+                name: dataType,
+                value: e.target.getAttribute('data-id'),
+                label: this.trimString(value)
+            }];
+        } else {
+            newLocations = [...this.searchForm.activeFilters['locations'], {
+                name: dataType,
+                value: e.target.getAttribute('data-id'),
+                label: this.trimString(value)
+            }];
+        }
+        this.updateInputs(newLocations);
+
+        this.searchForm.activeFilters['locations'] = newLocations;
+
         
-        this.inputWrapper.classList.remove('invalid');
-        this.inputWrapper.classList.add('valid');
         setTimeout(() => {
             this.input.blur();
         }, 10);
@@ -245,7 +243,15 @@ export class Prediction {
             this.searchForm.mapUpdate();
         }
     }
-
+    updateInputs(locations=false) {
+        const newLocations = locations || this.searchForm.activeFilters['locations'];
+        this.streetInput.value = newLocations.filter(location => location.name === 'street')
+        .map(location => location.value).join(',');
+        this.districtInput.value = newLocations.filter(location => location.name === 'district')
+            .map(location => location.value).join(',');
+        this.houseComplexInput.value = newLocations.filter(location => location.name === 'house_complex')
+            .map(location => location.value).join(',');
+    }
     trimString(value) {
         return value.trim().replace(/\s{2,}/g, ' ');
     }
@@ -255,7 +261,6 @@ export class Prediction {
         this.districtInput.value = '';
         this.houseComplexInput.value = '';
         try {
-            delete this.searchForm.activeFilters['city'];
             delete this.searchForm.activeFilters['street'];
             delete this.searchForm.activeFilters['district'];
             delete this.searchForm.activeFilters['house_complex'];

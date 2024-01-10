@@ -215,3 +215,8 @@
         <div class="active-filters"></div>
     </form>
 {% endif %}
+
+
+    <script>
+        const extraAddreses = {% if addresses_dict %}{{ addresses_dict|safe }}{% else %}[]{% endif %}
+    </script>

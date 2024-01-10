@@ -176,16 +176,8 @@ class SearchForm {
                 filters[name].value = [...filters[name].value, checkbox.value];
             }
         });
-        const predictionName = this.prediction.streetInput.getAttribute('name');
-        const predictionValue = this.prediction.input.value;
-        if (predictionValue) {
-            filters[predictionName] = {
-                name: predictionName,
-                value: predictionValue,
-                label: predictionValue
-            };
-        }
-        this.prediction.input
+
+        filters['locations'] = extraAddreses || [];
         return new Proxy(filters, this.activeFiltersHandler());
     }
 
@@ -222,15 +214,29 @@ class SearchForm {
         }
     }
 
-    updateActiveFilters(firstUpadate=false) { 
+    updateActiveFilters = (firstUpadate=false) => { 
         this.activeFiltersContainer.innerHTML = '';
         let filtersCount = Object.keys(this.activeFilters).length;
+        if (Array.isArray(this.activeFilters['locations'])) {
+            this.activeFilters['locations'].forEach(location => {
+                filtersCount++;
+                const filterTag = `
+                <div class="active-filters__item">
+                    <span class="active-filters__label">${location.label}</span>
+                    <button type="button" data-name="${location.name}" data-value="${location.value}" class="active-filters__btn" aria-label="очистити фільтр"></button>
+                </div>`;
+                this.activeFiltersContainer.insertAdjacentHTML('beforeend', filterTag);
+            });
+        }
+
         for (const [key, filter] of Object.entries(this.activeFilters)) {
+            
  
-            if (key === 'deal' || key === 'polygon') {
+            if (key === 'deal' || key === 'polygon' || key === 'locations') {
                 filtersCount--;
                 continue;
             }
+            if (key === 'locations') continue;
             let extraLabel = filter.label;
             if (filter.name === 'number_of_rooms') {
                 extraLabel = `<small>${filter.label}</small> ${filter.value.join(', ')}`;
@@ -246,12 +252,19 @@ class SearchForm {
         filterButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 const name = button.dataset.name;
-                delete this.activeFilters[name];
-                if (name === 'city' || name === 'street' || name === 'district' || name === 'house_complex') {
-                    this.form.querySelector('[name="address_input"]').value = '';
-                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('valid')
-                    this.form.querySelector('[name="address_input"]')?.parentNode?.classList.remove('invalid');
+                const value = button.dataset.value;
+                if (['house_complex', 'street', 'district'].includes(name)) {
+                    const input = this.form.querySelector(`[name=${name}]`);
+                    input.value = input.value.split(',').filter(val => val != value);
+                    this.activeFilters['locations'] = this.activeFilters['locations'].filter(location => {
+                        if (location.name === name && location.value == value) {
+                            return false;
+                        }
+                        return true;
+                    });
+                    return;
                 }
+                delete this.activeFilters[name];
             });
         });
         this.activeFiltersContainer.style.display = filtersCount > 0 ||
@@ -380,7 +393,8 @@ class SearchForm {
     shortenNumber(number) {
         const units = {
             'en': ['', 'K', 'M', 'B', 'T'],
-            'uk': ['', 'тис.', 'млн.', 'млрд.', 'трлн.']
+            'uk': ['', 'тис.', 'млн.', 'млрд.', 'трлн.'],
+            'ru': ['', 'тыс.', 'млн.', 'млрд.', 'трлн.']
         }
         
         const scales = units[locale];
@@ -534,8 +548,10 @@ class MapSearch {
     constructor(formId) {
         this.form = document.querySelector(formId);
         if (this.form) {
+            this.single = true;
             this.locations = locations || [];
             this.activeFilters = {};
+            this.activeFilters['locations'] = [];
             this.action = this.form.getAttribute('action');
             this.prediction = new Prediction(this);
             this.map = false;
