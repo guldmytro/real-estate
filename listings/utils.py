@@ -206,7 +206,7 @@ def get_listings_map_data(listings):
         'lat': listing.coordinates.y, 
         'lng': listing.coordinates.x,
         'price': listing.formated_price(),
-        } for listing in listings[:500]]
+        } for listing in listings]
     return coordinates
     
 
