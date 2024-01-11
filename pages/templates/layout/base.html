@@ -66,6 +66,22 @@
                     'district': 'Район',
                     'houseComplex': 'ЖК'
                 }
+            },
+            'ru': {
+                'searchBtn': {
+                    'enter': 'Выберите адрес',
+                    'found': 'Показать',
+                    'notFound': 'Не найдено объявлений'
+                },
+                'moreBtn': 'Еще',
+                'clearBtn': 'Очистить всё',
+                'sugesstions': {
+                    'noAddressFound': 'Не найдено адрес',
+                    'city': 'Город',
+                    'address': 'Улица',
+                    'district': 'Район',
+                    'houseComplex': 'ЖК'
+                }
             }
         }
         const locations = {% if coordinates %}{{ coordinates|safe }}{% else %}null{% endif %};
