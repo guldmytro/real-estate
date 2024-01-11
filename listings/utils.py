@@ -1,4 +1,4 @@
-from .models import Listing, Kit, City, Street, Country, RealtyType, Category, Image, District, HouseComplex
+from .models import Listing, Kit, City, Street, Country, RealtyType, Category, Image, District, HouseComplex, Region
 from managers.models import Manager
 from django.db.models import Count
 import requests, uuid
@@ -331,3 +331,61 @@ def get_addresses_dict(cd):
 
     return result
     
+
+def set_default_ru():
+    for c in Country.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
+    for c in Street.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
+    for c in District.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+        
+    for c in HouseComplex.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
+    for c in City.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
+    for c in Region.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
+    for c in RealtyType.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+    
+    for c in Category.objects.all():
+        c.set_current_language('ua')
+        uk_title = c.title
+        c.set_current_language('ru')
+        c.title = uk_title + 'ru'
+        c.save()
+
