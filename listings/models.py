@@ -205,6 +205,7 @@ class Image(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE, verbose_name=_('Listing'), related_name='images')
     file = models.ImageField(upload_to='listings/%Y/%m/%d', verbose_name=_('File'), blank=True, null=True)
     image_url = models.URLField(blank=True, null=True, verbose_name=_('Image url'))
+    order = models.PositiveSmallIntegerField(default=1)
 
     def save(self, *args, **kwargs):
         if self.image_url and not self.file:
@@ -217,6 +218,7 @@ class Image(models.Model):
         return super(Image, self).save(*args, **kwargs)
 
     class Meta:
+        ordering = ['order']
         unique_together = (
             ('listing', 'image_url')
         )

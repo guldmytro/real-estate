@@ -2,7 +2,7 @@ from celery import shared_task
 from listings.models import Image, Listing, Manager
 
 @shared_task
-def add_listing_image(listing_id, image_url):
+def add_listing_image(listing_id, image_url, index):
     try:
         listing = Listing.objects.get(id=listing_id)
     except Listing.DoesNotExist:
@@ -11,7 +11,7 @@ def add_listing_image(listing_id, image_url):
         try:
             image = Image.objects.get(image_url=image_url, listing=listing)
         except Image.DoesNotExist:
-            image = Image(image_url=image_url, listing=listing)
+            image = Image(image_url=image_url, order=index, listing=listing)
             try:
                 image.full_clean()
                 image.save()

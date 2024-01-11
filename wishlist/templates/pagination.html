@@ -1,6 +1,6 @@
 {% load listing_extras %}
 {% load static %}
-
+<!-- 
 {% if page.paginator.num_pages > 1 %}
     <nav class="pagination">
         {% if page.has_previous %}
@@ -15,4 +15,45 @@
             </a>
         {% endif %}
     </nav>
+{% endif %} -->
+
+
+{% if page.paginator.num_pages > 1 %}
+    <nav class="pagination">
+        {% if page.has_previous %}
+            <a href="{% url_with_query_params page.previous_page_number %}" aria-label="попередня сторінка" class="pagination__link pagination__link_prev">
+                <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
+            </a>
+        {% endif %}
+
+        {% for p in page.paginator.page_range %}
+            {% if page.number == p %}
+                <span class="pagination__current">{{ p }}</span>
+            {% else %}
+                {% if p == 1 or p == page.paginator.num_pages or p >= page.number|add:"-2" and p <= page.number|add:"2" %}
+                    <a href="{% url_with_query_params p %}" class="pagination__link">{{ p }}</a>
+                {% elif p == page.number|add:"-3" or p == page.number|add:"3" %}
+                    <span class="pagination__ellipsis">...</span>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if page.has_next %}
+            <a href="{% url_with_query_params page.next_page_number %}" aria-label="наступна сторінка" class="pagination__link pagination__link_next">
+                <img src="{% static 'img/icon-arrow_2.png' %}" alt="стрілка">
+            </a>
+        {% endif %}
+    </nav>
 {% endif %}
+
+<style>
+    .pagination__link {
+        color: #fff;
+        text-decoration: none;
+    }
+    .pagination__ellipsis {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>

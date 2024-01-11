@@ -27,7 +27,7 @@ logger.addHandler(file_handler)
 
 languages_old = {'en': 'en_US', 'uk': 'uk_UA'}
 
-languages = {'en': 'en', 'uk': 'uk'}
+languages = {'en': 'en', 'uk': 'uk', 'ru': 'ru'}
 
 
 translation_key = None

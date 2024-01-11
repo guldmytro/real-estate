@@ -382,9 +382,10 @@ class Command(BaseCommand):
         # Updating address
         address_dict = {
             'uk': self.fetch_geo_data(lng, lat, lang='uk'),
-            'en': self.fetch_geo_data(lng, lat, lang='en')
+            'en': self.fetch_geo_data(lng, lat, lang='en'),
+            'ru': self.fetch_geo_data(lng, lat, lang='ru')
             }
-        if address_dict['uk'] and address_dict['en']:
+        if address_dict['uk'] and address_dict['en'] and address_dict['ru']:
             street = self.create_listing_address(address_dict)
             try:
                 listing.street_number = data['location'].get('house_num', '')
@@ -409,8 +410,8 @@ class Command(BaseCommand):
 
         
         # Create Images
-        for image_url in data['images']:
-            add_listing_image.delay(listing.id, image_url)
+        for index, image_url in enumerate(data['images']):
+            add_listing_image.delay(listing.id, image_url, index)
 
         # Update images
         for image in listing.images.all():
@@ -432,6 +433,8 @@ class Command(BaseCommand):
                     attribute.title = translate(attribute_data['label'], to_lang=languages['uk'])
                     attribute.set_current_language('en')
                     attribute.title = translate(attribute_data['label'], to_lang=languages['en'])
+                    attribute.set_current_language('ru')
+                    attribute.title = translate(attribute_data['label'], to_lang=languages['ru'])
                     attribute.save()
                 
                 try:
@@ -455,6 +458,8 @@ class Command(BaseCommand):
                         kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
                         kit.set_current_language('en')
                         kit.value = translate(attribute_data['value'], to_lang=languages['en'])
+                        kit.set_current_language('ru')
+                        kit.value = translate(attribute_data['value'], to_lang=languages['ru'])
                     kit.attribute = attribute
                     kit.save()
                 kit.listing.add(listing)
@@ -489,6 +494,8 @@ class Command(BaseCommand):
             country.title = address_dict['uk']['country']['title']
             country.set_current_language('en')
             country.title = address_dict['en']['country']['title']
+            country.set_current_language('ru')
+            country.title = address_dict['ru']['country']['title']
             country.save()
         
         if not country:
@@ -511,6 +518,8 @@ class Command(BaseCommand):
                 region.title = address_dict['uk']['region']['title']
                 region.set_current_language('en')
                 region.title = address_dict['en']['region']['title']
+                region.set_current_language('ru')
+                region.title = address_dict['ru']['region']['title']
                 region.save()
         
         if address_dict['uk']['city']['title'] is None:
@@ -528,6 +537,8 @@ class Command(BaseCommand):
             city.title = address_dict['uk']['city']['title']
             city.set_current_language('en')
             city.title = address_dict['en']['city']['title']
+            city.set_current_language('ru')
+            city.title = address_dict['ru']['city']['title']
             city.country = country
             if region:
                 city.region = region
@@ -550,6 +561,8 @@ class Command(BaseCommand):
             street.title = address_dict['uk']['street']['title']
             street.set_current_language('en')
             street.title = address_dict['en']['street']['title']
+            street.set_current_language('ru')
+            street.title = address_dict['ru']['street']['title']
             street.city = city
             street.save()
 
@@ -581,6 +594,9 @@ class Command(BaseCommand):
             district_obj.set_current_language('en')
             district_obj.title = translate(district, from_lang='uk', to_lang='en')
             district_obj.city = city
+            district_obj.set_current_language('ru')
+            district_obj.title = translate(district, from_lang='uk', to_lang='ru')
+            district_obj.city = city
             district_obj.save()
 
         return district_obj
@@ -607,6 +623,9 @@ class Command(BaseCommand):
             house_complex_obj.set_current_language('en')
             house_complex_obj.title = translate(house_complex, from_lang='uk', to_lang='en')
             house_complex_obj.city = city
+            house_complex_obj.set_current_language('ru')
+            house_complex_obj.title = translate(house_complex, from_lang='uk', to_lang='ru')
+            house_complex_obj.city = city
             house_complex_obj.save()
 
         return house_complex_obj
@@ -625,6 +644,8 @@ class Command(BaseCommand):
             term.title = category
             term.set_current_language('en')
             term.title = translate(category, to_lang=languages['en'])
+            term.set_current_language('ru')
+            term.title = translate(category, to_lang=languages['ru'])
             term.save()
         return term
 
@@ -642,6 +663,8 @@ class Command(BaseCommand):
             term.title = realty
             term.set_current_language('en')
             term.title = translate(realty, to_lang=languages['en'])
+            term.set_current_language('ru')
+            term.title = translate(realty, to_lang=languages['ru'])
             term.save()
         return term
 
