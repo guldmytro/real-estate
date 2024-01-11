@@ -10,7 +10,7 @@ class NewUserLanguageMiddleware:
     def __call__(self, request):
         if not request.session.get('visited'):
             request.session['visited'] = True
-            activate('uk')
+            activate('ru')
         
         response = self.get_response(request)
         return response

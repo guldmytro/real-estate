@@ -6,7 +6,7 @@
     <div class="object-item-inner">
         <a href="{{ item.get_absolute_url }}" class="object-item__thumb">
             <span class="visited"><span>{% trans 'Reviewed' %}</span></span>
-            {{ item.images.first.order }}
+            {% if item.images.first %}
                 <img src="{{ item.images.first.file|thumbnail_url:'medium' }}" width="1000" height="667"
                      alt="{{ item.title }}" class="object-item__img">
             {% else %}
