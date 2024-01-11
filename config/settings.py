@@ -181,7 +181,7 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'uk'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = Path('static/')
-STATIC_VERSION = '1.351'
+STATIC_VERSION = '1.352'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path('media/')
 
