@@ -382,11 +382,10 @@ class Command(BaseCommand):
         # Updating address
         address_dict = {
             'uk': self.fetch_geo_data(lng, lat, lang='uk'),
-            'en': self.fetch_geo_data(lng, lat, lang='en'),
-            'ru': self.fetch_geo_data(lng, lat, lang='ru')
+            'en': self.fetch_geo_data(lng, lat, lang='en')
             }
-        if address_dict['uk'] and address_dict['en'] and address_dict['ru']:
-            street = self.create_listing_address(address_dict)
+        if address_dict['uk'] and address_dict['en']:
+            street = self.create_listing_address(address_dict, data.get('location', {}))
             try:
                 listing.street_number = data['location'].get('house_num', '')
             except:
@@ -395,7 +394,7 @@ class Command(BaseCommand):
         if street:
             listing.street = street
         
-        listing.district = self.get_listing_district(data['location'].get('district'), listing.street)
+        listing.district = self.get_listing_district(data['location'].get('district'), listing.street, data['location'].get('district_ru'))
         listing.house_complex = self.get_listing_house_complex(data.get('newbuilding_name'), listing.street)
 
         manager = self.get_manager(data.get('user', False))
@@ -448,11 +447,15 @@ class Command(BaseCommand):
                         kit.value = 'Є'
                         kit.set_current_language('en')
                         kit.value = 'There is gas'
+                        kit.set_current_language('ru')
+                        kit.value = 'Есть'
                     elif str(attribute_data['value']).lower() == 'евроремонт':
                         kit.set_current_language('uk')
                         kit.value = 'Євроремонт'
                         kit.set_current_language('en')
                         kit.value = 'Renovation'
+                        kit.set_current_language('ru')
+                        kit.value = 'Евроремонт'
                     else:
                         kit.set_current_language('uk')
                         kit.value = translate(attribute_data['value'], to_lang=languages['uk'])
@@ -480,7 +483,7 @@ class Command(BaseCommand):
             logger.error(f'Listing {int(data["id"])} does not exist')
 
     
-    def create_listing_address(self, address_dict):
+    def create_listing_address(self, address_dict, data):
         if address_dict['uk']['country']['title'] is None:
             return None
         try: 
@@ -495,7 +498,7 @@ class Command(BaseCommand):
             country.set_current_language('en')
             country.title = address_dict['en']['country']['title']
             country.set_current_language('ru')
-            country.title = address_dict['ru']['country']['title']
+            country.title = address_dict['uk']['country']['title'] + 'ru'
             country.save()
         
         if not country:
@@ -519,7 +522,7 @@ class Command(BaseCommand):
                 region.set_current_language('en')
                 region.title = address_dict['en']['region']['title']
                 region.set_current_language('ru')
-                region.title = address_dict['ru']['region']['title']
+                region.title = data.get('region_ru', address_dict['uk']['region']['title'] + 'ru')
                 region.save()
         
         if address_dict['uk']['city']['title'] is None:
@@ -538,7 +541,7 @@ class Command(BaseCommand):
             city.set_current_language('en')
             city.title = address_dict['en']['city']['title']
             city.set_current_language('ru')
-            city.title = address_dict['ru']['city']['title']
+            city.title = data.get('city_ru', address_dict['uk']['city']['title'] + 'ru')
             city.country = country
             if region:
                 city.region = region
@@ -562,7 +565,7 @@ class Command(BaseCommand):
             street.set_current_language('en')
             street.title = address_dict['en']['street']['title']
             street.set_current_language('ru')
-            street.title = address_dict['ru']['street']['title']
+            street.title = data.get('street_ru', address_dict['uk']['street']['title'] + 'ru')
             street.city = city
             street.save()
 
@@ -572,7 +575,7 @@ class Command(BaseCommand):
 
         return street
     
-    def get_listing_district(self, district, street):
+    def get_listing_district(self, district, street, district_ru):
         if street is None or district is None:
             return None
         if street.city is None:
@@ -595,7 +598,7 @@ class Command(BaseCommand):
             district_obj.title = translate(district, from_lang='uk', to_lang='en')
             district_obj.city = city
             district_obj.set_current_language('ru')
-            district_obj.title = translate(district, from_lang='uk', to_lang='ru')
+            district_obj.title = district_ru
             district_obj.city = city
             district_obj.save()
 
