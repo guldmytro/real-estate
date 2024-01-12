@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-09 11:39+0200\n"
-"PO-Revision-Date: 2024-01-09 09:40+0000\n"
+"POT-Creation-Date: 2024-01-12 10:39+0200\n"
+"PO-Revision-Date: 2024-01-12 08:40+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -26,7 +26,7 @@ msgstr "Аналитические обзоры"
 
 #: analytics/models.py:10 discounts/models.py:11 documents/models.py:8
 #: listings/models.py:35 listings/models.py:147 listings/models.py:164
-#: listings/models.py:178 listings/models.py:234 news/models.py:10
+#: listings/models.py:178 listings/models.py:236 news/models.py:10
 #: vacantions/models.py:8 vacantions/models.py:26
 msgid "Title"
 msgstr "Заголовок"
@@ -66,7 +66,7 @@ msgstr "Русский"
 #: discounts/templates/discounts/list.html:12 discounts/views.py:18
 #: discounts/views.py:30 pages/templates/sections/footer.html:17
 #: pages/templates/sections/header.html:23
-#: pages/templates/sections/header.html:94
+#: pages/templates/sections/header.html:92
 msgid "Discounts"
 msgstr "Акции"
 
@@ -241,8 +241,8 @@ msgstr ""
 "Отправляя отзыв, вы соглашаетесь на обработку своих персональных данных"
 
 #: listings/apps.py:8 listings/models.py:81
-#: listings/templates/listings/list.html:16 listings/views.py:109
-#: listings/views.py:170
+#: listings/templates/listings/list.html:16 listings/views.py:96
+#: listings/views.py:158
 msgid "Listings"
 msgstr "Объявления"
 
@@ -478,7 +478,7 @@ msgstr "Общее количество этажей"
 msgid "Price"
 msgstr "Цена"
 
-#: listings/models.py:60 listings/models.py:338 listings/models.py:346
+#: listings/models.py:60 listings/models.py:340 listings/models.py:348
 msgid "Street"
 msgstr "Улица"
 
@@ -486,7 +486,7 @@ msgstr "Улица"
 msgid "House Number"
 msgstr "Номер дома"
 
-#: listings/models.py:63 listings/models.py:310 listings/models.py:318
+#: listings/models.py:63 listings/models.py:312 listings/models.py:320
 #: listings/templates/listings/components/attributes.html:19
 msgid "District"
 msgstr "Район"
@@ -508,7 +508,7 @@ msgstr "Сделка"
 msgid "Video"
 msgstr "Видео"
 
-#: listings/models.py:80 listings/models.py:205 listings/models.py:247
+#: listings/models.py:80 listings/models.py:205 listings/models.py:249
 msgid "Listing"
 msgstr "Объявления"
 
@@ -516,7 +516,7 @@ msgstr "Объявления"
 msgid "Menu label"
 msgstr "Заголовок меню"
 
-#: listings/models.py:149 listings/models.py:181 listings/models.py:236
+#: listings/models.py:149 listings/models.py:181 listings/models.py:238
 msgid "Slug"
 msgstr "Слаг"
 
@@ -540,64 +540,64 @@ msgstr "Сделки"
 msgid "Image url"
 msgstr "Адрес картинки"
 
-#: listings/models.py:239 listings/models.py:249
+#: listings/models.py:241 listings/models.py:251
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: listings/models.py:240
+#: listings/models.py:242
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: listings/models.py:252
+#: listings/models.py:254
 msgid "Value"
 msgstr "Значение"
 
-#: listings/models.py:258
+#: listings/models.py:260
 msgid "Kit"
 msgstr "Набор"
 
-#: listings/models.py:259
+#: listings/models.py:261
 msgid "Kits"
 msgstr "Наборы"
 
-#: listings/models.py:267 listings/models.py:273 listings/models.py:293
+#: listings/models.py:269 listings/models.py:275 listings/models.py:295
 msgid "Country"
 msgstr "Страна"
 
-#: listings/models.py:274
+#: listings/models.py:276
 msgid "Countries"
 msgstr "Страны"
 
-#: listings/models.py:279 listings/models.py:285 listings/models.py:294
+#: listings/models.py:281 listings/models.py:287 listings/models.py:296
 msgid "Region"
 msgstr "Область"
 
-#: listings/models.py:286
+#: listings/models.py:288
 msgid "Regions"
 msgstr "Области"
 
-#: listings/models.py:291 listings/models.py:304 listings/models.py:312
-#: listings/models.py:326 listings/models.py:340
+#: listings/models.py:293 listings/models.py:306 listings/models.py:314
+#: listings/models.py:328 listings/models.py:342
 msgid "City"
 msgstr "Город"
 
-#: listings/models.py:305
+#: listings/models.py:307
 msgid "Cities"
 msgstr "Города"
 
-#: listings/models.py:319
+#: listings/models.py:321
 msgid "Districts"
 msgstr "Районы"
 
-#: listings/models.py:324 listings/models.py:332
+#: listings/models.py:326 listings/models.py:334
 msgid "House Complex"
 msgstr "Жилой Комплекс"
 
-#: listings/models.py:333
+#: listings/models.py:335
 msgid "House Complexes"
 msgstr "Жилые Комплексы"
 
-#: listings/models.py:347
+#: listings/models.py:349
 msgid "Streets"
 msgstr "Улицы"
 
@@ -908,7 +908,7 @@ msgstr "Извините, мы не смогли ничего найти по в
 msgid "Please try other search options"
 msgstr "Попробуйте, пожалуйста, другие параметры поиска"
 
-#: listings/views.py:41 pages/templates/sections/header.html:124
+#: listings/views.py:41 pages/templates/sections/header.html:122
 msgid "New buildings"
 msgstr "Новостройки"
 
@@ -1037,7 +1037,6 @@ msgid "Title 1 of the section (Ukrainian)"
 msgstr "Заголовок 1 секции (на украинском)"
 
 #: pages/models.py:11
-#| msgid "Title 1 of the section (Ukrainian)"
 msgid "Title 1 of the section (Russian)"
 msgstr "Заголовок 1 секции (на русском)"
 
@@ -1050,7 +1049,6 @@ msgid "Description 1 of the section (Ukrainian)"
 msgstr "Описание 1 секции (на украинском)"
 
 #: pages/models.py:14
-#| msgid "Description 1 of the section (Ukrainian)"
 msgid "Description 1 of the section (Russian)"
 msgstr "Описание 1 секции (на русском)"
 
@@ -1063,7 +1061,6 @@ msgid "Title 2 of the section (Ukrainian)"
 msgstr "Заголовок 2 секции (на украинском)"
 
 #: pages/models.py:18
-#| msgid "Title 2 of the section (Ukrainian)"
 msgid "Title 2 of the section (Russian)"
 msgstr "Заголовок 2 секции (на русском)"
 
@@ -1076,7 +1073,6 @@ msgid "Description 2 of the section (Ukrainian)"
 msgstr "Описание 2 секции (на украинском)"
 
 #: pages/models.py:22
-#| msgid "Description 2 of the section (Ukrainian)"
 msgid "Description 2 of the section (Russian)"
 msgstr "Описание 2 секции (на русском)"
 
@@ -1097,7 +1093,6 @@ msgstr "Заголовок (на украинском)"
 
 #: pages/models.py:44 pages/models.py:65 pages/models.py:87
 #: pages/models.py:175
-#| msgid "Title (Ukrainian)"
 msgid "Title (Russian)"
 msgstr "Заголовок (на русском)"
 
@@ -1110,7 +1105,6 @@ msgid "Description (Ukrainian)"
 msgstr "Описание (на украинском)"
 
 #: pages/models.py:47 pages/models.py:69 pages/models.py:90
-#| msgid "Description (Ukrainian)"
 msgid "Description (Russian)"
 msgstr "Описание (на русском)"
 
@@ -1132,8 +1126,8 @@ msgstr "О нас детали"
 
 #: pages/models.py:78 pages/models.py:79 pages/templates/pages/abroad.html:7
 #: pages/templates/sections/footer.html:15
-#: pages/templates/sections/header.html:73
-#: pages/templates/sections/header.html:129
+#: pages/templates/sections/header.html:71
+#: pages/templates/sections/header.html:127
 msgid "Real estate abroad"
 msgstr "Недвижимость за границей"
 
@@ -1178,7 +1172,6 @@ msgid "Schedule (Ukrainian)"
 msgstr "График работы (на украинском)"
 
 #: pages/models.py:119
-#| msgid "Schedule (Ukrainian)"
 msgid "Schedule (Russian)"
 msgstr "График работы (на русском)"
 
@@ -1191,7 +1184,6 @@ msgid "Office 1 (Ukrainian)"
 msgstr "Офіс 1 (українською)"
 
 #: pages/models.py:123
-#| msgid "Office 1 (Ukrainian)"
 msgid "Office 1 (Russian)"
 msgstr "Офіс 1 (на русском)"
 
@@ -1204,7 +1196,6 @@ msgid "Office 2 (Ukrainian)"
 msgstr "Офис 2 (на украинском)"
 
 #: pages/models.py:127
-#| msgid "Office 2 (Ukrainian)"
 msgid "Office 2 (Russian)"
 msgstr "Офис 2 (на русском)"
 
@@ -1217,7 +1208,6 @@ msgid "Office 3 (Ukrainian)"
 msgstr "Офис 3 (на украинском)"
 
 #: pages/models.py:131
-#| msgid "Office 3 (Ukrainian)"
 msgid "Office 3 (Russian)"
 msgstr "Офис 3 (на русском)"
 
@@ -1241,8 +1231,8 @@ msgstr "Фейсбук"
 #: pages/templates/pages/contacts.html:6
 #: pages/templates/pages/contacts.html:13
 #: pages/templates/sections/footer.html:23
-#: pages/templates/sections/header.html:79
-#: pages/templates/sections/header.html:135 pages/views.py:43
+#: pages/templates/sections/header.html:77
+#: pages/templates/sections/header.html:133 pages/views.py:44
 msgid "Contacts"
 msgstr "Контакты"
 
@@ -1277,7 +1267,6 @@ msgid "About us section (Ukrainian)"
 msgstr "О нас секция (на украинском)"
 
 #: pages/models.py:179
-#| msgid "About us section (Ukrainian)"
 msgid "About us section (Russian)"
 msgstr "О нас секция (на русском)"
 
@@ -1683,7 +1672,7 @@ msgid "Find real estate"
 msgstr "Найти недвижимость"
 
 #: pages/templates/pages/pricing.html:6 pages/templates/pages/pricing.html:13
-#: pages/views.py:66
+#: pages/views.py:67
 msgid "Cost of services"
 msgstr "Стоимость услуг"
 
@@ -2148,8 +2137,8 @@ msgid "Prices"
 msgstr "Цены"
 
 #: pages/templates/sections/footer.html:20
-#: pages/templates/sections/header.html:77
-#: pages/templates/sections/header.html:133
+#: pages/templates/sections/header.html:75
+#: pages/templates/sections/header.html:131
 #: pages/templates/sections/services.html:54
 msgid "Analytics"
 msgstr "Аналитические обзоры"
@@ -2166,14 +2155,19 @@ msgstr "Вход в CRM"
 msgid "Learning Portal"
 msgstr "Учебный портал"
 
-#: pages/templates/sections/footer.html:29
+#: pages/templates/sections/footer.html:30
 #: pages/templates/sections/header.html:19
-#: pages/templates/sections/header.html:90
+#: pages/templates/sections/header.html:88
 msgid "Our online course"
 msgstr "Наш онлайн курс"
 
-#: pages/templates/sections/header.html:75
-#: pages/templates/sections/header.html:131
+#: pages/templates/sections/header.html:28
+#| msgid "Choose a specialist"
+msgid "Choose city"
+msgstr "Выберите город"
+
+#: pages/templates/sections/header.html:73
+#: pages/templates/sections/header.html:129
 msgid "Partners"
 msgstr "Партнеры"
 
@@ -2271,7 +2265,6 @@ msgid "Site name (Ukraininan)"
 msgstr "Название сайта (на украинском)"
 
 #: props/models.py:9
-#| msgid "Site name (Ukraininan)"
 msgid "Site name (Russian)"
 msgstr "Название сайта (на русском)"
 

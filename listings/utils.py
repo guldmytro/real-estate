@@ -255,7 +255,6 @@ def clear_database():
     Image.objects.all().delete()
     Listing.objects.all().delete()
     Country.objects.all().delete()
-    RealtyType.objects.all().delete()
     Category.objects.all().delete()
     Manager.objects.all().delete()
     Kit.objects.all().delete()

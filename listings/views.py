@@ -106,7 +106,7 @@ def listings_list(request, realty_type=None, realty_deal=None):
 
     
     # Pagination
-    paginator = Paginator(listings_list, 20)
+    paginator = Paginator(listings_list, 18)
     page_number = request.GET.get('page', 1)
     try:
         listings = paginator.page(page_number)

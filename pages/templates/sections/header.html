@@ -23,12 +23,10 @@
                     <span class="link__text accent">{% trans 'Discounts' %}</span>
                 </a>
             </div>
-            {% if current_city %}
-                <button type="button" class="btn btn_location open-popup" data-popup="popup-city" title="{{ current_city.title }}">
-                    <img src="{% static 'img/icon-marker.png' %}" class="btn__img" alt="маркер" width="48" height="64">
-                    <span class="btn__text">{{ current_city.title }}</span>
-                </button>
-            {% endif %}
+            <button type="button" class="btn btn_location open-popup" data-popup="popup-city" title="{{ current_city.title }}">
+                <img src="{% static 'img/icon-marker.png' %}" class="btn__img" alt="маркер" width="48" height="64">
+                <span class="btn__text">{% if current_city %}{{ current_city.title }}{% else %}{% trans 'Choose city' %}{% endif %}</span>
+            </button>
             <form class="header-lang" action="/" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">

@@ -380,16 +380,16 @@ class Command(BaseCommand):
 
         street = None
         # Updating address
-        address_dict = {
-            'uk': self.fetch_geo_data(lng, lat, lang='uk'),
-            'en': self.fetch_geo_data(lng, lat, lang='en')
-            }
-        if address_dict['uk'] and address_dict['en']:
-            street = self.create_listing_address(address_dict, data.get('location', {}))
-            try:
-                listing.street_number = data['location'].get('house_num', '')
-            except:
-                pass
+        # address_dict = {
+        #     'uk': self.fetch_geo_data(lng, lat, lang='uk'),
+        #     'en': self.fetch_geo_data(lng, lat, lang='en')
+        #     }
+        # if address_dict['uk'] and address_dict['en']:
+        street = self.create_listing_address(data.get('location', {}))
+        try:
+            listing.street_number = data['location'].get('house_num', '')
+        except:
+            pass
                     
         if street:
             listing.street = street
@@ -483,65 +483,72 @@ class Command(BaseCommand):
             logger.error(f'Listing {int(data["id"])} does not exist')
 
     
-    def create_listing_address(self, address_dict, data):
-        if address_dict['uk']['country']['title'] is None:
+    def create_listing_address(self, location):
+        country_t = location.get('country', None)
+        country_t_ru = location.get('country', None)
+        region_t = location.get('region', None)
+        region_t_ru = location.get('region', None)
+        city_t = location.get('city', None)
+        city_t_ru = location.get('city_ru', None)
+        street_t = location.get('street', None)
+        street_t_ru = location.get('street_ru', None)
+
+        if country_t is None:
             return None
         try: 
             country = Country.objects.get(
                 translations__language_code='uk',
-                translations__title=address_dict['uk']['country']['title']
+                translations__title=country_t
                 )
         except Country.DoesNotExist:
             country = Country()
             country.set_current_language('uk')
-            country.title = address_dict['uk']['country']['title']
+            country.title = country_t
             country.set_current_language('en')
-            country.title = address_dict['en']['country']['title']
+            country.title = country_t
             country.set_current_language('ru')
-            country.title = address_dict['uk']['country']['title'] + 'ru'
+            country.title = country_t_ru
             country.save()
         
         if not country:
             return None
         
-        if address_dict['uk']['region']['title'] is None:
+        if region_t is None:
             return None
         
         region = None
-        if address_dict['uk']['region']['title'] and \
-            address_dict['en']['region']['title']:
-            try:
-                region = Region.objects.get(
-                    translations__language_code='uk',
-                    translations__title=address_dict['uk']['region']['title']
-                )
-            except Region.DoesNotExist:
-                region = Region()
-                region.set_current_language('uk')
-                region.title = address_dict['uk']['region']['title']
-                region.set_current_language('en')
-                region.title = address_dict['en']['region']['title']
-                region.set_current_language('ru')
-                region.title = data.get('region_ru', address_dict['uk']['region']['title'] + 'ru')
-                region.save()
+        try:
+            region = Region.objects.get(
+                translations__language_code='uk',
+                translations__title=region_t
+            )
+        except Region.DoesNotExist:
+            region = Region()
+            region.set_current_language('uk')
+            region.title = region_t
+            region.set_current_language('en')
+            region.title = region_t
+            region.set_current_language('ru')
+            region.title = region_t_ru
+            region.save()
         
-        if address_dict['uk']['city']['title'] is None:
+        if city_t is None:
             return None
         
         try: 
             city = City.objects.get(
                 translations__language_code='uk',
-                translations__title=address_dict['uk']['city']['title'],
+                translations__title=city_t,
                 region=region
                 )
         except City.DoesNotExist:
             city = City()
             city.set_current_language('uk')
-            city.title = address_dict['uk']['city']['title']
+            city.title = city_t
             city.set_current_language('en')
-            city.title = address_dict['en']['city']['title']
+            city.title = city_t
             city.set_current_language('ru')
-            city.title = data.get('city_ru', address_dict['uk']['city']['title'] + 'ru')
+            city.title = city_t_ru
             city.country = country
             if region:
                 city.region = region
@@ -550,22 +557,22 @@ class Command(BaseCommand):
         if not city:
             return None
         
-        if address_dict['uk']['street']['title'] is None:
+        if street_t is None:
             return None
         try: 
             street = Street.objects.get(
                 translations__language_code='uk',
-                translations__title=address_dict['uk']['street']['title'],
+                translations__title=street_t,
                 city=city
                 )
         except Street.DoesNotExist:
             street = Street()
             street.set_current_language('uk')
-            street.title = address_dict['uk']['street']['title']
+            street.title = street_t
             street.set_current_language('en')
-            street.title = address_dict['en']['street']['title']
+            street.title = street_t
             street.set_current_language('ru')
-            street.title = data.get('street_ru', address_dict['uk']['street']['title'] + 'ru')
+            street.title = street_t_ru
             street.city = city
             street.save()
 
