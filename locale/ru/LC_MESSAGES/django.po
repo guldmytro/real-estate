@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 10:39+0200\n"
-"PO-Revision-Date: 2024-01-12 08:40+0000\n"
+"POT-Creation-Date: 2024-01-12 18:05+0200\n"
+"PO-Revision-Date: 2024-01-12 16:07+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -2161,8 +2161,15 @@ msgstr "Учебный портал"
 msgid "Our online course"
 msgstr "Наш онлайн курс"
 
+#: pages/templates/sections/footer.html:74
+msgid ""
+"Developed by <a href=\"https://kramweb.net/\" style=\"color: #fff;font-"
+"weight: bold;\" target=\"_blank\">kramweb.net</a> | All rights reserved"
+msgstr ""
+"Разработка сайта <a href=\"https://kramweb.net/\" style=\"color: #fff;font-"
+"weight: bold;\" target=\"_blank\">kramweb.net</a> | Все права защищены"
+
 #: pages/templates/sections/header.html:28
-#| msgid "Choose a specialist"
 msgid "Choose city"
 msgstr "Выберите город"
 
