@@ -27,7 +27,7 @@
     <!-- /.content -->
     {% include 'sections/footer.html' %}
     {% include 'sections/popup.html' %}
-    <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/common-2.js' %}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -106,11 +106,11 @@
         markViewedListings();
     </script>
 
-    <script src="{% static 'js/predictions.js' %}?ver={{ ver }}" type="module"></script>
-    <script src="{% static 'js/polygon-map.js' %}?ver={{ ver }}" type="module"></script>
-    <script src="{% static 'js/search.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/predictions-2.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/polygon-map-2.js' %}?ver={{ ver }}" type="module"></script>
+    <script src="{% static 'js/search-2.js' %}?ver={{ ver }}" type="module"></script>
     <script src="{% static 'js/wishlist.js' %}?ver={{ ver }}"></script>
-    <script src="{% static 'js/prefetch.js' %}?ver={{ ver }}"></script>
+    <script src="{% static 'js/prefetch-2.js' %}?ver={{ ver }}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
