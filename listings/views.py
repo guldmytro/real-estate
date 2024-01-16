@@ -236,16 +236,21 @@ def get_listings_count(request, realty_type=None, realty_deal=None):
     return JsonResponse({'success': True, 'count': listings_list.count()})
 
 
+def remove_duplicates(items):
+    seen_ids = set()
+    unique_items = []
+    for item in items:
+        if item['id'] not in seen_ids:
+            seen_ids.add(item['id'])
+            unique_items.append(item)
+    return unique_items
+
+
 @require_POST
 def get_address_predictions(request):
     current_city = get_current_city(request)
     body_data = json.loads(request.body)
     search_query = body_data.get('search_query', '')
-
-    cities = City.objects.annotate(
-        cnt=Count('streets__listings'),
-        similarity=TrigramSimilarity('translations__title', search_query)
-    ).filter(similarity__gt=0.15, cnt__gt=0).order_by('-similarity')
 
     streets = Street.objects.annotate(
         cnt=Count('listings'),
@@ -267,26 +272,32 @@ def get_address_predictions(request):
         districts = districts.filter(city=current_city)
         house_compexes = house_compexes.filter(city=current_city)
 
-    return JsonResponse({
-        'status': 'ok',
-        'cities': [{'title': city.title, 'id': city.pk,
-                    'related_region': {'title': city.region.title} \
-                        if hasattr(city, 'region') else None,} for city in cities],
-        'streets': [{'title': street.title, 'id': street.pk, 
+    streets_list = [{'title': street.title, 'id': street.pk, 
                      'related_city': {'title': street.city.title, 'id': street.city.pk},
                      'related_region': {'title': street.city.region.title} \
                           if hasattr(street.city, 'region') else None,} \
-                              for street in streets],
-        'districts': [{'title': district.title, 'id': district.pk, 
+                              for street in streets]
+    districts_list = [{'title': district.title, 'id': district.pk, 
                      'related_city': {'title': district.city.title, 'id': district.city.pk},
                      'related_region': {'title':district.city.region.title} \
                           if hasattr(district.city, 'region') else None,} \
-                              for district in districts],
-        'house_complexes': [{'title': house_complex.title, 'id': house_complex.pk, 
+                              for district in districts]
+    houses_list = [{'title': house_complex.title, 'id': house_complex.pk, 
                      'related_city': {'title': house_complex.city.title, 'id': house_complex.city.pk},
                      'related_region': {'title':house_complex.city.region.title} \
                           if hasattr(house_complex.city, 'region') else None,} \
-                              for house_complex in house_compexes],
+                              for house_complex in house_compexes]
+    
+    streets_list = remove_duplicates(streets_list)
+    districts_list = remove_duplicates(districts_list)
+    houses_list = remove_duplicates(houses_list)
+
+    return JsonResponse({
+        'status': 'ok',
+        'cities': [],
+        'streets': streets_list,
+        'districts': districts_list,
+        'house_complexes': houses_list,
         })
         
 
