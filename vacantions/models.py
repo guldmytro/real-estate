@@ -8,7 +8,7 @@ class Vacantion(TranslatableModel):
     translations = TranslatedFields(
         title = models.CharField(max_length=255, verbose_name=_('Title')),
         salary = models.CharField(max_length=30, verbose_name=_('Salary')),
-        description = RichTextUploadingField(max_length=500, verbose_name=_('Description')),
+        description = RichTextUploadingField(verbose_name=_('Description')),
     )
     department = models.ForeignKey('Department', on_delete=models.CASCADE, verbose_name=_('Department'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
