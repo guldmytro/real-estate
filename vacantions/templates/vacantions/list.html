@@ -14,9 +14,9 @@
                 <div class="section-header">
                     <h1 class="section-header__title">
                         {% if LANGUAGE_CODE == 'uk' %}
-                            <em> {{ count|pluralize_uk:"вакансія,вакансії,вакансій" }}</em> підходять саме вам
+                            <em> {{ count|pluralize_uk:"вакансія,вакансії,вакансій" }}</em> {% if count == 1%}підходить{% else %}підходять{% endif %} саме вам
                         {% elif LANGUAGE_CODE == 'ru' %}
-                            <em> {{ count|pluralize_uk:"вакансия,вакансии,вакансий" }}</em> подходят именно вам
+                            <em> {{ count|pluralize_uk:"вакансия,вакансии,вакансий" }}</em> {% if count == 1%}подходит{% else %}подходят{% endif %} именно вам
                         {% else %}
                             <em>{{ count }} {{ count|pluralize:"vacancy is,vacancies are" }}</em> suitable for you
                         {% endif %}
