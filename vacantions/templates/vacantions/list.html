@@ -15,6 +15,8 @@
                     <h1 class="section-header__title">
                         {% if LANGUAGE_CODE == 'uk' %}
                             <em> {{ count|pluralize_uk:"вакансія,вакансії,вакансій" }}</em> підходять саме вам
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                            <em> {{ count|pluralize_uk:"вакансия,вакансии,вакансий" }}</em> подходят именно вам
                         {% else %}
                             <em>{{ count }} {{ count|pluralize:"vacancy is,vacancies are" }}</em> suitable for you
                         {% endif %}
@@ -25,7 +27,7 @@
                         <li class="vacantion-item">
                             <p class="vacantion-item__profession">{{ vacantion.title }}</p>
                             <strong class="vacantion-item__salary">{{ vacantion.salary }}</strong>
-                            <p class="vacantion-item__excerpt">{{ vacantion.description }}</p>
+                            <p class="vacantion-item__excerpt">{{ vacantion.description|safe }}</p>
                             <p class="vacantion-item__department">
                                 <img class="vacantion-item__icon accent" src="{% static 'img/icon-case.png' %}" alt="кейс" loading="lazy" width="60" height="52">
                                 <span class="accent">{{ vacantion.department.title }}</span>
