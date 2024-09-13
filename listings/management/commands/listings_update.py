@@ -248,6 +248,13 @@ class Command(BaseCommand):
 
         try:
             manager = Manager.objects.get(email=email)
+            manager.set_current_language('uk')
+            if manager.full_name != name:
+                manager.full_name = name
+                manager.set_current_language('en')
+                manager.full_name = name
+                manager.save()
+            
         except Manager.DoesNotExist:
             manager = Manager()
             manager.email = email
