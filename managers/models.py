@@ -29,7 +29,7 @@ class Manager(TranslatableModel):
         verbose_name_plural = _('Managers')
 
     def save(self, *args, **kwargs):
-        if self.image_url and not self.image:
+        if self.image_url:
             try:
                 res = request.urlopen(str(self.image_url))
                 name = str(self.image_url).rsplit('/', 1)[1]
