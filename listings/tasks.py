@@ -36,6 +36,9 @@ def add_manager_image(manager_id, image_url):
 
     if manager.image is None or image_url != manager.image_url:
         try:
+            manager.image = None
+            manager.image_url = None
+            manager.save()
             manager.image_url = image_url
             manager.save()
         except:

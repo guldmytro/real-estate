@@ -250,6 +250,8 @@ class Command(BaseCommand):
             manager = Manager.objects.get(email=email)
             manager.set_current_language('uk')
             if manager.full_name != name:
+                print('old name ', manager.full_name)
+                print('new name ', name)
                 manager.full_name = name
                 manager.set_current_language('en')
                 manager.full_name = name
