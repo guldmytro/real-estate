@@ -12,8 +12,8 @@
         <div class="employee-row">
             <div class="col">
                 <div class="employee-header">
-                    {% if manager.image %}
-                        <img src="{{ manager.image|thumbnail_url:'medium' }}" class="employee-header__img" alt="Вікторова Вікторія Олександрівна" width="266">
+                    {% if manager.image_url %}
+                        <img src="{{ manager.image_url }}" class="employee-header__img" alt="Вікторова Вікторія Олександрівна" width="266">
                     {% endif %}
                     <div class="section-header section-header_invert">
                         <h1 class="section-header__title animate animate_text">

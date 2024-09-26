@@ -17,8 +17,8 @@
             <p class="review-item__text line line_6">{{ review.body }}</p>
         </div>
         <div class="review-item__footer">
-            {% if review.manager.image %}
-                <img src="{{ review.manager.image|thumbnail_url:'small' }}" class="review-item__manager-img" width="48"
+            {% if review.manager.image_url %}
+                <img src="{{ review.manager.image_url }}" class="review-item__manager-img" width="48"
                     height="48" alt="{{ review.manager.full_name }}" loading="lazy">
             {% else %}
                 <img src="{% static 'img/icon-user.svg' %}" style="filter:invert(1)" alt="іконка користувача" loading="lazy" width="48" height="48">
