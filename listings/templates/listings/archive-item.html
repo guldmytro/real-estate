@@ -8,7 +8,7 @@
             <span class="visited"><span>{% trans 'Reviewed' %}</span></span>
             {% if item.images.first %}
                 <img src="{{ item.images.first.image_url }}" width="1000" height="667"
-                     alt="{{ item.title }}" class="object-item__img">
+                     alt="{{ item.title }}" class="object-item__img" loading="lazy">
             {% else %}
                 <img src="{% static 'img/estate_no_image.png' %}" class="object-item__img" alt="дім" loading="lazy">
             {% endif  %}
