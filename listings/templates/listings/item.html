@@ -27,7 +27,7 @@
                         {% endif %}
                         {% if listing.images.count %}
                             {% for image in listing.images.all %}
-                                <img src="{{ image.file|thumbnail_url:'large' }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
+                                <img src="{{ image.image_url }}" alt="кімната" data-thumb="{{ image.file|thumbnail_url:'small' }}">
                             {% endfor %}
                         {% else %}
                             <img src="{% static 'img/estate_no_image.png' %}" alt="дім" loading="lazy">

@@ -6,7 +6,7 @@ import json
 import re
 from django.utils.html import strip_tags
 from listings.models import Listing, Category, RealtyType, Deal, \
-    Kit, Attribute, Country, City, Street, Region, District, HouseComplex
+    Kit, Attribute, Country, City, Street, Region, District, HouseComplex, Image
 from managers.models import Manager, Phone
 from django.contrib.gis.geos import Point
 from slugify import slugify
@@ -419,7 +419,16 @@ class Command(BaseCommand):
         
         # Create Images
         for index, image_url in enumerate(data['images']):
-            add_listing_image.delay(listing.id, image_url, index)
+            # add_listing_image.delay(listing.id, image_url, index)
+            try:
+                image = Image.objects.get(image_url=image_url, listing=listing)
+            except Image.DoesNotExist:
+                image = Image(image_url=image_url, order=index, listing=listing)
+                try:
+                    image.full_clean()
+                    image.save()
+                except:
+                    pass
 
         # Update images
         for image in listing.images.all():

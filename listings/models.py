@@ -207,15 +207,15 @@ class Image(models.Model):
     image_url = models.URLField(blank=True, null=True, verbose_name=_('Image url'))
     order = models.PositiveSmallIntegerField(default=1)
 
-    def save(self, *args, **kwargs):
-        if self.image_url and not self.file:
-            try:
-                res = request.urlopen(str(self.image_url))
-                name = str(self.image_url).rsplit('/', 1)[1]
-                self.file.save(name, ContentFile(res.read()))
-            except:
-                raise Exception("Sorry, I couldn't download the image")
-        return super(Image, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.image_url and not self.file:
+    #         try:
+    #             res = request.urlopen(str(self.image_url))
+    #             name = str(self.image_url).rsplit('/', 1)[1]
+    #             self.file.save(name, ContentFile(res.read()))
+    #         except:
+    #             raise Exception("Sorry, I couldn't download the image")
+    #     return super(Image, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['order']
